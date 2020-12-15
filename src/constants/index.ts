@@ -5,6 +5,8 @@ import { fortmatic, injected, portis, walletconnect, walletlink } from '../conne
 
 export const ROUTER_ADDRESS = '0xAfD3A2221De8291E29cf119A67C49499553E114b'
 
+export const INVITE_ADDRESS = '0x450750a35906F8A24842F9d34223D70DB2B201a4'
+
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 // a list of tokens by chain
@@ -36,6 +38,14 @@ export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
+}
+
+export const INVITE: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: '',
+  [ChainId.RINKEBY]: '',
+  [ChainId.ROPSTEN]: INVITE_ADDRESS,
+  [ChainId.GÖRLI]: '',
+  [ChainId.KOVAN]: ''
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {

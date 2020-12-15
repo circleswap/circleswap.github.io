@@ -320,6 +320,9 @@ export default function Header() {
           <StyledExternalLink id={`stake-nav-link`} href={'https://uniswap.info'}>
             Charts <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
+          <StyledNavLink id={`invite-nav-link`} to={'/invite'}>
+            Invite
+          </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
