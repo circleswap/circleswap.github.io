@@ -80,7 +80,6 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
 
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  border: 1px solid ${({ theme }) => theme.bg2};
   background-color: ${({ theme }) => theme.bg1};
 `
 
@@ -99,11 +98,10 @@ const StyledBalanceMax = styled.button`
   margin-right: 0.5rem;
   color: ${({ theme }) => theme.primaryText1};
   :hover {
-    border: 1px solid ${({ theme }) => theme.primary1};
+    color: ${({ theme }) => theme.primary1};
   }
   :focus {
-    border: 1px solid ${({ theme }) => theme.primary1};
-    outline: none;
+    color: 1px solid ${({ theme }) => theme.primary1};
   }
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`

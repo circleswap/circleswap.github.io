@@ -9,6 +9,18 @@ export const Wrapper = styled.div`
   position: relative;
 `
 
+export const InputWrapper = styled.div`
+  position: relative;
+`
+
+export const InputsWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`
+
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`
   padding: 2px;
 
