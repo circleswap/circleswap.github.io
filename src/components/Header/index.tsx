@@ -39,8 +39,9 @@ const HeaderFrame = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100%;
+  left: 0;
   top: 0;
-  position: relative;
+  position: fixed;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 2;

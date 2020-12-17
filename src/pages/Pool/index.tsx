@@ -24,7 +24,6 @@ import AppBody from '../AppBody'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
-  width: 100%;
 `
 
 const TitleRow = styled(RowBetween)`
@@ -61,6 +60,14 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
+`
+
+const BodyWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  background: ${({ theme }) => theme.bg1};
+  border-radius: 30px;
+  padding: 2rem;
 `
 
 const EmptyProposals = styled.div`
@@ -125,11 +132,11 @@ export default function Pool() {
   return (
     <>
       <PageWrapper>
-        <SwapPoolTabs active={'pool'}/>
+        <SwapPoolTabs active={'pool'} />
         <AppBody>
-          <AutoColumn gap="md">
+          <AutoColumn gap="lg">
             <ColumnCenter>
-              <TYPE.link fontWeight={600}>Liquidity provider rewards</TYPE.link>
+              <TYPE.link fontWeight={600}>Circleswap liquidity mining</TYPE.link>
             </ColumnCenter>
             <RowBetween>
               <TYPE.main fontSize={14}>
@@ -145,16 +152,13 @@ export default function Pool() {
             </ExternalLink>
           </AutoColumn>
         </AppBody>
-        <div style={{marginTop: 13}}/>
-        <AppBody>
-          <AutoColumn gap="lg" style={{ width: 640 }}>
+        <div style={{ marginTop: 13 }} />
+        <BodyWrapper>
+          <AutoColumn gap="lg" style={{ width: '100%' }}>
             <HideSmall style={{ justifySelf: 'center' }}>
-              <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>
-                Your liquidity
-              </TYPE.mediumHeader>
+              <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Your liquidity</TYPE.mediumHeader>
             </HideSmall>
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
-
               <ButtonRow>
                 <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/create/ETH">
                   Create a pair
@@ -190,7 +194,7 @@ export default function Pool() {
                   </RowBetween>
                 </ButtonSecondary>
                 {v2PairsWithoutStakedAmount.map(v2Pair => (
-                  <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair}/>
+                  <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
                 ))}
                 {stakingPairs.map(
                   (stakingPair, i) =>
@@ -213,14 +217,14 @@ export default function Pool() {
 
             <AutoColumn justify={'center'} gap="md">
               <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
-                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : 'Don\'t see a pool you joined?'}{' '}
+                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
                 </StyledInternalLink>
               </Text>
             </AutoColumn>
           </AutoColumn>
-        </AppBody>
+        </BodyWrapper>
       </PageWrapper>
     </>
   )
