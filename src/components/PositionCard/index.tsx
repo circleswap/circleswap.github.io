@@ -145,7 +145,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
           </AutoColumn>
         </GreyCard>
       ) : (
-        <LightCard>
+        <>
           <TYPE.subHeader style={{ textAlign: 'center' }}>
             <span role="img" aria-label="wizard-icon">
               ⭐️
@@ -153,7 +153,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
             By adding liquidity you&apos;ll earn 0.3% of all trades on this pair proportional to your share of the pool.
             Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.
           </TYPE.subHeader>
-        </LightCard>
+        </>
       )}
     </>
   )

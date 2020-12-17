@@ -37,10 +37,9 @@ const Input = styled.input<{ error?: boolean }>`
   outline: none;
   border: none;
   flex: 1 1 auto;
-  width: 0;
   background-color: ${({ theme }) => theme.bg1};
   transition: color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')};
-  color: ${({ error, theme }) => (error ? theme.red1 : theme.primary1)};
+  color: ${({ error, theme }) => (error ? theme.red1 : theme.black)};
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 500;
@@ -90,7 +89,7 @@ export default function AddressInputPanel({
     [onChange]
   )
 
-  const error = Boolean(value.length > 0 && !loading && !address)
+  const error = Boolean(value && value.length > 0 && !loading && !address)
 
   return (
     <InputPanel id={id}>

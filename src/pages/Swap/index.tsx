@@ -44,8 +44,8 @@ import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
-import { AdvancedSwapSelectPercent } from '../../components/swap/AdvancedSelectPercent'
 import { isMobile } from 'react-device-detect'
+import AdvancedSelectPercentDropdown from '../../components/swap/AdvancedSelectPercentDropdown'
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -274,7 +274,7 @@ export default function Swap() {
         onConfirm={handleConfirmTokenWarning}
       />
       <Wrapper>
-        <InputsWrapper>
+        <InputsWrapper style={{ flexDirection: isMobile ? 'column' : 'row' }}>
           {/*from*/}
           <AppBody>
             <SwapPoolTabs active={'swap'} />
@@ -320,7 +320,7 @@ export default function Swap() {
                   </>
                 ) : null}
               </AutoColumn>
-              <AdvancedSwapSelectPercent trade={trade} />
+              <AdvancedSelectPercentDropdown trade={trade} />
             </Wrapper>
           </AppBody>
 
@@ -429,7 +429,7 @@ export default function Swap() {
           </Card>
         )}
 
-        <BottomGrouping style={{ width: 550, margin: 'auto' }}>
+        <BottomGrouping style={{ width: isMobile ? 350 : 550, margin: 'auto' }}>
           {!account ? (
             <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
           ) : showWrap ? (
