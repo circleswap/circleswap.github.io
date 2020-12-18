@@ -68,7 +68,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
     if (address && invited !== ZERO_ADDRESS) {
       history.push('/inviting')
     }
-  }, [address, invited])
+  }, [address, invited, history])
 
   return (
     <>
@@ -102,7 +102,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
             </TYPE.white>
             <HelperFrame>
               <QuestionHelper
-                text={'1. 获得额外空投奖励；\n' + '2.获得Swap挖矿额外奖励；\n' + '3.获取流动性挖矿算力额外奖励；'}
+                text={`1. 获得额外空投奖励；\n 2.获得Swap挖矿额外奖励；\n 3.获取流动性挖矿算力额外奖励；`}
               />
             </HelperFrame>
           </CCircle>
