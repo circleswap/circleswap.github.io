@@ -59,7 +59,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
     if (address) {
       setShowInviteModal(true)
     }
-  }, [])
+  }, [address])
 
   return (
     <>

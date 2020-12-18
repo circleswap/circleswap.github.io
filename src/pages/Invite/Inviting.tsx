@@ -23,18 +23,17 @@ const InputPanel = styled.div`
 `
 const Input = styled.div`
   height: 40px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   line-height: 40px;
   padding: 0 13px;
   flex: 1;
 `
 
-
 export default function Inviting({
-                                   match: {
-                                     params: { address }
-                                   }
-                                 }: RouteComponentProps<{ address?: string }>) {
+  match: {
+    params: { address }
+  }
+}: RouteComponentProps<{ address?: string }>) {
   const { account } = useActiveWeb3React()
   const invited = useUserInvited(account)
   return (
@@ -46,14 +45,17 @@ export default function Inviting({
               <ColumnCenter style={{ width: 463 }}>
                 <TYPE.largeHeader color="#2C2C2C">My NCircle</TYPE.largeHeader>
               </ColumnCenter>
-              <TYPE.main marginTop="44px" color="#888888">My invitation link</TYPE.main>
+              <TYPE.main marginTop="44px" color="#888888">
+                My invitation link
+              </TYPE.main>
               <InputPanel>
-                <Input>{account}</Input> <img style={{height: 40, marginLeft: 10, cursor: 'pointer'}} src={copyIcon} />
+                <Input>{account}</Input>{' '}
+                <img style={{ height: 40, marginLeft: 10, cursor: 'pointer' }} src={copyIcon} />
               </InputPanel>
             </AppBody>
           ) : (
             <EmptyWrapper>
-              <img src={ncircleEmpty}/>
+              <img src={ncircleEmpty} />
               <ColumnCenter>
                 <TYPE.largeHeader color="#2C2C2C">{`You don't have NCircle`}</TYPE.largeHeader>
               </ColumnCenter>
@@ -63,8 +65,7 @@ export default function Inviting({
                 fontSize="20px"
                 borderRadius="100px"
                 mt="1rem"
-                onClick={() => {
-                }}
+                onClick={() => {}}
               >
                 Invite
               </ButtonPrimary>
