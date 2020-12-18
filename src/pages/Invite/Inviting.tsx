@@ -50,12 +50,12 @@ export default function Inviting({
               </TYPE.main>
               <InputPanel>
                 <Input>{account}</Input>{' '}
-                <img style={{ height: 40, marginLeft: 10, cursor: 'pointer' }} src={copyIcon} />
+                <img style={{ height: 40, marginLeft: 10, cursor: 'pointer' }} src={copyIcon} alt="" />
               </InputPanel>
             </AppBody>
           ) : (
             <EmptyWrapper>
-              <img src={ncircleEmpty} />
+              <img src={ncircleEmpty} alt="" />
               <ColumnCenter>
                 <TYPE.largeHeader color="#2C2C2C">{`You don't have NCircle`}</TYPE.largeHeader>
               </ColumnCenter>
