@@ -30,8 +30,8 @@ const ConfirmOrLoadingWrapper = styled.div<{ activeBG: boolean }>`
   padding: 24px;
   position: relative;
   background: ${({ activeBG }) =>
-  activeBG &&
-  'radial-gradient(76.02% 75.41% at 1.84% 0%, rgba(255, 0, 122, 0.2) 0%, rgba(33, 114, 229, 0.2) 100%), #FFFFFF;'};
+    activeBG &&
+    'radial-gradient(76.02% 75.41% at 1.84% 0%, rgba(255, 0, 122, 0.2) 0%, rgba(33, 114, 229, 0.2) 100%), #FFFFFF;'};
 `
 
 const ConfirmedIcon = styled(ColumnCenter)`
@@ -45,15 +45,15 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
 `
 
 export default function AddressInviteModal({
-                                             isOpen,
-                                             address,
-                                             onDismiss
-                                           }: {
+  isOpen,
+  address,
+  onDismiss
+}: {
   isOpen: boolean
   address: string
   onDismiss: () => void
 }) {
-  const { chainId } = useActiveWeb3React()
+  const { chainId, account } = useActiveWeb3React()
 
   // state for smart contract input
   const [typed, setTyped] = useState(address)
@@ -66,6 +66,8 @@ export default function AddressInviteModal({
   const { address: parsedAddress } = useENS(typed)
 
   const invited = useUserInvited(typed)
+  const myInvited = useUserInvited(account)
+
   console.log('invited', invited)
   // used for UI loading states
   const [attempting, setAttempting] = useState<boolean>(false)
@@ -103,23 +105,34 @@ export default function AddressInviteModal({
 
   return (
     <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss} maxHeight={90}>
-      <Confetti start={Boolean(isOpen && claimConfirmed && attempting)}/>
+      <Confetti start={Boolean(isOpen && claimConfirmed && attempting)} />
       {!attempting && (
         <ContentWrapper gap="lg">
-          <TYPE.subHeader fontSize={19} style={{ marginTop: 30 }} textAlign='center' fontWeight={600}>Enter
-            address</TYPE.subHeader>
+          <TYPE.subHeader fontSize={19} style={{ marginTop: 30 }} textAlign="center" fontWeight={600}>
+            Enter address
+          </TYPE.subHeader>
           <AutoColumn gap="md" style={{ padding: '1rem', paddingTop: '0' }} justify="flex-start">
-            <TYPE.main color={'#30D683'} fontWeight={500}>Please enter the inviter address</TYPE.main>
-            <AddressInputPanel value={typed} onChange={handleRecipientType}/>
-            {parsedAddress && ZERO_ADDRESS !== invited && (
-              <TYPE.error error={true}>Address has already invited</TYPE.error>
+            <TYPE.main color={'#30D683'} fontWeight={500}>
+              Please enter the inviter address
+            </TYPE.main>
+            <AddressInputPanel value={typed} onChange={handleRecipientType} />
+            {parsedAddress && ZERO_ADDRESS !== myInvited && (
+              <TYPE.error error={true}>Your address has already been invited</TYPE.error>
+            )}
+            {((parsedAddress && ZERO_ADDRESS === invited) || typed === account) && (
+              <TYPE.error error={true}>Invalid inviter address</TYPE.error>
             )}
             <RowBetween>
               <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/create/ETH">
                 Join later
               </ResponsiveButtonSecondary>
               <ButtonPrimary
-                disabled={!isAddress(parsedAddress ?? '') || ZERO_ADDRESS !== invited}
+                disabled={
+                  !isAddress(parsedAddress ?? '') ||
+                  myInvited !== ZERO_ADDRESS ||
+                  ZERO_ADDRESS === invited ||
+                  typed === account
+                }
                 padding="16px 16px"
                 width="180px"
                 borderRadius="100px"
@@ -127,24 +140,23 @@ export default function AddressInviteModal({
               >
                 Determine
               </ButtonPrimary>
-
             </RowBetween>
           </AutoColumn>
         </ContentWrapper>
       )}
       {(attempting || claimConfirmed) && (
         <ConfirmOrLoadingWrapper activeBG={true}>
-          <CardNoise/>
-          <CardBGImageSmaller desaturate/>
+          <CardNoise />
+          <CardBGImageSmaller desaturate />
           <RowBetween>
-            <div/>
-            <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="black"/>
+            <div />
+            <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="black" />
           </RowBetween>
           <ConfirmedIcon>
             {!claimConfirmed ? (
-              <CustomLightSpinner src={Circle} alt="loader" size={'90px'}/>
+              <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
             ) : (
-              <UniTokenAnimated width="72px" src={tokenLogo}/>
+              <UniTokenAnimated width="72px" src={tokenLogo} />
             )}
           </ConfirmedIcon>
           <AutoColumn gap="100px" justify={'center'}>

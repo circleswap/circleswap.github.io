@@ -326,7 +326,7 @@ export default function Header() {
           {/*  Charts <span style={{ fontSize: '11px' }}>↗</span>*/}
           {/*</StyledExternalLink>*/}
           <StyledNavLink id={`invite-nav-link`} to={'/invite/'}>
-            Invite
+            Circle
           </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>

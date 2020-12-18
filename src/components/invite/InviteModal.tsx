@@ -172,7 +172,7 @@ export default function InviteModal() {
                 {claimConfirmed ? 'Claimed!' : 'Claiming'}
               </TYPE.largeHeader>
               {!claimConfirmed && (
-                <Text fontSize={36} color={'#ff007a'} fontWeight={800}>
+                <Text fontSize={36} color={'#30D683'} fontWeight={800}>
                   {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} UNI
                 </Text>
               )}

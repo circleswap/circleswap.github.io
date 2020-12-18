@@ -32,7 +32,8 @@ const Input = styled.div`
 export default function Inviting({
   match: {
     params: { address }
-  }
+  },
+  history
 }: RouteComponentProps<{ address?: string }>) {
   const { account } = useActiveWeb3React()
   const invited = useUserInvited(account)
@@ -40,7 +41,7 @@ export default function Inviting({
     <>
       <Wrapper>
         <AutoColumn gap="20px">
-          {ZERO_ADDRESS !== invited ? (
+          {ZERO_ADDRESS !== invited && invited ? (
             <AppBody>
               <ColumnCenter style={{ width: 463 }}>
                 <TYPE.largeHeader color="#2C2C2C">My NCircle</TYPE.largeHeader>
@@ -65,9 +66,11 @@ export default function Inviting({
                 fontSize="20px"
                 borderRadius="100px"
                 mt="1rem"
-                onClick={() => {}}
+                onClick={() => {
+                  history.push('/invite')
+                }}
               >
-                Invite
+                Create
               </ButtonPrimary>
             </EmptyWrapper>
           )}
