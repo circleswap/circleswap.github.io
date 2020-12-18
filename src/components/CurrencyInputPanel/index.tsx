@@ -212,7 +212,7 @@ export default function CurrencyInputPanel({
                 ? (customBalanceText ?? 'Balance: ') + selectedCurrencyBalance?.toSignificant(6)
                 : ' -'}
               {account && currency && showMaxButton && label !== 'To' && (
-                <StyledBalanceMax onClick={onMax}>MAX</StyledBalanceMax>
+                <StyledBalanceMax onClick={onMax}>{t('max')}</StyledBalanceMax>
               )}
             </TYPE.body>
           )}

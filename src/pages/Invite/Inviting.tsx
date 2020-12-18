@@ -10,7 +10,7 @@ import { useUserInvited } from '../../hooks/useInvited'
 import { ZERO_ADDRESS } from '../../constants'
 import AppBody from '../AppBody'
 import ncircleEmpty from '../../assets/images/ncircle_empty.svg'
-import copyIcon from '../../assets/images/copy.svg'
+import Copy from '../../components/AccountDetails/Copy'
 
 const EmptyWrapper = styled.div<{}>``
 
@@ -49,8 +49,8 @@ export default function Inviting({
                 My invitation link
               </TYPE.main>
               <InputPanel>
-                <Input>{account}</Input>{' '}
-                <img style={{ height: 40, marginLeft: 10, cursor: 'pointer' }} src={copyIcon} alt="" />
+                <Input>{account}</Input>
+                <Copy toCopy={'https://circleswap.netlify.app/invite/' + account ?? ''} />
               </InputPanel>
             </AppBody>
           ) : (

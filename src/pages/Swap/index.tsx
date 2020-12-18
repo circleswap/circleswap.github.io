@@ -3,7 +3,8 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
+import { useTranslation } from 'react-i18next'
+import styled, { ThemeContext } from 'styled-components'
 import AddressInputPanel from '../../components/AddressInputPanel'
 import { ButtonError, ButtonLight, ButtonPrimary, ButtonConfirmed } from '../../components/Button'
 import Card, { GreyCard } from '../../components/Card'
@@ -46,10 +47,15 @@ import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
 import { isMobile } from 'react-device-detect'
 import AdvancedSelectPercentDropdown from '../../components/swap/AdvancedSelectPercentDropdown'
+import exchangeIcon from '../../assets/images/exchage.svg'
+
+const ExchangeArrow = styled.img`
+  width: 19px;
+`
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
-
+  const { t } = useTranslation()
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
     useCurrency(loadedUrlParams?.inputCurrencyId),
@@ -295,7 +301,7 @@ export default function Swap() {
 
               <AutoColumn gap={'md'}>
                 <CurrencyInputPanel
-                  label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
+                  label={independentField === Field.OUTPUT && !showWrap && trade ? t('formEstimated') : t('form')}
                   value={formattedAmounts[Field.INPUT]}
                   showMaxButton={!atMaxAmountInput}
                   currency={currencies[Field.INPUT]}
@@ -328,13 +334,13 @@ export default function Swap() {
           <AutoColumn justify="space-between">
             <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '1rem' }}>
               <ArrowWrapper clickable>
-                <ArrowDown
-                  size="16"
+                <ExchangeArrow
                   onClick={() => {
                     setApprovalSubmitted(false) // reset 2 step UI for approvals
                     onSwitchTokens()
                   }}
-                  color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? theme.primary1 : theme.text2}
+                  src={exchangeIcon}
+                  alt=""
                 />
               </ArrowWrapper>
               {recipient === null && !showWrap && isExpertMode ? (
@@ -367,7 +373,7 @@ export default function Swap() {
                 <CurrencyInputPanel
                   value={formattedAmounts[Field.OUTPUT]}
                   onUserInput={handleTypeOutput}
-                  label={independentField === Field.INPUT && !showWrap && trade ? 'To (estimated)' : 'To'}
+                  label={independentField === Field.INPUT && !showWrap && trade ? t('toEstimated') : t('to')}
                   showMaxButton={false}
                   currency={currencies[Field.OUTPUT]}
                   onCurrencySelect={handleOutputSelect}

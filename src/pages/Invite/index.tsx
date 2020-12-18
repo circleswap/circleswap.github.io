@@ -12,26 +12,28 @@ import { AutoRow } from '../../components/Row'
 import { TYPE } from '../../theme'
 import { useActiveWeb3React } from '../../hooks'
 import { ZERO_ADDRESS } from '../../constants'
+import QuestionHelper from '../../components/QuestionHelper'
 
 const PageWrapper = styled(AutoColumn)`
-  width: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `
 
 const CircleCard = styled.div`
-  width: 306px;
+  width: 490px;
   padding: 59px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 35px;
-  height: 188px;
+  margin: 0 60px;
+  height: 300px;
   border-radius: 20px;
   cursor: pointer;
   color: transparent;
+  position: relative;
 `
 
 const NCircle = styled(CircleCard)`
@@ -40,6 +42,13 @@ const NCircle = styled(CircleCard)`
 
 const CCircle = styled(CircleCard)`
   background-image: url(${ncircleBg});
+`
+
+const HelperFrame = styled.div`
+  position: absolute;
+  left: auto;
+  right: 30px;
+  top: 30px;
 `
 
 export default function Invite(props: RouteComponentProps<{ address: string }>) {
@@ -56,15 +65,15 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
   const [showInviteModal, setShowInviteModal] = useState(false)
 
   useEffect(() => {
-    if (address) {
-      setShowInviteModal(true)
+    if (address && invited !== ZERO_ADDRESS) {
+      history.push('/inviting')
     }
-  }, [address])
+  }, [address, invited])
 
   return (
     <>
       <PageWrapper>
-        <AutoRow style={{ width: 'fit-content', margin: 'auto' }}>
+        <AutoRow style={{ margin: 'auto' }}>
           <NCircle
             onClick={() => {
               if (ZERO_ADDRESS === invited) {
@@ -75,19 +84,27 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
             }}
           >
             <TYPE.white fontWeight={900} fontSize={41}>
-              Ncircle
+              NCircle
             </TYPE.white>
-            <TYPE.white fontWeight={900} fontSize={14}>
-              Create your Ncircle
+            <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
+              Create your NCircle to generate an invitation link or view your NCircle details
             </TYPE.white>
+            <HelperFrame>
+              <QuestionHelper text={'1. 参与流动性挖矿；\n2.获取UBI奖励；\n3.获取流动性挖矿算力额外奖励；'} />
+            </HelperFrame>
           </NCircle>
           <CCircle>
             <TYPE.white fontWeight={900} fontSize={41}>
               Ecircle
             </TYPE.white>
-            <TYPE.white fontWeight={900} fontSize={14}>
-              Create your Ecircle
+            <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
+              Create or view your ECircle details
             </TYPE.white>
+            <HelperFrame>
+              <QuestionHelper
+                text={'1. 获得额外空投奖励；\n' + '2.获得Swap挖矿额外奖励；\n' + '3.获取流动性挖矿算力额外奖励；'}
+              />
+            </HelperFrame>
           </CCircle>
         </AutoRow>
       </PageWrapper>

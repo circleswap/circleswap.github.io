@@ -1,12 +1,11 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@uniswap/sdk'
-import React, { useCallback, useContext, useState } from 'react'
-import { Plus } from 'react-feather'
+import React, { useCallback, useState } from 'react'
 import ReactGA from 'react-ga'
 import { RouteComponentProps } from 'react-router-dom'
 import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
+import styled  from 'styled-components'
 import { ButtonError, ButtonLight, ButtonPrimary } from '../../components/Button'
 import { LightCard } from '../../components/Card'
 import Column, { AutoColumn, ColumnCenter } from '../../components/Column'
@@ -40,6 +39,11 @@ import { currencyId } from '../../utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
 import { InputsWrapper } from '../../components/swap/styleds'
 import { isMobile } from 'react-device-detect'
+import plus from '../../assets/images/plus.svg'
+
+const AddArrow = styled.img`
+  width: 19px;
+`
 
 export default function AddLiquidity({
   match: {
@@ -48,7 +52,6 @@ export default function AddLiquidity({
   history
 }: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
   const { account, chainId, library } = useActiveWeb3React()
-  const theme = useContext(ThemeContext)
 
   const currencyA = useCurrency(currencyIdA)
   const currencyB = useCurrency(currencyIdB)
@@ -368,7 +371,7 @@ export default function AddLiquidity({
             </Wrapper>
           </AppBody>
           <ColumnCenter style={{ margin: 9 }}>
-            <Plus size="16" color={theme.text2} />
+            <AddArrow src={plus} alt="" />
           </ColumnCenter>
           <AppBody>
             <Wrapper style={{ width: isMobile ? 350 : 400 }}>

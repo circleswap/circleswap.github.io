@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 10</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CircleSwap-选项备份" transform="translate(-759.000000, -137.000000)">
+            <g id="编组-10" transform="translate(759.000000, 137.000000)">
+                <path d="M11,-2 C12.3807119,-2 13.5,-0.880711875 13.5,0.5 L13.5,21.5 C13.5,22.8807119 12.3807119,24 11,24 C9.61928813,24 8.5,22.8807119 8.5,21.5 L8.5,0.5 C8.5,-0.880711875 9.61928813,-2 11,-2 Z" id="矩形" fill="#30D683" transform="translate(11.000000, 11.000000) rotate(-315.000000) translate(-11.000000, -11.000000) "></path>
+                <path d="M24,11 C24,12.3807119 22.8807119,13.5 21.5,13.5 L0.5,13.5 C-0.880711875,13.5 -2,12.3807119 -2,11 C-2,9.61928813 -0.880711875,8.5 0.5,8.5 L21.5,8.5 C22.8807119,8.5 24,9.61928813 24,11 Z" id="矩形备份-3" fill="#5DF9DB" opacity="0.6" transform="translate(11.000000, 11.000000) rotate(-315.000000) translate(-11.000000, -11.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

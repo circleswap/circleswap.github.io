@@ -5,6 +5,14 @@
   "installWeb3MobileBrowser": "请从支持web3的移动端浏览器，如 Trust Wallet 或 Coinbase Wallet 访问。",
   "installMetamask": "请从安装了 Metamask 插件的 Chrome 或 Brave 访问。",
   "disconnected": "未连接",
+  "from": "支付",
+  "to": "兑换成",
+  "max": "最大",
+  "minimumReceived": "最少获得",
+  "maximumSold": "最高售出量",
+  "formEstimated": "支付(约)",
+  "toEstimated": "兑换(约)",
+  "liquidityProviderFee": "流动性提供者手续费",
   "swap": "兑换",
   "send": "发送",
   "pool": "资金池",
@@ -71,5 +79,6 @@
   "tokenAddress": "通证地址",
   "label": "通证符号",
   "decimals": "小数位数",
-  "enterTokenCont": "输入通证地址并继续"
+  "enterTokenCont": "输入通证地址并继续",
+  "liquidityFee": "CircleSwap 平台交易手续费为 0.35%，其中 0.2%奖励给流动性提供者，剩余 0.15%将在 UBI1.0 阶段中奖励给所有创建和加入 ECircle 的用户。"
 }
