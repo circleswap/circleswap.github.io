@@ -118,6 +118,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@uniswap/sdk": "circleswap/uniswap-sdk.git#v2"
+    "@uniswap/sdk": "circleswap/uniswap-sdk.git#v2",
+    "bignumber.js": "^9.0.1"
   }
 }

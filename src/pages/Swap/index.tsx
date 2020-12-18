@@ -20,7 +20,6 @@ import { ArrowWrapper, BottomGrouping, InputsWrapper, SwapCallbackError, Wrapper
 import TradePrice from '../../components/swap/TradePrice'
 import TokenWarningModal from '../../components/TokenWarningModal'
 import ProgressSteps from '../../components/ProgressSteps'
-
 import { BETTER_TRADE_LINK_THRESHOLD, INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
 import { getTradeVersion, isTradeBetter } from '../../data/V1'
 import { useActiveWeb3React } from '../../hooks'
@@ -42,12 +41,11 @@ import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user
 import { LinkStyledButton, TYPE } from '../../theme'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
-import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
 import { isMobile } from 'react-device-detect'
-import AdvancedSelectPercentDropdown from '../../components/swap/AdvancedSelectPercentDropdown'
 import exchangeIcon from '../../assets/images/exchage.svg'
+import BigNumber from 'bignumber.js'
 
 const ExchangeArrow = styled.img`
   width: 19px;
@@ -268,6 +266,17 @@ export default function Swap() {
     maxAmountInput && onUserInput(Field.INPUT, maxAmountInput.toExact())
   }, [maxAmountInput, onUserInput])
 
+  const handleProgressInput = useCallback(
+    progress => {
+      maxAmountInput?.toExact()
+      maxAmountInput?.multiply(BigInt(10))
+      const max = maxAmountInput?.toExact().toString()
+      console.log('maxAmountInput', max)
+      maxAmountInput && onUserInput(Field.INPUT, new BigNumber(String(max)).multipliedBy(progress).toString())
+    },
+    [maxAmountInput, onUserInput]
+  )
+
   const handleOutputSelect = useCallback(outputCurrency => onCurrencySelection(Field.OUTPUT, outputCurrency), [
     onCurrencySelection
   ])
@@ -282,53 +291,52 @@ export default function Swap() {
       <Wrapper>
         <InputsWrapper style={{ flexDirection: isMobile ? 'column' : 'row' }}>
           {/*from*/}
-          <AppBody>
-            <SwapPoolTabs active={'swap'} />
-            <Wrapper id="swap-page" style={{ width: isMobile ? 350 : 400 }}>
-              <ConfirmSwapModal
-                isOpen={showConfirm}
-                trade={trade}
-                originalTrade={tradeToConfirm}
-                onAcceptChanges={handleAcceptChanges}
-                attemptingTxn={attemptingTxn}
-                txHash={txHash}
-                recipient={recipient}
-                allowedSlippage={allowedSlippage}
-                onConfirm={handleSwap}
-                swapErrorMessage={swapErrorMessage}
-                onDismiss={handleConfirmDismiss}
+          <SwapPoolTabs active={'swap'} />
+          <Wrapper id="swap-page" style={{ width: isMobile ? 350 : 480 }}>
+            <ConfirmSwapModal
+              isOpen={showConfirm}
+              trade={trade}
+              originalTrade={tradeToConfirm}
+              onAcceptChanges={handleAcceptChanges}
+              attemptingTxn={attemptingTxn}
+              txHash={txHash}
+              recipient={recipient}
+              allowedSlippage={allowedSlippage}
+              onConfirm={handleSwap}
+              swapErrorMessage={swapErrorMessage}
+              onDismiss={handleConfirmDismiss}
+            />
+
+            <AutoColumn>
+              <CurrencyInputPanel
+                label={independentField === Field.OUTPUT && !showWrap && trade ? t('formEstimated') : t('form')}
+                value={formattedAmounts[Field.INPUT]}
+                showMaxButton={!atMaxAmountInput}
+                currency={currencies[Field.INPUT]}
+                onUserInput={handleTypeInput}
+                onMax={handleMaxInput}
+                progress={Boolean(trade)}
+                onCurrencySelect={handleInputSelect}
+                otherCurrency={currencies[Field.OUTPUT]}
+                onProgress={handleProgressInput}
+                id="swap-currency-input"
               />
 
-              <AutoColumn gap={'md'}>
-                <CurrencyInputPanel
-                  label={independentField === Field.OUTPUT && !showWrap && trade ? t('formEstimated') : t('form')}
-                  value={formattedAmounts[Field.INPUT]}
-                  showMaxButton={!atMaxAmountInput}
-                  currency={currencies[Field.INPUT]}
-                  onUserInput={handleTypeInput}
-                  onMax={handleMaxInput}
-                  onCurrencySelect={handleInputSelect}
-                  otherCurrency={currencies[Field.OUTPUT]}
-                  id="swap-currency-input"
-                />
-
-                {recipient !== null && !showWrap ? (
-                  <>
-                    <AutoRow justify="space-between" style={{ padding: '1rem' }}>
-                      <ArrowWrapper clickable={false}>
-                        <ArrowDown size="16" color={theme.text2} />
-                      </ArrowWrapper>
-                      <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
-                        - Remove send
-                      </LinkStyledButton>
-                    </AutoRow>
-                    <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
-                  </>
-                ) : null}
-              </AutoColumn>
-              <AdvancedSelectPercentDropdown trade={trade} />
-            </Wrapper>
-          </AppBody>
+              {recipient !== null && !showWrap ? (
+                <>
+                  <AutoRow justify="space-between" style={{ padding: '1rem' }}>
+                    <ArrowWrapper clickable={false}>
+                      <ArrowDown size="16" color={theme.text2} />
+                    </ArrowWrapper>
+                    <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
+                      - Remove send
+                    </LinkStyledButton>
+                  </AutoRow>
+                  <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
+                </>
+              ) : null}
+            </AutoColumn>
+          </Wrapper>
 
           {/*exchange icon*/}
           <AutoColumn justify="space-between">
@@ -352,52 +360,36 @@ export default function Swap() {
           </AutoColumn>
 
           {/*to*/}
-          <AppBody>
-            <SwapPoolTabs active={'swap'} />
-            <Wrapper id="swap-page" style={{ width: isMobile ? 350 : 400 }}>
-              <ConfirmSwapModal
-                isOpen={showConfirm}
-                trade={trade}
-                originalTrade={tradeToConfirm}
-                onAcceptChanges={handleAcceptChanges}
-                attemptingTxn={attemptingTxn}
-                txHash={txHash}
-                recipient={recipient}
-                allowedSlippage={allowedSlippage}
-                onConfirm={handleSwap}
-                swapErrorMessage={swapErrorMessage}
-                onDismiss={handleConfirmDismiss}
+          <SwapPoolTabs active={'swap'} />
+          <Wrapper id="swap-page" style={{ width: isMobile ? 350 : 480 }}>
+            <AutoColumn>
+              <CurrencyInputPanel
+                value={formattedAmounts[Field.OUTPUT]}
+                onUserInput={handleTypeOutput}
+                label={independentField === Field.INPUT && !showWrap && trade ? t('toEstimated') : t('to')}
+                showMaxButton={false}
+                currency={currencies[Field.OUTPUT]}
+                onCurrencySelect={handleOutputSelect}
+                otherCurrency={currencies[Field.INPUT]}
+                id="swap-currency-output"
               />
 
-              <AutoColumn gap={'md'}>
-                <CurrencyInputPanel
-                  value={formattedAmounts[Field.OUTPUT]}
-                  onUserInput={handleTypeOutput}
-                  label={independentField === Field.INPUT && !showWrap && trade ? t('toEstimated') : t('to')}
-                  showMaxButton={false}
-                  currency={currencies[Field.OUTPUT]}
-                  onCurrencySelect={handleOutputSelect}
-                  otherCurrency={currencies[Field.INPUT]}
-                  id="swap-currency-output"
-                />
-
-                {recipient !== null && !showWrap ? (
-                  <>
-                    <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
-                      <ArrowWrapper clickable={false}>
-                        <ArrowDown size="16" color={theme.text2} />
-                      </ArrowWrapper>
-                      <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
-                        - Remove send
-                      </LinkStyledButton>
-                    </AutoRow>
-                    <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
-                  </>
-                ) : null}
-              </AutoColumn>
-            </Wrapper>
+              {recipient !== null && !showWrap ? (
+                <>
+                  <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
+                    <ArrowWrapper clickable={false}>
+                      <ArrowDown size="16" color={theme.text2} />
+                    </ArrowWrapper>
+                    <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
+                      - Remove send
+                    </LinkStyledButton>
+                  </AutoRow>
+                  <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
+                </>
+              ) : null}
+            </AutoColumn>
             <AdvancedSwapDetailsDropdown trade={trade} />
-          </AppBody>
+          </Wrapper>
         </InputsWrapper>
       </Wrapper>
 

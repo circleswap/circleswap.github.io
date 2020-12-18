@@ -37,6 +37,7 @@ const HeaderFrame = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  background-color: #ffffff;
   width: 100%;
   left: 0;
   top: 0;
@@ -44,8 +45,8 @@ const HeaderFrame = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 2;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
   box-shadow: 0px 6px 19px 0px rgba(12, 29, 66, 0.04);
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
@@ -86,7 +87,7 @@ const HeaderControls = styled.div`
 const HeaderElement = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 32px;
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
    flex-direction: row-reverse;

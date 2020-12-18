@@ -88,7 +88,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
   const showRoute = Boolean(trade && trade.route.path.length > 2)
 
   return (
-    <AutoColumn gap="md">
+    <AutoColumn gap="md" style={{ height: 136 }}>
       {trade && (
         <>
           <TradeSummary trade={trade} allowedSlippage={allowedSlippage} />

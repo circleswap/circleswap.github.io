@@ -23,13 +23,13 @@ import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 
 const StyledMenuIcon = styled(Settings)`
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 `
 
 const StyledCloseIcon = styled(X)`
-  height: 20px;
-  width: 20px;
+  height: 32px;
+  width: 32px;
   :hover {
     cursor: pointer;
   }
@@ -43,19 +43,26 @@ const StyledMenuButton = styled.button`
   position: relative;
   border: none;
   margin: 0;
-  height: 35px;
-  width: 35px;
+  height: 52px;
+  width: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
+  background-color: transparent;
 
   :hover,
   :focus {
     cursor: pointer;
     outline: none;
-    rect {
-      fill: rgba(48, 214, 131, 1);
+    g {
+      g {
+        g {
+          g {
+            fill: rgba(48, 214, 131, 1);
+          }
+        }
+      }
     }
   }
 

@@ -13,11 +13,12 @@ import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useTranslation } from 'react-i18next'
+import AdvancedSelectPercentDropdown from '../swap/AdvancedSelectPercentDropdown'
 
 const InputRow = styled.div<{ selected: boolean }>`
-  ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+  ${({ theme }) => theme.flexRowNoWrap}
 `
 
 const CurrencySelect = styled.button<{ selected: boolean }>`
@@ -42,12 +43,12 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
 `
 
 const LabelRow = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
   color: ${({ theme }) => theme.text1};
   font-size: 0.75rem;
   line-height: 1rem;
   padding: 0.75rem 1rem 0 1rem;
+  ${({ theme }) => theme.flexRowNoWrap}
   span:hover {
     cursor: pointer;
     color: ${({ theme }) => darken(0.2, theme.text2)};
@@ -71,11 +72,11 @@ const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
 `
 
 const InputPanel = styled.div<{ hideInput?: boolean }>`
-  ${({ theme }) => theme.flexColumnNoWrap}
   position: relative;
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
   background-color: ${({ theme }) => theme.bg2};
   z-index: 1;
+  ${({ theme }) => theme.flexColumnNoWrap}
 `
 
 const Container = styled.div<{ hideInput: boolean }>`
@@ -125,6 +126,8 @@ interface CurrencyInputPanelProps {
   id: string
   showCommonBases?: boolean
   customBalanceText?: string
+  progress?: boolean
+  onProgress?: (value: string) => void
 }
 
 export default function CurrencyInputPanel({
@@ -142,7 +145,9 @@ export default function CurrencyInputPanel({
   otherCurrency,
   id,
   showCommonBases,
-  customBalanceText
+  customBalanceText,
+  progress,
+  onProgress
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
 
@@ -240,6 +245,14 @@ export default function CurrencyInputPanel({
           selectedCurrency={currency}
           otherSelectedCurrency={otherCurrency}
           showCommonBases={showCommonBases}
+        />
+      )}
+      {progress && (
+        <AdvancedSelectPercentDropdown
+          progressCallback={progress => {
+            onProgress && onProgress(progress)
+          }}
+          show={true}
         />
       )}
     </InputPanel>

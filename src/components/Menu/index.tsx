@@ -11,28 +11,34 @@ import { ExternalLink } from '../../theme'
 import { ButtonPrimary } from '../Button'
 
 const StyledMenuIcon = styled(MenuIcon)`
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 `
 
 const StyledMenuButton = styled.button`
   border: none;
   margin: 0;
   padding: 0;
-  height: 35px;
-  width: 35px;
+  height: 32px;
+  width: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background-color: transparent;
   border-radius: 0.5rem;
 
   :hover,
   :focus {
     cursor: pointer;
     outline: none;
-    rect {
-      fill: rgba(48, 214, 131, 1);
+    g {
+      g {
+        g {
+          g {
+            fill: rgba(48, 214, 131, 1);
+          }
+        }
+      }
     }
   }
 
