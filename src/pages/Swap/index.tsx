@@ -307,9 +307,9 @@ export default function Swap() {
               onDismiss={handleConfirmDismiss}
             />
 
-            <AutoColumn>
+            <Wrapper>
               <CurrencyInputPanel
-                label={independentField === Field.OUTPUT && !showWrap && trade ? t('formEstimated') : t('form')}
+                label={independentField === Field.OUTPUT && !showWrap && trade ? t('formEstimated') : t('from')}
                 value={formattedAmounts[Field.INPUT]}
                 showMaxButton={!atMaxAmountInput}
                 currency={currencies[Field.INPUT]}
@@ -335,7 +335,7 @@ export default function Swap() {
                   <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
                 </>
               ) : null}
-            </AutoColumn>
+            </Wrapper>
           </Wrapper>
 
           {/*exchange icon*/}

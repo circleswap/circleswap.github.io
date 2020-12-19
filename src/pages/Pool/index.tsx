@@ -137,7 +137,7 @@ export default function Pool() {
         <AppBody>
           <AutoColumn gap="lg">
             <ColumnCenter>
-              <TYPE.link fontWeight={600}>Circleswap liquidity mining</TYPE.link>
+              <TYPE.link fontWeight={600}>{t('liquidityMining')}</TYPE.link>
             </ColumnCenter>
             <RowBetween>
               <TYPE.main fontSize={14}>{t('liquidityFee')}</TYPE.main>
@@ -155,16 +155,16 @@ export default function Pool() {
         <BodyWrapper>
           <AutoColumn gap="lg" style={{ width: '100%' }}>
             <HideSmall style={{ justifySelf: 'center' }}>
-              <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Your liquidity</TYPE.mediumHeader>
+              <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>{t('yourLiquidity')}</TYPE.mediumHeader>
             </HideSmall>
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <ButtonRow>
                 <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/create/ETH">
-                  Create a pair
+                  {t('createAPair')}
                 </ResponsiveButtonSecondary>
                 <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="8px 16px" to="/add/ETH">
                   <Text fontWeight={500} fontSize={16}>
-                    Add Liquidity
+                    {t('addLiquidity')}
                   </Text>
                 </ResponsiveButtonPrimary>
               </ButtonRow>
@@ -209,14 +209,14 @@ export default function Pool() {
             ) : (
               <EmptyProposals>
                 <TYPE.body color={theme.text3} textAlign="center">
-                  No liquidity found.
+                  {t('noLiquidityFound')}
                 </TYPE.body>
               </EmptyProposals>
             )}
 
             <AutoColumn justify={'center'} gap="md">
               <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
-                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
+                {/*{hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}*/}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
                 </StyledInternalLink>

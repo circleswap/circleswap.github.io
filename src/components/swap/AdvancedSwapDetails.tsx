@@ -36,7 +36,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {isExactIn ? t('minimumReceived') : 'Maximum sold'}
+              {isExactIn ? t('minimumReceived') : t('maximumSold')}
             </TYPE.black>
             <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
           </RowFixed>
@@ -53,7 +53,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              Price Impact
+              {t('priceImpact')}
             </TYPE.black>
             <QuestionHelper text="The difference between the market price and estimated price due to trade size." />
           </RowFixed>

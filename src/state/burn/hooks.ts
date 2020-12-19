@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePair } from '../../data/Reserves'
 import { useTotalSupply } from '../../data/TotalSupply'
-
+import { useTranslation } from 'react-i18next'
 import { useActiveWeb3React } from '../../hooks'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { AppDispatch, AppState } from '../index'
@@ -29,7 +29,7 @@ export function useDerivedBurnInfo(
   error?: string
 } {
   const { account, chainId } = useActiveWeb3React()
-
+  const { t } = useTranslation()
   const { independentField, typedValue } = useBurnState()
 
   // pair + totalsupply
@@ -123,7 +123,7 @@ export function useDerivedBurnInfo(
   }
 
   if (!parsedAmounts[Field.LIQUIDITY] || !parsedAmounts[Field.CURRENCY_A] || !parsedAmounts[Field.CURRENCY_B]) {
-    error = error ?? 'Enter an amount'
+    error = error ?? t('enterAnAmount')
   }
 
   return { pair, parsedAmounts, error }

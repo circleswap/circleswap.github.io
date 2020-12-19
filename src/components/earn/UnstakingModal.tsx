@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Modal from '../Modal'
 import { AutoColumn } from '../Column'
 import styled from 'styled-components'
@@ -26,7 +27,7 @@ interface StakingModalProps {
 
 export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: StakingModalProps) {
   const { account } = useActiveWeb3React()
-
+  const { t } = useTranslation()
   // monitor call to help UI loading state
   const addTransaction = useTransactionAdder()
   const [hash, setHash] = useState<string | undefined>()
@@ -63,7 +64,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
     error = 'Connect Wallet'
   }
   if (!stakingInfo?.stakedAmount) {
-    error = error ?? 'Enter an amount'
+    error = error ?? t('enterAnAmount')
   }
 
   return (

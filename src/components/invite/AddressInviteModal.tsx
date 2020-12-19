@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Modal from '../Modal'
 import { AutoColumn, ColumnCenter } from '../Column'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { RowBetween } from '../Row'
 import { TYPE, ExternalLink, CloseIcon, CustomLightSpinner, UniTokenAnimated } from '../../theme'
 import { ButtonPrimary, ButtonSecondary } from '../Button'
@@ -64,7 +65,7 @@ export default function AddressInviteModal({
 
   // monitor for third party recipient of claim
   const { address: parsedAddress } = useENS(typed)
-
+  const { t } = useTranslation()
   const invited = useUserInvited(typed)
   const myInvited = useUserInvited(account)
 
@@ -162,7 +163,7 @@ export default function AddressInviteModal({
           <AutoColumn gap="100px" justify={'center'}>
             <AutoColumn gap="12px" justify={'center'}>
               <TYPE.largeHeader fontWeight={600} color="black">
-                {claimConfirmed ? 'Invited' : 'Inviting'}
+                {claimConfirmed ? t('createdSuccessfully') : t('creating')}
               </TYPE.largeHeader>
               {!claimConfirmed && (
                 <Text fontSize={36} color={'#30D683'} fontWeight={800}>

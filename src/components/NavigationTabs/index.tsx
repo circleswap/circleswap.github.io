@@ -81,13 +81,14 @@ export function FindPoolTabs() {
 }
 
 export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating: boolean }) {
+  const { t } = useTranslation()
   return (
     <Tabs>
       <RowBetween style={{ padding: '0.5rem' }}>
         <HistoryLink to="/pool">
           <StyledArrowLeft />
         </HistoryLink>
-        <ActiveText>{creating ? 'Create a pair' : adding ? 'Add Liquidity' : 'Remove Liquidity'}</ActiveText>
+        <ActiveText>{creating ? t('createAPair') : adding ? t('addLiquidity') : t('removeLiquidity')}</ActiveText>
         <QuestionHelper
           text={
             adding

@@ -17,7 +17,6 @@ import { TYPE } from '../../theme'
 
 import { YellowCard } from '../Card'
 import Settings from '../Settings'
-import Menu from '../Menu'
 
 import Row, { RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
@@ -37,13 +36,13 @@ const HeaderFrame = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.bg1};
   width: 100%;
   left: 0;
   top: 0;
   position: fixed;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  padding: 1rem 3rem;
   z-index: 2;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -193,10 +192,15 @@ const Title = styled.a`
   }
 `
 
+// const LanButton = styled(Button)`
+//   height: 35px;
+//   padding: 0 2rem;
+// `
+
 const UniIcon = styled.div`
   transition: transform 0.3s ease;
   :hover {
-    transform: rotate(-5deg);
+    transform: scale(-5deg);
   }
 `
 
@@ -386,7 +390,8 @@ export default function Header() {
         </HeaderElement>
         <HeaderElementWrap>
           <Settings />
-          <Menu />
+          {/*<Menu />*/}
+          {/*<LanButton onClick={()=>{}}>中文</LanButton>*/}
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>

@@ -3,12 +3,13 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@uniswap/sdk'
 import React, { useCallback, useState } from 'react'
 import ReactGA from 'react-ga'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps } from 'react-router-dom'
 import { Text } from 'rebass'
-import styled  from 'styled-components'
+import styled from 'styled-components'
 import { ButtonError, ButtonLight, ButtonPrimary } from '../../components/Button'
 import { LightCard } from '../../components/Card'
-import Column, { AutoColumn, ColumnCenter } from '../../components/Column'
+import Column, { AutoColumn } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import DoubleCurrencyLogo from '../../components/DoubleLogo'
@@ -43,6 +44,7 @@ import plus from '../../assets/images/plus.svg'
 
 const AddArrow = styled.img`
   width: 19px;
+  margin: 16px;
 `
 
 export default function AddLiquidity({
@@ -52,7 +54,7 @@ export default function AddLiquidity({
   history
 }: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
   const { account, chainId, library } = useActiveWeb3React()
-
+  const { t } = useTranslation()
   const currencyA = useCurrency(currencyIdA)
   const currencyB = useCurrency(currencyIdB)
 
@@ -331,20 +333,20 @@ export default function AddLiquidity({
         <LightCard style={{ padding: '0.5rem', marginBottom: 19 }}>
           <AddRemoveTabs creating={isCreate} adding={true} />
 
-          <AutoColumn style={{ marginBottom: 19, width: '100%' }}>
+          <AutoColumn style={{ width: '100%' }}>
             {noLiquidity ||
               (isCreate && (
                 <Column>
                   <AppBody>
                     <AutoColumn gap="10px">
                       <TYPE.link fontWeight={600} color={'primaryText1'}>
-                        You are the first liquidity provider.
+                        {t('firstLiquidityProvider')}
                       </TYPE.link>
                       <TYPE.link fontWeight={400} color={'primaryText1'}>
-                        The ratio of tokens you add will set the price of this pool.
+                        {t('ratioOfToken')}
                       </TYPE.link>
                       <TYPE.link fontWeight={400} color={'primaryText1'}>
-                        Once you are happy with the rate click supply to review.
+                        {t('supplyToReview')}
                       </TYPE.link>
                     </AutoColumn>
                   </AppBody>
@@ -354,8 +356,8 @@ export default function AddLiquidity({
         </LightCard>
 
         <InputsWrapper style={{ flexDirection: isMobile ? 'column' : 'row', marginBottom: 19 }}>
-          <AppBody>
-            <Wrapper style={{ width: isMobile ? 350 : 400 }}>
+          <Wrapper style={{ width: isMobile ? 350 : 400 }}>
+            <Wrapper>
               <CurrencyInputPanel
                 value={formattedAmounts[Field.CURRENCY_A]}
                 onUserInput={onFieldAInput}
@@ -369,12 +371,10 @@ export default function AddLiquidity({
                 showCommonBases
               />
             </Wrapper>
-          </AppBody>
-          <ColumnCenter style={{ margin: 9 }}>
-            <AddArrow src={plus} alt="" />
-          </ColumnCenter>
-          <AppBody>
-            <Wrapper style={{ width: isMobile ? 350 : 400 }}>
+          </Wrapper>
+          <AddArrow src={plus} alt="" />
+          <Wrapper style={{ width: isMobile ? 350 : 400 }}>
+            <AutoColumn>
               <CurrencyInputPanel
                 value={formattedAmounts[Field.CURRENCY_B]}
                 onUserInput={onFieldBInput}
@@ -387,8 +387,8 @@ export default function AddLiquidity({
                 id="add-liquidity-input-tokenb"
                 showCommonBases
               />
-            </Wrapper>
-          </AppBody>
+            </AutoColumn>
+          </Wrapper>
         </InputsWrapper>
 
         {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (

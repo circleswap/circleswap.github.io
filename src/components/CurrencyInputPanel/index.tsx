@@ -81,13 +81,13 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
 
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
+  padding: 24px;
   background-color: ${({ theme }) => theme.bg1};
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
+  font-size: ${({ active }) => (active ? '20px' : '14px')};
   ${({ active }) => (active ? '  margin: 0 0.25rem 0 0.75rem;' : '  margin: 0 0.25rem 0 0.25rem;')}
-  font-size:  ${({ active }) => (active ? '20px' : '14px')};
-
 `
 
 const StyledBalanceMax = styled.button`

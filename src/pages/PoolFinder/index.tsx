@@ -1,14 +1,12 @@
 import { Currency, ETHER, JSBI, TokenAmount } from '@uniswap/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
-import { Plus } from 'react-feather'
 import { Text } from 'rebass'
 import { ButtonDropdownLight } from '../../components/Button'
-import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import CurrencyLogo from '../../components/CurrencyLogo'
 import { FindPoolTabs } from '../../components/NavigationTabs'
 import { MinimalPositionCard } from '../../components/PositionCard'
-import Row from '../../components/Row'
+import Row, { AutoRow } from '../../components/Row'
 import CurrencySearchModal from '../../components/SearchModal/CurrencySearchModal'
 import { PairState, usePair } from '../../data/Reserves'
 import { useActiveWeb3React } from '../../hooks'
@@ -16,13 +14,33 @@ import { usePairAdder } from '../../state/user/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { StyledInternalLink } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
-import AppBody from '../AppBody'
 import { Dots } from '../Pool/styleds'
+import styled from 'styled-components'
+import { AddArrow } from '../../components/icon/InputIcon'
+import plus from '../../assets/images/plus.svg'
+import AppBody from '../AppBody'
 
 enum Fields {
   TOKEN0 = 0,
   TOKEN1 = 1
 }
+
+export const Container = styled.div`
+  position: relative;
+  width: 550px;
+  background: ${({ theme }) => theme.bg1};
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+`
+
+export const Body = styled(Container)`
+  position: relative;
+  width: 250px;
+  flex: 1;
+  background: ${({ theme }) => theme.bg1};
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+`
 
 export default function PoolFinder() {
   const { account } = useActiveWeb3React()
@@ -69,60 +87,67 @@ export default function PoolFinder() {
   }, [setShowSearch])
 
   const prerequisiteMessage = (
-    <LightCard padding="45px 10px">
+    <AutoColumn style={{ padding: '45px 10px' }}>
       <Text textAlign="center">
         {!account ? 'Connect to a wallet to find pools' : 'Select a token to find your liquidity.'}
       </Text>
-    </LightCard>
+    </AutoColumn>
   )
 
   return (
     <AppBody>
-      <FindPoolTabs />
-      <AutoColumn gap="md">
-        <ButtonDropdownLight
-          onClick={() => {
-            setShowSearch(true)
-            setActiveField(Fields.TOKEN0)
-          }}
-        >
-          {currency0 ? (
-            <Row>
-              <CurrencyLogo currency={currency0} />
-              <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-                {currency0.symbol}
-              </Text>
-            </Row>
-          ) : (
-            <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-              Select a Token
-            </Text>
-          )}
-        </ButtonDropdownLight>
+      <AutoColumn gap="lg">
+        <Container>
+          <FindPoolTabs />
+        </Container>
 
-        <ColumnCenter>
-          <Plus size="16" color="#888D9B" />
-        </ColumnCenter>
+        <AutoRow gap="md" style={{ display: 'flex' }}>
+          <Body>
+            <ButtonDropdownLight
+              onClick={() => {
+                setShowSearch(true)
+                setActiveField(Fields.TOKEN0)
+              }}
+            >
+              {currency0 ? (
+                <Row>
+                  <CurrencyLogo currency={currency0} />
+                  <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
+                    {currency0.symbol}
+                  </Text>
+                </Row>
+              ) : (
+                <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
+                  Select a Token
+                </Text>
+              )}
+            </ButtonDropdownLight>
+          </Body>
 
-        <ButtonDropdownLight
-          onClick={() => {
-            setShowSearch(true)
-            setActiveField(Fields.TOKEN1)
-          }}
-        >
-          {currency1 ? (
-            <Row>
-              <CurrencyLogo currency={currency1} />
-              <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-                {currency1.symbol}
-              </Text>
-            </Row>
-          ) : (
-            <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-              Select a Token
-            </Text>
-          )}
-        </ButtonDropdownLight>
+          <AddArrow src={plus} />
+
+          <Body>
+            <ButtonDropdownLight
+              onClick={() => {
+                setShowSearch(true)
+                setActiveField(Fields.TOKEN1)
+              }}
+            >
+              {currency1 ? (
+                <Row>
+                  <CurrencyLogo currency={currency1} />
+                  <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
+                    {currency1.symbol}
+                  </Text>
+                </Row>
+              ) : (
+                <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
+                  Select a Token
+                </Text>
+              )}
+            </ButtonDropdownLight>
+          </Body>
+        </AutoRow>
 
         {hasPosition && (
           <ColumnCenter
@@ -142,54 +167,54 @@ export default function PoolFinder() {
             hasPosition && pair ? (
               <MinimalPositionCard pair={pair} border="1px solid #CED0D9" />
             ) : (
-              <LightCard padding="45px 10px">
+              <AutoColumn style={{ padding: '45px 10px' }}>
                 <AutoColumn gap="sm" justify="center">
                   <Text textAlign="center">You don’t have liquidity in this pool yet.</Text>
                   <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
                     <Text textAlign="center">Add liquidity.</Text>
                   </StyledInternalLink>
                 </AutoColumn>
-              </LightCard>
+              </AutoColumn>
             )
           ) : validPairNoLiquidity ? (
-            <LightCard padding="45px 10px">
+            <AutoColumn style={{ padding: '45px 10px' }}>
               <AutoColumn gap="sm" justify="center">
                 <Text textAlign="center">No pool found.</Text>
                 <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
                   Create pool.
                 </StyledInternalLink>
               </AutoColumn>
-            </LightCard>
+            </AutoColumn>
           ) : pairState === PairState.INVALID ? (
-            <LightCard padding="45px 10px">
+            <AutoColumn style={{ padding: '45px 10px' }}>
               <AutoColumn gap="sm" justify="center">
                 <Text textAlign="center" fontWeight={500}>
                   Invalid pair.
                 </Text>
               </AutoColumn>
-            </LightCard>
+            </AutoColumn>
           ) : pairState === PairState.LOADING ? (
-            <LightCard padding="45px 10px">
+            <AutoColumn style={{ padding: '45px 10px' }}>
               <AutoColumn gap="sm" justify="center">
                 <Text textAlign="center">
                   Loading
                   <Dots />
                 </Text>
               </AutoColumn>
-            </LightCard>
+            </AutoColumn>
           ) : null
         ) : (
           prerequisiteMessage
         )}
-      </AutoColumn>
 
-      <CurrencySearchModal
-        isOpen={showSearch}
-        onCurrencySelect={handleCurrencySelect}
-        onDismiss={handleSearchDismiss}
-        showCommonBases
-        selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
-      />
+        <CurrencySearchModal
+          isOpen={showSearch}
+          onCurrencySelect={handleCurrencySelect}
+          onDismiss={handleSearchDismiss}
+          showCommonBases
+          selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
+        />
+      </AutoColumn>
     </AppBody>
   )
 }

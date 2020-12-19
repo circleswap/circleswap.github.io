@@ -39,10 +39,11 @@ export function CurrencySearch({
   showCommonBases,
   onDismiss,
   isOpen,
+  onChangeList
 }: CurrencySearchProps) {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
-
+  //const theme = useContext(ThemeContext)
   const fixedList = useRef<FixedSizeList>()
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [invertSearchOrder, setInvertSearchOrder] = useState<boolean>(false)

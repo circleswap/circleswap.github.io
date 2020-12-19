@@ -14,10 +14,11 @@ const AdvancedDetailsFooter = styled.div<{ show: boolean }>`
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   color: ${({ theme }) => theme.text2};
-  background-color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.bg1};
   transform: ${({ show }) => (show ? 'translateY(0%)' : 'translateY(-100%)')};
   transition: transform 300ms ease-in-out;
   z-index: -2;
+  padding: 24px;
 `
 
 const ProgressWrapper = styled.div`

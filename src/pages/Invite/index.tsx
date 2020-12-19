@@ -3,16 +3,15 @@ import styled from 'styled-components'
 import { RouteComponentProps } from 'react-router-dom'
 import { AutoColumn } from '../../components/Column'
 import { useUserInvited } from '../../hooks/useInvited'
-
-import ecircleBg from '../../assets/images/ecircle.svg'
-import ncircleBg from '../../assets/images/ncircle.svg'
-
+import { useTranslation } from 'react-i18next'
 import AddressInviteModal from '../../components/invite/AddressInviteModal'
 import { AutoRow } from '../../components/Row'
 import { TYPE } from '../../theme'
 import { useActiveWeb3React } from '../../hooks'
 import { ZERO_ADDRESS } from '../../constants'
 import QuestionHelper from '../../components/QuestionHelper'
+import ecircleBg from '../../assets/images/ecircle.svg'
+import ncircleBg from '../../assets/images/ncircle.svg'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
@@ -59,6 +58,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
     history
   } = props
   console.log('address', address)
+  const { t } = useTranslation()
   const { account } = useActiveWeb3React()
   const invited = useUserInvited(account)
 
@@ -84,7 +84,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
             }}
           >
             <TYPE.white fontWeight={900} fontSize={41}>
-              NCircle
+              {t('nCircle')}
             </TYPE.white>
             <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
               Create your NCircle to generate an invitation link or view your NCircle details
@@ -95,7 +95,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
           </NCircle>
           <CCircle>
             <TYPE.white fontWeight={900} fontSize={41}>
-              Ecircle
+              {t('eCircle')}
             </TYPE.white>
             <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
               Create or view your ECircle details
