@@ -316,6 +316,7 @@ export default function Swap() {
                 onUserInput={handleTypeInput}
                 onMax={handleMaxInput}
                 progress={Boolean(trade)}
+                max={maxAmountInput?.toExact().toString()}
                 onCurrencySelect={handleInputSelect}
                 otherCurrency={currencies[Field.OUTPUT]}
                 onProgress={handleProgressInput}

@@ -6,24 +6,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Text } from 'rebass'
 import styled from 'styled-components'
 import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
-import { useFetchListCallback } from '../../hooks/useFetchListCallback'
+//import { useFetchListCallback } from '../../hooks/useFetchListCallback'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
 import useToggle from '../../hooks/useToggle'
 import { AppDispatch, AppState } from '../../state'
 import { acceptListUpdate, removeList, selectList } from '../../state/lists/actions'
 import { useSelectedListUrl } from '../../state/lists/hooks'
-import { CloseIcon, ExternalLink, LinkStyledButton, TYPE } from '../../theme'
+import { CloseIcon, ExternalLink, LinkStyledButton } from '../../theme'
 import listVersionLabel from '../../utils/listVersionLabel'
 import { parseENSAddress } from '../../utils/parseENSAddress'
-import uriToHttp from '../../utils/uriToHttp'
-import { ButtonOutlined, ButtonPrimary, ButtonSecondary } from '../Button'
+//import uriToHttp from '../../utils/uriToHttp'
+import { ButtonOutlined, ButtonPrimary } from '../Button'
 
 import Column from '../Column'
 import ListLogo from '../ListLogo'
-import QuestionHelper from '../QuestionHelper'
+//import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween } from '../Row'
-import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
+import { PaddedColumn, Separator, SeparatorDark } from './styleds'
 
 const UnpaddedLinkStyledButton = styled(LinkStyledButton)`
   padding: 0;
@@ -235,12 +235,12 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
   )
 })
 
-const AddListButton = styled(ButtonSecondary)`
-  max-width: 4rem;
-  margin-left: 1rem;
-  border-radius: 12px;
-  padding: 10px 18px;
-`
+// const AddListButton = styled(ButtonSecondary)`
+//   max-width: 4rem;
+//   margin-left: 1rem;
+//   border-radius: 12px;
+//   padding: 10px 18px;
+// `
 
 const ListContainer = styled.div`
   flex: 1;
@@ -248,54 +248,54 @@ const ListContainer = styled.div`
 `
 
 export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBack: () => void }) {
-  const [listUrlInput, setListUrlInput] = useState<string>('')
+  //const [listUrlInput, setListUrlInput] = useState<string>('')
 
-  const dispatch = useDispatch<AppDispatch>()
+  //const dispatch = useDispatch<AppDispatch>()
   const lists = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
-  const adding = Boolean(lists[listUrlInput]?.loadingRequestId)
-  const [addError, setAddError] = useState<string | null>(null)
+  //const adding = Boolean(lists[listUrlInput]?.loadingRequestId)
+  //const [addError, setAddError] = useState<string | null>(null)
 
-  const handleInput = useCallback(e => {
-    setListUrlInput(e.target.value)
-    setAddError(null)
-  }, [])
-  const fetchList = useFetchListCallback()
+  // const handleInput = useCallback(e => {
+  //   setListUrlInput(e.target.value)
+  //   setAddError(null)
+  // }, [])
+  //const fetchList = useFetchListCallback()
 
-  const handleAddList = useCallback(() => {
-    if (adding) return
-    setAddError(null)
-    fetchList(listUrlInput)
-      .then(() => {
-        setListUrlInput('')
-        ReactGA.event({
-          category: 'Lists',
-          action: 'Add List',
-          label: listUrlInput
-        })
-      })
-      .catch(error => {
-        ReactGA.event({
-          category: 'Lists',
-          action: 'Add List Failed',
-          label: listUrlInput
-        })
-        setAddError(error.message)
-        dispatch(removeList(listUrlInput))
-      })
-  }, [adding, dispatch, fetchList, listUrlInput])
+  // const handleAddList = useCallback(() => {
+  //   if (adding) return
+  //   setAddError(null)
+  //   fetchList(listUrlInput)
+  //     .then(() => {
+  //       setListUrlInput('')
+  //       ReactGA.event({
+  //         category: 'Lists',
+  //         action: 'Add List',
+  //         label: listUrlInput
+  //       })
+  //     })
+  //     .catch(error => {
+  //       ReactGA.event({
+  //         category: 'Lists',
+  //         action: 'Add List Failed',
+  //         label: listUrlInput
+  //       })
+  //       setAddError(error.message)
+  //       dispatch(removeList(listUrlInput))
+  //     })
+  // }, [adding, dispatch, fetchList, listUrlInput])
 
-  const validUrl: boolean = useMemo(() => {
-    return uriToHttp(listUrlInput).length > 0 || Boolean(parseENSAddress(listUrlInput))
-  }, [listUrlInput])
+  // const validUrl: boolean = useMemo(() => {
+  //   return uriToHttp(listUrlInput).length > 0 || Boolean(parseENSAddress(listUrlInput))
+  // }, [listUrlInput])
 
-  const handleEnterKey = useCallback(
-    e => {
-      if (validUrl && e.key === 'Enter') {
-        handleAddList()
-      }
-    },
-    [handleAddList, validUrl]
-  )
+  // const handleEnterKey = useCallback(
+  //   e => {
+  //     if (validUrl && e.key === 'Enter') {
+  //       handleAddList()
+  //     }
+  //   },
+  //   [handleAddList, validUrl]
+  // )
 
   const sortedLists = useMemo(() => {
     const listUrls = Object.keys(lists)
@@ -335,31 +335,31 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
 
       <Separator />
 
-      <PaddedColumn gap="14px">
-        <Text fontWeight={600}>
-          Add a list{' '}
-          <QuestionHelper text="Token lists are an open specification for lists of ERC20 tokens. You can use any token list by entering its URL below. Beware that third party token lists can contain fake or malicious ERC20 tokens." />
-        </Text>
-        <Row>
-          <SearchInput
-            type="text"
-            id="list-add-input"
-            placeholder="https:// or ipfs:// or ENS name"
-            value={listUrlInput}
-            onChange={handleInput}
-            onKeyDown={handleEnterKey}
-            style={{ height: '2.75rem', borderRadius: 12, padding: '12px' }}
-          />
-          <AddListButton onClick={handleAddList} disabled={!validUrl}>
-            Add
-          </AddListButton>
-        </Row>
-        {addError ? (
-          <TYPE.error title={addError} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }} error>
-            {addError}
-          </TYPE.error>
-        ) : null}
-      </PaddedColumn>
+      {/*<PaddedColumn gap="14px">*/}
+      {/*  <Text fontWeight={600}>*/}
+      {/*    Add a list{' '}*/}
+      {/*    <QuestionHelper text="Token lists are an open specification for lists of ERC20 tokens. You can use any token list by entering its URL below. Beware that third party token lists can contain fake or malicious ERC20 tokens." />*/}
+      {/*  </Text>*/}
+      {/*  <Row>*/}
+      {/*    <SearchInput*/}
+      {/*      type="text"*/}
+      {/*      id="list-add-input"*/}
+      {/*      placeholder="https:// or ipfs:// or ENS name"*/}
+      {/*      value={listUrlInput}*/}
+      {/*      onChange={handleInput}*/}
+      {/*      onKeyDown={handleEnterKey}*/}
+      {/*      style={{ height: '2.75rem', borderRadius: 12, padding: '12px' }}*/}
+      {/*    />*/}
+      {/*    <AddListButton onClick={handleAddList} disabled={!validUrl}>*/}
+      {/*      Add*/}
+      {/*    </AddListButton>*/}
+      {/*  </Row>*/}
+      {/*  {addError ? (*/}
+      {/*    <TYPE.error title={addError} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }} error>*/}
+      {/*      {addError}*/}
+      {/*    </TYPE.error>*/}
+      {/*  ) : null}*/}
+      {/*</PaddedColumn>*/}
 
       <Separator />
 

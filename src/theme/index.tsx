@@ -171,6 +171,9 @@ export const TYPE = {
   },
   error({ error, ...props }: { error: boolean } & TextProps) {
     return <TextWrapper fontWeight={500} color={error ? 'red1' : 'text2'} {...props} />
+  },
+  coming({ error, ...props }: { error: boolean } & TextProps) {
+    return <TextWrapper fontWeight={500} color={'text4'} {...props} />
   }
 }
 

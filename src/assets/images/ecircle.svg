@@ -5,14 +5,14 @@
         <rect id="path-1" x="0" y="0" width="490" height="300" rx="22"></rect>
     </defs>
     <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="CircleSwap-CIR备份-6" transform="translate(-1020.000000, -390.000000)">
+        <g id="NCircle--or--ECircle" transform="translate(-1020.000000, -390.000000)">
             <g id="编组-3" transform="translate(1020.000000, 390.000000)">
                 <rect id="矩形" fill="#003DB6" x="0" y="0" width="490" height="300" rx="22"></rect>
                 <g id="路径-5">
                     <mask id="mask-2" fill="white">
                         <use xlink:href="#path-1"></use>
                     </mask>
-                    <use id="蒙版" fill="#003DB6" opacity="0.59702846" xlink:href="#path-1"></use>
+                    <use id="蒙版" fill="#518AFF" opacity="0.59702846" xlink:href="#path-1"></use>
                     <polygon fill="#FFFFFF" opacity="0.101283482" mask="url(#mask-2)" points="0 115.452647 0 300 415 300"></polygon>
                     <polygon id="路径-5备份" fill="#FFFFFF" opacity="0.101283482" mask="url(#mask-2)" points="0 74 0 300 423.766828 300"></polygon>
                     <rect id="矩形" fill="#FFFFFF" opacity="0.1" mask="url(#mask-2)" transform="translate(423.500000, -0.500000) rotate(45.000000) translate(-423.500000, 0.500000) " x="361" y="-63" width="125" height="125"></rect>

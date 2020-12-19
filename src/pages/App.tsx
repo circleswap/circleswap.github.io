@@ -33,6 +33,7 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import Inviting from './Invite/Inviting'
+import CIR from './CIR'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -42,9 +43,9 @@ const AppWrapper = styled.div`
 `
 
 const HeaderWrapper = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
   width: 100%;
   justify-content: space-between;
+  ${({ theme }) => theme.flexRowNoWrap}
 `
 
 const BodyWrapper = styled.div`
@@ -105,6 +106,7 @@ export default function App() {
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
               <Route exact path="/add" component={AddLiquidity} />
               <Route exact path="/inviting" component={Inviting} />
+              <Route exact path="/cir" component={CIR} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
               <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
               <Route exact path="/create" component={AddLiquidity} />

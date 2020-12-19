@@ -127,6 +127,7 @@ interface CurrencyInputPanelProps {
   showCommonBases?: boolean
   customBalanceText?: string
   progress?: boolean
+  max?: string
   onProgress?: (value: string) => void
 }
 
@@ -147,6 +148,7 @@ export default function CurrencyInputPanel({
   showCommonBases,
   customBalanceText,
   progress,
+  max,
   onProgress
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
@@ -249,6 +251,7 @@ export default function CurrencyInputPanel({
       )}
       {progress && (
         <AdvancedSelectPercentDropdown
+          progress={max ? ((parseFloat(value) / parseFloat(String(max))) * 100).toFixed(0) + '%' : '0%'}
           progressCallback={progress => {
             onProgress && onProgress(progress)
           }}

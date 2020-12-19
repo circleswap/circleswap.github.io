@@ -12,8 +12,6 @@ import AppBody from '../AppBody'
 import ncircleEmpty from '../../assets/images/ncircle_empty.svg'
 import Copy from '../../components/AccountDetails/Copy'
 
-const EmptyWrapper = styled.div<{}>``
-
 const InputPanel = styled.div`
   width: 100%;
   display: flex;
@@ -55,7 +53,7 @@ export default function Inviting({
               </InputPanel>
             </AppBody>
           ) : (
-            <EmptyWrapper>
+            <AutoColumn gap="lg">
               <img src={ncircleEmpty} alt="" />
               <ColumnCenter>
                 <TYPE.largeHeader color="#2C2C2C">{`You don't have NCircle`}</TYPE.largeHeader>
@@ -72,7 +70,7 @@ export default function Inviting({
               >
                 Create
               </ButtonPrimary>
-            </EmptyWrapper>
+            </AutoColumn>
           )}
         </AutoColumn>
       </Wrapper>

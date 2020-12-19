@@ -100,3 +100,17 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
     </Tabs>
   )
 }
+
+export function CIRTabs({}: {}) {
+  return (
+    <Tabs>
+      <RowBetween style={{ padding: '0.5rem' }}>
+        <HistoryLink to="/pool">
+          <StyledArrowLeft />
+        </HistoryLink>
+        <ActiveText>{'My CIR'}</ActiveText>
+        <QuestionHelper text={''} />
+      </RowBetween>
+    </Tabs>
+  )
+}

@@ -48,9 +48,11 @@ const ProgressButton = styled(ButtonPrimary)`
 
 export default function AdvancedSelectPercentDropdown({
   show,
+  progress,
   progressCallback
 }: {
   show: boolean
+  progress: string
   progressCallback: (progress: string) => void
 }) {
   function TradeSummary({ show }: { show: boolean }) {
@@ -63,7 +65,7 @@ export default function AdvancedSelectPercentDropdown({
               <Text>max</Text>
             </RowBetween>
             <ProgressWrapper>
-              <Progress status={'for'} percentageString={'10'} />
+              <Progress status={'for'} percentageString={progress} />{progress}
             </ProgressWrapper>
             <RowBetween marginTop={20}>
               <ProgressButton onClick={() => progressCallback('0.2')}>20%</ProgressButton>
