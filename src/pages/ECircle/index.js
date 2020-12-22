@@ -35,7 +35,7 @@ export default function ECircle({ history }) {
         <Balls />
         <RowBetween style={{ marginTop: 48, rowGap: '19' }} gap="19px">
           <Button
-            disabled={!able}
+            disabled={able}
             style={{ width: '46%' }}
             onClick={() => {
               history.push('/ecircle/create')
@@ -44,7 +44,7 @@ export default function ECircle({ history }) {
             {t('createECircle')}
           </Button>
           <Button
-            disabled={!able}
+            disabled={able}
             style={{ width: '46%' }}
             onClick={() => {
               setShowJoinECircleModal(true)

@@ -1,10 +1,35 @@
 // check if the user has been invited this address
 import { useSingleCallResult } from '../state/multicall/hooks'
 import { useCircleContract } from './useContract'
-import { getRouterContract, isAddress } from '../utils'
+import { calculateGasMargin, getRouterContract, isAddress } from '../utils'
 import { useActiveWeb3React } from './index'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from '../constants'
+import { useTransactionAdder } from '../state/transactions/hooks'
+
+export function useJoinCallback(account) {
+  // get claim data for this account
+  const { library, chainId } = useActiveWeb3React()
+  // used for popup summary
+  const addTransaction = useTransactionAdder()
+  const contract = useCircleContract()
+
+  const joinCallback = async function() {
+    if (!account || !library || !chainId || !contract) return
+    const args = [account]
+    return contract.estimateGas['join'](...args, {}).then(estimatedGasLimit => {
+      return contract.join(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) }).then(response => {
+        addTransaction(response, {
+          summary: `Invited ${account}`,
+          claim: { recipient: account }
+        })
+        return response.hash
+      })
+    })
+  }
+
+  return { joinCallback }
+}
 
 export function useNCircleJoinAble() {
   console.log('tag--->')
@@ -31,7 +56,7 @@ export function useNCircleJoinAble() {
 }
 
 export function useNCircle() {
-  const { account, chainId, library } = useActiveWeb3React()
+  const { account } = useActiveWeb3React()
   const parsedAddress = isAddress(account)
   const CircleContract = useCircleContract()
   const circleQuery = useSingleCallResult(CircleContract, 'balanceOf', [

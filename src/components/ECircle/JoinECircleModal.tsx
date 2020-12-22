@@ -7,20 +7,18 @@ import { RowBetween } from '../Row'
 import { TYPE, ExternalLink, CloseIcon, CustomLightSpinner, UniTokenAnimated } from '../../theme'
 import { ButtonPrimary, ButtonSecondary } from '../Button'
 import { useInviteCallback } from '../../state/invite/hooks'
-import { useUserInvited } from '../../hooks/useInvited'
 import tokenLogo from '../../assets/images/token-logo.png'
 import Circle from '../../assets/images/blue-loader.svg'
 import { Text } from 'rebass'
 import AddressInputPanel from '../AddressInputPanel'
 import useENS from '../../hooks/useENS'
 import { useActiveWeb3React } from '../../hooks'
-import { isAddress } from 'ethers/lib/utils'
 import Confetti from '../Confetti'
 import { CardNoise, CardBGImageSmaller } from '../earn/styled'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { getEtherscanLink, shortenAddress } from '../../utils'
-import { ZERO_ADDRESS } from '../../constants'
 import { Link } from 'react-router-dom'
+import { useNCircle } from '../../hooks/useNCircle'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -66,8 +64,7 @@ export default function JoinECircleModal({
   // monitor for third party recipient of claim
   const { address: parsedAddress } = useENS(typed)
   const { t } = useTranslation()
-  const invited = useUserInvited(typed)
-  const myInvited = useUserInvited(account)
+  const circle = useNCircle()
 
   // used for UI loading states
   const [attempting, setAttempting] = useState<boolean>(false)
@@ -83,7 +80,7 @@ export default function JoinECircleModal({
 
   // use the hash to monitor this txn
 
-  function onInvite() {
+  function onJoin() {
     setAttempting(true)
     inviteCallback()
       .then(hash => {
@@ -116,27 +113,20 @@ export default function JoinECircleModal({
               {t('theAddress')}
             </TYPE.main>
             <AddressInputPanel value={typed} onChange={handleRecipientType} />
-            {parsedAddress && ZERO_ADDRESS !== myInvited && (
-              <TYPE.error error={true}>Your address has already been invited</TYPE.error>
-            )}
-            {((parsedAddress && ZERO_ADDRESS === invited) || typed === account) && (
-              <TYPE.error error={true}>Invalid inviter address</TYPE.error>
-            )}
+            {parsedAddress && circle && <TYPE.error error={true}>Your address has already been invited</TYPE.error>}
+            {/*{((parsedAddress ) || typed === account) && (*/}
+            {/*  <TYPE.error error={true}>Invalid inviter address</TYPE.error>*/}
+            {/*)}*/}
             <RowBetween>
               <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/create/ETH">
                 {t('cancel')}
               </ResponsiveButtonSecondary>
               <ButtonPrimary
-                disabled={
-                  !isAddress(parsedAddress ?? '') ||
-                  myInvited !== ZERO_ADDRESS ||
-                  ZERO_ADDRESS === invited ||
-                  typed === account
-                }
+                disabled={typed === account || circle}
                 padding="16px 16px"
                 width="180px"
                 borderRadius="100px"
-                onClick={onInvite}
+                onClick={onJoin}
               >
                 {t('confirm')}
               </ButtonPrimary>
