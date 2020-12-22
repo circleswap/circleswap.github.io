@@ -8,7 +8,7 @@ import { AutoRow, RowBetween } from '../../components/Row'
 import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
 import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.svg'
-import { useUserInvited } from '../../hooks/useInvited'
+import { useUserInvited, useUserReferee2N, useUserRefereeN } from '../../hooks/useInvited'
 import { useActiveWeb3React } from '../../hooks'
 import { shortenAddress } from '../../utils'
 
@@ -37,6 +37,9 @@ export default function CIR() {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
   const parentAddress = useUserInvited(account)
+  const refereeN = useUserRefereeN(account)
+  const referee2N = useUserReferee2N(account)
+
   return (
     <Container>
       <AutoColumn gap="lg">
@@ -55,7 +58,7 @@ export default function CIR() {
                   {t('parentBlockAddresses')}:
                 </TYPE.black>
                 <TYPE.black marginLeft={16} fontWeight={500} fontSize={16}>
-                  {parentAddress && shortenAddress(parentAddress)}
+                  {refereeN ? refereeN.toString() : '**'}
                 </TYPE.black>
               </AutoRow>
               <AutoRow>
@@ -63,7 +66,7 @@ export default function CIR() {
                   {t('uncleBlockAddresses')}:
                 </TYPE.black>
                 <TYPE.black marginLeft={16} fontWeight={500} fontSize={16}>
-
+                  {referee2N ? referee2N.toString() : '**'}
                 </TYPE.black>
               </AutoRow>
               <AutoRow>
@@ -86,22 +89,19 @@ export default function CIR() {
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('ownComputingPower')}:
                 </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}>
-                </TYPE.black>
+                <TYPE.black fontWeight={500} fontSize={16}></TYPE.black>
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('nCircleBonus')}:
                 </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}>
-                </TYPE.black>
+                <TYPE.black fontWeight={500} fontSize={16}></TYPE.black>
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('eCircleBonus')}:
                 </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}>
-                </TYPE.black>
+                <TYPE.black fontWeight={500} fontSize={16}></TYPE.black>
               </AutoRow>
             </AutoColumn>
           </LightCard>

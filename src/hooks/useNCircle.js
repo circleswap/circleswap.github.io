@@ -31,7 +31,6 @@ export function useJoinCallback(account) {
 }
 
 export function useNCircleJoinAble() {
-  console.log('tag--->')
   const { account, chainId, library } = useActiveWeb3React()
   const parsedAddress = isAddress(account)
   const routerContract = getRouterContract(chainId, library, account)
@@ -65,6 +64,19 @@ export function useNCircle() {
   const circle = circleQuery?.result?.[0].toString()
   console.log('circle', circle)
 
+  return circle
+}
+
+export function useJoinNCircle() {
+  const { account } = useActiveWeb3React()
+  const parsedAddress = isAddress(account)
+  const CircleContract = useCircleContract()
+  const circleQuery = useSingleCallResult(CircleContract, 'circleOf', [
+    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
+  ])
+  console.log('JOIN circleQuery', circleQuery)
+  const circle = circleQuery?.result?.[0].toString()
+  console.log('JOIN circle', circle)
   return circle
 }
 

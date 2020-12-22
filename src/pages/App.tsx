@@ -35,6 +35,8 @@ import VotePage from './Vote/VotePage'
 import Inviting from './Invite/Inviting'
 import CIR from './CIR'
 import ECircle from './ECircle'
+import MyECircle from './ECircle/MyECircle'
+
 import Stake from './Stake'
 import CreateECircle from './ECircle/Create'
 
@@ -112,6 +114,7 @@ export default function App() {
               <Route exact path="/inviting" component={Inviting} />
               <Route exact path="/cir" component={CIR} />
               <Route exact path="/ecircle" component={ECircle} />
+              <Route exact path="/myecircle" component={MyECircle} />
               <Route exact path="/stake" component={Stake} />
               <Route exact path="/ecircle/create" component={CreateECircle} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />

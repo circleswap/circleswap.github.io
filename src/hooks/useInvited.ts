@@ -12,3 +12,23 @@ export function useUserInvited(account: string | null | undefined): string {
   console.log('invited address', invited)
   return invited?.result?.[0]
 }
+
+export function useUserRefereeN(account: string | null | undefined): string {
+  const parsedAddress = isAddress(account)
+  const contract = useCircleContract()
+  const value = useSingleCallResult(contract, 'refereeN', [
+    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
+  ])
+  console.log('invited address', value)
+  return value?.result?.[0]
+}
+
+export function useUserReferee2N(account: string | null | undefined): string {
+  const parsedAddress = isAddress(account)
+  const contract = useCircleContract()
+  const value = useSingleCallResult(contract, 'referee2N', [
+    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
+  ])
+  console.log('referee2N', value)
+  return value?.result?.[0]
+}

@@ -187,9 +187,6 @@ export default function Pool() {
               <>
                 <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'https://uniswap.info/account/' + account}>
-                      Account analytics and accrued fees
-                    </ExternalLink>
                     <span> ↗</span>
                   </RowBetween>
                 </ButtonSecondary>

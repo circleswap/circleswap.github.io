@@ -579,7 +579,7 @@
         "type": "address"
       }
     ],
-    "name": "join",
+    "name": "joinByOwner",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

@@ -169,7 +169,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
                   <span role="img" aria-label="party-hat">
                     🎉{' '}
                   </span>
-                  Welcome to team Unicorn :){' '}
+                  Congratulations!
                   <span role="img" aria-label="party-hat">
                     🎉
                   </span>

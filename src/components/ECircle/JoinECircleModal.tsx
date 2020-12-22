@@ -16,9 +16,10 @@ import Confetti from '../Confetti'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { getEtherscanLink, shortenAddress } from '../../utils'
 import { Link } from 'react-router-dom'
-import { useJoinCallback, useNCircle } from '../../hooks/useNCircle'
+import { useNCircle } from '../../hooks/useNCircle'
 import { INVITE_ADDRESS } from '../../constants'
 import { useUniContract } from '../../hooks/useContract'
+import { useJoinCallback } from '../../hooks/joinEcircle'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -82,6 +83,7 @@ export default function JoinECircleModal({
     if (!cirContract) return
     setAttempting(true)
     cirContract.approve(INVITE_ADDRESS, '2000000000000000000').then(() => {
+      setAttempting(true)
       joinCallback()
         .then(hash => {
           setHash(hash)
@@ -170,7 +172,7 @@ export default function JoinECircleModal({
                   <span role="img" aria-label="party-hat">
                     🎉{' '}
                   </span>
-                  Welcome to team Unicorn :){' '}
+                  Congratulations!
                   <span role="img" aria-label="party-hat">
                     🎉
                   </span>

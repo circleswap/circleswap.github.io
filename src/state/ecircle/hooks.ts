@@ -1,8 +1,9 @@
 import { TransactionResponse } from '@ethersproject/providers'
 import { useActiveWeb3React } from '../../hooks'
 import { useCircleContract } from '../../hooks/useContract'
-import { calculateGasMargin } from '../../utils'
+import { calculateGasMargin, isAddress } from '../../utils'
 import { useTransactionAdder } from '../transactions/hooks'
+import { useSingleCallResult } from '../multicall/hooks'
 
 export function useMintCallback(
   name: string | null | undefined,
@@ -33,4 +34,22 @@ export function useMintCallback(
   }
 
   return { mintCallback }
+}
+
+interface ECircleDetail {
+  id: string
+  name: string
+  address: string
+}
+
+export function useMyECircle(): ECircleDetail {
+  const { account } = useActiveWeb3React()
+  const parsedAddress = isAddress(account)
+  const contract = useCircleContract()
+  const value = useSingleCallResult(contract, 'tokenOfOwnerByIndex', [
+    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000',
+    0
+  ])
+  const name = useSingleCallResult(contract, 'tokenURI', [value?.result?.[0].toString()])
+  return { id: value?.result?.[0].toString(), name: name?.result?.[0].toString(), address: '' }
 }

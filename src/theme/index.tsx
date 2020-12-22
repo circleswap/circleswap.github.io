@@ -80,7 +80,7 @@ export function colors(darkMode: boolean): Colors {
     yellow2: '#F3841E',
     blue1: '#2172E5',
     bluePrimary: '#518AFF',
-    bodyPadding: '12rem'
+    bodyPadding: '100px'
 
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',

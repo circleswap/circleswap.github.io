@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled  from 'styled-components'
+import styled from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
 import { RowBetween } from '../../components/Row'
@@ -7,7 +7,9 @@ import { Button, ExternalLink, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
 import { Balls } from '../../components/Ball/inidex'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
-import { useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
+import { useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
+import { useMyECircle } from '../../state/ecircle/hooks'
+import { Link } from 'react-router-dom'
 
 const PageWrapper = styled(AutoColumn)`
   margin-top: 22rem;
@@ -24,6 +26,11 @@ export default function ECircle({ history }) {
   const { t } = useTranslation()
   const able = useNCircleJoinAble()
   const circle = useNCircle()
+  const JoinCircle = useJoinNCircle()
+  const myCircle = useMyECircle()
+
+  console.log('myCircle', myCircle)
+
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
 
   return (
@@ -32,7 +39,7 @@ export default function ECircle({ history }) {
         <Balls />
         <RowBetween style={{ marginTop: 48, rowGap: '19' }} gap="19px">
           <Button
-            disabled={!able || !circle}
+            disabled={!able || circle || JoinCircle}
             style={{ width: '46%' }}
             onClick={() => {
               history.push('/ecircle/create')
@@ -41,7 +48,7 @@ export default function ECircle({ history }) {
             {t('createECircle')}
           </Button>
           <Button
-            disabled={!able || !circle}
+            disabled={!able || circle || JoinCircle}
             style={{ width: '46%' }}
             onClick={() => {
               setShowJoinECircleModal(true)
@@ -51,16 +58,19 @@ export default function ECircle({ history }) {
           </Button>
         </RowBetween>
         <ButtonBlue
-          disabled={!circle || circle < 1}
+          disabled={!JoinCircle || !circle || circle < 1}
           onClick={() => {
             history.push('/stake')
           }}
         >
           {t('stakeMyLPT')}
         </ButtonBlue>
-        <TYPE.main fontSize={14}>
-          {t('check')} <ExternalLink href="./myECircle">{t('eCircle')}</ExternalLink>
-        </TYPE.main>
+        {myCircle.id && (
+          <TYPE.main fontSize={14}>
+            {t('check')} <Link to="/myecircle">{t('eCircle')}</Link>
+          </TYPE.main>
+        )}
+
         <TYPE.main fontSize={13} marginTop={24}>
           {t('note')}
         </TYPE.main>

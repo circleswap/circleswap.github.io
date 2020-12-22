@@ -282,7 +282,7 @@ export default function Swap() {
   ])
 
   return (
-    <Wrapper style={{ paddingTop: theme.bodyPadding }}>
+    <Wrapper style={{ paddingTop: 84 }}>
       <TokenWarningModal
         isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
         tokens={urlLoadedTokens}
