@@ -8,6 +8,9 @@ import { AutoRow, RowBetween } from '../../components/Row'
 import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
 import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.svg'
+import { useUserInvited } from '../../hooks/useInvited'
+import { useActiveWeb3React } from '../../hooks'
+import { shortenAddress } from '../../utils'
 
 export const Container = styled.div`
   margin-top: 8rem;
@@ -31,7 +34,9 @@ const ComingSoon = styled(LightCard)`
 `
 
 export default function CIR() {
+  const { account } = useActiveWeb3React()
   const { t } = useTranslation()
+  const parentAddress = useUserInvited(account)
   return (
     <Container>
       <AutoColumn gap="lg">
@@ -49,24 +54,24 @@ export default function CIR() {
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('parentBlockAddresses')}:
                 </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}>
-                  28
+                <TYPE.black marginLeft={16} fontWeight={500} fontSize={16}>
+                  {parentAddress && shortenAddress(parentAddress)}
                 </TYPE.black>
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('uncleBlockAddresses')}:
                 </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}>
-                  28
+                <TYPE.black marginLeft={16} fontWeight={500} fontSize={16}>
+
                 </TYPE.black>
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('numberOfAirdrops')}:
                 </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}>
-                  28
+                <TYPE.black marginLeft={16} fontWeight={500} fontSize={16}>
+                  100000
                 </TYPE.black>
               </AutoRow>
             </AutoColumn>

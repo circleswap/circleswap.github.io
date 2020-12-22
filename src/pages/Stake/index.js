@@ -81,6 +81,8 @@ export default function Stake() {
 
   console.log('stakingInfo', stakingInfo)
 
+
+
   // detect existing unstaked LP position to show add button if none found
   const userLiquidityUnstaked = useTokenBalance(account ?? undefined, stakingInfo?.stakedAmount?.token)
 

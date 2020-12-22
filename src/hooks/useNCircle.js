@@ -68,3 +68,17 @@ export function useNCircle() {
 
   return circle
 }
+
+export function useParentAddress() {
+  const { account } = useActiveWeb3React()
+  const CircleContract = useCircleContract()
+  const idQuery = useSingleCallResult(CircleContract, 'circleOf', [
+    account ? account : '0x0000000000000000000000000000000000000000'
+  ])
+  const circleID = idQuery?.result?.[0].toString()
+  console.log('circleID', circleID)
+  const circleQuery = useSingleCallResult(CircleContract, 'ownerOf', [circleID])
+  const circleAddress = circleQuery?.result?.[0].toString()
+  console.log('circleAddress', circleAddress)
+  return circleAddress
+}

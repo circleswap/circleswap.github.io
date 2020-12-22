@@ -9,5 +9,6 @@ export function useUserInvited(account: string | null | undefined): string {
   const invited = useSingleCallResult(contract, 'refererOf', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
+  console.log('invited address', invited)
   return invited?.result?.[0]
 }
