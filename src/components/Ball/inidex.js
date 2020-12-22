@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './ball.css'
 
-export const Balls = () => {
+export const Balls = ({ tabs }) => {
   function start() {
     const oDiv = document.getElementById('div1')
     const aLink = oDiv.getElementsByTagName('a')
@@ -154,19 +154,16 @@ export const Balls = () => {
   }
 
   useEffect(() => {
-    start()
-  },[])
+    if (tabs !== []) {
+      start()
+    }
+  }, [tabs])
 
   return (
     <div id="div1">
-      <a href="/">甜美</a>
-      <a href="/">甜美</a>
-      <a href="/">甜美</a>
-      <a href="/">甜美</a>
-      <a href="/">甜美</a>
-      <a href="/">甜美</a>
-      <a href="/">甜美</a>
-      <a href="/">甜美</a>
+      {tabs.map(item => {
+        return <a href="/">{item}</a>
+      })}
     </div>
   )
 }

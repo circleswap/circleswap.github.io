@@ -7,7 +7,7 @@ import { SwapPoolTabs } from '../../components/NavigationTabs'
 import FullPositionCard from '../../components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from '../../data/V1'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { StyledInternalLink, ExternalLink, TYPE, HideSmall } from '../../theme'
+import { StyledInternalLink, TYPE, HideSmall } from '../../theme'
 import { Text } from 'rebass'
 import Card from '../../components/Card'
 import { RowBetween, RowFixed } from '../../components/Row'
@@ -143,13 +143,6 @@ export default function Pool() {
             <RowBetween>
               <TYPE.main fontSize={14}>{t('liquidityFee')}</TYPE.main>
             </RowBetween>
-            <ExternalLink
-              style={{ color: 'black', textDecoration: 'underline' }}
-              target="_blank"
-              href="https://uniswap.org/docs/v2/core-concepts/pools/"
-            >
-              <TYPE.main fontSize={14}>{'Read more about providing liquidity >'}</TYPE.main>
-            </ExternalLink>
           </AutoColumn>
         </AppBody>
         <div style={{ marginTop: 13 }} />

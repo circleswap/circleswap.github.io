@@ -1,5 +1,5 @@
 // check if the user has been invited this address
-import { useSingleCallResult } from '../state/multicall/hooks'
+import { useSingleCallResult, useSingleContractMultipleData } from '../state/multicall/hooks'
 import { useCircleContract } from './useContract'
 import { calculateGasMargin, getRouterContract, isAddress } from '../utils'
 import { useActiveWeb3React } from './index'
@@ -79,4 +79,44 @@ export function useJoinNCircle() {
   const circle = circleQuery?.result?.[0].toString()
   console.log('JOIN circle---->', circle)
   return circle
+}
+
+export function useCircleCount() {
+  const contract = useCircleContract()
+  const res = useSingleCallResult(contract, 'totalSupply')
+  if (res.result && !res.loading) {
+    return parseInt(res.result[0])
+  }
+  return undefined
+}
+
+export function useAllCircleData() {
+  const circleCount = useCircleCount()
+  const contact = useCircleContract()
+
+  const circleIndexes = []
+  for (let i = 1; i < (circleCount ?? 0); i++) {
+    circleIndexes.push([i])
+  }
+  console.log('circleIndexes--->', circleIndexes)
+
+  const circles = useSingleContractMultipleData(contact, 'tokenByIndex', circleIndexes)
+  console.log('circles', circles)
+
+  const nameIndexes = circles
+    .map(item => {
+      return item && [item.result?.[0].toString()]
+    })
+    .filter(item => {
+      return item[0]
+    })
+  console.log('nameindexs', nameIndexes)
+  const circleNames = useSingleContractMultipleData(contact, 'tokenURI', nameIndexes)
+  return circleNames
+    .map(item => {
+      return item && item.result?.[0].toString()
+    })
+    .filter(item => {
+      return item
+    })
 }

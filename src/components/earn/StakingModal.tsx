@@ -145,7 +145,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
       { name: 'verifyingContract', type: 'address' }
     ]
     const domain = {
-      name: 'CSLPT',
+      name: 'CircleSwap Liquidity Provider Token',
       version: '1',
       chainId: chainId,
       verifyingContract: pairContract.address

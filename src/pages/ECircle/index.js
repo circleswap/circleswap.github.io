@@ -7,7 +7,7 @@ import { Button, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
 import { Balls } from '../../components/Ball/inidex'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
-import { useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
+import { useAllCircleData, useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
 import { useMyECircle } from '../../state/ecircle/hooks'
 import { Link } from 'react-router-dom'
 
@@ -30,11 +30,13 @@ export default function ECircle({ history }) {
   const myCircle = useMyECircle()
 
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
-
+  const allCircles = useAllCircleData()
+  console.log('circled1', allCircles)
   return (
     <PageWrapper>
       <AutoColumn gap="lg" justify="center">
-        <Balls />
+        {allCircles !== [] && <Balls tabs={allCircles} />}
+
         <RowBetween style={{ marginTop: 48, rowGap: '19' }} gap="19px">
           <Button
             disabled={!able || circle || JoinCircle}

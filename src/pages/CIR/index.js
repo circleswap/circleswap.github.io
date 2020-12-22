@@ -121,19 +121,19 @@ export default function CIR() {
           <ComingSoon style={{ marginRight: 15 }}>
             <AutoColumn gap="lg">
               <TYPE.coming fontWeight={500} fontSize={16}>
-                {t('extraSwapRewards')}：28CIR
+                {t('extraSwapRewards')}：**
               </TYPE.coming>
               <TYPE.coming fontWeight={500} fontSize={16}>
-                {t('ownSwapRewards')}：20CIR
+                {t('ownSwapRewards')}：**
               </TYPE.coming>
               <TYPE.coming fontWeight={500} fontSize={16}>
-                {t('nCircleBonus')}：8CIR
+                {t('nCircleBonus')}：**
               </TYPE.coming>
             </AutoColumn>
           </ComingSoon>
           <ComingSoon style={{ marginLeft: 15, height: '100%' }}>
             <TYPE.coming fontWeight={500} fontSize={16}>
-              UBI 1.0：28CIR
+              UBI 1.0：**
             </TYPE.coming>
           </ComingSoon>
         </RowBetween>

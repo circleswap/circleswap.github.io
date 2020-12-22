@@ -40,7 +40,7 @@ export const CloseIcon = styled(X)<{ onClick: () => void }>`
   position: absolute;
   margin: auto;
   left: auto;
-  right: 0;
+  right: 12px;
 `
 
 // A button that triggers some onClick result, but looks like a link.

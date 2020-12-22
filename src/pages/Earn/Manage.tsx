@@ -266,7 +266,7 @@ export default function Manage({
             <AutoColumn gap="sm">
               <RowBetween>
                 <div>
-                  <TYPE.black>Your unclaimed UNI</TYPE.black>
+                  <TYPE.black>Your unclaimed CIR</TYPE.black>
                 </div>
                 {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                   <ButtonEmpty
@@ -292,15 +292,15 @@ export default function Manage({
                   />
                 </TYPE.largeHeader>
                 <TYPE.black fontSize={16} fontWeight={500}>
-                  <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px ' }}>
-                    ⚡
-                  </span>
-                  {stakingInfo?.active
-                    ? stakingInfo?.rewardRate
-                        ?.multiply(BIG_INT_SECONDS_IN_WEEK)
-                        ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'
-                    : '0'}
-                  {' UNI / week'}
+                  {/*<span role="img" aria-label="wizard-icon" style={{ marginRight: '8px ' }}>*/}
+                  {/*  ⚡*/}
+                  {/*</span>*/}
+                  {/*{stakingInfo?.active*/}
+                  {/*  ? stakingInfo?.rewardRate*/}
+                  {/*      ?.multiply(BIG_INT_SECONDS_IN_WEEK)*/}
+                  {/*      ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'*/}
+                  {/*  : '0'}*/}
+                  {/*{' UNI / week'}*/}
                 </TYPE.black>
               </RowBetween>
             </AutoColumn>
@@ -310,7 +310,7 @@ export default function Manage({
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ⭐️
           </span>
-          When you withdraw, the contract will automagically claim UNI on your behalf!
+          When you withdraw, the contract will automagically claim CIR on your behalf!
         </TYPE.main>
 
         {!showAddLiquidityButton && (
@@ -325,7 +325,7 @@ export default function Manage({
               <>
                 <ButtonPrimary
                   padding="8px"
-                  borderRadius="8px"
+                  borderRadius="100px"
                   width="160px"
                   onClick={() => setShowUnstakingModal(true)}
                 >
