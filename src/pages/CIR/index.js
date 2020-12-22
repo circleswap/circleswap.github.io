@@ -87,7 +87,6 @@ export default function CIR() {
                   {t('ownComputingPower')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
-                  28
                 </TYPE.black>
               </AutoRow>
               <AutoRow>
@@ -95,7 +94,6 @@ export default function CIR() {
                   {t('nCircleBonus')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
-                  28
                 </TYPE.black>
               </AutoRow>
               <AutoRow>
@@ -103,7 +101,6 @@ export default function CIR() {
                   {t('eCircleBonus')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
-                  28
                 </TYPE.black>
               </AutoRow>
             </AutoColumn>
