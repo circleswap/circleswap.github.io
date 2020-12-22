@@ -111,7 +111,7 @@ export default function CIR() {
           <RowBetween style={{ padding: '34px 168px' }}>
             <LogoCircle />
             <TYPE.largeHeader fontWeight={500} fontSize={35}>
-              1,000,000CIR
+              0CIR
             </TYPE.largeHeader>
           </RowBetween>
         </LightCard>
