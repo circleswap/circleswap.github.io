@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
 import { RowBetween } from '../../components/Row'
-import { Button, ExternalLink, TYPE } from '../../theme'
+import { Button, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
 import { Balls } from '../../components/Ball/inidex'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
@@ -28,8 +28,6 @@ export default function ECircle({ history }) {
   const circle = useNCircle()
   const JoinCircle = useJoinNCircle()
   const myCircle = useMyECircle()
-
-  console.log('myCircle', JoinCircle)
 
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
 

@@ -8,9 +8,8 @@ import { AutoRow, RowBetween } from '../../components/Row'
 import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
 import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.svg'
-import { useUserInvited, useUserReferee2N, useUserRefereeN } from '../../hooks/useInvited'
+import { useUserReferee2N, useUserRefereeN } from '../../hooks/useInvited'
 import { useActiveWeb3React } from '../../hooks'
-import { shortenAddress } from '../../utils'
 
 export const Container = styled.div`
   margin-top: 8rem;
@@ -36,7 +35,6 @@ const ComingSoon = styled(LightCard)`
 export default function CIR() {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
-  const parentAddress = useUserInvited(account)
   const refereeN = useUserRefereeN(account)
   const referee2N = useUserReferee2N(account)
 

@@ -6,7 +6,6 @@ import { useActiveWeb3React } from './index'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from '../constants'
 import { useTransactionAdder } from '../state/transactions/hooks'
-
 export function useJoinCallback(account) {
   const { library, chainId } = useActiveWeb3React()
   const addTransaction = useTransactionAdder()
