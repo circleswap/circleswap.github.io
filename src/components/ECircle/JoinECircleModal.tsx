@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 import { RowBetween } from '../Row'
 import { TYPE, ExternalLink, CloseIcon, CustomLightSpinner, UniTokenAnimated } from '../../theme'
 import { ButtonPrimary, ButtonSecondary } from '../Button'
-import { useInviteCallback } from '../../state/invite/hooks'
 import tokenLogo from '../../assets/images/token-logo.png'
 import Circle from '../../assets/images/blue-loader.svg'
 import { Text } from 'rebass'
@@ -18,7 +17,7 @@ import { CardNoise, CardBGImageSmaller } from '../earn/styled'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { getEtherscanLink, shortenAddress } from '../../utils'
 import { Link } from 'react-router-dom'
-import { useNCircle } from '../../hooks/useNCircle'
+import { useJoinCallback, useNCircle } from '../../hooks/useNCircle'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -70,7 +69,7 @@ export default function JoinECircleModal({
   const [attempting, setAttempting] = useState<boolean>(false)
 
   // monitor the status of the claim from contracts and txns
-  const { inviteCallback } = useInviteCallback(parsedAddress)
+  const { joinCallback } = useJoinCallback(typed)
 
   const [hash, setHash] = useState<string | undefined>()
 
@@ -82,7 +81,7 @@ export default function JoinECircleModal({
 
   function onJoin() {
     setAttempting(true)
-    inviteCallback()
+    joinCallback()
       .then(hash => {
         setHash(hash)
       })
@@ -113,7 +112,7 @@ export default function JoinECircleModal({
               {t('theAddress')}
             </TYPE.main>
             <AddressInputPanel value={typed} onChange={handleRecipientType} />
-            {parsedAddress && circle && <TYPE.error error={true}>Your address has already been invited</TYPE.error>}
+            {parsedAddress && !circle && <TYPE.error error={true}>YInvalid inviter address</TYPE.error>}
             {/*{((parsedAddress ) || typed === account) && (*/}
             {/*  <TYPE.error error={true}>Invalid inviter address</TYPE.error>*/}
             {/*)}*/}
@@ -122,7 +121,7 @@ export default function JoinECircleModal({
                 {t('cancel')}
               </ResponsiveButtonSecondary>
               <ButtonPrimary
-                disabled={typed === account || circle}
+                disabled={typed === account || !circle}
                 padding="16px 16px"
                 width="180px"
                 borderRadius="100px"

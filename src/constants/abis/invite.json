@@ -142,7 +142,7 @@
       {
         "indexed": false,
         "internalType": "string",
-        "name": "name",
+        "name": "uri",
         "type": "string"
       },
       {
@@ -574,6 +574,19 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "join",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
@@ -637,7 +650,7 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "name",
+        "name": "uri",
         "type": "string"
       },
       {
@@ -998,6 +1011,25 @@
       }
     ],
     "name": "tokenByIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "tokenByURI",
     "outputs": [
       {
         "internalType": "uint256",

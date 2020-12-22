@@ -16,11 +16,12 @@ export function useJoinCallback(account) {
 
   const joinCallback = async function() {
     if (!account || !library || !chainId || !contract) return
+    console.log('joinCallback', contract)
     const args = [account]
     return contract.estimateGas['join'](...args, {}).then(estimatedGasLimit => {
       return contract.join(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) }).then(response => {
         addTransaction(response, {
-          summary: `Invited ${account}`,
+          summary: `JOIN ${account}`,
           claim: { recipient: account }
         })
         return response.hash
@@ -51,7 +52,7 @@ export function useNCircleJoinAble() {
   console.log('invitedAddress', invitedAddress)
   const invited = invitedAddress && invitedAddress !== ZERO_ADDRESS
   console.log('swapMore', swapMore)
-  console.log('invited', invited)
+  console.log('invited', invited && swapMore)
   return invited && swapMore
 }
 
