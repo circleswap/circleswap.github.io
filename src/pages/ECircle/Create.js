@@ -97,7 +97,8 @@ export default function CreateECircle() {
   const [value, setValue] = useState()
   const [size, setSize] = useState('30')
   const [gas, setGas] = useState('100')
-  const { mintCallback } = useMintCallback(value, gas + '00000000000000000000')
+  const [level, setLevel] = useState(1)
+  const { mintCallback } = useMintCallback(value, level)
   const [hash, setHash] = useState()
   const cirContract = useUniContract()
   // monitor the status of the claim from contracts and txns
@@ -120,8 +121,7 @@ export default function CreateECircle() {
   function onAttemptToApprove() {
     console.log('onAttemptToApprove', cirContract)
     setAttempting(true)
-    cirContract.approve(INVITE_ADDRESS, gas + '00000000000000000000').then(res => {
-      setAttempting(false)
+    cirContract.approve(INVITE_ADDRESS, gas + '000000000000000000').then(res => {
       console.log('res-->', res)
       onMint()
     })
@@ -160,6 +160,7 @@ export default function CreateECircle() {
             onClick={() => {
               setGas('100')
               setSize('30')
+              setLevel(1)
             }}
           >
             30
@@ -169,6 +170,7 @@ export default function CreateECircle() {
             onClick={() => {
               setGas('500')
               setSize('200')
+              setLevel(2)
             }}
           >
             200
@@ -178,6 +180,7 @@ export default function CreateECircle() {
             onClick={() => {
               setSize('500')
               setGas('1000')
+              setLevel(3)
             }}
           >
             500
