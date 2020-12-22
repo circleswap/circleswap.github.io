@@ -18,7 +18,6 @@ export function useInviteCallback(
   const inviteCallback = async function() {
     if (!account || !library || !chainId || !contract) return
     const args = [account]
-
     return contract.estimateGas['bind'](...args, {}).then(estimatedGasLimit => {
       return contract
         .bind(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })

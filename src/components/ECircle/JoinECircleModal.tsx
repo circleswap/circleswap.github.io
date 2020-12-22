@@ -18,6 +18,8 @@ import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { getEtherscanLink, shortenAddress } from '../../utils'
 import { Link } from 'react-router-dom'
 import { useJoinCallback, useNCircle } from '../../hooks/useNCircle'
+import { INVITE_ADDRESS } from '../../constants'
+import { useUniContract } from '../../hooks/useContract'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -76,20 +78,24 @@ export default function JoinECircleModal({
   // monitor the status of the claim from contracts and txns
   const claimPending = useIsTransactionPending(hash ?? '')
   const claimConfirmed = hash && !claimPending
+  const cirContract = useUniContract()
 
   // use the hash to monitor this txn
 
   function onJoin() {
+    if (!cirContract) return
     setAttempting(true)
-    joinCallback()
-      .then(hash => {
-        setHash(hash)
-      })
-      // reset modal and log error
-      .catch(error => {
-        setAttempting(false)
-        console.log(error)
-      })
+    cirContract.approve(INVITE_ADDRESS, '2000000000000000000').then(() => {
+      joinCallback()
+        .then(hash => {
+          setHash(hash)
+        })
+        // reset modal and log error
+        .catch(error => {
+          setAttempting(false)
+          console.log(error)
+        })
+    })
   }
 
   function wrappedOnDismiss() {
