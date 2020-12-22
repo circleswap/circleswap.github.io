@@ -21,8 +21,9 @@ const InputPanel = styled.div`
 `
 const Input = styled.div`
   height: 40px;
-  background-color: #f8f8f8;
+  background-color: ${({ theme }) => theme.bg3};
   line-height: 40px;
+  border-radius: 12px;
   padding: 0 13px;
   flex: 1;
 `
@@ -42,14 +43,14 @@ export default function Inviting({
           {ZERO_ADDRESS !== invited && invited ? (
             <AppBody>
               <ColumnCenter style={{ width: 463 }}>
-                <TYPE.largeHeader color="#2C2C2C">My NCircle</TYPE.largeHeader>
+                <TYPE.largeHeader>My NCircle</TYPE.largeHeader>
               </ColumnCenter>
               <TYPE.main marginTop="44px" color="#888888">
                 My invitation link
               </TYPE.main>
               <InputPanel>
                 <Input>{account}</Input>
-                <Copy toCopy={'https://circleswap.netlify.app/invite/' + account ?? ''} />
+                <Copy toCopy={'http://localhost:3000/#/invite/' + account ?? ''} />
               </InputPanel>
             </AppBody>
           ) : (

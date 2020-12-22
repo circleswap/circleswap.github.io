@@ -70,7 +70,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
 
   useEffect(() => {
     if (address && invited !== ZERO_ADDRESS) {
-      history.push('/inviting')
+      setShowInviteModal(true)
     }
   }, [address, invited, history])
 

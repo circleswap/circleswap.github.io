@@ -105,13 +105,13 @@ export default function App() {
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
               <Route exact strict path="/find" component={PoolFinder} />
               <Route exact strict path="/pool" component={Pool} />
-              <Route path="/invite/:address" component={Invite} />
-              <Route path="/invite" component={Invite} />
+              <Route exact strict path="/invite/:address" component={Invite} />
+              <Route exact strict path="/invite" component={Invite} />
               <Route exact strict path="/uni" component={Earn} />
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
               <Route exact path="/add" component={AddLiquidity} />
-              <Route exact path="/inviting" component={Inviting} />
+              <Route exact strict path="/inviting" component={Inviting} />
               <Route exact path="/cir" component={CIR} />
               <Route exact path="/ecircle" component={ECircle} />
               <Route exact path="/myecircle" component={MyECircle} />
