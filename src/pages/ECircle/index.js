@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
@@ -6,9 +6,8 @@ import { AlertTriangle } from 'react-feather'
 import { AutoRow, RowBetween } from '../../components/Row'
 import { Button, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
-import { Balls } from '../../components/Ball/inidex'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
-import { useAllCircleData, useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
+import { useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
 import { useMyECircle } from '../../state/ecircle/hooks'
 import { Link } from 'react-router-dom'
 
@@ -37,11 +36,7 @@ export default function ECircle({ history }) {
   const myCircle = useMyECircle()
 
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
-  const allCircles = useAllCircleData()
-
-  const renderBalls = useCallback(() => {
-    return <Balls tabs={allCircles} />
-  }, [allCircles])
+  //const allCircles = useAllCircleData()
 
   return (
     <PageWrapper>
