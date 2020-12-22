@@ -1,6 +1,6 @@
 // check if the user has been invited this address
 import { useSingleCallResult } from '../state/multicall/hooks'
-import { useCircleContract } from './useContract'
+import { useCircleContract, useUniContract } from './useContract'
 import { calculateGasMargin, getRouterContract, isAddress } from '../utils'
 import { useActiveWeb3React } from './index'
 import BigNumber from 'bignumber.js'
@@ -12,7 +12,7 @@ export function useJoinCallback(account) {
   const { library, chainId } = useActiveWeb3React()
   // used for popup summary
   const addTransaction = useTransactionAdder()
-  const contract = useCircleContract()
+  const contract = useUniContract()
 
   const joinCallback = async function() {
     if (!account || !library || !chainId || !contract) return
