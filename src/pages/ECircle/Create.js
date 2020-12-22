@@ -96,7 +96,7 @@ export default function CreateECircle() {
   const [attempting, setAttempting] = useState(false)
   const [value, setValue] = useState()
   const [size, setSize] = useState('30')
-  const [gas, setGas] = useState(1)
+  const [gas, setGas] = useState('100')
   const { mintCallback } = useMintCallback(value, gas)
   const [hash, setHash] = useState()
   const cirContract = useUniContract()
@@ -120,7 +120,7 @@ export default function CreateECircle() {
   function onAttemptToApprove() {
     console.log('onAttemptToApprove', cirContract)
     setAttempting(true)
-    cirContract.approve(INVITE_ADDRESS, '100000000000000000000').then(res => {
+    cirContract.approve(INVITE_ADDRESS, gas + '00000000000000000000').then(res => {
       setAttempting(false)
       console.log('res-->', res)
       onMint()
@@ -158,7 +158,7 @@ export default function CreateECircle() {
           <NumberButton
             selected={size === '30'}
             onClick={() => {
-              setGas(100)
+              setGas('100')
               setSize('30')
             }}
           >
@@ -167,7 +167,7 @@ export default function CreateECircle() {
           <NumberButton
             selected={size === '200'}
             onClick={() => {
-              setGas(500)
+              setGas('500')
               setSize('200')
             }}
           >
@@ -176,8 +176,8 @@ export default function CreateECircle() {
           <NumberButton
             selected={size === '300'}
             onClick={() => {
-              setSize('300')
-              setGas(1000)
+              setSize('500')
+              setGas('1000')
             }}
           >
             500
@@ -188,7 +188,7 @@ export default function CreateECircle() {
 
         <RowBetween gap="19px">
           <Button style={{ width: '46%' }}>{t('cancel')}</Button>
-          <Button style={{ width: '46%' }} onClick={onAttemptToApprove}>
+          <Button disabled={!value} style={{ width: '46%' }} onClick={onAttemptToApprove}>
             {t('confirm')}
           </Button>
         </RowBetween>

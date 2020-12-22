@@ -15,7 +15,6 @@ export function useMintCallback(
   // used for popup summary
   const addTransaction = useTransactionAdder()
   const contract = useCircleContract()
-  console.log('contract',name, level)
   const mintCallback = async function() {
     if (!name || !level || !library || !chainId || !contract) return
     const args = [name, level]
