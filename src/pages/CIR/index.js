@@ -9,7 +9,6 @@ import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
 import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.svg'
 import useAirdropWeight from '../../hooks/cir'
-import { JSBI } from '@uniswap/sdk'
 
 export const Container = styled.div`
   margin-top: 8rem;

@@ -95,7 +95,7 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
   )
 }
 
-export function CIRTabs({}: {}) {
+export function CIRTabs() {
   const { t } = useTranslation()
   return (
     <Tabs>

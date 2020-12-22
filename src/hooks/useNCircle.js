@@ -4,7 +4,6 @@ import { calculateGasMargin, getRouterContract, isAddress } from '../utils'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from '../constants'
 
-import { TransactionResponse } from '@ethersproject/providers'
 import { useActiveWeb3React } from './index'
 import { useCircleContract } from './useContract'
 import { useTransactionAdder } from '../state/transactions/hooks'

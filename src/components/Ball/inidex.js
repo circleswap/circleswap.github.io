@@ -155,7 +155,7 @@ export const Balls = () => {
 
   useEffect(() => {
     start()
-  },[])
+  }, [])
 
   return (
     <div id="div1">
