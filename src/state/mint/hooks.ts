@@ -132,7 +132,7 @@ export function useDerivedMintInfo(
 
   let error: string | undefined
   if (!account) {
-    error = 'Connect Wallet'
+    error = t('connectWallet')
   }
 
   if (pairState === PairState.INVALID) {

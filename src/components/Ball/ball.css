@@ -1,0 +1,43 @@
+div,a {
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+
+}
+
+
+#div1 {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 100px auto 0;
+    /*background: radial-gradient(circle at 300px 200px, #AFDBAD 0%, #AFDBAD 60%)*/
+    /*center;*/
+    /*background-image: url("../../assets/images/ball.svg");*/
+    background-repeat: no-repeat;
+    box-shadow: inset 20px -10px 100px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+#div1 a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 2px black;
+}
+
+#div1 a:hover {
+    color: #fabe00;
+}

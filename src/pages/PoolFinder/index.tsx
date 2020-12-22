@@ -1,6 +1,7 @@
 import { Currency, ETHER, JSBI, TokenAmount } from '@uniswap/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Text } from 'rebass'
+import { useTranslation } from 'react-i18next'
 import { ButtonDropdownLight } from '../../components/Button'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import CurrencyLogo from '../../components/CurrencyLogo'
@@ -44,7 +45,7 @@ export const Body = styled(Container)`
 
 export default function PoolFinder() {
   const { account } = useActiveWeb3React()
-
+  const { t } = useTranslation()
   const [showSearch, setShowSearch] = useState<boolean>(false)
   const [activeField, setActiveField] = useState<number>(Fields.TOKEN1)
 
@@ -88,9 +89,7 @@ export default function PoolFinder() {
 
   const prerequisiteMessage = (
     <AutoColumn style={{ padding: '45px 10px' }}>
-      <Text textAlign="center">
-        {!account ? 'Connect to a wallet to find pools' : 'Select a token to find your liquidity.'}
-      </Text>
+      <Text textAlign="center">{!account ? t('connectToFind') : t('selectToFindLiquidity')}</Text>
     </AutoColumn>
   )
 

@@ -35,9 +35,11 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
       }),
     [tokens]
   )
+  console.log('pairAddresses', pairAddresses)
 
   const results = useMultipleContractSingleData(pairAddresses, PAIR_INTERFACE, 'getReserves')
 
+  console.log('results', results)
   return useMemo(() => {
     return results.map((result, i) => {
       const { result: reserves, loading } = result
@@ -58,5 +60,8 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
 }
 
 export function usePair(tokenA?: Currency, tokenB?: Currency): [PairState, Pair | null] {
+  console.log('token a', tokenA)
+  console.log('token b', tokenB)
+
   return usePairs([[tokenA, tokenB]])[0]
 }

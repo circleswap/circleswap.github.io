@@ -408,7 +408,7 @@ export default function AddLiquidity({
         )}
 
         {!account ? (
-          <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+          <ButtonLight onClick={toggleWalletModal}>{t('connectWallet')}</ButtonLight>
         ) : (
           <AutoColumn gap={'md'} style={{ margin: '38px auto', width: 625 }}>
             {(approvalA === ApprovalState.NOT_APPROVED ||

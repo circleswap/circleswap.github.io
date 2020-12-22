@@ -1,4 +1,5 @@
 {
+  "connectWallet": "连接钱包",
   "noWallet": "未发现以太钱包",
   "wrongNetwork": "网络错误",
   "switchNetwork": "请切换到 {{ correctNetwork }}",
@@ -162,7 +163,7 @@
   "extraRewards": "获取流动性挖矿额外奖励；",
   "createECircle": "创建ECircle",
   "joinECircle": "加入Ecircle",
-  "check": "已有ECricle？点击查看我的ECircle ",
+  "check": "已有ECricle？点击查看我的 ",
   "note": "*提示：同一个地址创建ECircle后就无法加入其它ECircle，加入ECircle后无法创建ECircle。",
   "theName": "请输入您要创建的ECircle名字：",
   "contains": "支持中文、英文、数字，最多6位字符",
@@ -195,5 +196,24 @@
   "ownSwapRewards": "个人收益",
   "myInfluence": "我的Influence值",
   "withdrawAmount": "可提取",
-  "withdraw": "提取"
+  "withdraw": "提取",
+  "myCIR": "我的 CIR",
+  "ncirclereward": "NCircle奖励：初始时，每个地址空投权重默认为 1，但是每个地址可以通过扩大自己的\n\nNCircle 影响力来获得额外空投奖励，NCircle 内包含父块地址和叔块地址，具体奖励方式\n\n如下：\n\n每个父块地址可为账户增加 0.3 空投权重，最多统计 5 个父块地址，即最多增加 1.5 权重；\n\n每个叔块地址可为账户增加 0.1 空投权重，最多统计 25 个叔块地址，即最多增加 2.5 权重。",
+  "ecirclereward": "ECircle 用户（包括创建或加入 ECircle 的用户）参与流动性挖矿时，除了能获得自身算力\n\n产出收益外，还可获得 ECircle奖励，同时还可实现无 LPT 挖矿。\n\n流动性挖矿收益与自身算力、ECircle奖励以及NCircle奖励有关。",
+  "addLiquidityTip": "您增加流动性时会获得代表您资金池占比的代币（LP）。这些代币是您赚取平台交易手续费及参与流动性挖矿的重要参考，可以随时兑换。",
+  "removingPollTip": "当您移除LP时，会根据您在资金池中所占的比例按当前汇率将您的LP转换回您提供的代币。您收到的金额是扣除所有手续费之后的款项。",
+  "toolForFind": "使用此工具查找未显示的交易对。",
+  "createNCircleTip": "点击创建您的NCircle生成邀请链接或查看您的NCircle。",
+  "connectToFind": "查看资金池需要先连接钱包",
+  "selectToFindLiquidity": "选择一个通证来查找您的流动性",
+  "importPool": "倒入池子",
+  "bestPrice": "获取交易的最佳价格",
+  "enterRecipient": "输入接收地址",
+  "stakeMyLPT": "质押我的LP Tokens",
+  "enterNameECircle": "请输入您要创建的ECircle名字",
+  "payToCreateECircle": "您需要支付100CIR来创建此ECircle。",
+  "createECirclePlaceholder": "支持汉字、字母、数字，最多6位字符",
+  "walletAddress": "钱包地址",
+  "Recipient": "接收地址"
+
 }

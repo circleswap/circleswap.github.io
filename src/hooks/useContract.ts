@@ -98,6 +98,7 @@ export function usePairContract(pairAddress?: string, withSignerIfPossible?: boo
   return useContract(pairAddress, IUniswapV2PairABI, withSignerIfPossible)
 }
 
+
 export function useMulticallContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
@@ -117,7 +118,7 @@ export function useUniContract(): Contract | null {
   return useContract(chainId ? UNI[chainId].address : undefined, UNI_ABI, true)
 }
 
-export function useInviteContract(): Contract | null {
+export function useCircleContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId ? INVITE[chainId] : undefined, INVITE_ABI, true)
 }

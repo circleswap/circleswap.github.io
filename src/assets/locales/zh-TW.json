@@ -71,5 +71,6 @@
   "tokenAddress": "代幣地址",
   "label": "代幣符號",
   "decimals": "小數位數",
-  "enterTokenCont": "輸入代幣地址"
+  "enterTokenCont": "輸入代幣地址",
+  "addLiquidityTip": "您增加流动性时会获得代表您资金池占比的代币（LP）。这些代币是您赚取平台交易手续费及参与流动性挖矿的重要参考，可以随时兑换。"
 }

@@ -4,33 +4,34 @@ import { useCircleContract } from '../../hooks/useContract'
 import { calculateGasMargin } from '../../utils'
 import { useTransactionAdder } from '../transactions/hooks'
 
-export function useInviteCallback(
-  account: string | null | undefined
+export function useMintCallback(
+  name: string | null | undefined,
+  level: bigint | null | undefined
 ): {
-  inviteCallback: () => Promise<string>
+  mintCallback: () => Promise<string>
 } {
   // get claim data for this account
   const { library, chainId } = useActiveWeb3React()
   // used for popup summary
   const addTransaction = useTransactionAdder()
   const contract = useCircleContract()
-
-  const inviteCallback = async function() {
-    if (!account || !library || !chainId || !contract) return
-    const args = [account]
-
-    return contract.estimateGas['bind'](...args, {}).then(estimatedGasLimit => {
+  console.log('contract',name, level)
+  const mintCallback = async function() {
+    if (!name || !level || !library || !chainId || !contract) return
+    const args = [name, level]
+    console.log('args', args)
+    return contract.estimateGas['mint'](...args, {}).then(estimatedGasLimit => {
       return contract
-        .bind(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })
+        .mint(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Invited ${account}`,
-            claim: { recipient: account }
+            summary: `mint ${name}`,
+            claim: { recipient: name }
           })
           return response.hash
         })
     })
   }
 
-  return { inviteCallback }
+  return { mintCallback }
 }

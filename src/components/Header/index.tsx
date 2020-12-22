@@ -28,13 +28,13 @@ import { Dots } from '../swap/styleds'
 import Modal from '../Modal'
 import UniBalanceContent from './UniBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
+import { isMobile } from 'react-device-detect'
 
 const HeaderFrame = styled.div`
   display: grid;
   grid-template-columns: 1fr 120px;
   align-items: center;
   justify-content: space-between;
-  align-items: center;
   flex-direction: row;
   background-color: ${({ theme }) => theme.bg1};
   width: 100%;
@@ -51,7 +51,7 @@ const HeaderFrame = styled.div`
     grid-template-columns: 1fr;
     padding: 0 1rem;
     width: calc(100%);
-    position: relative;
+    position: fixed;
   `};
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
@@ -301,7 +301,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={'134px'} src={isDark ? Logo : Logo} alt="logo" />
+            <img width={isMobile ? '84px' : '134px'} src={isDark ? Logo : Logo} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>
@@ -324,13 +324,13 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/CIR'}>
             CIR
           </StyledNavLink>
-          {/*<StyledNavLink id={`stake-nav-link`} to={'/uni'}>*/}
+          {/*<StyledNavLink id={`Stake-nav-link`} to={'/uni'}>*/}
           {/*  CIR*/}
           {/*</StyledNavLink>*/}
-          {/*<StyledNavLink id={`stake-nav-link`} to={'/vote'}>*/}
+          {/*<StyledNavLink id={`Stake-nav-link`} to={'/vote'}>*/}
           {/*  Vote*/}
           {/*</StyledNavLink>*/}
-          {/*<StyledExternalLink id={`stake-nav-link`} href={'https://uniswap.info'}>*/}
+          {/*<StyledExternalLink id={`Stake-nav-link`} href={'https://uniswap.info'}>*/}
           {/*  Charts <span style={{ fontSize: '11px' }}>↗</span>*/}
           {/*</StyledExternalLink>*/}
           <StyledNavLink id={`invite-nav-link`} to={'/invite/'}>

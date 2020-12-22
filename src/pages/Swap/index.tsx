@@ -282,7 +282,7 @@ export default function Swap() {
   ])
 
   return (
-    <>
+    <Wrapper style={{ paddingTop: theme.bodyPadding }}>
       <TokenWarningModal
         isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
         tokens={urlLoadedTokens}
@@ -430,7 +430,7 @@ export default function Swap() {
 
         <BottomGrouping style={{ width: isMobile ? 350 : 550, margin: 'auto' }}>
           {!account ? (
-            <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+            <ButtonLight onClick={toggleWalletModal}>{t('connectWallet')}</ButtonLight>
           ) : showWrap ? (
             <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>
               {wrapInputError ?? (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
@@ -525,6 +525,6 @@ export default function Swap() {
           ) : null}
         </BottomGrouping>
       </Wrapper>
-    </>
+    </Wrapper>
   )
 }

@@ -5,6 +5,7 @@ import { darken, lighten } from 'polished'
 import { RowBetween } from '../Row'
 import { ChevronDown } from 'react-feather'
 import { Button as RebassButton, ButtonProps } from 'rebass/styled-components'
+import { Button } from '../../theme'
 
 const Base = styled(RebassButton)<{
   padding?: string
@@ -238,6 +239,23 @@ export const ButtonWhite = styled(Base)`
   &:disabled {
     opacity: 50%;
     cursor: auto;
+  }
+`
+
+export const ButtonBlue = styled(Button)`
+  background-color: ${({ theme }) => theme.bluePrimary};
+
+  :hover,
+  :focus {
+    background-color: ${({ theme }) => darken(0.05, theme.bluePrimary)};
+  }
+
+  :active {
+    background-color: ${({ theme }) => darken(0.1, theme.bluePrimary)};
+  }
+  :disabled {
+    background-color: ${({ theme }) => darken(0.1, theme.bg5)};
+    color: ${({ theme }) => theme.text2};
   }
 `
 

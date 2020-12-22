@@ -9,7 +9,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { useUserInvited } from '../../hooks/useInvited'
 import { ZERO_ADDRESS } from '../../constants'
 import AppBody from '../AppBody'
-import ncircleEmpty from '../../assets/images/ncircle_empty.svg'
+import { ReactComponent as NcircleEmpty } from '../../assets/images/ncircle_empty.svg'
 import Copy from '../../components/AccountDetails/Copy'
 
 const InputPanel = styled.div`
@@ -54,7 +54,7 @@ export default function Inviting({
             </AppBody>
           ) : (
             <AutoColumn gap="lg">
-              <img src={ncircleEmpty} alt="" />
+              <NcircleEmpty />
               <ColumnCenter>
                 <TYPE.largeHeader color="#2C2C2C">{`You don't have NCircle`}</TYPE.largeHeader>
               </ColumnCenter>

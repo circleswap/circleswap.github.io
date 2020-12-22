@@ -18,6 +18,9 @@ export const InputsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+     flex-direction: column;
+  `};
 `
 
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`

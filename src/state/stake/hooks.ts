@@ -1,6 +1,7 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@uniswap/sdk'
 import { useMemo } from 'react'
-import { DAI, UNI, USDC, USDT, WBTC } from '../../constants'
+import { useTranslation } from 'react-i18next'
+import { DAI, UNI, USDC, USDT, WBTC, CIR } from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
@@ -34,6 +35,15 @@ export const STAKING_REWARDS_INFO: {
     {
       tokens: [WETH[ChainId.MAINNET], WBTC],
       stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+    }
+  ],
+  [ChainId.ROPSTEN]: [
+    {
+      tokens: [
+        new Token(ChainId.ROPSTEN, '0xc778417e063141139fce010982780140aa0cd5ab', 18, 'WETH', 'Wrapped Ether'),
+        CIR
+      ],
+      stakingRewardAddress: '0xded7207fa14b88dd5cc5d69f6a0b114417d83b7a'
     }
   ]
 }
@@ -72,7 +82,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 
   // detect if staking is ended
   const currentBlockTimestamp = useCurrentBlockTimestamp()
-
+  console.log('pair', pairToFilterBy)
+  console.log('STAKING_REWARDS_INFO', STAKING_REWARDS_INFO)
   const info = useMemo(
     () =>
       chainId
@@ -89,9 +100,10 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   )
 
   const uni = chainId ? UNI[chainId] : undefined
+  console.log('info', info)
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
-
+  console.log('rewardsAddresses', rewardsAddresses)
   const accountArg = useMemo(() => [account ?? undefined], [account])
 
   // get all the info from the staking rewards contracts
@@ -238,7 +250,7 @@ export function useDerivedStakeInfo(
   error?: string
 } {
   const { account } = useActiveWeb3React()
-
+  const { t } = useTranslation()
   const parsedInput: CurrencyAmount | undefined = tryParseAmount(typedValue, stakingToken)
 
   const parsedAmount =
@@ -248,7 +260,7 @@ export function useDerivedStakeInfo(
 
   let error: string | undefined
   if (!account) {
-    error = 'Connect Wallet'
+    error = t('connectWallet')
   }
   if (!parsedAmount) {
     error = error ?? 'Enter an amount'
@@ -269,14 +281,14 @@ export function useDerivedUnstakeInfo(
   error?: string
 } {
   const { account } = useActiveWeb3React()
-
+  const { t } = useTranslation()
   const parsedInput: CurrencyAmount | undefined = tryParseAmount(typedValue, stakingAmount.token)
 
   const parsedAmount = parsedInput && JSBI.lessThanOrEqual(parsedInput.raw, stakingAmount.raw) ? parsedInput : undefined
 
   let error: string | undefined
   if (!account) {
-    error = 'Connect Wallet'
+    error = t('connectWallet')
   }
   if (!parsedAmount) {
     error = error ?? 'Enter an amount'

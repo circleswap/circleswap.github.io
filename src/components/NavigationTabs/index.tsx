@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { darken } from 'polished'
 import { useTranslation } from 'react-i18next'
 import { NavLink, Link as HistoryLink } from 'react-router-dom'
-
 import { ArrowLeft } from 'react-feather'
 import { RowBetween } from '../Row'
 import QuestionHelper from '../QuestionHelper'
@@ -67,14 +66,15 @@ export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
 }
 
 export function FindPoolTabs() {
+  const { t } = useTranslation()
   return (
     <Tabs>
       <RowBetween style={{ padding: '1rem' }}>
         <HistoryLink to="/pool">
           <StyledArrowLeft />
         </HistoryLink>
-        <ActiveText>Import Pool</ActiveText>
-        <QuestionHelper text={"Use this tool to find pairs that don't automatically appear in the interface."} />
+        <ActiveText>{t('importPool')}</ActiveText>
+        <QuestionHelper text={t('toolForFind')} />
       </RowBetween>
     </Tabs>
   )
@@ -89,27 +89,18 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
           <StyledArrowLeft />
         </HistoryLink>
         <ActiveText>{creating ? t('createAPair') : adding ? t('addLiquidity') : t('removeLiquidity')}</ActiveText>
-        <QuestionHelper
-          text={
-            adding
-              ? 'When you add liquidity, you are given pool tokens representing your position. These tokens automatically earn fees proportional to your share of the pool, and can be redeemed at any time.'
-              : 'Removing pool tokens converts your position back into underlying tokens at the current rate, proportional to your share of the pool. Accrued fees are included in the amounts you receive.'
-          }
-        />
+        <QuestionHelper text={adding ? t('addLiquidityTip') : t('removingPollTip')} />
       </RowBetween>
     </Tabs>
   )
 }
 
 export function CIRTabs({}: {}) {
+  const { t } = useTranslation()
   return (
     <Tabs>
       <RowBetween style={{ padding: '0.5rem' }}>
-        <HistoryLink to="/pool">
-          <StyledArrowLeft />
-        </HistoryLink>
-        <ActiveText>{'My CIR'}</ActiveText>
-        <QuestionHelper text={''} />
+        <ActiveText>{t('myCIR')}</ActiveText>
       </RowBetween>
     </Tabs>
   )

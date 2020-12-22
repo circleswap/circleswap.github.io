@@ -23,6 +23,7 @@ import AppBody from '../AppBody'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
+  padding-top: ${({ theme }) => theme.bodyPadding};
 `
 
 const TitleRow = styled(RowBetween)`
@@ -121,7 +122,7 @@ export default function Pool() {
   const stakingInfosWithBalance = stakingInfo?.filter(pool => JSBI.greaterThan(pool.stakedAmount.raw, BIG_INT_ZERO))
   const stakingPairs = usePairs(stakingInfosWithBalance?.map(stakingInfo => stakingInfo.tokens))
 
-  // remove any pairs that also are included in pairs with stake in mining pool
+  // remove any pairs that also are included in pairs with Stake in mining pool
   const v2PairsWithoutStakedAmount = allV2PairsWithLiquidity.filter(v2Pair => {
     return (
       stakingPairs

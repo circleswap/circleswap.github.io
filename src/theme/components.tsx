@@ -29,8 +29,8 @@ export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColo
   }
 
   :disabled {
-    background-color: ${({ theme }) => theme.bg1};
-    color: ${({ theme }) => theme.text4};
+    background-color: ${({ theme }) => theme.bg5};
+    color: ${({ theme }) => theme.text2};
     cursor: auto;
   }
 `

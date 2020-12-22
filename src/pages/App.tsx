@@ -34,6 +34,10 @@ import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import Inviting from './Invite/Inviting'
 import CIR from './CIR'
+import ECircle from './ECircle'
+import Stake from './Stake'
+import CreateECircle from './ECircle/Create'
+
 
 const AppWrapper = styled.div`
   display: flex;
@@ -107,6 +111,9 @@ export default function App() {
               <Route exact path="/add" component={AddLiquidity} />
               <Route exact path="/inviting" component={Inviting} />
               <Route exact path="/cir" component={CIR} />
+              <Route exact path="/ecircle" component={ECircle} />
+              <Route exact path="/stake" component={Stake} />
+              <Route exact path="/ecircle/create" component={CreateECircle} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
               <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
               <Route exact path="/create" component={AddLiquidity} />

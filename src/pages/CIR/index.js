@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { LightCard } from '../../components/Card'
+import { useTranslation } from 'react-i18next'
 import { CIRTabs } from '../../components/NavigationTabs'
 import { AutoRow, RowBetween } from '../../components/Row'
 import { TYPE } from '../../theme'
@@ -9,7 +10,8 @@ import QuestionHelper from '../../components/QuestionHelper'
 import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.svg'
 
 export const Container = styled.div`
-  margin-top: 12rem;
+  margin-top: 8rem;
+  padding-top: 12rem;
 `
 
 const BodyHeader = styled.div`
@@ -29,6 +31,7 @@ const ComingSoon = styled(LightCard)`
 `
 
 export default function CIR() {
+  const { t } = useTranslation()
   return (
     <Container>
       <AutoColumn gap="lg">
@@ -38,13 +41,13 @@ export default function CIR() {
         <RowBetween gap="md" style={{ display: 'flex' }}>
           <LightCard style={{ padding: 0, marginRight: 15 }}>
             <BodyHeader>
-              Airdrop Weight:
-              <QuestionHelper text={"Use this tool to find pairs that don't automatically appear in the interface."} />
+              {t('airdropWeight')}
+              <QuestionHelper text={t('ncirclereward')} />
             </BodyHeader>
             <AutoColumn gap="lg" style={{ width: 388, padding: 36 }}>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  Parent Block Addresses:
+                  {t('parentBlockAddresses')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
                   28
@@ -52,7 +55,7 @@ export default function CIR() {
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  Uncle Block Addresses:
+                  {t('uncleBlockAddresses')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
                   28
@@ -60,7 +63,7 @@ export default function CIR() {
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  Total number of airdrops:
+                  {t('numberOfAirdrops')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
                   28
@@ -70,13 +73,13 @@ export default function CIR() {
           </LightCard>
           <LightCard style={{ padding: 0, marginLeft: 15 }}>
             <BodyHeader>
-              Airdrop Weight:
-              <QuestionHelper text={"Use this tool to find pairs that don't automatically appear in the interface."} />
+              {t('liquidityMiningRewards')}
+              <QuestionHelper text={t('ecirclereward')} />
             </BodyHeader>
             <AutoColumn gap="lg" style={{ width: 388, padding: 36 }}>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  My Own Computing Power:
+                  {t('ownComputingPower')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
                   28
@@ -84,7 +87,7 @@ export default function CIR() {
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  NCircle Bonus:
+                  {t('nCircleBonus')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
                   28
@@ -92,7 +95,7 @@ export default function CIR() {
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  ECircle Bonus:
+                  {t('eCircleBonus')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
                   28
@@ -112,19 +115,19 @@ export default function CIR() {
         </LightCard>
 
         <TYPE.black fontWeight={500} fontSize={16}>
-          Coming Soon:
+          {t('comingSoon')}:
         </TYPE.black>
         <RowBetween>
           <ComingSoon style={{ marginRight: 15 }}>
             <AutoColumn gap="lg">
               <TYPE.coming fontWeight={500} fontSize={16}>
-                Swap Mining Rewards：28CIR
+                {t('extraSwapRewards')}：28CIR
               </TYPE.coming>
               <TYPE.coming fontWeight={500} fontSize={16}>
-                My own swap mining rewards：20CIR
+                {t('ownSwapRewards')}：20CIR
               </TYPE.coming>
               <TYPE.coming fontWeight={500} fontSize={16}>
-                NCircle Bonus：8CIR
+                {t('nCircleBonus')}：8CIR
               </TYPE.coming>
             </AutoColumn>
           </ComingSoon>

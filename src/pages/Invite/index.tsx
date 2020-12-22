@@ -15,6 +15,7 @@ import ncircleBg from '../../assets/images/ncircle.svg'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
+  padding-top: 8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,6 +34,9 @@ const CircleCard = styled.div`
   cursor: pointer;
   color: transparent;
   position: relative;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+     width: 100%;
+  `};
 `
 
 const NCircle = styled(CircleCard)`
@@ -87,13 +91,17 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
               {t('nCircle')}
             </TYPE.white>
             <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
-              Create your NCircle to generate an invitation link or view your NCircle details
+              {t('createNCircleTip')}
             </TYPE.white>
             <HelperFrame>
               <QuestionHelper text={'1. 参与流动性挖矿；\n2.获取UBI奖励；\n3.获取流动性挖矿算力额外奖励；'} />
             </HelperFrame>
           </NCircle>
-          <CCircle>
+          <CCircle
+            onClick={() => {
+              history.push('/ecircle')
+            }}
+          >
             <TYPE.white fontWeight={900} fontSize={41}>
               {t('eCircle')}
             </TYPE.white>
