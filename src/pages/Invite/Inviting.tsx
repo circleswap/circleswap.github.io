@@ -11,6 +11,7 @@ import { ZERO_ADDRESS } from '../../constants'
 import AppBody from '../AppBody'
 import { ReactComponent as NcircleEmpty } from '../../assets/images/ncircle_empty.svg'
 import Copy from '../../components/AccountDetails/Copy'
+import { ArrowLeft } from 'react-feather'
 
 const InputPanel = styled.div`
   width: 100%;
@@ -28,6 +29,13 @@ const Input = styled.div`
   flex: 1;
 `
 
+const StyledArrowLeft = styled(ArrowLeft)`
+  position: absolute;
+  left: 34px;
+  cursor: pointer;
+  color: ${({ theme }) => theme.text1};
+`
+
 export default function Inviting({
   match: {
     params: { address }
@@ -43,6 +51,7 @@ export default function Inviting({
           {ZERO_ADDRESS !== invited && invited ? (
             <AppBody>
               <ColumnCenter style={{ width: 463 }}>
+                <StyledArrowLeft onClick={()=>{history.push('/invite')}}/>
                 <TYPE.largeHeader>My NCircle</TYPE.largeHeader>
               </ColumnCenter>
               <TYPE.main marginTop="44px" color="#888888">

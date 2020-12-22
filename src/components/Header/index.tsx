@@ -333,7 +333,7 @@ export default function Header() {
           {/*<StyledExternalLink id={`Stake-nav-link`} href={'https://uniswap.info'}>*/}
           {/*  Charts <span style={{ fontSize: '11px' }}>↗</span>*/}
           {/*</StyledExternalLink>*/}
-          <StyledNavLink id={`invite-nav-link`} to={'/invite/'}>
+          <StyledNavLink id={`invite-nav-link`} to={'/invite'}>
             Circle
           </StyledNavLink>
         </HeaderLinks>
@@ -349,7 +349,7 @@ export default function Header() {
             <UNIWrapper onClick={toggleClaimModal}>
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 <TYPE.white padding="0 2px">
-                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming CIR</Dots> : 'Claim UNI'}
+                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming CIR</Dots> : 'Claim cir'}
                 </TYPE.white>
               </UNIAmount>
               <CardNoise />
