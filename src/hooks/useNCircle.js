@@ -71,25 +71,13 @@ export function useJoinNCircle() {
   const { account } = useActiveWeb3React()
   const parsedAddress = isAddress(account)
   const CircleContract = useCircleContract()
+  console.log('CircleContract', CircleContract)
+
   const circleQuery = useSingleCallResult(CircleContract, 'circleOf', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
   console.log('JOIN circleQuery', circleQuery)
   const circle = circleQuery?.result?.[0].toString()
-  console.log('JOIN circle', circle)
+  console.log('JOIN circle---->', circle)
   return circle
-}
-
-export function useParentAddress() {
-  const { account } = useActiveWeb3React()
-  const CircleContract = useCircleContract()
-  const idQuery = useSingleCallResult(CircleContract, 'circleOf', [
-    account ? account : '0x0000000000000000000000000000000000000000'
-  ])
-  const circleID = idQuery?.result?.[0].toString()
-  console.log('circleID', circleID)
-  const circleQuery = useSingleCallResult(CircleContract, 'ownerOf', [circleID])
-  const circleAddress = circleQuery?.result?.[0].toString()
-  console.log('circleAddress', circleAddress)
-  return circleAddress
 }

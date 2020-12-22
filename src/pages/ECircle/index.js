@@ -29,7 +29,7 @@ export default function ECircle({ history }) {
   const JoinCircle = useJoinNCircle()
   const myCircle = useMyECircle()
 
-  console.log('myCircle', myCircle)
+  console.log('myCircle', JoinCircle)
 
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
 
@@ -58,7 +58,7 @@ export default function ECircle({ history }) {
           </Button>
         </RowBetween>
         <ButtonBlue
-          disabled={!JoinCircle || !circle || circle < 1}
+          disabled={!able || (JoinCircle < 1 && circle < 1)}
           onClick={() => {
             history.push('/stake')
           }}
