@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled  from 'styled-components'
+import styled from 'styled-components'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
 import { RowBetween } from '../../components/Row'
@@ -97,7 +97,7 @@ export default function CreateECircle() {
   const [value, setValue] = useState()
   const [size, setSize] = useState('30')
   const [gas, setGas] = useState('100')
-  const { mintCallback } = useMintCallback(value, gas)
+  const { mintCallback } = useMintCallback(value, gas + '00000000000000000000')
   const [hash, setHash] = useState()
   const cirContract = useUniContract()
   // monitor the status of the claim from contracts and txns
