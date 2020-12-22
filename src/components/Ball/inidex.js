@@ -159,36 +159,14 @@ export const Balls = () => {
 
   return (
     <div id="div1">
-      <a href="#">甜美</a>
-      <a href="#">Sweet</a>
-      <a href="#">温暖</a>
-      <a href="#">Warm</a>
-      <a href="#">娇柔</a>
-      <a href="#">Feminine</a>
-      <a href="#">饱满</a>
-      <a href="#">Plump</a>
-      <a href="#">华丽</a>
-      <a href="#">Gorgeous</a>
-      <a href="#">灿烂</a>
-      <a href="#">Brilliant</a>
-      <a href="#">惬意</a>
-      <a href="#">Pleasant</a>
-      <a href="#">美妙</a>
-      <a href="#">Wonderful</a>
-      <a href="#">激情</a>
-      <a href="#">Passion</a>
-      <a href="#">热情</a>
-      <a href="#">Enthusiasm</a>
-      <a href="#">冷淡</a>
-      <a href="#">Cold</a>
-      <a href="#">才华</a>
-      <a href="#">Talent</a>
-      <a href="#">平凡</a>
-      <a href="#">Ordinary</a>
-      <a href="#">灵活</a>
-      <a href="#">Flexible</a>
-      <a href="#">镇定</a>
-      <a href="#">Calm</a>
+      <a href="/">甜美</a>
+      <a href="/">甜美</a>
+      <a href="/">甜美</a>
+      <a href="/">甜美</a>
+      <a href="/">甜美</a>
+      <a href="/">甜美</a>
+      <a href="/">甜美</a>
+      <a href="/">甜美</a>
     </div>
   )
 }

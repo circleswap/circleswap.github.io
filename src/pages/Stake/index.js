@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { useTranslation } from 'react-i18next'

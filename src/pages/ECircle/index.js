@@ -1,15 +1,12 @@
-import React, { ReactComponentElement, useContext, useState } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import React, { useState } from 'react'
+import styled  from 'styled-components'
 import { AutoColumn } from '../../components/Column'
-import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useUserInvited } from '../../hooks/useInvited'
 import { RowBetween } from '../../components/Row'
 import { Button, ExternalLink, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
 import { Balls } from '../../components/Ball/inidex'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
-import { useActiveWeb3React } from '../../hooks'
 import { useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
 
 const PageWrapper = styled(AutoColumn)`
