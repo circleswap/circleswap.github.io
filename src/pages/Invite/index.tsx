@@ -113,6 +113,12 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
                 text={`1. 获得额外空投奖励；\n 2.获得Swap挖矿额外奖励；\n 3.获取流动性挖矿算力额外奖励；`}
               />
             </HelperFrame>
+
+            <div>
+              <label style={{ cursor: 'pointer', userSelect: 'none' }}>
+                <input type="checkbox" checked onChange={() => {}} /> I understand
+              </label>
+            </div>
           </CCircle>
         </AutoRow>
       </PageWrapper>

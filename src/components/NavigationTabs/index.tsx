@@ -8,10 +8,10 @@ import { RowBetween } from '../Row'
 import QuestionHelper from '../QuestionHelper'
 
 const Tabs = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
   border-radius: 3rem;
   justify-content: space-evenly;
+  ${({ theme }) => theme.flexRowNoWrap}
 `
 
 const activeClassName = 'ACTIVE'

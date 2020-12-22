@@ -8,6 +8,8 @@ import { AutoRow, RowBetween } from '../../components/Row'
 import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
 import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.svg'
+import useAirdropWeight from '../../hooks/cir'
+import { JSBI } from '@uniswap/sdk'
 
 export const Container = styled.div`
   margin-top: 8rem;
@@ -32,6 +34,7 @@ const ComingSoon = styled(LightCard)`
 
 export default function CIR() {
   const { t } = useTranslation()
+  const airdropWeight = useAirdropWeight()
   return (
     <Container>
       <AutoColumn gap="lg">
@@ -82,7 +85,7 @@ export default function CIR() {
                   {t('ownComputingPower')}:
                 </TYPE.black>
                 <TYPE.black fontWeight={500} fontSize={16}>
-                  28
+                  {airdropWeight && airdropWeight.toString()}
                 </TYPE.black>
               </AutoRow>
               <AutoRow>

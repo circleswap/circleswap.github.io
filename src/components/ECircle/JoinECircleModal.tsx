@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { RowBetween } from '../Row'
 import { TYPE, ExternalLink, CloseIcon, CustomLightSpinner, UniTokenAnimated } from '../../theme'
 import { ButtonPrimary, ButtonSecondary } from '../Button'
-import { useInviteCallback } from '../../state/invite/hooks'
+import { useJoinCallback, useNCircle } from '../../hooks/useNCircle'
 import { useUserInvited } from '../../hooks/useInvited'
 import tokenLogo from '../../assets/images/token-logo.png'
 import Circle from '../../assets/images/blue-loader.svg'
@@ -66,14 +66,14 @@ export default function JoinECircleModal({
   // monitor for third party recipient of claim
   const { address: parsedAddress } = useENS(typed)
   const { t } = useTranslation()
-  const invited = useUserInvited(typed)
+  const circle = useNCircle(typed)
   const myInvited = useUserInvited(account)
 
   // used for UI loading states
   const [attempting, setAttempting] = useState<boolean>(false)
 
   // monitor the status of the claim from contracts and txns
-  const { inviteCallback } = useInviteCallback(parsedAddress)
+  const { joinCallback } = useJoinCallback(parsedAddress)
 
   const [hash, setHash] = useState<string | undefined>()
 
@@ -83,9 +83,9 @@ export default function JoinECircleModal({
 
   // use the hash to monitor this txn
 
-  function onInvite() {
+  function onJoin() {
     setAttempting(true)
-    inviteCallback()
+    joinCallback()
       .then(hash => {
         setHash(hash)
       })
@@ -119,7 +119,7 @@ export default function JoinECircleModal({
             {parsedAddress && ZERO_ADDRESS !== myInvited && (
               <TYPE.error error={true}>Your address has already been invited</TYPE.error>
             )}
-            {((parsedAddress && ZERO_ADDRESS === invited) || typed === account) && (
+            {((parsedAddress && ZERO_ADDRESS === circle) || typed === account) && (
               <TYPE.error error={true}>Invalid inviter address</TYPE.error>
             )}
             <RowBetween>
@@ -130,13 +130,13 @@ export default function JoinECircleModal({
                 disabled={
                   !isAddress(parsedAddress ?? '') ||
                   myInvited !== ZERO_ADDRESS ||
-                  ZERO_ADDRESS === invited ||
+                  ZERO_ADDRESS === circle ||
                   typed === account
                 }
+                onClick={onJoin}
                 padding="16px 16px"
                 width="180px"
                 borderRadius="100px"
-                onClick={onInvite}
               >
                 {t('confirm')}
               </ButtonPrimary>

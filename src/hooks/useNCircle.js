@@ -1,10 +1,37 @@
 // check if the user has been invited this address
 import { useSingleCallResult } from '../state/multicall/hooks'
-import { useCircleContract } from './useContract'
-import { getRouterContract, isAddress } from '../utils'
-import { useActiveWeb3React } from './index'
+import { calculateGasMargin, getRouterContract, isAddress } from '../utils'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from '../constants'
+
+import { TransactionResponse } from '@ethersproject/providers'
+import { useActiveWeb3React } from './index'
+import { useCircleContract } from './useContract'
+import { useTransactionAdder } from '../state/transactions/hooks'
+
+export function useJoinCallback(account) {
+  // get claim data for this account
+  const { library, chainId } = useActiveWeb3React()
+  // used for popup summary
+  const addTransaction = useTransactionAdder()
+  const contract = useCircleContract()
+
+  const joinCallback = async function() {
+    if (!account || !library || !chainId || !contract) return
+    const args = [account]
+    return contract.estimateGas['join'](...args, {}).then(estimatedGasLimit => {
+      return contract.join(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) }).then(response => {
+        addTransaction(response, {
+          summary: `Invited ${account}`,
+          claim: { recipient: account }
+        })
+        return response.hash
+      })
+    })
+  }
+
+  return { joinCallback }
+}
 
 export function useNCircleJoinAble() {
   console.log('tag--->')
@@ -30,16 +57,14 @@ export function useNCircleJoinAble() {
   return invited && swapMore
 }
 
-export function useNCircle() {
-  const { account, chainId, library } = useActiveWeb3React()
-  const parsedAddress = isAddress(account)
+export function useNCircle(account) {
   const CircleContract = useCircleContract()
+  const parsedAddress = isAddress(account)
   const circleQuery = useSingleCallResult(CircleContract, 'balanceOf', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
   console.log('circleQuery', circleQuery)
   const circle = circleQuery?.result?.[0].toString()
   console.log('circle', circle)
-
   return circle
 }
