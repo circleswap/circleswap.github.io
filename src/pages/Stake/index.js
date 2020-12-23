@@ -17,7 +17,8 @@ import { useTokenBalance } from '../../state/wallet/hooks'
 const PageWrapper = styled(AutoColumn)`
   width: 538px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding-top: 120px;
 `
 
 const StakeWrapper = styled.div`
@@ -67,6 +68,8 @@ export default function Stake() {
 
   const { account, chainId } = useActiveWeb3React()
 
+  const [currentStaking, setCurrentStaking] = useState()
+
   const [currencyA, currencyB] = [
     useCurrency('0xc778417e063141139fce010982780140aa0cd5ab'),
     useCurrency('0x20D0faBD8bB63dAC87157cA4d94654F6467076d6')
@@ -75,13 +78,19 @@ export default function Stake() {
   const tokenB = wrappedCurrency(currencyB ?? undefined, chainId)
 
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
-  console.log('stakingTokenPair', stakingTokenPair)
 
   const stakingInfo = useStakingInfo(stakingTokenPair)?.[0]
 
-  console.log('stakingInfo', stakingInfo)
+  const [currencyA1, currencyB1] = [
+    useCurrency('0xc778417e063141139fce010982780140aa0cd5ab'),
+    useCurrency('0x20D0faBD8bB63dAC87157cA4d94654F6467076d6')
+  ]
+  const tokenA1 = wrappedCurrency(currencyA1 ?? undefined, chainId)
+  const tokenB1 = wrappedCurrency(currencyB1 ?? undefined, chainId)
 
+  const [, stakingTokenPair1] = usePair(tokenA1, tokenB1)
 
+  const stakingInfo1 = useStakingInfo(stakingTokenPair1)?.[0]
 
   // detect existing unstaked LP position to show add button if none found
   const userLiquidityUnstaked = useTokenBalance(account ?? undefined, stakingInfo?.stakedAmount?.token)
@@ -93,7 +102,7 @@ export default function Stake() {
   return (
     <>
       <PageWrapper>
-        <StakeWrapper>
+        <StakeWrapper style={{ marginTop: 100 }}>
           <AutoColumn gap="lg">
             <TYPE.link textAlign="center" fontSize={19}>
               {t('liquidityMining')}
@@ -138,6 +147,40 @@ export default function Stake() {
                 </Button>
               </RowBetween>
             </StakeCard>
+
+            {/*<StakeCard gap="lg">*/}
+            {/*  <StakeCard.Header>*/}
+            {/*    <TYPE.largeHeader textAlign={'center'} color={theme.text1}>*/}
+            {/*      {t('HT-CIR')}*/}
+            {/*    </TYPE.largeHeader>*/}
+            {/*  </StakeCard.Header>*/}
+            {/*  <AutoColumn style={{ width: '100%' }} gap="md">*/}
+            {/*    <AutoRow>*/}
+            {/*      <TYPE.darkGray>您当前的质押量： </TYPE.darkGray>*/}
+            {/*      <TYPE.black marginLeft={16}>{stakingInfo?.stakedAmount.toExact()} </TYPE.black>*/}
+            {/*    </AutoRow>*/}
+            {/*  </AutoColumn>*/}
+            {/*  <RowBetween gap="19px" style={{ width: '100%' }}>*/}
+            {/*    <Button*/}
+            {/*      disabled={!stakingInfo}*/}
+            {/*      onClick={() => {*/}
+            {/*        setShowUnstakingModal(true)*/}
+            {/*      }}*/}
+            {/*      style={{ width: '46%' }}*/}
+            {/*    >*/}
+            {/*      {'赎回'}*/}
+            {/*    </Button>*/}
+            {/*    <Button*/}
+            {/*      disabled={!stakingInfo}*/}
+            {/*      onClick={() => {*/}
+            {/*        setShowStakingModal(true)*/}
+            {/*      }}*/}
+            {/*      style={{ width: '46%' }}*/}
+            {/*    >*/}
+            {/*      {t('confirm')}*/}
+            {/*    </Button>*/}
+            {/*  </RowBetween>*/}
+            {/*</StakeCard>*/}
           </AutoColumn>
         </StakeWrapper>
       </PageWrapper>

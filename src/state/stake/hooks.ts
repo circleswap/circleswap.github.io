@@ -43,7 +43,7 @@ export const STAKING_REWARDS_INFO: {
         new Token(ChainId.ROPSTEN, '0xc778417e063141139fce010982780140aa0cd5ab', 18, 'WETH', 'Wrapped Ether'),
         CIR
       ],
-      stakingRewardAddress: '0xded7207fa14b88dd5cc5d69f6a0b114417d83b7a'
+      stakingRewardAddress: '0xBA1f0D871D312e8816Ec10c6FE5e1B696341E319'
     }
   ]
 }
