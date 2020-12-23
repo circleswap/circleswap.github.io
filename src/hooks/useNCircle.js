@@ -1,7 +1,7 @@
 // check if the user has been invited this address
 import { useSingleCallResult, useSingleContractMultipleData } from '../state/multicall/hooks'
 import { useCircleContract } from './useContract'
-import { calculateGasMargin, getRouterContract, isAddress } from '../utils'
+import { calculateGasMargin, getRouterContract } from '../utils'
 import { useActiveWeb3React } from './index'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from '../constants'
