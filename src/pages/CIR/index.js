@@ -8,11 +8,11 @@ import { AutoRow, RowBetween } from '../../components/Row'
 import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
 import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.svg'
-import { useUserReferee2N, useUserRefereeN } from '../../hooks/useInvited'
+import { useUserClaimedReward, useUserReferee2N, useUserRefereeN, useUserUnclaimReward } from '../../hooks/useInvited'
 import { useActiveWeb3React } from '../../hooks'
 
 export const Container = styled.div`
-  margin-top: 8rem;
+  margin-top: 120px;
   padding-top: 12rem;
 `
 
@@ -37,7 +37,8 @@ export default function CIR() {
   const { t } = useTranslation()
   const refereeN = useUserRefereeN(account)
   const referee2N = useUserReferee2N(account)
-
+  const unclaimReward = useUserUnclaimReward(account)
+  const claimedReward = useUserClaimedReward(account)
 
   return (
     <Container>
@@ -92,15 +93,19 @@ export default function CIR() {
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('nCircleBonus')}:
+                  {t('Unclaimed')}:
                 </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}></TYPE.black>
+                <TYPE.black style={{ padding: 0, marginLeft: 15 }} fontWeight={500} fontSize={16}>
+                  {unclaimReward ? unclaimReward.toString() : '**'}
+                </TYPE.black>
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('eCircleBonus')}:
+                  {t('claimed')}:
                 </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}></TYPE.black>
+                <TYPE.black style={{ padding: 0, marginLeft: 15 }} fontWeight={500} fontSize={16}>
+                  {claimedReward ? claimedReward.toString() : '**'}
+                </TYPE.black>
               </AutoRow>
             </AutoColumn>
           </LightCard>

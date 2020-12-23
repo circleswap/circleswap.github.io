@@ -211,6 +211,8 @@
   "yourStakedAmount": "Your Staking LP Tokens",
   "earnedAmount": "Available LP Tokens",
   "currentAbleLPT": "Pairs supporting liquidity mining.",
-  "stakingTip": "Stake your LP Tokens to join CircleSwap liquidity mining, and the rewards of liquidity mining will be issued in the form of platform token CIR.\n*You need to stake 100HT equivalent LP Tokens to enjoy part of ECircle extra rewards."
+  "stakingTip": "Stake your LP Tokens to join CircleSwap liquidity mining, and the rewards of liquidity mining will be issued in the form of platform token CIR.\n*You need to stake 100HT equivalent LP Tokens to enjoy part of ECircle extra rewards.",
+  "claimed": "Claimed",
+  "Unclaimed": "Unclaimed"
 
 }

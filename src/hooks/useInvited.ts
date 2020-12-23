@@ -38,12 +38,22 @@ interface Reward {
   ncircle: string
 }
 
-export function useUserReward(account: string | null | undefined): Reward {
+export function useUserUnclaimReward(account: string | null | undefined): Reward {
   const parsedAddress = isAddress(account)
   const contract = useCircleContract()
-  const value = useSingleCallResult(contract, 'referee2N', [
+  const value = useSingleCallResult(contract, 'earned', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
-  console.log('referee2N', value)
+  console.log('useUserUnclaimReward', value)
+  return value?.result?.[0]
+}
+
+export function useUserClaimedReward(account: string | null | undefined): Reward {
+  const parsedAddress = isAddress(account)
+  const contract = useCircleContract()
+  const value = useSingleCallResult(contract, 'paid', [
+    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
+  ])
+  console.log('useUserClaimedReward', value)
   return value?.result?.[0]
 }

@@ -15,7 +15,7 @@ import ncircleBg from '../../assets/images/ncircle.svg'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
-  padding-top: 8rem;
+  padding-top: 120px;
   display: flex;
   align-items: center;
   justify-content: center;

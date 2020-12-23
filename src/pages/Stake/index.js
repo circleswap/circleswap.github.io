@@ -68,9 +68,6 @@ export default function Stake() {
 
   const { account, chainId } = useActiveWeb3React()
 
-  //const [currentStaking, setCurrentStaking] = useState()
-  //const [currentUnstaked, setCurrentUnstaked] = useState()
-
   const [currencyA, currencyB] = [
     useCurrency('0xc778417e063141139fce010982780140aa0cd5ab'),
     useCurrency('0x20D0faBD8bB63dAC87157cA4d94654F6467076d6')
@@ -98,16 +95,19 @@ export default function Stake() {
 
   const [, stakingTokenPair1] = usePair(tokenA1, tokenB1)
   const stakingInfo1 = useStakingInfo(stakingTokenPair1)?.[0]
+  const userLiquidityUnstaked1 = useTokenBalance(account ?? undefined, stakingInfo1?.stakedAmount?.token)
   const currencyBalance1 = useCurrencyBalance(
     account ?? undefined,
     stakingInfo1?.stakedAmount?.token ?? undefined
   )?.toSignificant(6)
-  //const userLiquidityUnstaked1 = useTokenBalance(account ?? undefined, stakingInfo1?.stakedAmount?.token)
 
   // toggle for staking modal and unstaking modal
   const [showStakingModal, setShowStakingModal] = useState(false)
   const [showUnstakingModal, setShowUnstakingModal] = useState(false)
   const [showClaimRewardModal, setShowClaimRewardModal] = useState(false)
+
+  const [currentPair, setCurrentPair] = useState(0)
+
   return (
     <>
       <PageWrapper>
@@ -136,11 +136,16 @@ export default function Stake() {
                   <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{currencyBalance} </TYPE.black>
                 </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
               </AutoColumn>
               <RowBetween gap="19px" style={{ width: '100%' }}>
                 <Button
                   disabled={!stakingInfo}
                   onClick={() => {
+                    setCurrentPair(0)
                     setShowUnstakingModal(true)
                   }}
                   style={{ width: '46%' }}
@@ -150,6 +155,7 @@ export default function Stake() {
                 <Button
                   disabled={!stakingInfo}
                   onClick={() => {
+                    setCurrentPair(0)
                     setShowStakingModal(true)
                   }}
                   style={{ width: '46%' }}
@@ -174,11 +180,16 @@ export default function Stake() {
                   <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{currencyBalance1} </TYPE.black>
                 </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo1?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
               </AutoColumn>
               <RowBetween gap="19px" style={{ width: '100%' }}>
                 <Button
                   disabled={!stakingInfo}
                   onClick={() => {
+                    setCurrentPair(1)
                     setShowUnstakingModal(true)
                   }}
                   style={{ width: '46%' }}
@@ -188,6 +199,7 @@ export default function Stake() {
                 <Button
                   disabled={!stakingInfo}
                   onClick={() => {
+                    setCurrentPair(1)
                     setShowStakingModal(true)
                   }}
                   style={{ width: '46%' }}
@@ -203,20 +215,41 @@ export default function Stake() {
       {stakingInfo && (
         <>
           <StakingModal
-            isOpen={showStakingModal}
+            isOpen={showStakingModal && currentPair === 0}
             onDismiss={() => setShowStakingModal(false)}
             stakingInfo={stakingInfo}
             userLiquidityUnstaked={userLiquidityUnstaked}
           />
           <UnstakingModal
-            isOpen={showUnstakingModal}
+            isOpen={showUnstakingModal && currentPair === 0}
             onDismiss={() => setShowUnstakingModal(false)}
             stakingInfo={stakingInfo}
           />
           <ClaimRewardModal
-            isOpen={showClaimRewardModal}
+            isOpen={showClaimRewardModal && currentPair === 0}
             onDismiss={() => setShowClaimRewardModal(false)}
             stakingInfo={stakingInfo}
+          />
+        </>
+      )}
+
+      {stakingInfo1 && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal && currentPair === 1}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo1}
+            userLiquidityUnstaked={userLiquidityUnstaked1}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal && currentPair === 1}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo1}
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal && currentPair === 1}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo1}
           />
         </>
       )}

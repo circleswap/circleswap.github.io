@@ -313,7 +313,7 @@ export default function AddLiquidity({
 
   return (
     <>
-      <Wrapper style={{ marginTop: 19 }}>
+      <Wrapper style={{ marginTop: 120 }}>
         <TransactionConfirmationModal
           isOpen={showConfirm}
           onDismiss={handleDismissConfirmation}

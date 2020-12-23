@@ -218,6 +218,8 @@
   "yourStakedAmount": "您当前的质押量:",
   "earnedAmount": "可用的LP Tokens数量:",
   "currentAbleLPT": "目前可进行流动挖矿的交易对：",
-  "stakingTip": "质押您的LP Tokens来参与CircleSwap流动性挖矿，流动性挖矿的收益将以平台通证CIR的形式进行发放。\n*您需要质押100HT等值的LP Tokens才能享受部分ECircle额外奖励。\n"
-
+  "stakingTip": "质押您的LP Tokens来参与CircleSwap流动性挖矿，流动性挖矿的收益将以平台通证CIR的形式进行发放。\n*您需要质押100HT等值的LP Tokens才能享受部分ECircle额外奖励。\n",
+  "claimed": "已领取",
+  "unclaimed": "领取",
+  "bounds": "挖矿奖励"
 }

@@ -42,12 +42,16 @@ interface ECircleDetail {
   id: string
   name: string
   address: string
+  count: string
+  level: string
 }
 
 export function useMyECircle(): ECircleDetail {
   const { account } = useActiveWeb3React()
   const contract = useCircleContract()
   const [name, setName] = useState('')
+  const [count, setCount] = useState('')
+  const [level, setLevel] = useState('1')
 
   useEffect(() => {
     if (account && contract) {
@@ -60,8 +64,14 @@ export function useMyECircle(): ECircleDetail {
             contract.tokenOfOwnerByIndex(account, '0').then((res: string) => {
               console.log('tokenOfOwnerByIndex---->', res)
               contract.tokenURI(res).then((name: string) => {
-                console.log('tokenURI', name)
                 setName(name ?? '')
+              })
+              contract.membersCount(res).then((num: string) => {
+                setCount(num ?? '')
+              })
+              contract?.levelOf(res.toString()).then((res: string) => {
+                console.log('level of', res.toString())
+                setLevel(res.toString() === '3' ? '500' : res.toString() === '2' ? '200' : '30')
               })
             })
           }
@@ -72,20 +82,34 @@ export function useMyECircle(): ECircleDetail {
       }
     }
   }, [account, contract])
-  return { id: '', name: name ?? '', address: '' }
+  return { id: '', name: name ?? '', address: '', count: count, level: level }
 }
 
 export function useMyJoinedECircle(): ECircleDetail {
   const contract = useCircleContract()
   const joinedCircle = useJoinNCircle()
   const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [count, setCount] = useState('')
+  const [level, setLevel] = useState('1')
+
   useEffect(() => {
     console.log('joinedCircle', joinedCircle.toString())
     if (joinedCircle && new BigNumber(joinedCircle.toString()).isGreaterThan(0)) {
       contract?.tokenURI(joinedCircle.toString()).then((name: string) => {
         setName(name ?? '')
       })
+      contract?.ownerOf(joinedCircle.toString()).then((address: string) => {
+        setAddress(address ?? '')
+      })
+      contract?.membersCount(joinedCircle.toString()).then((num: string) => {
+        setCount(num.toString() ?? '')
+      })
+      contract?.levelOf(joinedCircle.toString()).then((res: string) => {
+        console.log('level of', res.toString())
+        setLevel(res.toString() === '3' ? '500' : res.toString() === '2' ? '200' : '30')
+      })
     }
   }, [joinedCircle, contract])
-  return { id: '', name: name, address: '' }
+  return { id: '', name: name, address: address, count: count, level: level }
 }

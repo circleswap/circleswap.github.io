@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
@@ -39,7 +39,6 @@ import MyECircle from './ECircle/MyECircle'
 
 import Stake from './Stake'
 import CreateECircle from './ECircle/Create'
-
 
 const AppWrapper = styled.div`
   display: flex;
@@ -84,6 +83,13 @@ function TopLevelModals() {
 }
 
 export default function App() {
+  useEffect(() => {
+    const el = document.querySelector('.loader-container')
+    if (el) {
+      el.remove()
+    }
+  }, [])
+
   return (
     <Suspense fallback={null}>
       <Route component={GoogleAnalyticsReporter} />

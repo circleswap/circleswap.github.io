@@ -117,11 +117,11 @@ export function ConfirmationModalContent({
   return (
     <Wrapper>
       <Section>
-        <RowBetween style={{position: 'relative'}}>
+        <RowBetween style={{ position: 'relative' }}>
           <Text fontWeight={500} fontSize={20}>
             {title}
           </Text>
-          <CloseIcon  style={{position: 'relative'}} onClick={onDismiss} />
+          <CloseIcon style={{ position: 'relative' }} onClick={onDismiss} />
         </RowBetween>
         {topContent()}
       </Section>

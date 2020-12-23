@@ -113,7 +113,6 @@ export default function RemoveLiquidity({
     if (isArgentWallet) {
       return approveCallback()
     }
-
     // try to gather a signature for permission
     const nonce = await pairContract.nonces(account)
 
