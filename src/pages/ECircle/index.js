@@ -92,7 +92,7 @@ export default function ECircle({ history }) {
                 history.push('/myecircle')
               }}
             >
-              {t('myNCircle')}
+              {t('myECircle')}
             </Button>
           </RowBetween>
         )}

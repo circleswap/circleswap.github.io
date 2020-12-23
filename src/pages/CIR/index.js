@@ -38,6 +38,7 @@ export default function CIR() {
   const refereeN = useUserRefereeN(account)
   const referee2N = useUserReferee2N(account)
 
+
   return (
     <Container>
       <AutoColumn gap="lg">

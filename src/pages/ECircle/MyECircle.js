@@ -38,7 +38,7 @@ export default function MyECircle({ history }) {
     <>
       <Wrapper>
         <AutoColumn gap="20px">
-          {circle.id > 0 && (
+          {circle.name && (
             <AppBody>
               <ColumnCenter style={{ width: 463 }}>
                 <TYPE.largeHeader>My ECircle</TYPE.largeHeader>
@@ -58,14 +58,14 @@ export default function MyECircle({ history }) {
             </AppBody>
           )}
 
-          {jointedCircle.id > 0 && (
+          {jointedCircle.name && (
             <AppBody>
               <ColumnCenter style={{ width: 463 }}>
                 <TYPE.largeHeader>My ECircle</TYPE.largeHeader>
               </ColumnCenter>
               <TYPE.white marginTop="44px">My ECircle name</TYPE.white>
               <InputPanel>
-                <Input>{circle && circle.name}</Input>
+                <Input>{jointedCircle && jointedCircle.name}</Input>
               </InputPanel>
 
               <TYPE.main marginTop="44px" color="#888888">
@@ -78,7 +78,7 @@ export default function MyECircle({ history }) {
             </AppBody>
           )}
 
-          {!(circle.id > 0) && !(jointedCircle.id > 0) && (
+          {!circle.name && !jointedCircle.name && (
             <AutoColumn gap="lg">
               <NcircleEmpty />
               <ColumnCenter>

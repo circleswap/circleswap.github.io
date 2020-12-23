@@ -66,17 +66,14 @@ export function useNCircle() {
 
 export function useJoinNCircle() {
   const { account } = useActiveWeb3React()
-  const parsedAddress = isAddress(account)
-  const CircleContract = useCircleContract()
-  console.log('CircleContract', CircleContract)
-
-  const circleQuery = useSingleCallResult(CircleContract, 'circleOf', [
-    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
-  ])
-  console.log('JOIN circleQuery', circleQuery)
-  const circle = circleQuery?.result?.[0].toString()
-  console.log('JOIN circle---->', circle)
-  return circle
+  const contract = useCircleContract()
+  const [id, setID] = useState('')
+  useEffect(() => {
+    contract.circleOf(account).then(res => {
+      setID(res ?? '')
+    })
+  }, [account, contract])
+  return id
 }
 
 export function useCircleCount() {

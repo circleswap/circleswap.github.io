@@ -32,3 +32,18 @@ export function useUserReferee2N(account: string | null | undefined): string {
   console.log('referee2N', value)
   return value?.result?.[0]
 }
+
+interface Reward {
+  ncicle: string
+  ncircle: string
+}
+
+export function useUserReward(account: string | null | undefined): Reward {
+  const parsedAddress = isAddress(account)
+  const contract = useCircleContract()
+  const value = useSingleCallResult(contract, 'referee2N', [
+    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
+  ])
+  console.log('referee2N', value)
+  return value?.result?.[0]
+}

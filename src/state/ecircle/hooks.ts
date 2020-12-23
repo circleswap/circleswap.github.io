@@ -1,11 +1,11 @@
 import { TransactionResponse } from '@ethersproject/providers'
 import { useActiveWeb3React } from '../../hooks'
 import { useCircleContract } from '../../hooks/useContract'
-import { calculateGasMargin, isAddress } from '../../utils'
+import { calculateGasMargin } from '../../utils'
 import { useTransactionAdder } from '../transactions/hooks'
-import { useSingleCallResult } from '../multicall/hooks'
 import { useJoinNCircle } from '../../hooks/useNCircle'
-import { useMemo } from 'react'
+import { useEffect, useState } from 'react'
+import BigNumber from 'bignumber.js'
 
 export function useMintCallback(
   name: string | null | undefined,
@@ -46,25 +46,46 @@ interface ECircleDetail {
 
 export function useMyECircle(): ECircleDetail {
   const { account } = useActiveWeb3React()
-  const parsedAddress = isAddress(account)
   const contract = useCircleContract()
-  const value = useSingleCallResult(contract, 'tokenOfOwnerByIndex', [
-    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000',
-    0
-  ])
-  const name = useSingleCallResult(contract, 'tokenURI', [value?.result?.[0].toString()])
-  const circle = useMemo(() => {
-    return { id: value?.result?.[0].toString(), name: name?.result?.[0].toString(), address: '' }
-  }, [value, name])
-  return circle
+  const [name, setName] = useState('')
+
+  useEffect(() => {
+    if (account && contract) {
+      console.log('query ecircle', account, contract)
+      try {
+        contract.balanceOf(account).then((res: string) => {
+          console.log('res---->', res.toString())
+          if (new BigNumber(res.toString()).isGreaterThan(0)) {
+            console.log('has circle')
+            contract.tokenOfOwnerByIndex(account, '0').then((res: string) => {
+              console.log('tokenOfOwnerByIndex---->', res)
+              contract.tokenURI(res).then((name: string) => {
+                console.log('tokenURI', name)
+                setName(name ?? '')
+              })
+            })
+          }
+        })
+      } catch (e) {
+        console.log('e---->')
+        setName('')
+      }
+    }
+  }, [account, contract])
+  return { id: '', name: name ?? '', address: '' }
 }
 
 export function useMyJoinedECircle(): ECircleDetail {
   const contract = useCircleContract()
   const joinedCircle = useJoinNCircle()
-  const name = useSingleCallResult(contract, 'tokenURI', [joinedCircle])
-  const circle = useMemo(() => {
-    return { id: joinedCircle, name: name?.result?.[0].toString(), address: '' }
-  }, [joinedCircle, name])
-  return circle
+  const [name, setName] = useState('')
+  useEffect(() => {
+    console.log('joinedCircle', joinedCircle.toString())
+    if (joinedCircle && new BigNumber(joinedCircle.toString()).isGreaterThan(0)) {
+      contract?.tokenURI(joinedCircle.toString()).then((name: string) => {
+        setName(name ?? '')
+      })
+    }
+  }, [joinedCircle, contract])
+  return { id: '', name: name, address: '' }
 }
