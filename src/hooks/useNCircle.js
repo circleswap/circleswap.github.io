@@ -40,8 +40,11 @@ export function useNCircleJoinAble() {
   useEffect(() => {
     if (account) {
       routerContract.swapAmountOf(account).then(res => {
-        const less = new BigNumber('1000000000000000000').isGreaterThan(res)
-        setSwapMore(!less)
+        console.log('account', res.toString())
+        const less =
+          new BigNumber(res.toString()).isGreaterThan('1000000000000000000') ||
+          new BigNumber(res.toString()).isEqualTo('1000000000000000000')
+        setSwapMore(less)
       })
       CircleContract.refererOf(account).then(res => {
         setInvited(res && res !== ZERO_ADDRESS)
@@ -53,25 +56,38 @@ export function useNCircleJoinAble() {
 
 export function useNCircle() {
   const { account } = useActiveWeb3React()
-  const parsedAddress = isAddress(account)
-  const CircleContract = useCircleContract()
-  const circleQuery = useSingleCallResult(CircleContract, 'balanceOf', [
-    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
-  ])
-  console.log('circleQuery', circleQuery)
-  const circle = circleQuery?.result?.[0].toString()
-  console.log('circle', circle)
-  return circle
+  const contract = useCircleContract()
+  const [id, setID] = useState(0)
+
+  // const circleQuery = useSingleCallResult(CircleContract, 'balanceOf', [
+  //   account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
+  // ])
+  // console.log('circleQuery', circleQuery)
+  // const circle = circleQuery?.result?.[0].toString()
+  // console.log('circle', circle)
+  useEffect(() => {
+    if (account && contract) {
+      contract.balanceOf(account).then(res => {
+        console.log('ecircle id', res.toString())
+        setID(res.toString() ?? '')
+      })
+    }
+  }, [account, contract])
+  return id
 }
 
 export function useJoinNCircle() {
   const { account } = useActiveWeb3React()
   const contract = useCircleContract()
-  const [id, setID] = useState('')
+  const [id, setID] = useState(0)
   useEffect(() => {
-    contract.circleOf(account).then(res => {
-      setID(res ?? '')
-    })
+    if (account && contract) {
+      contract.circleOf(account).then(res => {
+        console.log('join circle id', res.toString())
+
+        setID(res.toString() ?? '')
+      })
+    }
   }, [account, contract])
   return id
 }

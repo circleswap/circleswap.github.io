@@ -8,6 +8,7 @@ import { Button, CloseIcon, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
 import { useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
+import BigNumber from 'bignumber.js'
 
 const PageWrapper = styled(AutoColumn)`
   width: 800px;
@@ -33,6 +34,9 @@ export default function ECircle({ history }) {
   const able = useNCircleJoinAble()
   const circle = useNCircle()
   const JoinCircle = useJoinNCircle()
+  console.log('circle------->', circle)
+  console.log('JoinCircle------->', JoinCircle)
+  console.log('able------->', able)
 
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
   //const allCircles = useAllCircleData()
@@ -64,10 +68,25 @@ export default function ECircle({ history }) {
           </AutoRow>
         </TipFrame>
 
-        {!circle && !JoinCircle ? (
+        {new BigNumber(circle).isGreaterThan(0) || new BigNumber(JoinCircle).isGreaterThan(0) ? (
           <RowBetween style={{ marginTop: 64, rowGap: '19' }} gap="19px">
             <Button
-              disabled={!(able.invited && able.swapMore) || circle || JoinCircle}
+              onClick={() => {
+                history.push('/myecircle')
+              }}
+            >
+              {t('myECircle')}
+            </Button>
+          </RowBetween>
+        ) : (
+          <RowBetween style={{ marginTop: 64, rowGap: '19' }} gap="19px">
+            <Button
+              disabled={
+                !able.invited ||
+                !able.swapMore ||
+                new BigNumber(circle).isGreaterThan(0) ||
+                new BigNumber(JoinCircle).isGreaterThan(0)
+              }
               style={{ width: '46%' }}
               onClick={() => {
                 history.push('/ecircle/create')
@@ -76,23 +95,18 @@ export default function ECircle({ history }) {
               {t('createECircle')}
             </Button>
             <Button
-              disabled={!(able.invited && able.swapMore) || circle || JoinCircle}
+              disabled={
+                !able.invited ||
+                !able.swapMore ||
+                new BigNumber(circle).isGreaterThan(0) ||
+                new BigNumber(JoinCircle).isGreaterThan(0)
+              }
               style={{ width: '46%' }}
               onClick={() => {
                 setShowJoinECircleModal(true)
               }}
             >
               {t('joinECircle')}
-            </Button>
-          </RowBetween>
-        ) : (
-          <RowBetween style={{ marginTop: 64, rowGap: '19' }} gap="19px">
-            <Button
-              onClick={() => {
-                history.push('/myecircle')
-              }}
-            >
-              {t('myECircle')}
             </Button>
           </RowBetween>
         )}
