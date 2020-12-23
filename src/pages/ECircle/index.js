@@ -9,7 +9,6 @@ import { ButtonBlue } from '../../components/Button'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
 import { useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
 import { useMyECircle } from '../../state/ecircle/hooks'
-import { Link } from 'react-router-dom'
 
 const PageWrapper = styled(AutoColumn)`
   width: 800px;
@@ -101,18 +100,19 @@ export default function ECircle({ history }) {
         )}
 
         <ButtonBlue
-          disabled={!(able.invited && able.swapMore) || (JoinCircle < 1 && circle < 1)}
+          disabled={!(circle > 0) && !(JoinCircle > 0)}
           onClick={() => {
             history.push('/stake')
           }}
         >
           {t('stakeMyLPT')}
         </ButtonBlue>
-        {myCircle.id && (
-          <TYPE.main fontSize={14}>
-            {t('check')} <Link to="/myecircle">{t('eCircle')}</Link>
-          </TYPE.main>
-        )}
+
+        {/*{myCircle.id && (*/}
+        {/*  <TYPE.main fontSize={14}>*/}
+        {/*    {t('check')} <Link to="/myecircle">{t('eCircle')}</Link>*/}
+        {/*  </TYPE.main>*/}
+        {/*)}*/}
 
         <TYPE.main fontSize={13} marginTop={24}>
           {t('note')}

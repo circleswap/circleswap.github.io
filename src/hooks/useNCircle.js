@@ -44,8 +44,7 @@ export function useNCircleJoinAble() {
         setSwapMore(!less)
       })
       CircleContract.refererOf(account).then(res => {
-        const invitedAddress = new BigNumber('1000000000000000000').isGreaterThan(res)
-        setInvited(invitedAddress && invitedAddress !== ZERO_ADDRESS)
+        setInvited(res && res !== ZERO_ADDRESS)
       })
     }
   }, [account, CircleContract, routerContract])
