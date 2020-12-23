@@ -34,7 +34,6 @@ export default function ECircle({ history }) {
   const able = useNCircleJoinAble()
   const circle = useNCircle()
   const JoinCircle = useJoinNCircle()
-  const myCircle = useMyECircle()
 
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
   //const allCircles = useAllCircleData()
