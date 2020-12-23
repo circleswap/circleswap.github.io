@@ -64,7 +64,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
       <ModalUpper>
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white>Your CIR Breakdown</TYPE.white>
+            <TYPE.mediumHeader>Your CIR Breakdown</TYPE.mediumHeader>
             <StyledClose onClick={() => setShowUniBalanceModal(false)} />
           </RowBetween>
         </CardSection>
@@ -74,25 +74,25 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
             <CardSection gap="sm">
               <AutoColumn gap="md" justify="center">
                 <UniTokenAnimated width="48px" src={tokenLogo} />{' '}
-                <TYPE.black fontSize={48} fontWeight={600} color="white">
+                <TYPE.subHeader fontSize={48} fontWeight={600} >
                   {total?.toFixed(2, { groupSeparator: ',' })}
-                </TYPE.black>
+                </TYPE.subHeader>
               </AutoColumn>
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.black color="black">Balance:</TYPE.black>
-                  <TYPE.black color="black">{uniBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.black>
+                  <TYPE.subHeader>Balance:</TYPE.subHeader>
+                  <TYPE.subHeader>{uniBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.subHeader>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.black color="black">Unclaimed:</TYPE.black>
-                  <TYPE.black color="black">
+                  <TYPE.subHeader>Unclaimed:</TYPE.subHeader>
+                  <TYPE.subHeader>
                     {uniToClaim?.toFixed(4, { groupSeparator: ',' })}{' '}
                     {uniToClaim && uniToClaim.greaterThan('0') && (
                       <StyledInternalLink onClick={() => setShowUniBalanceModal(false)} to="/uni">
                         (claim)
                       </StyledInternalLink>
                     )}
-                  </TYPE.black>
+                  </TYPE.subHeader>
                 </RowBetween>
               </AutoColumn>
             </CardSection>
@@ -102,16 +102,16 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.white>CIR price:</TYPE.white>
-              <TYPE.white>${uniPrice?.toFixed(2) ?? '-'}</TYPE.white>
+              <TYPE.subHeader>CIR price:</TYPE.subHeader>
+              <TYPE.subHeader>${uniPrice?.toFixed(2) ?? '-'}</TYPE.subHeader>
             </RowBetween>
             <RowBetween>
-              <TYPE.white>CIR in circulation:</TYPE.white>
-              <TYPE.white>{circulation?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
+              <TYPE.subHeader>CIR in circulation:</TYPE.subHeader>
+              <TYPE.subHeader>{circulation?.toFixed(0, { groupSeparator: ',' })}</TYPE.subHeader>
             </RowBetween>
             <RowBetween>
-              <TYPE.white>Total Supply</TYPE.white>
-              <TYPE.white>{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
+              <TYPE.subHeader>Total Supply</TYPE.subHeader>
+              <TYPE.subHeader>{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.subHeader>
             </RowBetween>
           </AutoColumn>
         </CardSection>

@@ -8,7 +8,6 @@ import { Button, CloseIcon, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
 import { useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
-import { useMyECircle } from '../../state/ecircle/hooks'
 
 const PageWrapper = styled(AutoColumn)`
   width: 800px;
