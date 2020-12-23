@@ -6,6 +6,7 @@ import { useActiveWeb3React } from './index'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from '../constants'
 import { useTransactionAdder } from '../state/transactions/hooks'
+import { useEffect, useState } from 'react'
 export function useJoinCallback(account) {
   const { library, chainId } = useActiveWeb3React()
   const addTransaction = useTransactionAdder()
@@ -31,25 +32,24 @@ export function useJoinCallback(account) {
 
 export function useNCircleJoinAble() {
   const { account, chainId, library } = useActiveWeb3React()
-  const parsedAddress = isAddress(account)
   const routerContract = getRouterContract(chainId, library, account)
   const CircleContract = useCircleContract()
-  const swappedAmount = useSingleCallResult(routerContract, 'swapAmountOf', [
-    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
-  ])
-  const invitedQuery = useSingleCallResult(CircleContract, 'refererOf', [
-    account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
-  ])
-  console.log('swappedAmount', swappedAmount.result?.[0].toString())
-  const swapMore =
-    new BigNumber(swappedAmount.result?.[0].toString()).isGreaterThan('1000000000000000000') ||
-    new BigNumber(swappedAmount.result?.[0].toString()).isEqualTo('1000000000000000000')
-  const invitedAddress = invitedQuery?.result?.[0]
-  console.log('invitedAddress', invitedAddress)
-  const invited = invitedAddress && invitedAddress !== ZERO_ADDRESS
-  console.log('swapMore', swapMore)
-  console.log('invited', invited && swapMore)
-  return invited && swapMore
+  const [invited, setInvited] = useState(false)
+  const [swapMore, setSwapMore] = useState(false)
+
+  useEffect(() => {
+    if (account) {
+      routerContract.swapAmountOf(account).then(res => {
+        const less = new BigNumber('1000000000000000000').isGreaterThan(res)
+        setSwapMore(!less)
+      })
+      CircleContract.refererOf(account).then(res => {
+        const invitedAddress = new BigNumber('1000000000000000000').isGreaterThan(res)
+        setInvited(invitedAddress && invitedAddress !== ZERO_ADDRESS)
+      })
+    }
+  }, [account, CircleContract, routerContract])
+  return { invited, swapMore }
 }
 
 export function useNCircle() {
@@ -62,7 +62,6 @@ export function useNCircle() {
   console.log('circleQuery', circleQuery)
   const circle = circleQuery?.result?.[0].toString()
   console.log('circle', circle)
-
   return circle
 }
 

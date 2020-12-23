@@ -8,7 +8,7 @@ import { useActiveWeb3React } from '../../hooks'
 import AppBody from '../AppBody'
 import { ReactComponent as NcircleEmpty } from '../../assets/images/ncircle_empty.svg'
 import Copy from '../../components/AccountDetails/Copy'
-import { useMyECircle } from '../../state/ecircle/hooks'
+import { useMyECircle, useMyJoinedECircle } from '../../state/ecircle/hooks'
 
 const InputPanel = styled.div`
   width: 100%;
@@ -23,21 +23,27 @@ const Input = styled.div`
   line-height: 40px;
   padding: 0 13px;
   flex: 1;
+  border-radius: 4px;
+  color: ${({ theme }) => theme.text5};
 `
 
 export default function MyECircle({ history }) {
   const { account } = useActiveWeb3React()
   const circle = useMyECircle()
+  const jointedCircle = useMyJoinedECircle()
+  console.log('mycircle', circle)
+  console.log('myjointedCircle', jointedCircle)
+
   return (
     <>
       <Wrapper>
         <AutoColumn gap="20px">
-          {circle ? (
+          {circle.id > 0 && (
             <AppBody>
               <ColumnCenter style={{ width: 463 }}>
-                <TYPE.largeHeader color="#2C2C2C">My ECircle</TYPE.largeHeader>
+                <TYPE.largeHeader>My ECircle</TYPE.largeHeader>
               </ColumnCenter>
-              <TYPE.main marginTop="44px">My ECircle name</TYPE.main>
+              <TYPE.white marginTop="44px">My ECircle name</TYPE.white>
               <InputPanel>
                 <Input>{circle && circle.name}</Input>
               </InputPanel>
@@ -50,7 +56,29 @@ export default function MyECircle({ history }) {
                 <Copy toCopy={account} />
               </InputPanel>
             </AppBody>
-          ) : (
+          )}
+
+          {jointedCircle.id > 0 && (
+            <AppBody>
+              <ColumnCenter style={{ width: 463 }}>
+                <TYPE.largeHeader>My ECircle</TYPE.largeHeader>
+              </ColumnCenter>
+              <TYPE.white marginTop="44px">My ECircle name</TYPE.white>
+              <InputPanel>
+                <Input>{circle && circle.name}</Input>
+              </InputPanel>
+
+              <TYPE.main marginTop="44px" color="#888888">
+                Invitation Address:
+              </TYPE.main>
+              <InputPanel>
+                <Input>{account}</Input>
+                <Copy toCopy={account} />
+              </InputPanel>
+            </AppBody>
+          )}
+
+          {!(circle.id > 0) && !(jointedCircle.id > 0) && (
             <AutoColumn gap="lg">
               <NcircleEmpty />
               <ColumnCenter>

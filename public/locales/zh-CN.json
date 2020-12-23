@@ -214,6 +214,10 @@
   "payToCreateECircle": "您需要支付100CIR来创建此ECircle。",
   "createECirclePlaceholder": "支持汉字、字母、数字，最多6位字符",
   "walletAddress": "钱包地址",
-  "Recipient": "接收地址"
+  "Recipient": "接收地址",
+  "yourStakedAmount": "您当前的质押量:",
+  "earnedAmount": "可用的LP Tokens数量:",
+  "currentAbleLPT": "目前可进行流动挖矿的交易对：",
+  "stakingTip": "质押您的LP Tokens来参与CircleSwap流动性挖矿，流动性挖矿的收益将以平台通证CIR的形式进行发放。\n*您需要质押100HT等值的LP Tokens才能享受部分ECircle额外奖励。\n"
 
 }

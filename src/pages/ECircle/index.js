@@ -12,7 +12,7 @@ import { useMyECircle } from '../../state/ecircle/hooks'
 import { Link } from 'react-router-dom'
 
 const PageWrapper = styled(AutoColumn)`
-  width: 100%;
+  width: 800px;
   padding: 38px 169px;
   display: flex;
   align-items: center;
@@ -30,6 +30,7 @@ const TipFrame = styled(AutoColumn)`
 `
 
 export default function ECircle({ history }) {
+  console.log('ecircle----------------->')
   const { t } = useTranslation()
   const able = useNCircleJoinAble()
   const circle = useNCircle()
@@ -52,42 +53,55 @@ export default function ECircle({ history }) {
           <TYPE.mediumHeader fontSize={14}>创建或加入ECircle前，您需要满足以下两个条件：</TYPE.mediumHeader>
 
           <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
-            <AlertTriangle color={'#FF7238'} />
+            <AlertTriangle color={able.invited ? '#30D683' : '#FF7238'} />
             <TYPE.main fontSize={14} marginLeft={10}>
               1. 先创建NCircle；
             </TYPE.main>
           </AutoRow>
 
           <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
-            <AlertTriangle color={'#FF7238'} />
+            <AlertTriangle color={able.swapMore ? '#30D683' : '#FF7238'} />
             <TYPE.main fontSize={14} marginLeft={10}>
               2. 交易额不低于100HT等值金额；
             </TYPE.main>
           </AutoRow>
         </TipFrame>
 
-        <RowBetween style={{ marginTop: 48, rowGap: '19' }} gap="19px">
-          <Button
-            disabled={!able || circle || JoinCircle}
-            style={{ width: '46%' }}
-            onClick={() => {
-              history.push('/ecircle/create')
-            }}
-          >
-            {t('createECircle')}
-          </Button>
-          <Button
-            disabled={!able || circle || JoinCircle}
-            style={{ width: '46%' }}
-            onClick={() => {
-              setShowJoinECircleModal(true)
-            }}
-          >
-            {t('joinECircle')}
-          </Button>
-        </RowBetween>
+        {!circle && !JoinCircle ? (
+          <RowBetween style={{ marginTop: 64, rowGap: '19' }} gap="19px">
+            <Button
+              disabled={!(able.invited && able.swapMore) || circle || JoinCircle}
+              style={{ width: '46%' }}
+              onClick={() => {
+                history.push('/ecircle/create')
+              }}
+            >
+              {t('createECircle')}
+            </Button>
+            <Button
+              disabled={!(able.invited && able.swapMore) || circle || JoinCircle}
+              style={{ width: '46%' }}
+              onClick={() => {
+                setShowJoinECircleModal(true)
+              }}
+            >
+              {t('joinECircle')}
+            </Button>
+          </RowBetween>
+        ) : (
+          <RowBetween style={{ marginTop: 64, rowGap: '19' }} gap="19px">
+            <Button
+              onClick={() => {
+                history.push('/myecircle')
+              }}
+            >
+              {t('myNCircle')}
+            </Button>
+          </RowBetween>
+        )}
+
         <ButtonBlue
-          disabled={!able || (JoinCircle < 1 && circle < 1)}
+          disabled={!(able.invited && able.swapMore) || (JoinCircle < 1 && circle < 1)}
           onClick={() => {
             history.push('/stake')
           }}

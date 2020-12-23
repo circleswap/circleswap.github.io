@@ -225,5 +225,9 @@
   "enterNameECircle": "Please enter the name of the ECircle you want to create:",
   "createECirclePlaceholder": "Support Chinese, English, numbers, up to 6 characters",
   "walletAddress": "Wallet Address",
-  "Recipient": "Recipient"
+  "Recipient": "Recipient",
+  "yourStakedAmount": "Your Staking LP Tokens:",
+  "earnedAmount": "Available LP Tokens:",
+  "currentAbleLPT": "Pairs supporting liquidity mining:",
+  "stakingTip": "Stake your LP Tokens to join CircleSwap liquidity mining, and the rewards of liquidity mining will be issued in the form of platform token CIR.\n*You need to stake 100HT equivalent LP Tokens to enjoy part of ECircle extra rewards."
 }

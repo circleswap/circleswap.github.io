@@ -12,7 +12,7 @@ import { useCurrency } from '../../hooks/Tokens'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { usePair } from '../../data/Reserves'
 import { useStakingInfo } from '../../state/stake/hooks'
-import { useTokenBalance } from '../../state/wallet/hooks'
+import { useCurrencyBalance, useTokenBalance } from '../../state/wallet/hooks'
 
 const PageWrapper = styled(AutoColumn)`
   width: 538px;
@@ -68,7 +68,8 @@ export default function Stake() {
 
   const { account, chainId } = useActiveWeb3React()
 
-  const [currentStaking, setCurrentStaking] = useState()
+  //const [currentStaking, setCurrentStaking] = useState()
+  //const [currentUnstaked, setCurrentUnstaked] = useState()
 
   const [currencyA, currencyB] = [
     useCurrency('0xc778417e063141139fce010982780140aa0cd5ab'),
@@ -80,20 +81,28 @@ export default function Stake() {
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
 
   const stakingInfo = useStakingInfo(stakingTokenPair)?.[0]
+  const userLiquidityUnstaked = useTokenBalance(account ?? undefined, stakingInfo?.stakedAmount?.token)
+  const currencyBalance = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
 
+  console.log('currencyBalance', currencyBalance)
+  //usdt
   const [currencyA1, currencyB1] = [
     useCurrency('0xc778417e063141139fce010982780140aa0cd5ab'),
-    useCurrency('0x20D0faBD8bB63dAC87157cA4d94654F6467076d6')
+    useCurrency('0x516de3a7a567d81737e3a46ec4ff9cfd1fcb0136')
   ]
   const tokenA1 = wrappedCurrency(currencyA1 ?? undefined, chainId)
   const tokenB1 = wrappedCurrency(currencyB1 ?? undefined, chainId)
 
   const [, stakingTokenPair1] = usePair(tokenA1, tokenB1)
-
   const stakingInfo1 = useStakingInfo(stakingTokenPair1)?.[0]
-
-  // detect existing unstaked LP position to show add button if none found
-  const userLiquidityUnstaked = useTokenBalance(account ?? undefined, stakingInfo?.stakedAmount?.token)
+  const currencyBalance1 = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo1?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
+  //const userLiquidityUnstaked1 = useTokenBalance(account ?? undefined, stakingInfo1?.stakedAmount?.token)
 
   // toggle for staking modal and unstaking modal
   const [showStakingModal, setShowStakingModal] = useState(false)
@@ -103,16 +112,14 @@ export default function Stake() {
     <>
       <PageWrapper>
         <StakeWrapper style={{ marginTop: 100 }}>
-          <AutoColumn gap="lg">
+          <AutoColumn gap="lg" style={{ width: '100%' }}>
             <TYPE.link textAlign="center" fontSize={19}>
               {t('liquidityMining')}
             </TYPE.link>
 
-            <TYPE.main>
-              {t('质押您的LP Tokens来参与CircleSwap流动性挖矿，流动性挖矿的收益将以平台通证CIR的形式进行发放。')}
-            </TYPE.main>
+            <TYPE.main>{t('stakingTip')}</TYPE.main>
 
-            <TYPE.main>{t('目前可进行流动挖矿的交易对：')}</TYPE.main>
+            <TYPE.main>{t('currentAbleLPT')}</TYPE.main>
 
             <StakeCard gap="lg">
               <StakeCard.Header>
@@ -122,8 +129,12 @@ export default function Stake() {
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%' }} gap="md">
                 <AutoRow>
-                  <TYPE.darkGray>您当前的质押量： </TYPE.darkGray>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo?.stakedAmount.toExact()} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
               <RowBetween gap="19px" style={{ width: '100%' }}>
@@ -148,39 +159,43 @@ export default function Stake() {
               </RowBetween>
             </StakeCard>
 
-            {/*<StakeCard gap="lg">*/}
-            {/*  <StakeCard.Header>*/}
-            {/*    <TYPE.largeHeader textAlign={'center'} color={theme.text1}>*/}
-            {/*      {t('HT-CIR')}*/}
-            {/*    </TYPE.largeHeader>*/}
-            {/*  </StakeCard.Header>*/}
-            {/*  <AutoColumn style={{ width: '100%' }} gap="md">*/}
-            {/*    <AutoRow>*/}
-            {/*      <TYPE.darkGray>您当前的质押量： </TYPE.darkGray>*/}
-            {/*      <TYPE.black marginLeft={16}>{stakingInfo?.stakedAmount.toExact()} </TYPE.black>*/}
-            {/*    </AutoRow>*/}
-            {/*  </AutoColumn>*/}
-            {/*  <RowBetween gap="19px" style={{ width: '100%' }}>*/}
-            {/*    <Button*/}
-            {/*      disabled={!stakingInfo}*/}
-            {/*      onClick={() => {*/}
-            {/*        setShowUnstakingModal(true)*/}
-            {/*      }}*/}
-            {/*      style={{ width: '46%' }}*/}
-            {/*    >*/}
-            {/*      {'赎回'}*/}
-            {/*    </Button>*/}
-            {/*    <Button*/}
-            {/*      disabled={!stakingInfo}*/}
-            {/*      onClick={() => {*/}
-            {/*        setShowStakingModal(true)*/}
-            {/*      }}*/}
-            {/*      style={{ width: '46%' }}*/}
-            {/*    >*/}
-            {/*      {t('confirm')}*/}
-            {/*    </Button>*/}
-            {/*  </RowBetween>*/}
-            {/*</StakeCard>*/}
+            <StakeCard gap="lg">
+              <StakeCard.Header>
+                <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
+                  {t('HT-USDT')}
+                </TYPE.largeHeader>
+              </StakeCard.Header>
+              <AutoColumn style={{ width: '100%' }} gap="md">
+                <AutoRow>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo1?.stakedAmount.toExact()} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance1} </TYPE.black>
+                </AutoRow>
+              </AutoColumn>
+              <RowBetween gap="19px" style={{ width: '100%' }}>
+                <Button
+                  disabled={!stakingInfo}
+                  onClick={() => {
+                    setShowUnstakingModal(true)
+                  }}
+                  style={{ width: '46%' }}
+                >
+                  {'赎回'}
+                </Button>
+                <Button
+                  disabled={!stakingInfo}
+                  onClick={() => {
+                    setShowStakingModal(true)
+                  }}
+                  style={{ width: '46%' }}
+                >
+                  {t('confirm')}
+                </Button>
+              </RowBetween>
+            </StakeCard>
           </AutoColumn>
         </StakeWrapper>
       </PageWrapper>

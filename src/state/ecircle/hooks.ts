@@ -4,6 +4,8 @@ import { useCircleContract } from '../../hooks/useContract'
 import { calculateGasMargin, isAddress } from '../../utils'
 import { useTransactionAdder } from '../transactions/hooks'
 import { useSingleCallResult } from '../multicall/hooks'
+import { useJoinNCircle } from '../../hooks/useNCircle'
+import { useMemo } from 'react'
 
 export function useMintCallback(
   name: string | null | undefined,
@@ -51,5 +53,18 @@ export function useMyECircle(): ECircleDetail {
     0
   ])
   const name = useSingleCallResult(contract, 'tokenURI', [value?.result?.[0].toString()])
-  return { id: value?.result?.[0].toString(), name: name?.result?.[0].toString(), address: '' }
+  const circle = useMemo(() => {
+    return { id: value?.result?.[0].toString(), name: name?.result?.[0].toString(), address: '' }
+  }, [value, name])
+  return circle
+}
+
+export function useMyJoinedECircle(): ECircleDetail {
+  const contract = useCircleContract()
+  const joinedCircle = useJoinNCircle()
+  const name = useSingleCallResult(contract, 'tokenURI', [joinedCircle])
+  const circle = useMemo(() => {
+    return { id: joinedCircle, name: name?.result?.[0].toString(), address: '' }
+  }, [joinedCircle, name])
+  return circle
 }
