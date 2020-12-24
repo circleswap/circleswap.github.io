@@ -22,7 +22,6 @@ const PageWrapper = styled(AutoColumn)`
 `
 
 const StakeWrapper = styled.div`
-
   padding: 38px;
   display: flex;
   flex-direction: column;
@@ -59,10 +58,10 @@ const StakeCard = styled(AutoColumn)`
 StakeCard.Header = styled.div`
   height: 66px;
   line-height: 66px;
-  width: 100%;
   border-bottom: 1px #c2e4cb solid;
   display: flex;
   justify-content: center;
+  width: 538px;
 `
 
 export default function Stake() {
@@ -167,7 +166,7 @@ export default function Stake() {
               {t('liquidityMining')}
             </TYPE.link>
 
-            <TYPE.main>{t('stakingTip')}</TYPE.main>
+            <TYPE.main style={{width: 538}}>{t('stakingTip')}</TYPE.main>
 
             <TYPE.main>{t('currentAbleLPT')}</TYPE.main>
 
