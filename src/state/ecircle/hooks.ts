@@ -21,6 +21,7 @@ export function useMintCallback(
   const mintCallback = async function() {
     if (!name || !level || !library || !chainId || !contract) return
     const args = [name, level]
+    console.log('mint--->', contract.estimateGas)
     return contract.estimateGas['mint'](...args, {}).then(estimatedGasLimit => {
       return contract
         .mint(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })

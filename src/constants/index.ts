@@ -22,7 +22,7 @@ export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 18, 'WBTC', 'Wrapped BTC')
 
-export const CIR = new Token(ChainId.HT, '0x660267E51d03fF759DA8a08eDaE09d8FC9BB5a06', 18, 'CIR', 'Circleswap Token')
+export const CIR = new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'Circleswap Token')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 14
@@ -33,7 +33,7 @@ export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
 
 export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
-const UNI_ADDRESS = '0x660267E51d03fF759DA8a08eDaE09d8FC9BB5a06'
+const UNI_ADDRESS = '0xbe5DF2fac88BB096A973e664171E60586bC5940c'
 
 export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'CIR', 'Circleswap'),
@@ -41,7 +41,7 @@ export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'CIR', 'Circleswap'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'CIR', 'Circleswap'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'CIR', 'Circleswap'),
-  [ChainId.HT]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'CIR', 'CircleSwap Governance Token')
+  [ChainId.HT]: new Token(ChainId.HT, UNI_ADDRESS, 18, 'CIR', 'CircleSwap Governance Token')
 }
 
 export const INVITE: { [chainId in ChainId]: string } = {

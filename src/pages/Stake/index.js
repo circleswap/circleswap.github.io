@@ -166,7 +166,7 @@ export default function Stake() {
               {t('liquidityMining')}
             </TYPE.link>
 
-            <TYPE.main style={{width: 538}}>{t('stakingTip')}</TYPE.main>
+            <TYPE.main>{t('stakingTip')}</TYPE.main>
 
             <TYPE.main>{t('currentAbleLPT')}</TYPE.main>
 

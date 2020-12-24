@@ -120,7 +120,7 @@ export default function CreateECircle() {
 
   function onAttemptToApprove() {
     setAttempting(true)
-    cirContract.approve(INVITE_ADDRESS, gas + '000000000000000000').then(res => {
+    cirContract.approve(INVITE_ADDRESS, gas + '000000000000000000').then(_ => {
       onMint()
     })
   }
