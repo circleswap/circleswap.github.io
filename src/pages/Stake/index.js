@@ -234,7 +234,7 @@ export default function Stake() {
               </AutoColumn>
               <RowBetween gap="19px" style={{ width: '100%' }}>
                 <Button
-                  disabled={!stakingInfo2}
+                  disabled={!stakingInfo1}
                   onClick={() => {
                     setCurrentPair(1)
                     setShowUnstakingModal(true)
@@ -244,7 +244,7 @@ export default function Stake() {
                   {'赎回'}
                 </Button>
                 <Button
-                  disabled={!stakingInfo2}
+                  disabled={!stakingInfo1}
                   onClick={() => {
                     setCurrentPair(1)
                     setShowStakingModal(true)

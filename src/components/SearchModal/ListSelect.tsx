@@ -326,9 +326,9 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
           <div>
             <ArrowLeft style={{ cursor: 'pointer' }} onClick={onBack} />
           </div>
-          <Text fontWeight={500} fontSize={20}>
-            Manage Lists
-          </Text>
+          {/*<Text fontWeight={500} fontSize={20}>*/}
+          {/*  Manage Lists*/}
+          {/*</Text>*/}
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
       </PaddedColumn>
@@ -370,9 +370,9 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
       </ListContainer>
       <Separator />
 
-      <div style={{ padding: '16px', textAlign: 'center' }}>
-        <ExternalLink href="https://tokenlists.org">Browse lists</ExternalLink>
-      </div>
+      {/*<div style={{ padding: '16px', textAlign: 'center' }}>*/}
+      {/*  <ExternalLink href="https://tokenlists.org">Browse lists</ExternalLink>*/}
+      {/*</div>*/}
     </Column>
   )
 }
