@@ -119,10 +119,8 @@ export default function CreateECircle() {
   }
 
   function onAttemptToApprove() {
-    console.log('onAttemptToApprove', cirContract)
     setAttempting(true)
     cirContract.approve(INVITE_ADDRESS, gas + '000000000000000000').then(res => {
-      console.log('res-->', res)
       onMint()
     })
   }

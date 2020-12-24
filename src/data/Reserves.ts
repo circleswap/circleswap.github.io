@@ -58,8 +58,6 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
 }
 
 export function usePair(tokenA?: Currency, tokenB?: Currency): [PairState, Pair | null] {
-  console.log('token a', tokenA)
-  console.log('token b', tokenB)
 
   return usePairs([[tokenA, tokenB]])[0]
 }

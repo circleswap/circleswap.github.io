@@ -17,9 +17,7 @@ export function useJoinCallback(
   const joinCallback = async function() {
     if (!address || !library || !chainId || !contract) return
     const args = [address]
-    console.log('args', contract.estimateGas)
     return contract.estimateGas.joinByOwner(address).then(estimatedGasLimit => {
-      console.log('estimatedGasLimit', estimatedGasLimit)
       return contract
         .joinByOwner(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })
         .then((response: TransactionResponse) => {

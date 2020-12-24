@@ -29,14 +29,10 @@ const TipFrame = styled(AutoColumn)`
 `
 
 export default function ECircle({ history }) {
-  console.log('ecircle----------------->')
   const { t } = useTranslation()
   const able = useNCircleJoinAble()
   const circle = useNCircle()
   const JoinCircle = useJoinNCircle()
-  console.log('circle------->', circle)
-  console.log('JoinCircle------->', JoinCircle)
-  console.log('able------->', able)
 
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
   //const allCircles = useAllCircleData()

@@ -271,7 +271,6 @@ export default function Swap() {
       maxAmountInput?.toExact()
       maxAmountInput?.multiply(BigInt(10))
       const max = maxAmountInput?.toExact().toString()
-      console.log('maxAmountInput', max)
       maxAmountInput && onUserInput(Field.INPUT, new BigNumber(String(max)).multipliedBy(progress).toString())
     },
     [maxAmountInput, onUserInput]

@@ -57,6 +57,20 @@ export const STAKING_REWARDS_INFO: {
     {
       tokens: [
         new Token(ChainId.HT, '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', 18, 'HT', 'Wrapped HT'),
+        new Token(ChainId.HT, '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd', 18, 'ETH', 'Heco-Peg ETH Token')
+      ],
+      stakingRewardAddress: '0x8A58A2432d5004aAc8dB020bf362E1EBaC391367'
+    },
+    {
+      tokens: [
+        new Token(ChainId.HT, '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', 18, 'HT', 'Wrapped HT'),
+        new Token(ChainId.HT, '0x66a79d23e58475d2738179ca52cd0b41d73f0bea', 18, 'HBTC', 'Heco-Peg HBTC Token')
+      ],
+      stakingRewardAddress: '0xFEcF0D48007325F9e8b55D3ae52e6e11386FD1F9'
+    },
+    {
+      tokens: [
+        new Token(ChainId.HT, '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', 18, 'HT', 'Wrapped HT'),
         new Token(ChainId.HT, '0x0298c2b32eae4da002a15f36fdf7615bea3da047', 18, 'HUSD', 'Heco-Peg HUSD Token')
       ],
       stakingRewardAddress: '0xc3C82959aFFCf55dE113DF8Cf3Ee2678d664fd66'

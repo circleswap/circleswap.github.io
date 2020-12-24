@@ -9,7 +9,6 @@ export function useUserInvited(account: string | null | undefined): string {
   const invited = useSingleCallResult(contract, 'refererOf', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
-  console.log('invited address', invited)
   return invited?.result?.[0]
 }
 
@@ -19,7 +18,6 @@ export function useUserRefereeN(account: string | null | undefined): string {
   const value = useSingleCallResult(contract, 'refereeN', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
-  console.log('invited address', value)
   return value?.result?.[0]
 }
 
@@ -29,7 +27,6 @@ export function useUserReferee2N(account: string | null | undefined): string {
   const value = useSingleCallResult(contract, 'referee2N', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
-  console.log('referee2N', value)
   return value?.result?.[0]
 }
 
@@ -44,7 +41,6 @@ export function useUserUnclaimReward(account: string | null | undefined): Reward
   const value = useSingleCallResult(contract, 'earned', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
-  console.log('useUserUnclaimReward', value)
   return value?.result?.[0]
 }
 
@@ -54,6 +50,5 @@ export function useUserClaimedReward(account: string | null | undefined): Reward
   const value = useSingleCallResult(contract, 'paid', [
     account && parsedAddress ? account : '0x0000000000000000000000000000000000000000'
   ])
-  console.log('useUserClaimedReward', value)
   return value?.result?.[0]
 }

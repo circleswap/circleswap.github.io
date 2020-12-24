@@ -21,7 +21,6 @@ export function useMintCallback(
   const mintCallback = async function() {
     if (!name || !level || !library || !chainId || !contract) return
     const args = [name, level]
-    console.log('args', args)
     return contract.estimateGas['mint'](...args, {}).then(estimatedGasLimit => {
       return contract
         .mint(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })
@@ -55,14 +54,10 @@ export function useMyECircle(): ECircleDetail {
 
   useEffect(() => {
     if (account && contract) {
-      console.log('query ecircle', account, contract)
       try {
         contract.balanceOf(account).then((res: string) => {
-          console.log('res---->', res.toString())
           if (new BigNumber(res.toString()).isGreaterThan(0)) {
-            console.log('has circle')
             contract.tokenOfOwnerByIndex(account, '0').then((res: string) => {
-              console.log('tokenOfOwnerByIndex---->', res)
               contract.tokenURI(res).then((name: string) => {
                 setName(name ?? '')
               })
@@ -70,14 +65,12 @@ export function useMyECircle(): ECircleDetail {
                 setCount(num ?? '')
               })
               contract?.levelOf(res.toString()).then((res: string) => {
-                console.log('level of', res.toString())
                 setLevel(res.toString() === '3' ? '500' : res.toString() === '2' ? '200' : '30')
               })
             })
           }
         })
       } catch (e) {
-        console.log('e---->')
         setName('')
       }
     }
@@ -94,7 +87,6 @@ export function useMyJoinedECircle(): ECircleDetail {
   const [level, setLevel] = useState('1')
 
   useEffect(() => {
-    console.log('joinedCircle', joinedCircle.toString())
     if (joinedCircle && new BigNumber(joinedCircle.toString()).isGreaterThan(0)) {
       contract?.tokenURI(joinedCircle.toString()).then((name: string) => {
         setName(name ?? '')
@@ -106,7 +98,6 @@ export function useMyJoinedECircle(): ECircleDetail {
         setCount(num.toString() ?? '')
       })
       contract?.levelOf(joinedCircle.toString()).then((res: string) => {
-        console.log('level of', res.toString())
         setLevel(res.toString() === '3' ? '500' : res.toString() === '2' ? '200' : '30')
       })
     }

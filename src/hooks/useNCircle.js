@@ -14,7 +14,6 @@ export function useJoinCallback(account) {
 
   const joinCallback = async function() {
     if (!account || !library || !chainId || !contract) return
-    console.log('joinCallback', contract)
     const args = [account]
     return contract.estimateGas['join'](...args, {}).then(estimatedGasLimit => {
       return contract.join(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) }).then(response => {
@@ -67,7 +66,6 @@ export function useNCircle() {
   useEffect(() => {
     if (account && contract) {
       contract.balanceOf(account).then(res => {
-        console.log('ecircle id', res.toString())
         setID(res.toString() ?? '')
       })
     }
@@ -82,8 +80,6 @@ export function useJoinNCircle() {
   useEffect(() => {
     if (account && contract) {
       contract.circleOf(account).then(res => {
-        console.log('join circle id', res.toString())
-
         setID(res.toString() ?? '')
       })
     }
@@ -108,10 +104,8 @@ export function useAllCircleData() {
   for (let i = 1; i < (circleCount ?? 0); i++) {
     circleIndexes.push([i])
   }
-  console.log('circleIndexes--->', circleIndexes)
 
   const circles = useSingleContractMultipleData(contact, 'tokenByIndex', circleIndexes)
-  console.log('circles', circles)
 
   const nameIndexes = circles
     .map(item => {
@@ -120,7 +114,6 @@ export function useAllCircleData() {
     .filter(item => {
       return item[0]
     })
-  console.log('nameindexs', nameIndexes)
   const circleNames = useSingleContractMultipleData(contact, 'tokenURI', nameIndexes)
   return circleNames
     .map(item => {

@@ -15,13 +15,14 @@ import { useStakingInfo } from '../../state/stake/hooks'
 import { useCurrencyBalance, useTokenBalance } from '../../state/wallet/hooks'
 
 const PageWrapper = styled(AutoColumn)`
-  width: 538px;
   display: flex;
   flex-direction: column;
-  padding-top: 120px;
+  height: 100vh;
+  overflow: auto;
 `
 
 const StakeWrapper = styled.div`
+
   padding: 38px;
   display: flex;
   flex-direction: column;
@@ -38,6 +39,8 @@ const StakeWrapper = styled.div`
 `
 
 const StakeCard = styled(AutoColumn)`
+  width: 538px;
+  margin: auto;
   padding: 19px;
   display: flex;
   flex-direction: column;
@@ -387,7 +390,6 @@ export default function Stake() {
                 </Button>
               </RowBetween>
             </StakeCard>
-
           </AutoColumn>
         </StakeWrapper>
       </PageWrapper>

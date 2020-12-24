@@ -69,7 +69,6 @@ export default function AddressInviteModal({
   const invited = useUserInvited(typed)
   const myInvited = useUserInvited(account)
 
-  console.log('invited', invited)
   // used for UI loading states
   const [attempting, setAttempting] = useState<boolean>(false)
 
