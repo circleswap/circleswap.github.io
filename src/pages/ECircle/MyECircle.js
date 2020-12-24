@@ -79,7 +79,7 @@ export default function MyECircle({ history }) {
                   {jointedCircle && jointedCircle.name}{' '}
                   <TYPE.blue display={'inline'}>
                     {' '}
-                    ({jointedCircle && jointedCircle.count} / {jointedCircle.level}){' '}
+                    ({jointedCircle && jointedCircle.count.toString()} / {jointedCircle.level}){' '}
                   </TYPE.blue>
                 </Input>
               </InputPanel>
