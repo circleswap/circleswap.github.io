@@ -40,10 +40,9 @@ export function useNCircleJoinAble() {
   useEffect(() => {
     if (account) {
       routerContract.swapAmountOf(account).then(res => {
-        console.log('account', res.toString())
         const less =
-          new BigNumber(res.toString()).isGreaterThan('1000000000000000000') ||
-          new BigNumber(res.toString()).isEqualTo('1000000000000000000')
+          new BigNumber(res.toString()).isGreaterThan('100000000000000000000') ||
+          new BigNumber(res.toString()).isEqualTo('100000000000000000000')
         setSwapMore(less)
       })
       CircleContract.refererOf(account).then(res => {

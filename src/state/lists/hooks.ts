@@ -41,11 +41,13 @@ const EMPTY_LIST: TokenAddressMap = {
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
   typeof WeakMap !== 'undefined' ? new WeakMap<TokenList, TokenAddressMap>() : null
-
+console.log('listCache',new WeakMap<TokenList, TokenAddressMap>())
 export function listToTokenMap(list: TokenList): TokenAddressMap {
+  console.log('list--->',list)
   const result = listCache?.get(list)
-  if (result) return result
+  console.log('result',result)
 
+  if (result) return result
   const map = list.tokens.reduce<TokenAddressMap>(
     (tokenMap, tokenInfo) => {
       const tags: TagInfo[] =

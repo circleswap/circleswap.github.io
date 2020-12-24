@@ -112,8 +112,6 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 
   // detect if staking is ended
   const currentBlockTimestamp = useCurrentBlockTimestamp()
-  console.log('pair', pairToFilterBy)
-  console.log('STAKING_REWARDS_INFO', STAKING_REWARDS_INFO)
   const info = useMemo(
     () =>
       chainId
@@ -130,10 +128,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   )
 
   const uni = chainId ? UNI[chainId] : undefined
-  console.log('info', info)
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
-  console.log('rewardsAddresses', rewardsAddresses)
   const accountArg = useMemo(() => [account ?? undefined], [account])
 
   // get all the info from the staking rewards contracts
