@@ -54,7 +54,7 @@ export default function MyECircle({ history }) {
                   {circle && circle.name}{' '}
                   <TYPE.blue display={'inline'}>
                     {' '}
-                    ({circle && circle.count} / {circle.level})
+                    ({circle && circle.count.toString()} / {circle.level})
                   </TYPE.blue>
                 </Input>
               </InputPanel>
