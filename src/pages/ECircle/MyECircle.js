@@ -46,7 +46,6 @@ export default function MyECircle({ history }) {
               <CloseIcon style={{ top: 12 }} onClick={() => history.push('/ecircle')} />
               <ColumnCenter style={{ width: 463 }}>
                 <TYPE.largeHeader>My ECircle</TYPE.largeHeader>
-                <CloseIcon />
               </ColumnCenter>
               <TYPE.main marginTop="44px">My ECircle name</TYPE.main>
               <InputPanel>
