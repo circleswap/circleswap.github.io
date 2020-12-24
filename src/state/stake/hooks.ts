@@ -48,9 +48,18 @@ export const STAKING_REWARDS_INFO: {
     {
       tokens: [
         new Token(ChainId.ROPSTEN, '0xc778417e063141139fce010982780140aa0cd5ab', 18, 'WETH', 'Wrapped Ether'),
-        new Token(ChainId.ROPSTEN, '0x516de3a7a567d81737e3a46ec4ff9cfd1fcb0136', 18, 'USDT', 'USDT'),
+        new Token(ChainId.ROPSTEN, '0x516de3a7a567d81737e3a46ec4ff9cfd1fcb0136', 18, 'USDT', 'USDT')
       ],
       stakingRewardAddress: '0x9eDc88C230590aEcF7728bEc62BF03BB20f859d8'
+    }
+  ],
+  [ChainId.HT]: [
+    {
+      tokens: [
+        new Token(ChainId.HT, '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', 18, 'HT', 'Wrapped HT'),
+        new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'CircleSwap Governance Token')
+      ],
+      stakingRewardAddress: '0x82194AFF9608b18551760434b2391b7e3C50deaB'
     }
   ]
 }

@@ -22,13 +22,7 @@ export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 18, 'WBTC', 'Wrapped BTC')
 
-export const CIR = new Token(
-  ChainId.HT,
-  '0x660267E51d03fF759DA8a08eDaE09d8FC9BB5a06',
-  18,
-  'CIR',
-  'Circleswap Token'
-)
+export const CIR = new Token(ChainId.HT, '0x660267E51d03fF759DA8a08eDaE09d8FC9BB5a06', 18, 'CIR', 'Circleswap Token')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 14
