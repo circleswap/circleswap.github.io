@@ -2706,7 +2706,7 @@
 
 "@uniswap/sdk@circleswap/uniswap-sdk-ht.git":
   version "3.0.3"
-  resolved "https://codeload.github.com/circleswap/uniswap-sdk-ht/tar.gz/6cd08aa6d8b00fc23fd640087f4ae2a3716d1e87"
+  resolved "https://codeload.github.com/circleswap/uniswap-sdk-ht/tar.gz/f29c5dad32dbc9b0969ecb9f39957c1f3cf8bef9"
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"
