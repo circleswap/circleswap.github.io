@@ -54,7 +54,7 @@ export default function MyECircle({ history }) {
                   {circle && circle.name}{' '}
                   <TYPE.blue display={'inline'}>
                     {' '}
-                    ({circle && circle.count} / {circle.level})
+                    ({circle && circle.count.toString()} / {circle.level})
                   </TYPE.blue>
                 </Input>
               </InputPanel>
@@ -79,7 +79,7 @@ export default function MyECircle({ history }) {
                   {jointedCircle && jointedCircle.name}{' '}
                   <TYPE.blue display={'inline'}>
                     {' '}
-                    ({jointedCircle && jointedCircle.count} / {jointedCircle.level}){' '}
+                    ({jointedCircle && jointedCircle.count.toString()} / {jointedCircle.level}){' '}
                   </TYPE.blue>
                 </Input>
               </InputPanel>
