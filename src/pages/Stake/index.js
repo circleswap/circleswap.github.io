@@ -17,8 +17,9 @@ import { useCurrencyBalance, useTokenBalance } from '../../state/wallet/hooks'
 const PageWrapper = styled(AutoColumn)`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   overflow: auto;
+    width: 538px;
+
 `
 
 const StakeWrapper = styled.div`
@@ -38,8 +39,6 @@ const StakeWrapper = styled.div`
 `
 
 const StakeCard = styled(AutoColumn)`
-  width: 538px;
-  margin: auto;
   padding: 19px;
   display: flex;
   flex-direction: column;
@@ -61,7 +60,7 @@ StakeCard.Header = styled.div`
   border-bottom: 1px #c2e4cb solid;
   display: flex;
   justify-content: center;
-  width: 538px;
+  width: 100%;
 `
 
 export default function Stake() {
@@ -160,7 +159,7 @@ export default function Stake() {
   return (
     <>
       <PageWrapper>
-        <StakeWrapper style={{ marginTop: 100 }}>
+        <StakeWrapper>
           <AutoColumn gap="lg" style={{ width: '100%' }}>
             <TYPE.link textAlign="center" fontSize={19}>
               {t('liquidityMining')}

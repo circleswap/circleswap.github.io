@@ -23,7 +23,6 @@ import AppBody from '../AppBody'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
-  padding-top: ${({ theme }) => theme.bodyPadding};
 `
 
 const TitleRow = styled(RowBetween)`
@@ -153,10 +152,10 @@ export default function Pool() {
             </HideSmall>
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/create/ETH">
+                <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/create/HT">
                   {t('createAPair')}
                 </ResponsiveButtonSecondary>
-                <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="8px 16px" to="/add/ETH">
+                <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="8px 16px" to="/add/HT">
                   <Text fontWeight={500} fontSize={16}>
                     {t('addLiquidity')}
                   </Text>

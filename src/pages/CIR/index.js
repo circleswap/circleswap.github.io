@@ -11,10 +11,7 @@ import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.sv
 import { useUserClaimedReward, useUserReferee2N, useUserRefereeN, useUserUnclaimReward } from '../../hooks/useInvited'
 import { useActiveWeb3React } from '../../hooks'
 
-export const Container = styled.div`
-  margin-top: 120px;
-  padding-top: 12rem;
-`
+export const Container = styled.div``
 
 const BodyHeader = styled.div`
   width: 100%;

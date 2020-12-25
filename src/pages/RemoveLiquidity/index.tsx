@@ -105,7 +105,6 @@ export default function RemoveLiquidity({
   const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS)
 
   const isArgentWallet = useIsArgentWallet()
-  console.log('sign data', approval !== ApprovalState.NOT_APPROVED)
   async function onAttemptToApprove() {
     if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies')
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
