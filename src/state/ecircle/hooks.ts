@@ -1,7 +1,7 @@
 import { TransactionResponse } from '@ethersproject/providers'
 import { useActiveWeb3React } from '../../hooks'
 import { useCircleContract } from '../../hooks/useContract'
-import { calculateGasMargin } from '../../utils'
+import { calculateGasMargin, isAddress } from '../../utils'
 import { useTransactionAdder } from '../transactions/hooks'
 import { useJoinNCircle } from '../../hooks/useNCircle'
 import { useEffect, useState } from 'react'
@@ -46,6 +46,11 @@ interface ECircleDetail {
   level: string
 }
 
+interface Result {
+  able: boolean
+  loading: boolean
+}
+
 export function useMyECircle(): ECircleDetail {
   const { account } = useActiveWeb3React()
   const contract = useCircleContract()
@@ -77,6 +82,31 @@ export function useMyECircle(): ECircleDetail {
     }
   }, [account, contract])
   return { id: '', name: name ?? '', address: '', count: count, level: level }
+}
+
+export function useECircleAbleAddress(account: string): Result {
+  const contract = useCircleContract()
+  const [able, setAble] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (account && isAddress(account) && contract) {
+      setLoading(true)
+      try {
+        contract.balanceOf(account).then((res: string) => {
+          if (new BigNumber(res.toString()).isGreaterThan(0)) {
+            setLoading(false)
+            setAble(true)
+          } else {
+            setLoading(false)
+          }
+        })
+      } catch (e) {
+        setLoading(false)
+      }
+    }
+  }, [account, contract])
+  return { able, loading }
 }
 
 export function useMyJoinedECircle(): ECircleDetail {
