@@ -59,7 +59,7 @@ export default function ECircle({ history }) {
           <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
             <AlertTriangle color={able.swapMore ? '#30D683' : '#FF7238'} />
             <TYPE.main fontSize={14} marginLeft={10}>
-              2. 交易额不低于100HT等值金额；
+              2. 交易额不低于 ({able.swappedAmount} / 100) HT等值金额；
             </TYPE.main>
           </AutoRow>
         </TipFrame>

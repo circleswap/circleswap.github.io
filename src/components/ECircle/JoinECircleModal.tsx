@@ -16,10 +16,10 @@ import Confetti from '../Confetti'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { getEtherscanLink, shortenAddress } from '../../utils'
 import { Link } from 'react-router-dom'
-import { useNCircle } from '../../hooks/useNCircle'
 import { INVITE_ADDRESS } from '../../constants'
 import { useUniContract } from '../../hooks/useContract'
 import { useJoinCallback } from '../../hooks/joinEcircle'
+import { useECircleAbleAddress } from '../../state/ecircle/hooks'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -62,7 +62,7 @@ export default function JoinECircleModal({
   // monitor for third party recipient of claim
   const { address: parsedAddress } = useENS(typed)
   const { t } = useTranslation()
-  const circle = useNCircle()
+  const result = useECircleAbleAddress(typed)
 
   // used for UI loading states
   const [attempting, setAttempting] = useState<boolean>(false)
@@ -116,7 +116,10 @@ export default function JoinECircleModal({
               {t('theAddress')}
             </TYPE.main>
             <AddressInputPanel value={typed} onChange={handleRecipientType} />
-            {parsedAddress && !circle && <TYPE.error error={true}>YInvalid inviter address</TYPE.error>}
+            {result.loading && <CustomLightSpinner src={Circle} alt="loader" size={'20px'} />}
+            {parsedAddress && !result.loading && !result.able && (
+              <TYPE.error error={true}>Invalid inviter address</TYPE.error>
+            )}
             {/*{((parsedAddress ) || typed === account) && (*/}
             {/*  <TYPE.error error={true}>Invalid inviter address</TYPE.error>*/}
             {/*)}*/}
@@ -125,7 +128,7 @@ export default function JoinECircleModal({
                 {t('cancel')}
               </ResponsiveButtonSecondary>
               <ButtonPrimary
-                disabled={typed === account || !circle}
+                disabled={typed === account || !result.able}
                 padding="16px 16px"
                 width="180px"
                 borderRadius="100px"
@@ -139,7 +142,7 @@ export default function JoinECircleModal({
       )}
       {(attempting || claimConfirmed) && (
         <ConfirmOrLoadingWrapper activeBG={true}>
-          <RowBetween >
+          <RowBetween>
             <div />
             <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="black" />
           </RowBetween>

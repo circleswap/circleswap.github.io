@@ -34,6 +34,7 @@ export function useNCircleJoinAble() {
   const routerContract = getRouterContract(chainId, library, account)
   const CircleContract = useCircleContract()
   const [invited, setInvited] = useState(false)
+  const [swappedAmount, setSwappedAmount] = useState('')
   const [swapMore, setSwapMore] = useState(false)
 
   useEffect(() => {
@@ -43,13 +44,19 @@ export function useNCircleJoinAble() {
           new BigNumber(res.toString()).isGreaterThan('100000000000000000000') ||
           new BigNumber(res.toString()).isEqualTo('100000000000000000000')
         setSwapMore(less)
+        setSwappedAmount(
+          new BigNumber(res.toString())
+            .dividedBy('100000000000000000')
+            .toFixed(0)
+            .toString()
+        )
       })
       CircleContract.refererOf(account).then(res => {
         setInvited(res && res !== ZERO_ADDRESS)
       })
     }
   }, [account, CircleContract, routerContract])
-  return { invited, swapMore }
+  return { invited, swapMore, swappedAmount }
 }
 
 export function useNCircle() {
