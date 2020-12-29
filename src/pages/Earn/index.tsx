@@ -5,7 +5,7 @@ import { STAKING_REWARDS_INFO, useStakingInfo } from '../../state/stake/hooks'
 import { TYPE } from '../../theme'
 import PoolCard from '../../components/earn/PoolCard'
 import { RowBetween } from '../../components/Row'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { CardSection, DataCard } from '../../components/earn/styled'
 import { Countdown } from './Countdown'
 import Loader from '../../components/Loader'
 import { useActiveWeb3React } from '../../hooks'
@@ -21,6 +21,8 @@ const PageWrapper = styled(AutoColumn)`
 const TopSection = styled(AutoColumn)`
   max-width: 720px;
   width: 100%;
+  border-radius: 20px;
+  background-color: ${({ theme }) => theme.bg3};
 `
 
 const PoolSection = styled.div`
@@ -57,22 +59,18 @@ export default function Earn() {
     <PageWrapper gap="lg" justify="center">
       <TopSection gap="md">
         <DataCard>
-          <CardBGImage />
-          <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Circleswap iquidity mining</TYPE.white>
+                <TYPE.black fontWeight={600}>Circleswap iquidity mining</TYPE.black>
               </RowBetween>
               <RowBetween>
-                <TYPE.white fontSize={14}>
+                <TYPE.black fontSize={14}>
                   Deposit your Liquidity Provider tokens to receive CIR, the Circleswap protocol governance token.
-                </TYPE.white>
+                </TYPE.black>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>
-          <CardBGImage />
-          <CardNoise />
         </DataCard>
       </TopSection>
 

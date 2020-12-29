@@ -144,7 +144,7 @@ export default function AddressInviteModal({
         </ContentWrapper>
       )}
       {(attempting || claimConfirmed) && (
-        <ConfirmOrLoadingWrapper activeBG={true}>
+        <ConfirmOrLoadingWrapper activeBG={false}>
           <RowBetween>
             <div />
             <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="black" />
@@ -190,7 +190,7 @@ export default function AddressInviteModal({
             )}
             {attempting && hash && !claimConfirmed && chainId && hash && (
               <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')} style={{ zIndex: 99 }}>
-                View transaction on Etherscan
+                View On Eco Explorer
               </ExternalLink>
             )}
           </AutoColumn>

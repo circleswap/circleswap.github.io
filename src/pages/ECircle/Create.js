@@ -10,11 +10,13 @@ import { getEtherscanLink } from '../../utils'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { useMintCallback } from '../../state/ecircle/hooks'
 import { useActiveWeb3React } from '../../hooks'
-import { INVITE_ADDRESS } from '../../constants'
+import { INVITE_ADDRESS, UNI } from '../../constants'
 import { useUniContract } from '../../hooks/useContract'
 import Modal from '../../components/Modal'
 import Lottie from 'react-lottie'
 import loading from '../../assets/lottie/loading.json'
+import { useTokenBalance } from '../../state/wallet/hooks'
+import BigNumber from 'bignumber.js'
 
 const defaultOptions = {
   loop: true,
@@ -107,7 +109,7 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
 `
 
 export default function CreateECircle({ history }) {
-  const { chainId } = useActiveWeb3React()
+  const { chainId, account } = useActiveWeb3React()
   const { t } = useTranslation()
   const [attempting, setAttempting] = useState(false)
   const [value, setValue] = useState()
@@ -120,6 +122,8 @@ export default function CreateECircle({ history }) {
   // monitor the status of the claim from contracts and txns
   const claimPending = useIsTransactionPending(hash ?? '')
   const claimConfirmed = hash && !claimPending
+
+  const cirBalance = useTokenBalance(account ?? undefined, chainId ? UNI[chainId] : undefined)
 
   function onMint() {
     setAttempting(true)
@@ -212,7 +216,13 @@ export default function CreateECircle({ history }) {
           >
             {t('cancel')}
           </ResponsiveButtonSecondary>
-          <Button disabled={!value} style={{ width: '46%' }} onClick={onAttemptToApprove}>
+          <Button
+            disabled={
+              !value || new BigNumber(gas + '000000000000000000').isGreaterThan(cirBalance?.raw?.toString() ?? '0')
+            }
+            style={{ width: '46%' }}
+            onClick={onAttemptToApprove}
+          >
             {t('confirm')}
           </Button>
         </RowBetween>
