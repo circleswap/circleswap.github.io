@@ -108,7 +108,7 @@ export function useAllCircleData() {
   const contact = useCircleContract()
 
   const circleIndexes = []
-  for (let i = 1; i < (circleCount ?? 0); i++) {
+  for (let i = 0; i < (circleCount ?? 0); i++) {
     circleIndexes.push([i])
   }
 
