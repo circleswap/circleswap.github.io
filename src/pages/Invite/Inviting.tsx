@@ -59,7 +59,7 @@ export default function Inviting({
               </TYPE.main>
               <InputPanel>
                 <Input>{account}</Input>
-                <Copy toCopy={'http://localhost:3000/#/invite/' + account ?? ''} />
+                <Copy toCopy={'https://app.circleswap.org/#/invite/' + account ?? ''} />
               </InputPanel>
             </AppBody>
           ) : (
