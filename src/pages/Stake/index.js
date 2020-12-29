@@ -13,13 +13,11 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { usePair } from '../../data/Reserves'
 import { useStakingInfo, useTotalUniEarned } from '../../state/stake/hooks'
 import { useCurrencyBalance, useTokenBalance } from '../../state/wallet/hooks'
-import { useUserUnclaimedAmount } from '../../state/claim/hooks'
 import claim from '../../assets/images/claim.png'
 import { useCircleContract } from '../../hooks/useContract'
 import Modal from '../../components/Modal'
 import { LoadingView, SubmittedView } from '../../components/ModalViews'
 import { useTransactionAdder } from '../../state/transactions/hooks'
-import { TokenAmount } from '@uniswap/sdk'
 
 const PageWrapper = styled(AutoColumn)`
   display: flex;
