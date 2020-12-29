@@ -11,7 +11,7 @@ import ClaimRewardModal from '../../components/earn/ClaimRewardModal'
 import { useCurrency } from '../../hooks/Tokens'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { usePair } from '../../data/Reserves'
-import { useStakingInfo } from '../../state/stake/hooks'
+import { useStakingInfo, useTotalUniEarned } from '../../state/stake/hooks'
 import { useCurrencyBalance, useTokenBalance } from '../../state/wallet/hooks'
 import { useUserUnclaimedAmount } from '../../state/claim/hooks'
 import claim from '../../assets/images/claim.png'
@@ -19,6 +19,7 @@ import { useCircleContract } from '../../hooks/useContract'
 import Modal from '../../components/Modal'
 import { LoadingView, SubmittedView } from '../../components/ModalViews'
 import { useTransactionAdder } from '../../state/transactions/hooks'
+import { TokenAmount } from '@uniswap/sdk'
 
 const PageWrapper = styled(AutoColumn)`
   display: flex;
@@ -94,7 +95,7 @@ export default function Stake() {
 
   const { account, chainId } = useActiveWeb3React()
 
-  const unclaimedAmount = useUserUnclaimedAmount(account)
+  const unclaimedAmount = useTotalUniEarned()
 
   //HT-ETH
   const [currencyA, currencyB] = [
@@ -572,7 +573,9 @@ export default function Stake() {
         {attempting && !hash && (
           <LoadingView onDismiss={wrappedOndismiss}>
             <AutoColumn gap="12px" justify={'center'}>
-              <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(4)} CIR</TYPE.body>
+              <TYPE.body fontSize={20}>
+                Claiming {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR
+              </TYPE.body>
             </AutoColumn>
           </LoadingView>
         )}
