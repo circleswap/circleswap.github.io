@@ -130,7 +130,7 @@ export function ConfirmationModalContent({
     <Wrapper>
       <Section>
         <RowBetween style={{ position: 'relative' }}>
-          <Text fontWeight={500} fontSize={20}>
+          <Text style={{ flex: 1 }} fontWeight={500} fontSize={20}>
             {title}
           </Text>
           <CloseIcon style={{ position: 'relative' }} onClick={onDismiss} />
