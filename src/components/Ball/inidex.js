@@ -170,6 +170,7 @@ export const Balls = ({ tabs }) => {
       {list.map(item => {
         return (
           <a
+            href="/ecircle"
             key={item}
             onClick={() => {
               console.log('')
