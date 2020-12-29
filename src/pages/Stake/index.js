@@ -13,6 +13,12 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { usePair } from '../../data/Reserves'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { useCurrencyBalance, useTokenBalance } from '../../state/wallet/hooks'
+import { useUserUnclaimedAmount } from '../../state/claim/hooks'
+import claim from '../../assets/images/claim.png'
+import { useCircleContract } from '../../hooks/useContract'
+import Modal from '../../components/Modal'
+import { LoadingView, SubmittedView } from '../../components/ModalViews'
+import { useTransactionAdder } from '../../state/transactions/hooks'
 
 const PageWrapper = styled(AutoColumn)`
   display: flex;
@@ -61,7 +67,6 @@ const ClaimCard = styled(StakeCard)`
 `
 
 ClaimCard.Modal = styled.img`
-  width: 100%;
   position: absolute;
 `
 
@@ -89,7 +94,7 @@ export default function Stake() {
 
   const { account, chainId } = useActiveWeb3React()
 
-  //const unclaimedAmount = useUserUnclaimedAmount(account)
+  const unclaimedAmount = useUserUnclaimedAmount(account)
 
   //HT-ETH
   const [currencyA, currencyB] = [
@@ -178,6 +183,33 @@ export default function Stake() {
 
   const [currentPair, setCurrentPair] = useState(0)
 
+  const [hash, setHash] = useState()
+  const [attempting, setAttempting] = useState(false)
+  const stakingContract = useCircleContract()
+  const addTransaction = useTransactionAdder()
+
+  async function onWithdraw() {
+    setHash(null)
+    setAttempting(true)
+    await stakingContract
+      .getReward()
+      .then(response => {
+        addTransaction(response, {
+          summary: `Withdraw deposited liquidity`
+        })
+        setHash(response.hash)
+      })
+      .catch(error => {
+        setAttempting(false)
+        console.log(error)
+      })
+  }
+
+  function wrappedOndismiss() {
+    setHash(undefined)
+    setAttempting(false)
+  }
+
   return (
     <>
       <PageWrapper>
@@ -220,7 +252,7 @@ export default function Stake() {
                   }}
                   style={{ width: '46%' }}
                 >
-                  {'赎回'}
+                  {t('claim')}
                 </Button>
                 <Button
                   disabled={!stakingInfo}
@@ -264,7 +296,7 @@ export default function Stake() {
                   }}
                   style={{ width: '46%' }}
                 >
-                  {'赎回'}
+                  {t('claim')}
                 </Button>
                 <Button
                   disabled={!stakingInfo1}
@@ -308,7 +340,7 @@ export default function Stake() {
                   }}
                   style={{ width: '46%' }}
                 >
-                  {'赎回'}
+                  {t('claim')}
                 </Button>
                 <Button
                   disabled={!stakingInfo2}
@@ -352,7 +384,7 @@ export default function Stake() {
                   }}
                   style={{ width: '46%' }}
                 >
-                  {'赎回'}
+                  {t('claim')}
                 </Button>
                 <Button
                   disabled={!stakingInfo3}
@@ -396,7 +428,7 @@ export default function Stake() {
                   }}
                   style={{ width: '46%' }}
                 >
-                  {'赎回'}
+                  {t('claim')}
                 </Button>
                 <Button
                   disabled={!stakingInfo4}
@@ -411,19 +443,22 @@ export default function Stake() {
               </RowBetween>
             </StakeCard>
 
-            {/*<ClaimCard gap="lg">*/}
-            {/*  <ClaimCard.Modal src={claim} />*/}
-            {/*  <ClaimCard.Cover />*/}
-            {/*  <TYPE.white marginTop={16} marginLeft={23} style={{ zIndex: 1 }} color={'#fff'}>*/}
-            {/*    {'我的流动性挖矿总收益：'}{' '}*/}
-            {/*  </TYPE.white>*/}
-            {/*  <TYPE.white marginLeft={23} fontSize={29} style={{ zIndex: 1 }} color={'#fff'}>*/}
-            {/*    {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR*/}
-            {/*  </TYPE.white>*/}
-            {/*  <Button style={{ zIndex: 1, width: 388, backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}>*/}
-            {/*    全部提取*/}
-            {/*  </Button>*/}
-            {/*</ClaimCard>*/}
+            <ClaimCard gap="lg">
+              <ClaimCard.Modal src={claim} />
+              <ClaimCard.Cover />
+              <TYPE.white marginTop={16} marginLeft={23} style={{ zIndex: 1 }} color={'#fff'}>
+                {t('total_rewards')}{' '}
+              </TYPE.white>
+              <TYPE.white marginLeft={23} fontSize={29} style={{ zIndex: 1 }} color={'#fff'}>
+                {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR
+              </TYPE.white>
+              <Button
+                onClick={onWithdraw}
+                style={{ zIndex: 1, width: 388, backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}
+              >
+                {t('claim_all')}
+              </Button>
+            </ClaimCard>
           </AutoColumn>
         </StakeWrapper>
       </PageWrapper>
@@ -532,6 +567,24 @@ export default function Stake() {
           />
         </>
       )}
+
+      <Modal isOpen={attempting || hash} onDismiss={wrappedOndismiss} maxHeight={90}>
+        {attempting && !hash && (
+          <LoadingView onDismiss={wrappedOndismiss}>
+            <AutoColumn gap="12px" justify={'center'}>
+              <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(4)} CIR</TYPE.body>
+            </AutoColumn>
+          </LoadingView>
+        )}
+        {hash && (
+          <SubmittedView onDismiss={wrappedOndismiss} hash={hash}>
+            <AutoColumn gap="12px" justify={'center'}>
+              <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
+              <TYPE.body fontSize={20}>Claimed CIR!</TYPE.body>
+            </AutoColumn>
+          </SubmittedView>
+        )}
+      </Modal>
     </>
   )
 }

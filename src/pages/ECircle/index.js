@@ -48,21 +48,21 @@ export default function ECircle({ history }) {
       />
 
       <AutoColumn gap="lg" justify="center">
-        <Balls tabs={ecircles}/>
+        <Balls tabs={ecircles} />
         <TipFrame gap="md">
-          <TYPE.mediumHeader fontSize={14}>创建或加入ECircle前，您需要满足以下两个条件：</TYPE.mediumHeader>
+          <TYPE.mediumHeader fontSize={14}>{t('tip1')}</TYPE.mediumHeader>
 
           <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
             <AlertTriangle color={able.invited ? '#30D683' : '#FF7238'} />
             <TYPE.main fontSize={14} marginLeft={10}>
-              1. 先创建NCircle；
+              {t('tip2')}
             </TYPE.main>
           </AutoRow>
 
           <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
             <AlertTriangle color={able.swapMore ? '#30D683' : '#FF7238'} />
-            <TYPE.main fontSize={14} marginLeft={10}>
-              2. 交易额不低于 ({able.swappedAmount} / 100) HT等值金额；
+            <TYPE.main width={420} fontSize={14} marginLeft={10}>
+              {t('tip3')}
             </TYPE.main>
           </AutoRow>
         </TipFrame>

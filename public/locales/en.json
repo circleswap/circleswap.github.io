@@ -94,9 +94,9 @@
   "pricePer": "Price:XXXXXXperXXX",
   "priceImpactTooHigh": "Price Impact Too High",
   "swapAnyway": "Swap Anyway",
-  "yourTransaction": "Your transaction will revert if there is a large,unfavorable price movement before it is confirmed.",
-  "theDifferenceBetween": "The difference between the market price and estimated price due to trade size.",
-  "aPortionOfEach": "A portion of each trade(0.30%) goes to liquidity providers as a protocol incentive.",
+  "your_transaction": "Your transaction will revert if there is a large,unfavorable price movement before it is confirmed.",
+  "the_difference_between": "The difference between the market price and estimated price due to trade size.",
+  "a_portion_of_each": "A portion of each trade(0.30%) goes to liquidity providers as a protocol incentive.",
   "select_token": "Select a token",
   "searchOrPaste": "Search name or paste address",
   "tokenName": "Token Name",
@@ -174,8 +174,8 @@
   "takingPartIn": "Taking part in liquidity mining;",
   "uRewards": "UBI Rewards",
   "extraRewards": "Extra Liquidity Mining Rewards",
-  "createECircle": "Create an ECircle",
-  "joinECircle": "Join an ECircle",
+  "createECircle": "Create",
+  "joinECircle": "Join",
   "check": "Already have an ECircle? Check My  ",
   "note": "*Note: After creating an ECircle, you cannot join other ECircles, and you cannot create an ECircle after joining an ECircle.",
   "theName": "Please enter the ECircle name that you are going to create.",
@@ -235,5 +235,13 @@
   "ncircle_helper": "1. Extra Airdrop Bonus；\\n 2.Extra Swap Mining Rewards；\\n 3.Extra Liquidity Mining Rewards；\n",
   "ecircle_helper": "1. Taking part in liquidity mining\n 2. UBI Rewards\n 3. Extra Liquidity Mining Rewards\n",
   "output_est": "Output is estimated. You will receive at least 1.27241 CIR or the transaction will revert.\n",
-  "total_rewards": "Total Rewards of Liquidity Mining:"
+  "total_rewards": "Total Rewards of Liquidity Mining:",
+  "confirm_swap": "Confirm Swap",
+  "join_successfully": "Join Successfully",
+  "tip1": "Before creating or joining ECircle, you need to meet the following two conditions:\n",
+  "tip2": "1. Create NCircle first;\n",
+  "tip3": "2. The transaction amount is no less than 100HT equivalent amount;",
+  "claim_all": "Claim All",
+  "claim": "Claim"
+
 }
