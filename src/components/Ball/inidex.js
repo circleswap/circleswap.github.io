@@ -6,7 +6,7 @@ export const Balls = ({ tabs }) => {
 
   function start() {
     const oDiv = document.getElementById('div1')
-    const aLink = oDiv.getElementsByTagName('a')
+    const aLink = oDiv.getElementsByTagName('span')
 
     let sinA, cosA, sinB, cosB, sinC, cosC
     const degToRad = Math.PI / 180 //degreeToRadian
@@ -172,15 +172,14 @@ export const Balls = ({ tabs }) => {
     <div id="div1">
       {list.map(item => {
         return (
-          <a
-            href="/ecircle"
+          <span
             key={item}
             onClick={() => {
               console.log('')
             }}
           >
             {item}
-          </a>
+          </span>
         )
       })}
     </div>

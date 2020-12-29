@@ -1,4 +1,4 @@
-div,a {
+div,span {
     margin: 0;
     padding: 0;
     -webkit-user-select: none;
@@ -27,7 +27,7 @@ div,a {
     border-radius: 50%;
 }
 
-#div1 a {
+#div1 span {
     position: absolute;
     top: 0;
     left: 0;
@@ -38,6 +38,6 @@ div,a {
     text-shadow: 2px 2px 2px black;
 }
 
-#div1 a:hover {
+#div1 span:hover {
     color: #30D683;
 }
