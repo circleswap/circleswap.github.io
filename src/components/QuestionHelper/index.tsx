@@ -64,7 +64,7 @@ export default function QuestionHelper({ text }: { title?: string; text: string 
           onMouseEnter={open}
           onMouseLeave={close}
         >
-          <Question size={20} />
+          <Question size={20} color={theme.text2} />
         </QuestionWrapper>
       </Tooltip>
     </span>

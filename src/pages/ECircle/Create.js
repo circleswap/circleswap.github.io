@@ -3,10 +3,9 @@ import styled from 'styled-components'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
 import { RowBetween } from '../../components/Row'
-import { Button, CloseIcon, CustomLightSpinner, ExternalLink, TYPE, UniTokenAnimated } from '../../theme'
-import { ButtonBlue } from '../../components/Button'
-import Circle from '../../assets/images/blue-loader.svg'
-import tokenLogo from '../../assets/images/token-logo.png'
+import { Button, CloseIcon, ExternalLink, TYPE, UniTokenAnimated } from '../../theme'
+import { ButtonBlue, ButtonSecondary } from '../../components/Button'
+import tokenLogo from '../../assets/images/logo-circle.svg'
 import { getEtherscanLink } from '../../utils'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { useMintCallback } from '../../state/ecircle/hooks'
@@ -14,6 +13,17 @@ import { useActiveWeb3React } from '../../hooks'
 import { INVITE_ADDRESS } from '../../constants'
 import { useUniContract } from '../../hooks/useContract'
 import Modal from '../../components/Modal'
+import Lottie from 'react-lottie'
+import loading from '../../assets/lottie/loading.json'
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: loading,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice'
+  }
+}
 
 const Input = styled.input`
   font-size: 1.25rem;
@@ -90,7 +100,13 @@ const InputPanel = styled.div`
   padding: 1rem;
 `
 
-export default function CreateECircle() {
+const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+  border-radius: 100px;
+  padding: 16px;
+  width: 180px;
+`
+
+export default function CreateECircle({ history }) {
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const [attempting, setAttempting] = useState(false)
@@ -188,7 +204,14 @@ export default function CreateECircle() {
         <TYPE.main margin={'24px auto'}>{t('payToCreateECircle', { gas })}</TYPE.main>
 
         <RowBetween gap="19px">
-          <Button style={{ width: '46%' }}>{t('cancel')}</Button>
+          <ResponsiveButtonSecondary
+            style={{ width: '46%' }}
+            onClick={() => {
+              history.push('/ecircle')
+            }}
+          >
+            {t('cancel')}
+          </ResponsiveButtonSecondary>
           <Button disabled={!value} style={{ width: '46%' }} onClick={onAttemptToApprove}>
             {t('confirm')}
           </Button>
@@ -201,7 +224,7 @@ export default function CreateECircle() {
           </RowBetween>
           <ConfirmedIcon>
             {!claimConfirmed ? (
-              <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
+              <Lottie width={200} height={200} options={defaultOptions} />
             ) : (
               <UniTokenAnimated width="72px" src={tokenLogo} />
             )}
@@ -230,7 +253,7 @@ export default function CreateECircle() {
             )}
             {attempting && hash && !claimConfirmed && chainId && hash && (
               <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')} style={{ zIndex: 99 }}>
-                View transaction on Etherscan
+                View transaction on Eco Explorer
               </ExternalLink>
             )}
           </AutoColumn>

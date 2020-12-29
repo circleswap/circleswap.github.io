@@ -36,9 +36,9 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {isExactIn ? t('minimumReceived') : t('maximumSold')}
+              {isExactIn ? t('minimum_received') : t('maximumSold')}
             </TYPE.black>
-            <QuestionHelper text={t('yourTransaction')} />
+            <QuestionHelper text={t('your_transaction')} />
           </RowFixed>
           <RowFixed>
             <TYPE.black color={theme.text1} fontSize={14}>
@@ -53,9 +53,9 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {t('priceImpact')}
+              {t('price_impact')}
             </TYPE.black>
-            <QuestionHelper text={t('theDifferenceBetween')} />
+            <QuestionHelper text={t('the_difference_between')} />
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
@@ -63,9 +63,9 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {t('liquidityProviderFee')}
+              {t('liquidity_provider_fee')}
             </TYPE.black>
-            <QuestionHelper text={t('aPortionOfEach')} />
+            <QuestionHelper text={t('a_portion_of_each')} />
           </RowFixed>
           <TYPE.black fontSize={14} color={theme.text1}>
             {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
@@ -84,7 +84,6 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
   const theme = useContext(ThemeContext)
   const { t } = useTranslation()
   const [allowedSlippage] = useUserSlippageTolerance()
-
   const showRoute = Boolean(trade && trade.route.path.length > 2)
 
   return (

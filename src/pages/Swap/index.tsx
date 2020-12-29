@@ -91,6 +91,7 @@ export default function Swap() {
     currencies,
     inputError: swapInputError
   } = useDerivedSwapInfo()
+
   const { wrapType, execute: onWrap, inputError: wrapInputError } = useWrapCallback(
     currencies[Field.INPUT],
     currencies[Field.OUTPUT],
@@ -256,7 +257,6 @@ export default function Swap() {
 
   const handleInputSelect = useCallback(
     inputCurrency => {
-      console.log('inputCurrency',inputCurrency)
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
     },
@@ -309,7 +309,7 @@ export default function Swap() {
 
             <Wrapper>
               <CurrencyInputPanel
-                label={independentField === Field.OUTPUT && !showWrap && trade ? t('formEstimated') : t('from')}
+                label={independentField === Field.OUTPUT && !showWrap && trade ? t('form_estimated') : t('pay_for')}
                 value={formattedAmounts[Field.INPUT]}
                 showMaxButton={!atMaxAmountInput}
                 currency={currencies[Field.INPUT]}
@@ -367,7 +367,7 @@ export default function Swap() {
               <CurrencyInputPanel
                 value={formattedAmounts[Field.OUTPUT]}
                 onUserInput={handleTypeOutput}
-                label={independentField === Field.INPUT && !showWrap && trade ? t('toEstimated') : t('to')}
+                label={independentField === Field.INPUT && !showWrap && trade ? t('to_estimated') : t('to')}
                 showMaxButton={false}
                 currency={currencies[Field.OUTPUT]}
                 onCurrencySelect={handleOutputSelect}
@@ -397,7 +397,7 @@ export default function Swap() {
       <Wrapper style={{ marginTop: 32 }}>
         {showWrap ? null : (
           <Card
-            style={{ width: 'fit-content', margin: 'auto', paddingBottom: '1rem' }}
+            style={{ width: 'fit-content', paddingBottom: '1rem' }}
             padding={'.25rem .75rem 0 .75rem'}
             borderRadius={'20px'}
           >
@@ -405,7 +405,7 @@ export default function Swap() {
               {Boolean(trade) && (
                 <RowBetween align="center">
                   <Text fontWeight={500} fontSize={14} color={theme.text2}>
-                    Price :
+                    {t('price')} :
                   </Text>
                   <TradePrice
                     price={trade?.executionPrice}

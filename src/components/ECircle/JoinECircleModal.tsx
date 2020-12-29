@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { RowBetween } from '../Row'
 import { TYPE, ExternalLink, CloseIcon, CustomLightSpinner, UniTokenAnimated } from '../../theme'
 import { ButtonPrimary, ButtonSecondary } from '../Button'
-import tokenLogo from '../../assets/images/token-logo.png'
+import tokenLogo from '../../assets/images/logo-circle.svg'
 import Circle from '../../assets/images/blue-loader.svg'
 import { Text } from 'rebass'
 import AddressInputPanel from '../AddressInputPanel'
@@ -15,11 +15,12 @@ import { useActiveWeb3React } from '../../hooks'
 import Confetti from '../Confetti'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { getEtherscanLink, shortenAddress } from '../../utils'
-import { Link } from 'react-router-dom'
-import { INVITE_ADDRESS } from '../../constants'
+import { INVITE_ADDRESS, UNI } from '../../constants'
 import { useUniContract } from '../../hooks/useContract'
 import { useJoinCallback } from '../../hooks/joinEcircle'
 import { useECircleAbleAddress } from '../../state/ecircle/hooks'
+import { useTokenBalance } from '../../state/wallet/hooks'
+import BigNumber from 'bignumber.js'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -76,6 +77,7 @@ export default function JoinECircleModal({
   const claimPending = useIsTransactionPending(hash ?? '')
   const claimConfirmed = hash && !claimPending
   const cirContract = useUniContract()
+  const cirBalance = useTokenBalance(account ?? undefined, chainId ? UNI[chainId] : undefined)
 
   // use the hash to monitor this txn
 
@@ -104,7 +106,7 @@ export default function JoinECircleModal({
   }
 
   return (
-    <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss} maxHeight={90}>
+    <Modal isOpen={false} onDismiss={wrappedOnDismiss} maxHeight={90}>
       <Confetti start={Boolean(isOpen && claimConfirmed && attempting)} />
       {!attempting && (
         <ContentWrapper gap="lg">
@@ -123,12 +125,30 @@ export default function JoinECircleModal({
             {/*{((parsedAddress ) || typed === account) && (*/}
             {/*  <TYPE.error error={true}>Invalid inviter address</TYPE.error>*/}
             {/*)}*/}
+            <TYPE.main fontWeight={500} style={{ margin: 'auto', marginTop: 32, display: 'flex' }}>
+              {'You need to pay'}
+              <TYPE.main
+                style={{
+                  color: !new BigNumber('2000000000000000000').isGreaterThan(cirBalance?.raw?.toString() ?? '0')
+                    ? '#518AFF'
+                    : '#FF7238'
+                }}
+              >
+                {' '}
+                {` 2CIR `}
+              </TYPE.main>{' '}
+              {'to join this ECircle.'}
+            </TYPE.main>
             <RowBetween>
-              <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/create/ETH">
+              <ResponsiveButtonSecondary padding="8px 16px" onClick={onDismiss}>
                 {t('cancel')}
               </ResponsiveButtonSecondary>
               <ButtonPrimary
-                disabled={typed === account || !result.able}
+                disabled={
+                  typed === account ||
+                  !result.able ||
+                  new BigNumber('2000000000000000000').isGreaterThan(cirBalance?.raw?.toString() ?? '0')
+                }
                 padding="16px 16px"
                 width="180px"
                 borderRadius="100px"
@@ -156,7 +176,7 @@ export default function JoinECircleModal({
           <AutoColumn gap="100px" justify={'center'}>
             <AutoColumn gap="12px" justify={'center'}>
               <TYPE.largeHeader fontWeight={600} color="black">
-                {claimConfirmed ? t('createdSuccessfully') : t('creating')}
+                {claimConfirmed ? t('join_successfully') : t('joining')}
               </TYPE.largeHeader>
               {!claimConfirmed && (
                 <Text fontSize={36} color={'#30D683'} fontWeight={800}>
@@ -187,7 +207,7 @@ export default function JoinECircleModal({
             )}
             {attempting && hash && !claimConfirmed && chainId && hash && (
               <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')} style={{ zIndex: 99 }}>
-                View transaction on Etherscan
+                View transaction on Eco Explorer
               </ExternalLink>
             )}
           </AutoColumn>

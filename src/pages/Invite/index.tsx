@@ -60,7 +60,6 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
     },
     history
   } = props
-  console.log('address', address)
   const { t } = useTranslation()
   const { account } = useActiveWeb3React()
   const invited = useUserInvited(account)
@@ -93,7 +92,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
               {t('createNCircleTip')}
             </TYPE.white>
             <HelperFrame>
-              <QuestionHelper text={'1. 参与流动性挖矿；\n2.获取UBI奖励；\n3.获取流动性挖矿算力额外奖励；'} />
+              <QuestionHelper text={t('ncircle_helper')} />
             </HelperFrame>
           </NCircle>
           <CCircle
@@ -108,9 +107,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
               Create or view your ECircle details
             </TYPE.white>
             <HelperFrame>
-              <QuestionHelper
-                text={`1. 获得额外空投奖励；\n 2.获得Swap挖矿额外奖励；\n 3.获取流动性挖矿算力额外奖励；`}
-              />
+              <QuestionHelper text={t('ecircle_helper')} />
             </HelperFrame>
           </CCircle>
         </AutoRow>

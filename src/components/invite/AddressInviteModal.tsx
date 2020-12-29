@@ -123,7 +123,7 @@ export default function AddressInviteModal({
               <TYPE.error error={true}>Invalid inviter address</TYPE.error>
             )}
             <RowBetween>
-              <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/create/HT">
+              <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/">
                 Join later
               </ResponsiveButtonSecondary>
               <ButtonPrimary

@@ -7,8 +7,9 @@ import { AutoRow, RowBetween } from '../../components/Row'
 import { Button, CloseIcon, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
-import { useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
+import { useAllCircleData, useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
 import BigNumber from 'bignumber.js'
+import { Balls } from '../../components/Ball/inidex'
 
 const PageWrapper = styled(AutoColumn)`
   width: 800px;
@@ -33,7 +34,7 @@ export default function ECircle({ history }) {
   const able = useNCircleJoinAble()
   const circle = useNCircle()
   const JoinCircle = useJoinNCircle()
-
+  const ecircles = useAllCircleData()
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
   //const allCircles = useAllCircleData()
 
@@ -45,7 +46,9 @@ export default function ECircle({ history }) {
         }}
         style={{ top: 12 }}
       />
+
       <AutoColumn gap="lg" justify="center">
+        <Balls tabs={ecircles}/>
         <TipFrame gap="md">
           <TYPE.mediumHeader fontSize={14}>创建或加入ECircle前，您需要满足以下两个条件：</TYPE.mediumHeader>
 

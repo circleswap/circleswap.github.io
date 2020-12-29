@@ -18,8 +18,7 @@ const PageWrapper = styled(AutoColumn)`
   display: flex;
   flex-direction: column;
   overflow: auto;
-    width: 538px;
-
+  width: 538px;
 `
 
 const StakeWrapper = styled.div`
@@ -54,6 +53,27 @@ const StakeCard = styled(AutoColumn)`
   `};
 `
 
+const ClaimCard = styled(StakeCard)`
+  height: 212px;
+  padding: 0;
+  overflow: hidden;
+  align-items: flex-start;
+`
+
+ClaimCard.Modal = styled.img`
+  width: 100%;
+  position: absolute;
+`
+
+ClaimCard.Cover = styled.div`
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #2c2c2c;
+  opacity: 0.5;
+`
+
 StakeCard.Header = styled.div`
   height: 66px;
   line-height: 66px;
@@ -68,6 +88,8 @@ export default function Stake() {
   const theme = useContext(ThemeContext)
 
   const { account, chainId } = useActiveWeb3React()
+
+  //const unclaimedAmount = useUserUnclaimedAmount(account)
 
   //HT-ETH
   const [currencyA, currencyB] = [
@@ -388,6 +410,20 @@ export default function Stake() {
                 </Button>
               </RowBetween>
             </StakeCard>
+
+            {/*<ClaimCard gap="lg">*/}
+            {/*  <ClaimCard.Modal src={claim} />*/}
+            {/*  <ClaimCard.Cover />*/}
+            {/*  <TYPE.white marginTop={16} marginLeft={23} style={{ zIndex: 1 }} color={'#fff'}>*/}
+            {/*    {'我的流动性挖矿总收益：'}{' '}*/}
+            {/*  </TYPE.white>*/}
+            {/*  <TYPE.white marginLeft={23} fontSize={29} style={{ zIndex: 1 }} color={'#fff'}>*/}
+            {/*    {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR*/}
+            {/*  </TYPE.white>*/}
+            {/*  <Button style={{ zIndex: 1, width: 388, backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}>*/}
+            {/*    全部提取*/}
+            {/*  </Button>*/}
+            {/*</ClaimCard>*/}
           </AutoColumn>
         </StakeWrapper>
       </PageWrapper>

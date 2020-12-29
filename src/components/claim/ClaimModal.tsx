@@ -101,7 +101,7 @@ export default function ClaimModal() {
                 <CloseIcon onClick={toggleClaimModal} style={{ zIndex: 99 }} color="white" />
               </RowBetween>
               <TYPE.white fontWeight={700} fontSize={36}>
-                {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} UNI
+                {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR
               </TYPE.white>
             </CardSection>
             <Break />
@@ -128,7 +128,7 @@ export default function ClaimModal() {
               {userClaimData?.flags?.isUser && (
                 <RowBetween>
                   <TYPE.subHeader color="white">User</TYPE.subHeader>
-                  <TYPE.subHeader color="white">{USER_AMOUNT} UNI</TYPE.subHeader>
+                  <TYPE.subHeader color="white">{USER_AMOUNT} CIR</TYPE.subHeader>
                 </RowBetween>
               )}
             </CardSection>

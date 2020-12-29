@@ -91,7 +91,7 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
 const BAD_RECIPIENT_ADDRESSES: string[] = [
   '0x242916907FF50bd91ddde84aF1Cb086e90831074', // v2 factory
   '0xf164fC0Ec4E93095b804a4795bBe1e041497b92a', // v2 router 01
-  '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D' // v2 router 02
+  '0xecEAb8fAd5fD9b61b473007C749957cBB1A14D04' // v2 router 02
 ]
 
 /**
@@ -164,11 +164,11 @@ export function useDerivedSwapInfo(): {
   }
 
   if (!parsedAmount) {
-    inputError = inputError ?? t('enterAnAmount')
+    inputError = inputError ?? t('enter_amount')
   }
 
   if (!currencies[Field.INPUT] || !currencies[Field.OUTPUT]) {
-    inputError = inputError ?? t('selectToken')
+    inputError = inputError ?? t('select_token')
   }
 
   const formattedTo = isAddress(to)

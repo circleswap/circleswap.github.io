@@ -7,7 +7,6 @@ import { CIRTabs } from '../../components/NavigationTabs'
 import { AutoRow, RowBetween } from '../../components/Row'
 import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
-import { ReactComponent as LogoCircle } from '../../assets/images/logo-circle.svg'
 import { useUserClaimedReward, useUserReferee2N, useUserRefereeN, useUserUnclaimReward } from '../../hooks/useInvited'
 import { useActiveWeb3React } from '../../hooks'
 
@@ -108,14 +107,14 @@ export default function CIR() {
           </LightCard>
         </RowBetween>
 
-        <LightCard>
-          <RowBetween style={{ padding: '34px 168px' }}>
-            <LogoCircle />
-            <TYPE.largeHeader fontWeight={500} fontSize={35}>
-              0CIR
-            </TYPE.largeHeader>
-          </RowBetween>
-        </LightCard>
+        {/*<LightCard>*/}
+        {/*  <RowBetween style={{ padding: '34px 168px' }}>*/}
+        {/*    <LogoCircle />*/}
+        {/*    <TYPE.largeHeader fontWeight={500} fontSize={35}>*/}
+        {/*      0CIR*/}
+        {/*    </TYPE.largeHeader>*/}
+        {/*  </RowBetween>*/}
+        {/*</LightCard>*/}
 
         <TYPE.black fontWeight={500} fontSize={16}>
           {t('comingSoon')}:

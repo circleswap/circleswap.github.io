@@ -45,7 +45,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
     if (stakingContract && stakingInfo?.stakedAmount) {
       setAttempting(true)
       await stakingContract
-        .getReward({ gasLimit: 350000 })
+        .getReward({ gasLimit: 1000000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
             summary: `Claim accumulated CIR rewards`
@@ -64,7 +64,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
     error = t('connectWallet')
   }
   if (!stakingInfo?.stakedAmount) {
-    error = error ?? t('enterAnAmount')
+    error = error ?? t('enter_amount')
   }
 
   return (

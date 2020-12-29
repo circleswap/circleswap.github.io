@@ -87,7 +87,7 @@ export const STAKING_REWARDS_INFO: {
         new Token(ChainId.HT, '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', 18, 'HT', 'Wrapped HT'),
         new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'CircleSwap Governance Token')
       ],
-      stakingRewardAddress: '0x82194AFF9608b18551760434b2391b7e3C50deaB'
+      stakingRewardAddress: '0x43893DE0221ac154980EA39325CefA0f4A765d57'
     }
   ]
 }

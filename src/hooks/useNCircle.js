@@ -1,5 +1,5 @@
 // check if the user has been invited this address
-import { useSingleCallResult, useSingleContractMultipleData } from '../state/multicall/hooks'
+import { NEVER_RELOAD, useSingleCallResult, useSingleContractMultipleData } from '../state/multicall/hooks'
 import { useCircleContract } from './useContract'
 import { calculateGasMargin, getRouterContract } from '../utils'
 import { useActiveWeb3React } from './index'
@@ -46,7 +46,7 @@ export function useNCircleJoinAble() {
         setSwapMore(less)
         setSwappedAmount(
           new BigNumber(res.toString())
-            .dividedBy('100000000000000000')
+            .dividedBy('1000000000000000000')
             .toFixed(0)
             .toString()
         )
@@ -112,7 +112,7 @@ export function useAllCircleData() {
     circleIndexes.push([i])
   }
 
-  const circles = useSingleContractMultipleData(contact, 'tokenByIndex', circleIndexes)
+  const circles = useSingleContractMultipleData(contact, 'tokenByIndex', circleIndexes, NEVER_RELOAD)
 
   const nameIndexes = circles
     .map(item => {
@@ -121,7 +121,7 @@ export function useAllCircleData() {
     .filter(item => {
       return item[0]
     })
-  const circleNames = useSingleContractMultipleData(contact, 'tokenURI', nameIndexes)
+  const circleNames = useSingleContractMultipleData(contact, 'tokenURI', nameIndexes, NEVER_RELOAD)
   return circleNames
     .map(item => {
       return item && item.result?.[0].toString()

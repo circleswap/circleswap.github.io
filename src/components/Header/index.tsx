@@ -191,7 +191,7 @@ const Title = styled.a`
     cursor: pointer;
   }
 `
-
+//
 // const LanButton = styled(Button)`
 //   height: 35px;
 //   padding: 0 2rem;
@@ -268,7 +268,8 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.RINKEBY]: 'Rinkeby',
   [ChainId.ROPSTEN]: 'Ropsten',
   [ChainId.GÖRLI]: 'Görli',
-  [ChainId.KOVAN]: 'Kovan'
+  [ChainId.KOVAN]: 'Kovan',
+  [ChainId.HT]: 'hecochain'
 }
 
 export default function Header() {
@@ -393,8 +394,9 @@ export default function Header() {
         </HeaderElement>
         <HeaderElementWrap>
           <Settings />
-          {/*<Menu />*/}
-          {/*<LanButton onClick={()=>{}}>中文</LanButton>*/}
+          {/*<LanButton onClick={()=>{*/}
+
+          {/*}}>中文</LanButton>*/}
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>

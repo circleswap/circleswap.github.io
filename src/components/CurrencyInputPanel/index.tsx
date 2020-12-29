@@ -196,7 +196,7 @@ export default function CurrencyInputPanel({
                         ? currency.symbol.slice(0, 4) +
                           '...' +
                           currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
-                        : currency?.symbol) || t('selectToken')}
+                        : currency?.symbol) || t('select_token')}
                     </StyledTokenName>
                   )}
                   {!disableCurrencySelect && <StyledDropDown selected={!!currency} />}
@@ -216,7 +216,7 @@ export default function CurrencyInputPanel({
               style={{ display: 'inline', cursor: 'pointer' }}
             >
               {!hideBalance && !!currency && selectedCurrencyBalance
-                ? (customBalanceText ?? 'Balance: ') + selectedCurrencyBalance?.toSignificant(6)
+                ? (customBalanceText ?? t('balance')) + selectedCurrencyBalance?.toSignificant(6)
                 : ' -'}
               {account && currency && showMaxButton && label !== 'To' && (
                 <StyledBalanceMax onClick={onMax}>{t('max')}</StyledBalanceMax>
