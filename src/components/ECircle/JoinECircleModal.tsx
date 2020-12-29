@@ -106,7 +106,7 @@ export default function JoinECircleModal({
   }
 
   return (
-    <Modal isOpen={false} onDismiss={wrappedOnDismiss} maxHeight={90}>
+    <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss} maxHeight={90}>
       <Confetti start={Boolean(isOpen && claimConfirmed && attempting)} />
       {!attempting && (
         <ContentWrapper gap="lg">
