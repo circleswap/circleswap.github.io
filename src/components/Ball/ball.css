@@ -19,9 +19,8 @@ div,span {
     width: 400px;
     height: 400px;
     margin: 100px auto 0;
-    /*background: radial-gradient(circle at 300px 200px, #AFDBAD 0%, #AFDBAD 60%)*/
-    /*center;*/
-    /*background-image: url("../../assets/images/ball.svg");*/
+    background: radial-gradient(circle at 300px 200px, #BDC3C7 0%, #2C3E50 100%) center;
+    /*background-image: url("../../assets/images/logo-circle.svg");*/
     background-repeat: no-repeat;
     box-shadow: inset 20px -10px 100px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
@@ -31,7 +30,7 @@ div,span {
     position: absolute;
     top: 0;
     left: 0;
-    color: #fff;
+    color: #30D683;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -39,5 +38,5 @@ div,span {
 }
 
 #div1 span:hover {
-    color: #30D683;
+    color: #F3841E;
 }
