@@ -11,7 +11,7 @@ export const Balls = ({ tabs }) => {
     let sinA, cosA, sinB, cosB, sinC, cosC
     const degToRad = Math.PI / 180 //degreeToRadian
     const aList = []
-    const radius = 260 //半径
+    const radius = 200 //半径
     const bDistract = true
     function getPosition() {
       const iLeft = oDiv.offsetWidth / 2
@@ -137,11 +137,11 @@ export const Balls = ({ tabs }) => {
     setPosition()
 
     oDiv.onmouseover = function() {
-      bActive = true
+      bActive = false
     }
 
     oDiv.onmouseout = function() {
-      bActive = false
+      bActive = true
     }
 
     oDiv.onmousemove = function(ev) {
@@ -156,11 +156,14 @@ export const Balls = ({ tabs }) => {
   }
 
   useEffect(() => {
-    start()
-  })
+    if(list.length !== 0){
+      start()
+    }
+  },[list])
 
   useEffect(() => {
-    if (list.length === 0) {
+    if (tabs.length !== 0 && list.length === 0) {
+      console.log('start---->', tabs)
       setList(tabs)
     }
   }, [tabs, list])
