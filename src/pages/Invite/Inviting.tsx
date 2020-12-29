@@ -51,7 +51,11 @@ export default function Inviting({
           {ZERO_ADDRESS !== invited && invited ? (
             <AppBody>
               <ColumnCenter style={{ width: 463 }}>
-                <StyledArrowLeft onClick={()=>{history.push('/invite')}}/>
+                <StyledArrowLeft
+                  onClick={() => {
+                    history.push('/invite')
+                  }}
+                />
                 <TYPE.largeHeader>My NCircle</TYPE.largeHeader>
               </ColumnCenter>
               <TYPE.main marginTop="44px" color="#888888">

@@ -95,11 +95,11 @@ export default function InviteModal() {
           <ModalUpper>
             <CardSection gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={500}>Claim UNI</TYPE.white>
+                <TYPE.white fontWeight={500}>Claim CIR</TYPE.white>
                 <CloseIcon onClick={toggleClaimModal} style={{ zIndex: 99 }} color="white" />
               </RowBetween>
               <TYPE.white fontWeight={700} fontSize={36}>
-                {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} UNI
+                {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR
               </TYPE.white>
             </CardSection>
             <Break />
@@ -107,7 +107,7 @@ export default function InviteModal() {
               {userClaimData?.flags?.isSOCKS && (
                 <RowBetween>
                   <TYPE.subHeader color="white">SOCKS</TYPE.subHeader>
-                  <TYPE.subHeader color="white">{SOCKS_AMOUNT} UNI</TYPE.subHeader>
+                  <TYPE.subHeader color="white">{SOCKS_AMOUNT} CIR</TYPE.subHeader>
                 </RowBetween>
               )}
               {userClaimData?.flags?.isLP &&
@@ -119,14 +119,14 @@ export default function InviteModal() {
                       {unclaimedAmount
                         .subtract(new TokenAmount(unclaimedAmount.token, nonLPAmount))
                         .toFixed(0, { groupSeparator: ',' })}{' '}
-                      UNI
+                      CIR
                     </TYPE.subHeader>
                   </RowBetween>
                 )}
               {userClaimData?.flags?.isUser && (
                 <RowBetween>
                   <TYPE.subHeader color="white">User</TYPE.subHeader>
-                  <TYPE.subHeader color="white">{USER_AMOUNT} UNI</TYPE.subHeader>
+                  <TYPE.subHeader color="white">{USER_AMOUNT} CIR</TYPE.subHeader>
                 </RowBetween>
               )}
             </CardSection>
@@ -140,7 +140,7 @@ export default function InviteModal() {
               mt="1rem"
               onClick={onClaim}
             >
-              Claim UNI
+              Claim CIR
             </ButtonPrimary>
           </AutoColumn>
         </ContentWrapper>
@@ -165,7 +165,7 @@ export default function InviteModal() {
               </TYPE.largeHeader>
               {!claimConfirmed && (
                 <Text fontSize={36} color={'#30D683'} fontWeight={800}>
-                  {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} UNI
+                  {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR
                 </Text>
               )}
             </AutoColumn>
