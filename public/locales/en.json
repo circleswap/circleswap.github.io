@@ -65,7 +65,7 @@
   "enterLabelCont": "Enter a {{ label }} value to continue.",
   "youAreRemoving": "You are removing between",
   "youWillRemove": "You will remove",
-  "createExchange": "Create Exchange",
+  "createExchange": "Create ECircle",
   "invalidTokenAddress": "Not a valid token address",
   "exchangeExists": "{{ label }} Exchange already exists!",
   "invalidSymbol": "Invalid symbol",

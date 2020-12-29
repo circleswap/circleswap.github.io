@@ -57,7 +57,7 @@
   "enterLabelCont": "输入 {{ label }} 值并继续。",
   "youAreRemoving": "你正在移除",
   "youWillRemove": "你将移除",
-  "createExchange": "创建交易所",
+  "createExchange": "创建ECircle",
   "invalidTokenAddress": "通证地址无效",
   "exchangeExists": "{{ label }} 交易所已存在！",
   "invalidSymbol": "通证符号无效",
