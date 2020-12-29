@@ -8,7 +8,7 @@ import { TYPE, ExternalLink, CloseIcon, CustomLightSpinner, UniTokenAnimated } f
 import { ButtonPrimary, ButtonSecondary } from '../Button'
 import { useInviteCallback } from '../../state/invite/hooks'
 import { useUserInvited } from '../../hooks/useInvited'
-import tokenLogo from '../../assets/images/token-logo.png'
+import tokenLogo from '../../assets/images/logo-circle.svg'
 import Circle from '../../assets/images/blue-loader.svg'
 import { Text } from 'rebass'
 import AddressInputPanel from '../AddressInputPanel'
@@ -16,7 +16,6 @@ import useENS from '../../hooks/useENS'
 import { useActiveWeb3React } from '../../hooks'
 import { isAddress } from 'ethers/lib/utils'
 import Confetti from '../Confetti'
-import { CardNoise, CardBGImageSmaller } from '../earn/styled'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { getEtherscanLink, shortenAddress } from '../../utils'
 import { ZERO_ADDRESS } from '../../constants'
@@ -146,8 +145,6 @@ export default function AddressInviteModal({
       )}
       {(attempting || claimConfirmed) && (
         <ConfirmOrLoadingWrapper activeBG={true}>
-          <CardNoise />
-          <CardBGImageSmaller desaturate />
           <RowBetween>
             <div />
             <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="black" />
@@ -181,7 +178,7 @@ export default function AddressInviteModal({
                   <span role="img" aria-label="party-hat">
                     🎉{' '}
                   </span>
-                  Welcome to team Unicorn :){' '}
+                  Congratulations:){' '}
                   <span role="img" aria-label="party-hat">
                     🎉
                   </span>
