@@ -86,7 +86,7 @@ const Container = styled.div<{ hideInput: boolean }>`
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
-  font-size: ${({ active }) => (active ? '20px' : '14px')};
+  font-size: ${({ active }) => (active ? '14px' : '14px')};
   ${({ active }) => (active ? '  margin: 0 0.25rem 0 0.75rem;' : '  margin: 0 0.25rem 0 0.25rem;')}
 `
 
@@ -168,7 +168,7 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <TYPE.body color={theme.text2} fontWeight={500} fontSize={24}>
+              <TYPE.body color={theme.text2} fontWeight={500} fontSize={20}>
                 {label}
               </TYPE.body>
               <CurrencySelect

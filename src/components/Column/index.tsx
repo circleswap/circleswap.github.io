@@ -18,8 +18,8 @@ export const AutoColumn = styled.div<{
   grid-auto-rows: auto;
   grid-row-gap: ${({ gap }) => (gap === 'sm' && '8px') || (gap === 'md' && '12px') || (gap === 'lg' && '24px') || gap};
   justify-items: ${({ justify }) => justify && justify};
-  
-   ${({ theme }) => theme.mediaWidth.upToSmall`
+
+  ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 100%;
   `};
 `

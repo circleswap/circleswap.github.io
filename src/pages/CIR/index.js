@@ -31,9 +31,11 @@ const ComingSoon = styled(LightCard)`
 `
 
 const Frame = styled(RowBetween)`
-  gap: 20px;
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-    flex-direction: column;
+  gap: 24px
+    ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    display: grid!important;
+    grid-auto-rows: auto;
+    grid-row-gap: 24px;
   `};
 `
 
@@ -120,15 +122,6 @@ export default function CIR() {
             </AutoColumn>
           </LightCard>
         </Frame>
-
-        {/*<LightCard>*/}
-        {/*  <RowBetween style={{ padding: '34px 168px' }}>*/}
-        {/*    <LogoCircle />*/}
-        {/*    <TYPE.largeHeader fontWeight={500} fontSize={35}>*/}
-        {/*      0CIR*/}
-        {/*    </TYPE.largeHeader>*/}
-        {/*  </RowBetween>*/}
-        {/*</LightCard>*/}
 
         <TYPE.black fontWeight={500} fontSize={16}>
           {t('comingSoon')}:

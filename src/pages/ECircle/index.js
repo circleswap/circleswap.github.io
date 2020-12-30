@@ -23,8 +23,8 @@ const PageWrapper = styled(AutoColumn)`
   background-color: ${({ theme }) => theme.bg1};
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 98%;
-    padding: 0
+    width: 100%;
+    padding: 0important;
   `};
 `
 
@@ -34,7 +34,7 @@ const TipFrame = styled(AutoColumn)`
   padding-bottom: 24px;
   background-color: ${({ theme }) => theme.bg1};
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 80%;
+    width: 90%;
   `};
 `
 
@@ -70,7 +70,7 @@ export default function ECircle({ history }) {
 
           <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
             <AlertTriangle color={able.swapMore ? '#30D683' : '#FF7238'} />
-            <TYPE.main width={isMobile ? 200 : 400} fontSize={14} marginLeft={10}>
+            <TYPE.main width={isMobile ? 250 : 400} fontSize={14} marginLeft={10}>
               {t('tip3')}
             </TYPE.main>
           </AutoRow>
