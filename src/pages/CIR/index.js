@@ -9,6 +9,8 @@ import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
 import { useUserClaimedReward, useUserReferee2N, useUserRefereeN, useUserUnclaimReward } from '../../hooks/useInvited'
 import { useActiveWeb3React } from '../../hooks'
+import { useTotalUniEarned } from '../../state/stake/hooks'
+import BigNumber from 'bignumber.js'
 
 export const Container = styled.div``
 
@@ -40,7 +42,7 @@ export default function CIR() {
   const { t } = useTranslation()
   const refereeN = useUserRefereeN(account)
   const referee2N = useUserReferee2N(account)
-  const unclaimReward = useUserUnclaimReward(account)
+  const unclaimedAmount = useTotalUniEarned()
   const claimedReward = useUserClaimedReward(account)
 
   return (
@@ -98,16 +100,21 @@ export default function CIR() {
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('Unclaimed')}:
                 </TYPE.black>
-                <TYPE.black style={{ padding: 0 }} fontWeight={500} fontSize={16}>
-                  {unclaimReward ? unclaimReward.toString() : '**'}
+                <TYPE.black style={{ padding: 0 }} marginLeft={16} fontWeight={500} fontSize={16}>
+                  {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '**')} CIR
                 </TYPE.black>
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('claimed')}:
                 </TYPE.black>
-                <TYPE.black style={{ padding: 0 }} fontWeight={500} fontSize={16}>
-                  {claimedReward ? claimedReward.toString() : '**'}
+                <TYPE.black style={{ padding: 0 }} marginLeft={16} fontWeight={500} fontSize={16}>
+                  {claimedReward
+                    ? new BigNumber(claimedReward.toString())
+                        .dividedBy(1000000000000000000)
+                        .toFixed(0)
+                        .toString()
+                    : '**'}
                 </TYPE.black>
               </AutoRow>
             </AutoColumn>
