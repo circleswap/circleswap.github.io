@@ -214,7 +214,7 @@
   "enterRecipient": "输入接收地址",
   "stakeMyLPT": "质押我的LP Tokens",
   "enterNameECircle": "请输入您要创建的ECircle名字",
-  "payToCreateECircle": "您需要支付100CIR来创建此ECircle。",
+  "payToCreateECircle": "您需要支付 {{gas}} CIR来创建此ECircle。",
   "createECirclePlaceholder": "支持汉字、字母、数字，最多6位字符",
   "walletAddress": "钱包地址",
   "Recipient": "接收地址",
