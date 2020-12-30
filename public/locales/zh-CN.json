@@ -169,7 +169,7 @@
   "theName": "请输入您要创建的ECircle名字：",
   "contains": "支持中文、英文、数字，最多6位字符",
   "selectSize": "请选择您要创建的ECircle大小：",
-  "pay": "您需要支付100CIR来创建此ECircle。",
+  "pay": "您需要支付 {{gas}} CIR来创建此ECircle。",
   "cancel": "取消",
   "confirm": "确认",
   "createdSuccessfully": "创建成功",
