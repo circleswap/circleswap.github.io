@@ -68,6 +68,9 @@ const PageWrapper = styled(AutoColumn)`
   justify-content: center;
   border-radius: 14px;
   background-color: ${({ theme }) => theme.bg1};
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+     width: 100%;
+  `};
 `
 
 const NumberButton = styled(ButtonBlue)`

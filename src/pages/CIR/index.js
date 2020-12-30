@@ -28,6 +28,13 @@ const ComingSoon = styled(LightCard)`
   background-color: ${({ theme }) => theme.bg3};
 `
 
+const Frame = styled(RowBetween)`
+  gap: 20px;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    flex-direction: column;
+  `};
+`
+
 export default function CIR() {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
@@ -42,8 +49,8 @@ export default function CIR() {
         <LightCard style={{ padding: '0.5rem 2rem' }}>
           <CIRTabs />
         </LightCard>
-        <RowBetween gap="md" style={{ display: 'flex' }}>
-          <LightCard style={{ padding: 0, marginRight: 15 }}>
+        <Frame gap="md" style={{ display: 'flex' }}>
+          <LightCard style={{ padding: 0 }}>
             <BodyHeader>
               {t('airdropWeight')}
               <QuestionHelper text={t('ncirclereward')} />
@@ -75,7 +82,7 @@ export default function CIR() {
               </AutoRow>
             </AutoColumn>
           </LightCard>
-          <LightCard style={{ padding: 0, marginLeft: 15 }}>
+          <LightCard style={{ padding: 0 }}>
             <BodyHeader>
               {t('liquidityMiningRewards')}
               <QuestionHelper text={t('ecirclereward')} />
@@ -91,7 +98,7 @@ export default function CIR() {
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('Unclaimed')}:
                 </TYPE.black>
-                <TYPE.black style={{ padding: 0, marginLeft: 15 }} fontWeight={500} fontSize={16}>
+                <TYPE.black style={{ padding: 0 }} fontWeight={500} fontSize={16}>
                   {unclaimReward ? unclaimReward.toString() : '**'}
                 </TYPE.black>
               </AutoRow>
@@ -99,13 +106,13 @@ export default function CIR() {
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('claimed')}:
                 </TYPE.black>
-                <TYPE.black style={{ padding: 0, marginLeft: 15 }} fontWeight={500} fontSize={16}>
+                <TYPE.black style={{ padding: 0 }} fontWeight={500} fontSize={16}>
                   {claimedReward ? claimedReward.toString() : '**'}
                 </TYPE.black>
               </AutoRow>
             </AutoColumn>
           </LightCard>
-        </RowBetween>
+        </Frame>
 
         {/*<LightCard>*/}
         {/*  <RowBetween style={{ padding: '34px 168px' }}>*/}
@@ -119,8 +126,8 @@ export default function CIR() {
         <TYPE.black fontWeight={500} fontSize={16}>
           {t('comingSoon')}:
         </TYPE.black>
-        <RowBetween>
-          <ComingSoon style={{ marginRight: 15 }}>
+        <Frame>
+          <ComingSoon>
             <AutoColumn gap="lg">
               <TYPE.coming fontWeight={500} fontSize={16}>
                 {t('extraSwapRewards')}：**
@@ -133,12 +140,12 @@ export default function CIR() {
               </TYPE.coming>
             </AutoColumn>
           </ComingSoon>
-          <ComingSoon style={{ marginLeft: 15, height: '100%' }}>
+          <ComingSoon style={{ height: '100%' }}>
             <TYPE.coming fontWeight={500} fontSize={16}>
               UBI 1.0：**
             </TYPE.coming>
           </ComingSoon>
-        </RowBetween>
+        </Frame>
       </AutoColumn>
     </Container>
   )

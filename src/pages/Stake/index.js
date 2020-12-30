@@ -24,6 +24,9 @@ const PageWrapper = styled(AutoColumn)`
   flex-direction: column;
   overflow: auto;
   width: 538px;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    width: fit-content;
+  `};
 `
 
 const StakeWrapper = styled.div`
@@ -38,7 +41,7 @@ const StakeWrapper = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.bg1};
   ${({ theme }) => theme.mediaWidth.upToMedium`
-     width: 100%;
+     width: fit-content;
   `};
 `
 
@@ -54,7 +57,7 @@ const StakeCard = styled(AutoColumn)`
   position: relative;
   background-color: ${({ theme }) => theme.bg3};
   ${({ theme }) => theme.mediaWidth.upToMedium`
-     width: 100%;
+     width: 320px;
   `};
 `
 
@@ -453,7 +456,7 @@ export default function Stake() {
               </TYPE.white>
               <Button
                 onClick={onWithdraw}
-                style={{ zIndex: 1, width: 388, backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}
+                style={{ zIndex: 1, width: '80%', backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}
               >
                 {t('claim_all')}
               </Button>

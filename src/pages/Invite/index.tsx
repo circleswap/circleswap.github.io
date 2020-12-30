@@ -27,7 +27,7 @@ const CircleCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 60px;
+  margin: 20px 60px;
   height: 300px;
   border-radius: 20px;
   cursor: pointer;
@@ -75,7 +75,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
   return (
     <>
       <PageWrapper>
-        <AutoRow style={{ margin: 'auto' }}>
+        <AutoRow style={{ margin: 'auto', justifyContent: 'center' }}>
           <NCircle
             onClick={() => {
               if (ZERO_ADDRESS === invited) {

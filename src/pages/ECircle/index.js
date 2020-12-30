@@ -20,6 +20,11 @@ const PageWrapper = styled(AutoColumn)`
   border-radius: 14px;
   position: relative;
   background-color: ${({ theme }) => theme.bg1};
+
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 320px;
+    padding: 0
+  `};
 `
 
 const TipFrame = styled(AutoColumn)`

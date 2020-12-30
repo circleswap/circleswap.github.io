@@ -16,8 +16,8 @@ div,span {
 
 #div1 {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 320px;
+    height: 320px;
     margin: 100px auto 0;
     background: radial-gradient(circle at 300px 200px, #BDC3C7 0%, #2C3E50 100%) center;
     /*background-image: url("../../assets/images/logo-circle.svg");*/
