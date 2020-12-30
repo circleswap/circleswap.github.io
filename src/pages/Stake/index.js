@@ -316,7 +316,7 @@ export default function Stake() {
             <StakeCard gap="lg">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
-                  HT-HUSd
+                  HT-HUSD
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%' }} gap="md">
