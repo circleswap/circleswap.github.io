@@ -108,7 +108,7 @@ export default function AddressInviteModal({
       {!attempting && (
         <ContentWrapper gap="lg">
           <TYPE.subHeader fontSize={19} style={{ marginTop: 30 }} textAlign="center" fontWeight={600}>
-            Enter address
+            {t('enterInviterAddress')}
           </TYPE.subHeader>
           <AutoColumn gap="md" style={{ padding: '1rem', paddingTop: '0' }} justify="flex-start">
             <TYPE.main color={'#30D683'} fontWeight={500}>
@@ -116,10 +116,10 @@ export default function AddressInviteModal({
             </TYPE.main>
             <AddressInputPanel value={typed} onChange={handleRecipientType} />
             {parsedAddress && ZERO_ADDRESS !== myInvited && (
-              <TYPE.error error={true}>Your address has already been invited</TYPE.error>
+              <TYPE.error error={true}>{t('has_already_been_invited')}</TYPE.error>
             )}
             {((parsedAddress && ZERO_ADDRESS === invited) || typed === account) && (
-              <TYPE.error error={true}>Invalid inviter address</TYPE.error>
+              <TYPE.error error={true}>{t('error_address')}</TYPE.error>
             )}
             <RowBetween>
               <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/">

@@ -235,5 +235,7 @@
   "tip3": "交易额不低于 100 HT等值金额；",
   "claim_all": "全部提取",
   "claim": "赎回",
+  "has_already_been_invited": "您已加入NCircle",
+  "error_address": "地址有误"
 
 }

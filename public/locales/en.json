@@ -242,6 +242,8 @@
   "tip2": "1. Create NCircle first;\n",
   "tip3": "2. The transaction amount is no less than 100HT equivalent amount;",
   "claim_all": "Claim All",
-  "claim": "Claim"
+  "claim": "Claim",
+  "has_already_been_invited": "Your address has already been invited",
+  "error_address": "Invalid inviter address"
 
 }
