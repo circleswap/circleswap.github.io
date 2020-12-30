@@ -244,6 +244,7 @@
   "claim_all": "Claim All",
   "claim": "Claim",
   "has_already_been_invited": "Your address has already been invited",
-  "error_address": "Invalid inviter address"
-
+  "error_address": "Invalid inviter address",
+  "join_later": "Join Later",
+  "viewOnECO": "View On Eco Explorer"
 }

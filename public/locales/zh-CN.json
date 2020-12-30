@@ -236,6 +236,7 @@
   "claim_all": "全部提取",
   "claim": "赎回",
   "has_already_been_invited": "您已加入NCircle",
-  "error_address": "地址有误"
-
+  "error_address": "地址有误",
+  "join_later": "稍后加入",
+  "viewOnECO": "在火币浏览器中查看"
 }

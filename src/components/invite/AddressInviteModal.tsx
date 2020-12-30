@@ -123,7 +123,7 @@ export default function AddressInviteModal({
             )}
             <RowBetween>
               <ResponsiveButtonSecondary as={Link} padding="8px 16px" to="/">
-                Join later
+                {t('join_later')}
               </ResponsiveButtonSecondary>
               <ButtonPrimary
                 disabled={
@@ -137,7 +137,7 @@ export default function AddressInviteModal({
                 borderRadius="100px"
                 onClick={onInvite}
               >
-                Determine
+                {t('joinECircle')}
               </ButtonPrimary>
             </RowBetween>
           </AutoColumn>
