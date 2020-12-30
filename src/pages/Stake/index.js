@@ -228,7 +228,7 @@ export default function Stake() {
             <StakeCard gap="lg">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
-                  {t('HT-ETH')}
+                  HT-ETH
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%' }} gap="md">
@@ -272,7 +272,7 @@ export default function Stake() {
             <StakeCard gap="lg">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
-                  {t('HT-BTC')}
+                  HT-BTC
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%' }} gap="md">
@@ -316,7 +316,7 @@ export default function Stake() {
             <StakeCard gap="lg">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
-                  {t('HT-HUS')}
+                  HT-HUSd
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%' }} gap="md">
@@ -360,7 +360,7 @@ export default function Stake() {
             <StakeCard gap="lg">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
-                  {t('CIR-HUSD')}
+                  CIR-HUSD
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%' }} gap="md">
@@ -404,7 +404,7 @@ export default function Stake() {
             <StakeCard gap="lg">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
-                  {t('HT-CIR')}
+                  HT-CIR
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%' }} gap="md">
