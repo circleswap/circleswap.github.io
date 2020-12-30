@@ -333,6 +333,7 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{stakingInfo2?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
+
               <RowBetween gap="19px" style={{ width: '100%' }}>
                 <Button
                   disabled={!stakingInfo2}

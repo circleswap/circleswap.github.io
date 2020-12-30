@@ -10,6 +10,7 @@ import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
 import { useAllCircleData, useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
 import BigNumber from 'bignumber.js'
 import { Balls } from '../../components/Ball/inidex'
+import { isMobile } from 'react-device-detect'
 
 const PageWrapper = styled(AutoColumn)`
   width: 800px;
@@ -22,7 +23,7 @@ const PageWrapper = styled(AutoColumn)`
   background-color: ${({ theme }) => theme.bg1};
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 320px;
+    width: 98%;
     padding: 0
   `};
 `
@@ -32,6 +33,9 @@ const TipFrame = styled(AutoColumn)`
   padding-top: 19px;
   padding-bottom: 24px;
   background-color: ${({ theme }) => theme.bg1};
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 80%;
+  `};
 `
 
 export default function ECircle({ history }) {
@@ -66,7 +70,7 @@ export default function ECircle({ history }) {
 
           <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
             <AlertTriangle color={able.swapMore ? '#30D683' : '#FF7238'} />
-            <TYPE.main width={420} fontSize={14} marginLeft={10}>
+            <TYPE.main width={isMobile ? 200 : 400} fontSize={14} marginLeft={10}>
               {t('tip3')}
             </TYPE.main>
           </AutoRow>
@@ -130,7 +134,7 @@ export default function ECircle({ history }) {
         {/*  </TYPE.main>*/}
         {/*)}*/}
 
-        <TYPE.main fontSize={13} marginTop={24}>
+        <TYPE.main width={isMobile ? 280 : ''} marginBottom={24} fontSize={13} marginTop={24}>
           {t('note')}
         </TYPE.main>
       </AutoColumn>
