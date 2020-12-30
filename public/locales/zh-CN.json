@@ -125,7 +125,7 @@
   "supplyToReview": "如果您对价格满意，请点击确认进行审核。",
   "input": "输入",
   "invalidPair": "无效交易对",
-  "insufficientBalance": "{{symbol}}余额不足",
+  "insufficient_balance": "{{symbol}}余额不足",
   "pricesAndShare": "价格与所占比例",
   "shareOfPool": "所占流动性池比例",
   "supply": "提供",

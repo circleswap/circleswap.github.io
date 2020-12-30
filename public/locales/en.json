@@ -137,7 +137,7 @@
   "supplyToReview": "Once you are happy with the rate click supply to review.",
   "input": "Input",
   "invalidPair": "Invalid pair",
-  "insufficientBalance": "Insufficient {{symbol}} balance",
+  "insufficient_balance": "Insufficient {{symbol}} balance",
   "pricesAndShare": "prices and pool share",
   "shareOfPool": "share of pool",
   "supply": "Supply",
