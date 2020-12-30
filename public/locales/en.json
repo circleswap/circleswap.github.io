@@ -96,7 +96,7 @@
   "swapAnyway": "Swap Anyway",
   "your_transaction": "Your transaction will revert if there is a large,unfavorable price movement before it is confirmed.",
   "the_difference_between": "The difference between the market price and estimated price due to trade size.",
-  "a_portion_of_each": "A portion of each trade(0.30%) goes to liquidity providers as a protocol incentive.",
+  "a_portion_of_each": "CircleSwap platform transaction fee is 0.35%, of which 0.2% will be rewarded to liquidity providers, and the remaining 0.15% will be rewarded to all users who create and join ECircle in the UBI1.0 stage.",
   "select_token": "Select a token",
   "searchOrPaste": "Search name or paste address",
   "tokenName": "Token Name",
