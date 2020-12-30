@@ -28,6 +28,7 @@ const ProgressWrapper = styled.div`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.bg3};
   position: relative;
+  overflow: hidden;
 `
 
 const Progress = styled.div<{ status: 'for' | 'against'; percentageString?: string }>`
