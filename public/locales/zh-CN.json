@@ -125,7 +125,7 @@
   "supplyToReview": "如果您对价格满意，请点击确认进行审核。",
   "input": "输入",
   "invalidPair": "无效交易对",
-  "insufficientBalance": "XXX余额不足",
+  "insufficientBalance": "{{symbol}}余额不足",
   "pricesAndShare": "价格与所占比例",
   "shareOfPool": "所占流动性池比例",
   "supply": "提供",
@@ -234,5 +234,6 @@
   "tip2": "1. 先创建NCircle；",
   "tip3": "交易额不低于 100 HT等值金额；",
   "claim_all": "全部提取",
-  "claim": "赎回"
+  "claim": "赎回",
+
 }
