@@ -115,9 +115,10 @@ export default function AddressInviteModal({
               Please enter the inviter address
             </TYPE.main>
             <AddressInputPanel value={typed} onChange={handleRecipientType} />
-            {parsedAddress && ZERO_ADDRESS !== myInvited && (
+            {parsedAddress && myInvited && ZERO_ADDRESS !== myInvited && (
               <TYPE.error error={true}>{t('has_already_been_invited')}</TYPE.error>
             )}
+            {parsedAddress && !myInvited && <CustomLightSpinner src={Circle} alt="loader" size={'20px'} />}
             {((parsedAddress && ZERO_ADDRESS === invited) || typed === account) && (
               <TYPE.error error={true}>{t('error_address')}</TYPE.error>
             )}
