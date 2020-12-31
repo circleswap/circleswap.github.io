@@ -12,6 +12,7 @@ import AppBody from '../AppBody'
 import { ReactComponent as NcircleEmpty } from '../../assets/images/ncircle_empty.svg'
 import Copy from '../../components/AccountDetails/Copy'
 import { ArrowLeft } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 
 const InputPanel = styled.div`
   width: 100%;
@@ -43,6 +44,7 @@ export default function Inviting({
   history
 }: RouteComponentProps<{ address?: string }>) {
   const { account } = useActiveWeb3React()
+  const { t } = useTranslation()
   const invited = useUserInvited(account)
   return (
     <>
@@ -56,7 +58,7 @@ export default function Inviting({
                     history.push('/invite')
                   }}
                 />
-                <TYPE.largeHeader>My NCircle</TYPE.largeHeader>
+                <TYPE.largeHeader>{t('myNCircle')}</TYPE.largeHeader>
               </ColumnCenter>
               <TYPE.main marginTop="44px" color="#888888">
                 My invitation link

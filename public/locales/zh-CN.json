@@ -242,5 +242,5 @@
   "viewOnECO": "在火币浏览器中查看",
   "insufficientLiquidity": "流动性不足",
   "input_address_ncircle_tip": "请确保输入的邀请者地址已经创建NCircle。",
-  "connect_to_view_liquidity.": "连接钱包查看流动性"
+  "connect_to_view_liquidity.": "连接钱包查看你的流动性"
 }

@@ -12,29 +12,13 @@ import BigNumber from 'bignumber.js'
 import { Balls } from '../../components/Ball/inidex'
 import { isMobile } from 'react-device-detect'
 
-const PageWrapper = styled(AutoColumn)`
-  width: 800px;
-  padding: 38px 169px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 14px;
-  position: relative;
-  background-color: ${({ theme }) => theme.bg1};
-
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 100%;
-    padding: 0important;
-  `};
-`
-
 const TipFrame = styled(AutoColumn)`
   border-radius: 14px;
-  padding-top: 19px;
-  padding-bottom: 24px;
+  padding: 50px;
   background-color: ${({ theme }) => theme.bg1};
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 90%;
+    width: 100%;
+    padding: 24px
   `};
 `
 
@@ -48,7 +32,7 @@ export default function ECircle({ history }) {
   //const allCircles = useAllCircleData()
 
   return (
-    <PageWrapper>
+    <>
       <CloseIcon
         onClick={() => {
           history.push('/invite')
@@ -145,6 +129,6 @@ export default function ECircle({ history }) {
           setShowJoinECircleModal(false)
         }}
       />
-    </PageWrapper>
+    </>
   )
 }

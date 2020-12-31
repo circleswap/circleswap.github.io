@@ -16,14 +16,22 @@ div,span {
 
 #div1 {
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: 600px;
+    height: 600px;
     margin: 100px auto 0;
     background: radial-gradient(circle at 300px 200px, #BDC3C7 0%, #2C3E50 100%) center;
     /*background-image: url("../../assets/images/logo-circle.svg");*/
     background-repeat: no-repeat;
     box-shadow: inset 20px -10px 100px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
+
+}
+
+@media (max-width: 750px) {
+    #div1 {
+        width: 320px;
+        height: 320px;
+    }
 }
 
 #div1 span {
