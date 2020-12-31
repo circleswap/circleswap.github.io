@@ -111,7 +111,7 @@ export default function AddressInviteModal({
             {t('enterInviterAddress')}
           </TYPE.subHeader>
           <AutoColumn gap="md" style={{ padding: '1rem', paddingTop: '0' }} justify="flex-start">
-            <TYPE.main fontSize={16} color={'#30D683'} fontWeight={500}>
+            <TYPE.main fontSize={12} color={'#30D683'} fontWeight={500}>
               {t('input_address_ncircle_tip')}
             </TYPE.main>
             <AddressInputPanel value={typed} onChange={handleRecipientType} />
