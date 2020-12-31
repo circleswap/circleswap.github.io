@@ -218,7 +218,7 @@ const StyledNavLink = styled(NavLink).attrs({
   color: ${({ theme }) => theme.text2};
   font-size: 1rem;
   width: fit-content;
-  margin: 0 12px;
+  margin: 0 0.5rem;
   font-weight: 500;
 
   &.${activeClassName} {
