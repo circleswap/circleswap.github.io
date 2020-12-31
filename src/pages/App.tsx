@@ -119,11 +119,11 @@ export default function App() {
               <Route exact path="/add" component={AddLiquidity} />
               <Route exact strict path="/inviting" component={Inviting} />
               <Route exact path="/cir" component={CIR} />
+              <Route exact path="/ecircle/create" component={CreateECircle} />
               <Route exact path="/ecircle/:address" component={ECircle} />
               <Route exact strict path="/ecircle" component={ECircle} />
               <Route exact path="/myecircle" component={MyECircle} />
               <Route exact path="/stake" component={Stake} />
-              <Route exact path="/ecircle/create" component={CreateECircle} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
               <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
               <Route exact path="/create" component={AddLiquidity} />
