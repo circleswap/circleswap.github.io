@@ -420,7 +420,7 @@ export default function AddLiquidity({
         {!account ? (
           <ButtonLight onClick={toggleWalletModal}>{t('connectWallet')}</ButtonLight>
         ) : (
-          <AutoColumn gap={'md'} style={{ margin: '38px auto', width: 625 }}>
+          <AutoColumn gap={'md'} style={{ margin: '38px auto'}}>
             {(approvalA === ApprovalState.NOT_APPROVED ||
               approvalA === ApprovalState.PENDING ||
               approvalB === ApprovalState.NOT_APPROVED ||
