@@ -15,6 +15,7 @@ import { isMobile } from 'react-device-detect'
 const TipFrame = styled(AutoColumn)`
   border-radius: 14px;
   padding: 50px;
+  margin-top: 48px;
   background-color: ${({ theme }) => theme.bg1};
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 100%;
@@ -33,14 +34,13 @@ export default function ECircle({ history }) {
 
   return (
     <>
-      <CloseIcon
-        onClick={() => {
-          history.push('/invite')
-        }}
-        style={{ top: 12 }}
-      />
-
       <AutoColumn gap="lg" justify="center">
+        <CloseIcon
+          onClick={() => {
+            history.push('/invite')
+          }}
+          style={{ top: 12 }}
+        />
         <Balls tabs={ecircles} />
         <TipFrame gap="md">
           <TYPE.mediumHeader fontSize={14}>{t('tip1')}</TYPE.mediumHeader>
