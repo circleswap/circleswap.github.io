@@ -21,7 +21,6 @@ div,span {
     margin: 0px auto 0;
     background: radial-gradient(circle at 300px 200px, #BDC3C7 0%, #2C3E50 100%) center;
     /*background-image: url("../../assets/images/logo-circle.svg");*/
-    background-repeat: no-repeat;
     box-shadow: inset 20px -10px 100px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
 
