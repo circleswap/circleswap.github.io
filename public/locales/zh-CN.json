@@ -224,7 +224,7 @@
   "currentAbleLPT": "目前可进行流动挖矿的交易对：",
   "stakingTip": "质押您的LP Tokens来参与CircleSwap流动性挖矿，流动性挖矿的收益将以平台通证CIR的形式进行发放。\n*您需要质押100HT等值的LP Tokens才能享受部分ECircle额外奖励。\n",
   "claimed": "已领取",
-  "unclaimed": "领取",
+  "unclaimed": "未领取",
   "bounds": "挖矿奖励",
   "confirm_swap": "确定兑换",
   "ncircle_helper": "1. 获得额外空投奖励；\\n 2.获得Swap挖矿额外奖励；\\n 3.获取流动性挖矿算力额外奖励；\n",
@@ -239,5 +239,6 @@
   "has_already_been_invited": "您已加入NCircle",
   "error_address": "地址有误",
   "join_later": "稍后加入",
-  "viewOnECO": "在火币浏览器中查看"
+  "viewOnECO": "在火币浏览器中查看",
+  "insufficientLiquidity": "流动性不足"
 }

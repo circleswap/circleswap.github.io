@@ -100,7 +100,7 @@ export default function CIR() {
               </AutoRow>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('Unclaimed')}:
+                  {t('unclaimed')}:
                 </TYPE.black>
                 <TYPE.black style={{ padding: 0 }} marginLeft={16} fontWeight={500} fontSize={16}>
                   {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '**')} CIR
