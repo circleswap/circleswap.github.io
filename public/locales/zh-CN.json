@@ -210,7 +210,7 @@
   "createNCircleTip": "点击创建您的NCircle生成邀请链接或查看您的NCircle。",
   "connectToFind": "查看资金池需要先连接钱包",
   "selectToFindLiquidity": "选择一个通证来查找您的流动性",
-  "importPool": "导入池子",
+  "import_pool": "导入池子",
   "bestPrice": "获取交易的最佳价格",
   "enterRecipient": "输入接收地址",
   "stakeMyLPT": "质押我的LP Tokens",
@@ -241,5 +241,6 @@
   "join_later": "稍后加入",
   "viewOnECO": "在火币浏览器中查看",
   "insufficientLiquidity": "流动性不足",
-  "input_address_ncircle_tip": "请确保输入的邀请者地址已经创建NCircle。"
+  "input_address_ncircle_tip": "请确保输入的邀请者地址已经创建NCircle。",
+  "connect_to_view_liquidity.": "连接钱包查看流动性"
 }

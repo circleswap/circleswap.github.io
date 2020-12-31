@@ -166,7 +166,7 @@ export default function Pool() {
             {!account ? (
               <Card padding="40px">
                 <TYPE.body color={theme.text3} textAlign="center">
-                  Connect to a wallet to view your liquidity.
+                  {t('connect_to_view_liquidity')}
                 </TYPE.body>
               </Card>
             ) : v2IsLoading ? (
@@ -208,7 +208,7 @@ export default function Pool() {
               <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
                 {/*{hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}*/}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
-                  {hasV1Liquidity ? 'Migrate now.' : t('importPool')}
+                  {hasV1Liquidity ? 'Migrate now.' : t('import_pool')}
                 </StyledInternalLink>
               </Text>
             </AutoColumn>

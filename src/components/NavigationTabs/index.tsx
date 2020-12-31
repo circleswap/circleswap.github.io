@@ -73,7 +73,7 @@ export function FindPoolTabs() {
         <HistoryLink to="/pool">
           <StyledArrowLeft />
         </HistoryLink>
-        <ActiveText>{t('importPool')}</ActiveText>
+        <ActiveText>{t('import_pool')}</ActiveText>
         <QuestionHelper text={t('toolForFind')} />
       </RowBetween>
     </Tabs>

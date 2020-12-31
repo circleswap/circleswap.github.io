@@ -20,6 +20,7 @@ import styled from 'styled-components'
 import { AddArrow } from '../../components/icon/InputIcon'
 import plus from '../../assets/images/plus.svg'
 import AppBody from '../AppBody'
+import { isMobile } from 'react-device-detect'
 
 enum Fields {
   TOKEN0 = 0,
@@ -32,6 +33,9 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.bg1};
   border-radius: 30px;
   padding: 0.5rem 1rem;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 100%;
+  `};
 `
 
 export const Body = styled(Container)`
@@ -100,7 +104,7 @@ export default function PoolFinder() {
           <FindPoolTabs />
         </Container>
 
-        <AutoRow gap="md" style={{ display: 'flex' }}>
+        <AutoRow gap="md" style={{ flexDirection: isMobile ? 'column' : 'row' }}>
           <Body>
             <ButtonDropdownLight
               onClick={() => {
@@ -117,7 +121,7 @@ export default function PoolFinder() {
                 </Row>
               ) : (
                 <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-                  Select a Token
+                  {t('select_token')}
                 </Text>
               )}
             </ButtonDropdownLight>
@@ -141,7 +145,7 @@ export default function PoolFinder() {
                 </Row>
               ) : (
                 <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-                  Select a Token
+                  {t('select_token')}
                 </Text>
               )}
             </ButtonDropdownLight>

@@ -219,7 +219,7 @@
   "createNCircleTip": "Create your NCircle to generate an invitation link or view your NCircle details.",
   "connectToFind": "Connect to a wallet to find pools",
   "selectToFindLiquidity": "Select a token to find your liquidity",
-  "importPool": "Import Pool",
+  "import_pool": "Import Pool",
   "bestPrice": "Routing through these tokens resulted in the best price for your trade.",
   "enterRecipient": "Enter a recipient",
   "stakeMyLPT": "Stake My LP Tokens",
@@ -247,6 +247,6 @@
   "error_address": "Invalid inviter address",
   "join_later": "Join Later",
   "viewOnECO": "View On Eco Explorer",
-  "input_address_ncircle_tip": "Make sure that the inviter address  entered has created a NCircle."
-
+  "input_address_ncircle_tip": "Make sure that the inviter address  entered has created a NCircle.",
+  "connect_to_view_liquidity": "Connect to a wallet to view your liquidity."
 }
