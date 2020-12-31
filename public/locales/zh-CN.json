@@ -240,5 +240,6 @@
   "error_address": "地址有误",
   "join_later": "稍后加入",
   "viewOnECO": "在火币浏览器中查看",
-  "insufficientLiquidity": "流动性不足"
+  "insufficientLiquidity": "流动性不足",
+  "input_address_ncircle_tip": "请确保输入的邀请者地址已经创建NCircle。"
 }

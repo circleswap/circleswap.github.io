@@ -246,5 +246,7 @@
   "has_already_been_invited": "Your address has already been invited",
   "error_address": "Invalid inviter address",
   "join_later": "Join Later",
-  "viewOnECO": "View On Eco Explorer"
+  "viewOnECO": "View On Eco Explorer",
+  "input_address_ncircle_tip": "Make sure that the inviter address  entered has created a NCircle."
+
 }
