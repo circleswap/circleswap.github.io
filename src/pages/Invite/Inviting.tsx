@@ -13,6 +13,7 @@ import { ReactComponent as NcircleEmpty } from '../../assets/images/ncircle_empt
 import Copy from '../../components/AccountDetails/Copy'
 import { ArrowLeft } from 'react-feather'
 import { useTranslation } from 'react-i18next'
+import { isMobile } from 'react-device-detect'
 
 const InputPanel = styled.div`
   width: 100%;
@@ -28,6 +29,8 @@ const Input = styled.div`
   border-radius: 12px;
   padding: 0 13px;
   flex: 1;
+  max-width: 200px;
+  overflow: hidden;
 `
 
 const StyledArrowLeft = styled(ArrowLeft)`
@@ -52,7 +55,7 @@ export default function Inviting({
         <AutoColumn gap="20px">
           {ZERO_ADDRESS !== invited && invited ? (
             <AppBody>
-              <ColumnCenter style={{ width: 463 }}>
+              <ColumnCenter style={{ width: isMobile? '100%' : 463 }}>
                 <StyledArrowLeft
                   onClick={() => {
                     history.push('/invite')
