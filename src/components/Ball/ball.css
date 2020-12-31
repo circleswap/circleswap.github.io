@@ -31,6 +31,7 @@ div,span {
     #div1 {
         width: 320px;
         height: 320px;
+        margin-top: 50px;
     }
 }
 
