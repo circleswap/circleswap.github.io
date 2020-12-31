@@ -122,7 +122,6 @@ export function useAllCircleData() {
       return item[0]
     })
   let owners = useSingleContractMultipleData(contact, 'ownerOf', nameIndexes, NEVER_RELOAD)
-  console.log('owners', owners)
   const circleNames = useSingleContractMultipleData(contact, 'tokenURI', nameIndexes, NEVER_RELOAD)
 
   owners = owners.filter(item => {

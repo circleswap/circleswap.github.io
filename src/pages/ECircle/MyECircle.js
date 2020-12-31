@@ -9,6 +9,8 @@ import AppBody from '../AppBody'
 import { ReactComponent as NcircleEmpty } from '../../assets/images/ncircle_empty.svg'
 import Copy from '../../components/AccountDetails/Copy'
 import { useMyECircle, useMyJoinedECircle } from '../../state/ecircle/hooks'
+import { useTranslation } from 'react-i18next'
+import { isMobile } from 'react-device-detect'
 
 const InputPanel = styled.div`
   width: 100%;
@@ -16,6 +18,7 @@ const InputPanel = styled.div`
   justify-content: space-between;
   margin-top: 13px;
   margin-bottom: 24px;
+  overflow: hidden;
 `
 const Input = styled.div`
   height: 40px;
@@ -28,14 +31,25 @@ const Input = styled.div`
   transition: border-color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')},
     color 500ms ${({ error }) => (error ? 'step-end' : 'step-start')};
   background-color: ${({ theme }) => theme.bg2};
+  overflow: hidden;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 200px;
+    padding-right: 40px
+  `};
+`
+
+const Header = styled(ColumnCenter)`
+  width: 463px
+    ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 100%;
+  `};
 `
 
 export default function MyECircle({ history }) {
   const { account } = useActiveWeb3React()
   const circle = useMyECircle()
   const jointedCircle = useMyJoinedECircle()
-  console.log('mycircle', circle)
-  console.log('myjointedCircle', jointedCircle)
+  const { t } = useTranslation()
 
   return (
     <>
@@ -44,13 +58,14 @@ export default function MyECircle({ history }) {
           {circle.name && (
             <AppBody>
               <CloseIcon style={{ top: 12 }} onClick={() => history.push('/ecircle')} />
-              <ColumnCenter style={{ width: 463 }}>
-                <TYPE.largeHeader>My ECircle</TYPE.largeHeader>
-              </ColumnCenter>
-              <TYPE.main marginTop="44px">My ECircle name</TYPE.main>
+              <Header>
+                <TYPE.largeHeader>{t('myECircle')}</TYPE.largeHeader>
+              </Header>
+              <TYPE.main marginTop="44px">name</TYPE.main>
               <InputPanel>
                 <Input>
-                  {circle && circle.name}{' '}
+                  {circle && circle.name}
+                  {t('circleName')}
                   <TYPE.blue display={'inline'}>
                     {' '}
                     ({circle && circle.count.toString()} / {circle.level})
@@ -58,7 +73,7 @@ export default function MyECircle({ history }) {
                 </Input>
               </InputPanel>
 
-              <TYPE.main marginTop="44px">Invitation link</TYPE.main>
+              <TYPE.main marginTop="44px">{t('invitationAddress')}</TYPE.main>
               <InputPanel>
                 <Input>{account}</Input>
                 <Copy toCopy={account} />
@@ -69,10 +84,10 @@ export default function MyECircle({ history }) {
           {jointedCircle.name && (
             <AppBody>
               <CloseIcon style={{ top: 12 }} onClick={() => history.push('/ecircle')} />
-              <ColumnCenter style={{ width: 463 }}>
-                <TYPE.largeHeader>My ECircle</TYPE.largeHeader>
-              </ColumnCenter>
-              <TYPE.main marginTop="44px">My ECircle name</TYPE.main>
+              <Header>
+                <TYPE.largeHeader>{t('myECircle')}</TYPE.largeHeader>
+              </Header>
+              <TYPE.main marginTop="44px">{t('circleName')}</TYPE.main>
               <InputPanel>
                 <Input>
                   {jointedCircle && jointedCircle.name}{' '}
@@ -92,11 +107,11 @@ export default function MyECircle({ history }) {
           )}
 
           {!circle.name && !jointedCircle.name && (
-            <AutoColumn gap="lg">
+            <AutoColumn gap="lg" style={{ width: isMobile ? '60%' : '' }}>
               <NcircleEmpty />
-              <ColumnCenter>
-                <TYPE.largeHeader color="#2C2C2C">{`You don't have NCircle`}</TYPE.largeHeader>
-              </ColumnCenter>
+              <Header>
+                <TYPE.largeHeader color="#2C2C2C">{t('dontHaveNCircle')}</TYPE.largeHeader>
+              </Header>
               <ButtonPrimary
                 padding="16px 16px"
                 width="100%"
@@ -107,7 +122,7 @@ export default function MyECircle({ history }) {
                   history.push('/invite')
                 }}
               >
-                Create
+                {t('createECircle')}
               </ButtonPrimary>
             </AutoColumn>
           )}
