@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import {useHistory} from 'react-router-dom'
 import './ball.css'
 
 export const Balls = ({ tabs }) => {
   const [list, setList] = useState([])
-
+  const history = useHistory()
   function start() {
     const oDiv = document.getElementById('div1')
     const aLink = oDiv.getElementsByTagName('span')
@@ -156,14 +157,13 @@ export const Balls = ({ tabs }) => {
   }
 
   useEffect(() => {
-    if(list.length !== 0){
+    if (list.length !== 0) {
       start()
     }
-  },[list])
+  }, [list])
 
   useEffect(() => {
     if (tabs.length !== 0 && list.length === 0) {
-      console.log('start---->', tabs)
       setList(tabs)
     }
   }, [tabs, list])
@@ -173,12 +173,12 @@ export const Balls = ({ tabs }) => {
       {list.map(item => {
         return (
           <span
-            key={item}
+            key={item.owner}
             onClick={() => {
-              console.log('')
+              history.push(`/ecircle/${item.owner}`)
             }}
           >
-            {item}
+            {item.name}
           </span>
         )
       })}

@@ -121,12 +121,26 @@ export function useAllCircleData() {
     .filter(item => {
       return item[0]
     })
+  let owners = useSingleContractMultipleData(contact, 'ownerOf', nameIndexes, NEVER_RELOAD)
+  console.log('owners', owners)
   const circleNames = useSingleContractMultipleData(contact, 'tokenURI', nameIndexes, NEVER_RELOAD)
-  return circleNames
-    .map(item => {
-      return item && item.result?.[0].toString()
-    })
-    .filter(item => {
-      return item
-    })
+
+  owners = owners.filter(item => {
+    return item.result?.[0]
+  })
+  if (owners.length !== 0) {
+    const circleList = circleNames
+      .map((item, index) => {
+        const circle = {}
+        circle.owner = owners[index].result?.[0]
+        circle.name = item.result?.[0].toString()
+        return circle
+      })
+      .filter(item => {
+        return item
+      })
+    return circleList
+  }
+
+  return []
 }

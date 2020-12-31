@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
@@ -23,7 +23,7 @@ const TipFrame = styled(AutoColumn)`
   `};
 `
 
-export default function ECircle({ history }) {
+export default function ECircle({ history, match }) {
   const { t } = useTranslation()
   const able = useNCircleJoinAble()
   const circle = useNCircle()
@@ -31,6 +31,14 @@ export default function ECircle({ history }) {
   const ecircles = useAllCircleData()
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
   //const allCircles = useAllCircleData()
+
+  const address = match?.params.address
+
+  useEffect(() => {
+    if (address) {
+      setShowJoinECircleModal(true)
+    }
+  }, [address])
 
   return (
     <>
@@ -122,13 +130,15 @@ export default function ECircle({ history }) {
           {t('note')}
         </TYPE.main>
       </AutoColumn>
-      <JoinECircleModal
-        isOpen={showJoinECircleModal}
-        address={''}
-        onDismiss={() => {
-          setShowJoinECircleModal(false)
-        }}
-      />
+      {showJoinECircleModal && (
+        <JoinECircleModal
+          isOpen={showJoinECircleModal}
+          address={address}
+          onDismiss={() => {
+            setShowJoinECircleModal(false)
+          }}
+        />
+      )}
     </>
   )
 }
