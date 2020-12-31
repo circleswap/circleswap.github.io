@@ -47,6 +47,16 @@ const AddArrow = styled.img`
   margin: 16px;
 `
 
+const ButtonFrame = styled(AutoColumn)`
+  min-width: 20rem;
+  width: 100%;
+  max-width: 625px;
+  margin-top: 1rem
+    ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 100%;
+  `};
+`
+
 export default function AddLiquidity({
   match: {
     params: { currencyIdA, currencyIdB }
@@ -313,7 +323,7 @@ export default function AddLiquidity({
 
   return (
     <>
-      <Wrapper style={{ marginTop: 120 }}>
+      <Wrapper>
         <TransactionConfirmationModal
           isOpen={showConfirm}
           onDismiss={handleDismissConfirmation}
@@ -392,7 +402,7 @@ export default function AddLiquidity({
         </InputsWrapper>
 
         {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
-          <>
+          <AutoColumn style={{ width: isMobile ? '100%' : '' }}>
             <RowBetween padding="1rem">
               <TYPE.subHeader fontWeight={500} fontSize={18}>
                 {noLiquidity ? 'Initial prices' : 'Prices'} and pool share
@@ -404,7 +414,7 @@ export default function AddLiquidity({
               noLiquidity={noLiquidity}
               price={price}
             />
-          </>
+          </AutoColumn>
         )}
 
         {!account ? (
@@ -461,9 +471,9 @@ export default function AddLiquidity({
       </Wrapper>
 
       {pair && !noLiquidity && pairState !== PairState.INVALID ? (
-        <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '625px', marginTop: '1rem' }}>
+        <ButtonFrame>
           <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
-        </AutoColumn>
+        </ButtonFrame>
       ) : null}
     </>
   )

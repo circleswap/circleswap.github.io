@@ -43,13 +43,14 @@ const ButtonRow = styled(RowFixed)`
     width: 100%;
     flex-direction: row-reverse;
     justify-content: space-between;
+    padding: 0;
   `};
 `
 
 const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   width: fit-content;
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 48%;
+    width: 100%;
   `};
 `
 
@@ -57,7 +58,7 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   width: fit-content;
   border-radius: 100px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 48%;
+    width: 100%;
   `};
 `
 

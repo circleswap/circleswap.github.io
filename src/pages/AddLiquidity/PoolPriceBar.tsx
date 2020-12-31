@@ -10,11 +10,11 @@ import { TYPE } from '../../theme'
 import { LightCard } from '../../components/Card'
 
 export function PoolPriceBar({
-                               currencies,
-                               noLiquidity,
-                               poolTokenPercentage,
-                               price
-                             }: {
+  currencies,
+  noLiquidity,
+  poolTokenPercentage,
+  price
+}: {
   currencies: { [field in Field]?: Currency }
   noLiquidity?: boolean
   poolTokenPercentage?: Percent
@@ -24,7 +24,7 @@ export function PoolPriceBar({
   return (
     <AutoColumn gap="md">
       <AutoRow justify="space-around" gap="4px">
-        <LightCard padding="1.25rem" borderRadius={'20px'} style={{width: 250}}>
+        <LightCard padding="1.25rem" borderRadius={'20px'}>
           <AutoColumn justify="center">
             <TYPE.largeHeader>{price?.toSignificant(6) ?? '-'}</TYPE.largeHeader>
             <Text fontWeight={500} fontSize={14} color={theme.text2} pt={1}>
@@ -32,7 +32,7 @@ export function PoolPriceBar({
             </Text>
           </AutoColumn>
         </LightCard>
-        <LightCard padding="1.25rem" borderRadius={'20px'} style={{width: 250}}>
+        <LightCard padding="1.25rem" borderRadius={'20px'}>
           <AutoColumn justify="center">
             <TYPE.largeHeader>{price?.invert()?.toSignificant(6) ?? '-'}</TYPE.largeHeader>
             <Text fontWeight={500} fontSize={14} color={theme.text2} pt={1}>
@@ -40,7 +40,7 @@ export function PoolPriceBar({
             </Text>
           </AutoColumn>
         </LightCard>
-        <LightCard padding="1.25rem" borderRadius={'20px'} style={{width: 250}}>
+        <LightCard padding="1.25rem" borderRadius={'20px'}>
           <AutoColumn justify="center">
             <TYPE.largeHeader>
               {noLiquidity && price
