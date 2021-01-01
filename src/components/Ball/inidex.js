@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { isMobile } from 'react-device-detect'
 import './ball.css'
 
 export const Balls = ({ tabs }) => {
@@ -12,7 +13,7 @@ export const Balls = ({ tabs }) => {
     let sinA, cosA, sinB, cosB, sinC, cosC
     const degToRad = Math.PI / 180 //degreeToRadian
     const aList = []
-    const radius = 110 //半径
+    const radius = isMobile ? 110 : 200 //半径
     const bDistract = true
     function getPosition() {
       const iLeft = oDiv.offsetWidth / 2
