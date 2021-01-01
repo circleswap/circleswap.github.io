@@ -12,7 +12,7 @@ export const Balls = ({ tabs }) => {
     let sinA, cosA, sinB, cosB, sinC, cosC
     const degToRad = Math.PI / 180 //degreeToRadian
     const aList = []
-    const radius = 200 //半径
+    const radius = 110 //半径
     const bDistract = true
     function getPosition() {
       const iLeft = oDiv.offsetWidth / 2

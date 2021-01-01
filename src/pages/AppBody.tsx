@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const BodyWrapper = styled.div`
   position: relative;
   width: fit-content;
-  background: ${({ theme }) => theme.bg1};
+  background: ${({ theme }) => theme.bg3};
   border-radius: 30px;
   padding: 2rem;
 `

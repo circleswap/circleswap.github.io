@@ -34,7 +34,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   cursor: pointer;
   user-select: none;
   border: none;
-  padding: 0 0.5rem;
+  padding: 0;
 
   :focus,
   :hover {
@@ -175,7 +175,7 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <TYPE.body color={theme.text2} fontWeight={500} fontSize={20}>
+              <TYPE.body color={theme.text2} fontWeight={600} fontSize={28}>
                 {label}
               </TYPE.body>
               <CurrencySelect

@@ -12,7 +12,11 @@ import { useActiveWeb3React } from '../../hooks'
 import { useTotalUniEarned } from '../../state/stake/hooks'
 import BigNumber from 'bignumber.js'
 
-export const Container = styled.div``
+export const Container = styled.div`
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+      padding: 24px
+  `};
+`
 
 const BodyHeader = styled.div`
   width: 100%;
@@ -59,7 +63,7 @@ export default function CIR() {
               {t('airdropWeight')}
               <QuestionHelper text={t('ncirclereward')} />
             </BodyHeader>
-            <AutoColumn gap="lg" style={{ width: 388, padding: 36 }}>
+            <AutoColumn gap="md" style={{ width: 388, padding: 24 }}>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('parentBlockAddresses')}:
@@ -91,7 +95,7 @@ export default function CIR() {
               {t('liquidityMiningRewards')}
               <QuestionHelper text={t('ecirclereward')} />
             </BodyHeader>
-            <AutoColumn gap="lg" style={{ width: 388, padding: 36 }}>
+            <AutoColumn gap="md" style={{ width: 388, padding: 24 }}>
               <AutoRow>
                 <TYPE.black fontWeight={500} fontSize={13}>
                   {t('ownComputingPower')}:

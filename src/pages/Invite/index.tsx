@@ -51,6 +51,7 @@ const CircleCard = styled.div`
   position: relative;
   ${({ theme }) => theme.mediaWidth.upToMedium`
      width: 100%;
+     height: 200px
   `};
 `
 
@@ -67,6 +68,10 @@ const HelperFrame = styled.div`
   left: auto;
   right: 30px;
   top: 30px;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    right: 12px;
+    top: 12px;
+  `};
 `
 
 export default function Invite(props: RouteComponentProps<{ address: string }>) {

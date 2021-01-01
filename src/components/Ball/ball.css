@@ -23,16 +23,8 @@ div,span {
     /*background-image: url("../../assets/images/logo-circle.svg");*/
     box-shadow: inset 20px -10px 100px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
-
 }
 
-@media (max-width: 750px) {
-    #div1 {
-        width: 320px;
-        height: 320px;
-        margin-top: 50px;
-    }
-}
 
 #div1 span {
     position: absolute;
@@ -47,4 +39,16 @@ div,span {
 
 #div1 span:hover {
     color: #F3841E;
+}
+
+@media (max-width: 750px) {
+    #div1 {
+        width: 320px;
+        height: 320px;
+        margin-top: 50px;
+    }
+
+    #div1 span {
+       font-size: 12px!important;
+    }
 }

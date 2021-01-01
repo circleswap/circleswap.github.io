@@ -23,6 +23,7 @@ import AppBody from '../AppBody'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
+  padding: 24px;
 `
 
 const TitleRow = styled(RowBetween)`
@@ -65,7 +66,7 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
 const BodyWrapper = styled.div`
   position: relative;
   width: 100%;
-  background: ${({ theme }) => theme.bg1};
+  background: ${({ theme }) => theme.bg3};
   border-radius: 30px;
   padding: 2rem;
 `
@@ -178,11 +179,6 @@ export default function Pool() {
               </EmptyProposals>
             ) : allV2PairsWithLiquidity?.length > 0 || stakingPairs?.length > 0 ? (
               <>
-                <ButtonSecondary>
-                  <RowBetween>
-                    <span> ↗</span>
-                  </RowBetween>
-                </ButtonSecondary>
                 {v2PairsWithoutStakedAmount.map(v2Pair => (
                   <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
                 ))}
