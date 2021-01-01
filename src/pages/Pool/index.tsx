@@ -69,6 +69,9 @@ const BodyWrapper = styled.div`
   background: ${({ theme }) => theme.bg3};
   border-radius: 30px;
   padding: 2rem;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding: 1rem;
+  `};
 `
 
 const EmptyProposals = styled.div`

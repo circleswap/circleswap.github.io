@@ -33,6 +33,9 @@ import { BIG_INT_ZERO, BIG_INT_SECONDS_IN_WEEK } from '../../constants'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding: 24px
+  `};
 `
 
 const PositionInfo = styled(AutoColumn)<{ dim: any }>`

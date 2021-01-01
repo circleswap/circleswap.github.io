@@ -13,7 +13,6 @@ import { TYPE, HideExtraSmall, ExtraSmallOnly } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { ButtonPrimary, ButtonEmpty, ButtonUNIGradient } from '../Button'
-import { transparentize } from 'polished'
 import { CardNoise } from '../earn/styled'
 
 import { useColor } from '../../hooks/useColor'
@@ -27,7 +26,6 @@ import { Dots } from '../swap/styleds'
 import { BIG_INT_ZERO } from '../../constants'
 
 export const FixedHeightRow = styled(RowBetween)`
-  height: 24px;
 `
 
 export const HoverCard = styled(Card)`
@@ -38,8 +36,6 @@ export const HoverCard = styled(Card)`
 `
 const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
   border: none;
-  background: ${({ theme, bgColor }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.bg3} 100%) `};
   position: relative;
   overflow: hidden;
 `
