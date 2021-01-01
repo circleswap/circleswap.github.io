@@ -48,11 +48,15 @@ const LabelRow = styled.div`
   font-size: 0.75rem;
   line-height: 1rem;
   padding: 0.75rem 1rem 0 1rem;
+  margin-top: 38px;
   ${({ theme }) => theme.flexRowNoWrap}
   span:hover {
     cursor: pointer;
     color: ${({ theme }) => darken(0.2, theme.text2)};
   }
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    margin-top: 0;
+  `};
 `
 
 const Aligner = styled.span`
@@ -83,6 +87,9 @@ const Container = styled.div<{ hideInput: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
   padding: 24px;
   background-color: ${({ theme }) => theme.bg1};
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding: 6px;
+  `};
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
@@ -206,7 +213,7 @@ export default function CurrencyInputPanel({
           </LabelRow>
         )}
 
-        <LabelRow style={{ marginTop: 38 }}>
+        <LabelRow>
           {account && (
             <TYPE.body
               onClick={onMax}

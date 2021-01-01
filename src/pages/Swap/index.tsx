@@ -49,6 +49,10 @@ import BigNumber from 'bignumber.js'
 
 const ExchangeArrow = styled.img`
   width: 19px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    -moz-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+  `};
 `
 
 export default function Swap() {

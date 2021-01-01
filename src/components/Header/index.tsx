@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
 
-import Logo from '../../assets/images/logo-line.svg'
+import Logo from '../../assets/images/logo-circle.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances, useAggregateUniBalance } from '../../state/wallet/hooks'
@@ -302,7 +302,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={isMobile ? '84px' : '134px'} src={isDark ? Logo : Logo} alt="logo" />
+            <img width={isMobile ? '32px' : '64px'} src={isDark ? Logo : Logo} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>
