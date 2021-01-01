@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import './ball.css'
 
 export const Balls = ({ tabs }) => {
@@ -137,27 +137,15 @@ export const Balls = ({ tabs }) => {
     sineCosine(0, 0, 0)
     setPosition()
 
-    // oDiv.onmouseup = function() {
-    //   bActive = false
-    // }
+    oDiv.onmouseover = function() {
+      bActive = false
+    }
 
-    oDiv.onmousedown = function() {
+    oDiv.onmouseout = function() {
       bActive = true
     }
 
     oDiv.onmousemove = function(ev) {
-      const oEvent = ev || window.event
-      disX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2)
-      disY = oEvent.clientY - (oDiv.offsetTop + oDiv.offsetHeight / 2)
-      disX /= 10
-      disY /= 10
-    }
-
-    oDiv.ontouchstart = function() {
-      bActive = true
-    }
-
-    oDiv.ontouchmove = function(ev) {
       const oEvent = ev || window.event
       disX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2)
       disY = oEvent.clientY - (oDiv.offsetTop + oDiv.offsetHeight / 2)
