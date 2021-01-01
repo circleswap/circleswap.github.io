@@ -128,7 +128,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
               {t('eCircle')}
             </TYPE.white>
             <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
-              Create or view your ECircle details
+              {t('createAndJoin')}
             </TYPE.white>
             <HelperFrame>
               <QuestionHelper text={t('ecircle_helper')} />

@@ -213,7 +213,7 @@
   "import_pool": "导入池子",
   "bestPrice": "获取交易的最佳价格",
   "enterRecipient": "输入接收地址",
-  "stakeMyLPT": "质押我的LP Tokens",
+  "stakeMyLPT": "流动性挖矿",
   "enterNameECircle": "请输入您要创建的ECircle名字",
   "payToCreateECircle": "您需要支付 {{gas}} CIR来创建此ECircle。",
   "createECirclePlaceholder": "支持汉字、字母、数字，最多6位字符",

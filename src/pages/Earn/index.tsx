@@ -16,6 +16,9 @@ import { OutlineCard } from '../../components/Card'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding: 0 24px;
+  `};
 `
 
 const TopSection = styled(AutoColumn)`
@@ -36,8 +39,8 @@ const PoolSection = styled.div`
 
 const DataRow = styled(RowBetween)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
-flex-direction: column;
-`};
+    flex-direction: column;
+  `};
 `
 
 export default function Earn() {
