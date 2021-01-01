@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { useContext, useEffect, useState } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
 import { AlertTriangle, ExternalLink as LinkIcon } from 'react-feather'
 import { AutoRow, RowBetween } from '../../components/Row'
-import { Button, CloseIcon, TYPE } from '../../theme'
+import { Button, CloseIcon, CustomLightSpinner, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
 import JoinECircleModal from '../../components/ECircle/JoinECircleModal'
 import { useAllCircleData, useJoinNCircle, useNCircle, useNCircleJoinAble } from '../../hooks/useNCircle'
@@ -28,6 +28,7 @@ import { getEtherscanLink, shortenAddress } from '../../utils'
 import Copy from '../../components/AccountDetails/Copy'
 import { useMyECircle } from '../../state/ecircle/hooks'
 import { useActiveWeb3React } from '../../hooks'
+import Circle from '../../assets/images/blue-loader.svg'
 
 const TipFrame = styled(AutoColumn)`
   border-radius: 14px;
@@ -50,6 +51,7 @@ export default function ECircle({ history, match }) {
   const ecircles = useAllCircleData()
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
   const [showMyEcircle, setShowMyEcircle] = useState(false)
+  const theme = useContext(ThemeContext)
 
   const address = match?.params.address
 
@@ -166,19 +168,26 @@ export default function ECircle({ history, match }) {
           <AccountSection>
             <YourAccount>
               <InfoCard>
-                <AccountGroupingRow>
-                  {myECircle && myECircle.name}
-                  <div>
-                    <WalletAction
-                      style={{ fontSize: '.825rem', fontWeight: 400 }}
-                      onClick={() => {
-                        //openOptions()
-                      }}
-                    >
-                      {myECircle && myECircle.count.toString()} / {myECircle.level}
-                    </WalletAction>
-                  </div>
-                </AccountGroupingRow>
+                {myECircle.name ? (
+                  <AccountGroupingRow>
+                    {myECircle && myECircle.name}
+                    <div>
+                      <WalletAction
+                        style={{ fontSize: '.825rem', fontWeight: 400 }}
+                        onClick={() => {
+                          //openOptions()
+                        }}
+                      >
+                        {myECircle && myECircle.count.toString()} / {myECircle.level}
+                      </WalletAction>
+                    </div>
+                  </AccountGroupingRow>
+                ) : (
+                  <AccountGroupingRow>
+                    <CustomLightSpinner src={Circle} alt="loader" size={'20px'} />
+                  </AccountGroupingRow>
+                )}
+
                 <AccountGroupingRow id="web3-account-identifier-row">
                   <AccountControl>
                     <div>
@@ -209,6 +218,9 @@ export default function ECircle({ history, match }) {
                 </AccountGroupingRow>
               </InfoCard>
             </YourAccount>
+            <TYPE.body textAlign={'center'} color={theme.text1}>
+              {t('copy_to_ecircle')}
+            </TYPE.body>
           </AccountSection>
         </UpperSection>
       </Modal>

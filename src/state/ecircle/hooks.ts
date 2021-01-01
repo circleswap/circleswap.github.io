@@ -44,6 +44,7 @@ interface ECircleDetail {
   address: string
   count: string
   level: string
+  loading: boolean
 }
 
 interface Result {
@@ -57,21 +58,26 @@ export function useMyECircle(): ECircleDetail {
   const [name, setName] = useState('')
   const [count, setCount] = useState('')
   const [level, setLevel] = useState('1')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (account && contract) {
+      setLoading(true)
       try {
         contract.balanceOf(account).then((res: string) => {
           if (new BigNumber(res.toString()).isGreaterThan(0)) {
             contract.tokenOfOwnerByIndex(account, '0').then((res: string) => {
               contract.tokenURI(res).then((name: string) => {
                 setName(name ?? '')
+                setLoading(false)
               })
               contract.membersCount(res).then((num: string) => {
                 setCount(num ?? '')
+                setLoading(false)
               })
               contract?.levelOf(res.toString()).then((res: string) => {
                 setLevel(res.toString() === '3' ? '500' : res.toString() === '2' ? '200' : '30')
+                setLoading(false)
               })
             })
           }
@@ -81,7 +87,7 @@ export function useMyECircle(): ECircleDetail {
       }
     }
   }, [account, contract])
-  return { id: '', name: name ?? '', address: '', count: count, level: level }
+  return { id: '', name: name ?? '', address: '', count: count, level: level, loading }
 }
 
 export function useECircleAbleAddress(account: string): Result {
@@ -116,11 +122,14 @@ export function useMyJoinedECircle(): ECircleDetail {
   const [address, setAddress] = useState('')
   const [count, setCount] = useState('')
   const [level, setLevel] = useState('1')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (joinedCircle && new BigNumber(joinedCircle.toString()).isGreaterThan(0)) {
+      setLoading(true)
       contract?.tokenURI(joinedCircle.toString()).then((name: string) => {
         setName(name ?? '')
+        setLoading(false)
       })
       contract?.ownerOf(joinedCircle.toString()).then((address: string) => {
         setAddress(address ?? '')
@@ -133,5 +142,5 @@ export function useMyJoinedECircle(): ECircleDetail {
       })
     }
   }, [joinedCircle, contract])
-  return { id: '', name: name, address: address, count: count, level: level }
+  return { id: '', name: name, address: address, count: count, level: level, loading }
 }
