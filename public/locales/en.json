@@ -229,6 +229,7 @@
   "createECirclePlaceholder": "Support Chinese, English, numbers, up to 6 characters",
   "walletAddress": "Wallet Address",
   "Recipient": "Recipient",
+  "form_estimated": "From Estimated",
   "yourStakedAmount": "Your Staking LP Tokens:",
   "earnedAmount": "Available LP Tokens:",
   "currentAbleLPT": "Pairs supporting liquidity mining:",
