@@ -325,15 +325,6 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/CIR'}>
             CIR
           </StyledNavLink>
-          {/*<StyledNavLink id={`Stake-nav-link`} to={'/uni'}>*/}
-          {/*  CIR*/}
-          {/*</StyledNavLink>*/}
-          {/*<StyledNavLink id={`Stake-nav-link`} to={'/vote'}>*/}
-          {/*  Vote*/}
-          {/*</StyledNavLink>*/}
-          {/*<StyledExternalLink id={`Stake-nav-link`} href={'https://uniswap.info'}>*/}
-          {/*  Charts <span style={{ fontSize: '11px' }}>↗</span>*/}
-          {/*</StyledExternalLink>*/}
           <StyledNavLink id={`invite-nav-link`} to={'/invite'}>
             Circle
           </StyledNavLink>
