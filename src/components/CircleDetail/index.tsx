@@ -18,6 +18,7 @@ export const UpperSection = styled.div`
   background-color: ${({ theme }) => theme.bg1};
   border-radius: 20px;
   padding: 20px;
+  width: 100%;
 
   h5 {
     margin: 0;
