@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
-import { AlertTriangle } from 'react-feather'
+import { AlertTriangle, ExternalLink as LinkIcon } from 'react-feather'
 import { AutoRow, RowBetween } from '../../components/Row'
 import { Button, CloseIcon, TYPE } from '../../theme'
 import { ButtonBlue } from '../../components/Button'
@@ -11,6 +11,23 @@ import { useAllCircleData, useJoinNCircle, useNCircle, useNCircleJoinAble } from
 import BigNumber from 'bignumber.js'
 import { Balls } from '../../components/Ball/inidex'
 import { isMobile } from 'react-device-detect'
+import Modal from '../../components/Modal'
+import {
+  AccountControl,
+  AccountGroupingRow,
+  AccountSection,
+  AddressLink,
+  CloseColor,
+  HeaderRow,
+  InfoCard,
+  UpperSection,
+  WalletAction,
+  YourAccount
+} from '../../components/CircleDetail'
+import { getEtherscanLink, shortenAddress } from '../../utils'
+import Copy from '../../components/AccountDetails/Copy'
+import { useMyECircle } from '../../state/ecircle/hooks'
+import { useActiveWeb3React } from '../../hooks'
 
 const TipFrame = styled(AutoColumn)`
   border-radius: 14px;
@@ -27,10 +44,12 @@ export default function ECircle({ history, match }) {
   const { t } = useTranslation()
   const able = useNCircleJoinAble()
   const circle = useNCircle()
+  const myCircle = useMyECircle()
+  const { account, chainId } = useActiveWeb3React()
   const JoinCircle = useJoinNCircle()
   const ecircles = useAllCircleData()
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
-  //const allCircles = useAllCircleData()
+  const [showMyEcircle, setShowMyEcircle] = useState(false)
 
   const address = match?.params.address
 
@@ -62,7 +81,7 @@ export default function ECircle({ history, match }) {
 
           <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
             <AlertTriangle color={able.swapMore ? '#30D683' : '#FF7238'} />
-            <TYPE.main width={isMobile ? 250 : 400} fontSize={14} marginLeft={10}>
+            <TYPE.main width={isMobile ? 220 : 400} fontSize={14} marginLeft={10}>
               {t('tip3')}
             </TYPE.main>
           </AutoRow>
@@ -72,7 +91,7 @@ export default function ECircle({ history, match }) {
           <RowBetween style={{ marginTop: 64, rowGap: '19' }} gap="19px">
             <Button
               onClick={() => {
-                history.push('/myecircle')
+                setShowMyEcircle(true)
               }}
             >
               {t('myECircle')}
@@ -139,6 +158,66 @@ export default function ECircle({ history, match }) {
           }}
         />
       )}
+
+      <Modal isOpen={showMyEcircle} onDismiss={() => setShowMyEcircle(false)} minHeight={false} maxHeight={90}>
+        <UpperSection>
+          <CloseIcon
+            onClick={() => {
+              setShowMyEcircle(false)
+            }}
+          >
+            <CloseColor />
+          </CloseIcon>
+          <HeaderRow>{t('myECircle')}</HeaderRow>
+          <AccountSection>
+            <YourAccount>
+              <InfoCard>
+                <AccountGroupingRow>
+                  {myCircle && myCircle.name}
+                  <div>
+                    <WalletAction
+                      style={{ fontSize: '.825rem', fontWeight: 400 }}
+                      onClick={() => {
+                        //openOptions()
+                      }}
+                    >
+                      {myCircle && myCircle.count.toString()} / {myCircle.level}
+                    </WalletAction>
+                  </div>
+                </AccountGroupingRow>
+                <AccountGroupingRow id="web3-account-identifier-row">
+                  <AccountControl>
+                    <div>
+                      <p> {account && shortenAddress(account)}</p>
+                    </div>
+                  </AccountControl>
+                </AccountGroupingRow>
+                <AccountGroupingRow>
+                  <AccountControl>
+                    <div>
+                      {account && (
+                        <Copy toCopy={account}>
+                          <span style={{ marginLeft: '4px' }}>Copy Address</span>
+                        </Copy>
+                      )}
+                      {chainId && account && (
+                        <AddressLink
+                          hasENS={!!account}
+                          isENS={true}
+                          href={chainId && getEtherscanLink(chainId, account, 'address')}
+                        >
+                          <LinkIcon size={16} />
+                          <span style={{ marginLeft: '4px' }}>View On Eco Explorer</span>
+                        </AddressLink>
+                      )}
+                    </div>
+                  </AccountControl>
+                </AccountGroupingRow>
+              </InfoCard>
+            </YourAccount>
+          </AccountSection>
+        </UpperSection>
+      </Modal>
     </>
   )
 }

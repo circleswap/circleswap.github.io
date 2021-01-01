@@ -120,6 +120,7 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
           setShowInviteModal(false)
         }}
       />
+
     </>
   )
 }
