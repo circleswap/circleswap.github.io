@@ -253,5 +253,9 @@
   "input_address_ncircle_tip": "Make sure that the inviter address  entered has created a NCircle.",
   "connect_to_view_liquidity": "Connect to a wallet to view your liquidity.",
   "copy_address": "Copy Address",
-  "copy_to_ecircle": "Copy address to invite others to join"
+  "copy_to_ecircle": "Copy address to invite others to join",
+  "copy_link": "Copy Link",
+  "copy_to_ncircle": "Copy link to invite others to join",
+  "join_ncircle": "Join NCircle"
+
 }

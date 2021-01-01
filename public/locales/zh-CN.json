@@ -246,6 +246,8 @@
   "invitationAddress": "邀请地址",
   "circleName": "圈子名称",
   "copy_address": "复制地址",
-  "copy_to_ecircle": "复制地址邀请他人加入"
-
+  "copy_link": "复制链接",
+  "copy_to_ecircle": "复制地址邀请他人加入",
+  "copy_to_ncircle": "复制链接邀请他人加入",
+  "join_ncircle": "加入NCircle"
 }

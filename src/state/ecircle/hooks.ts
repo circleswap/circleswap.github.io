@@ -58,6 +58,7 @@ export function useMyECircle(): ECircleDetail {
   const [name, setName] = useState('')
   const [count, setCount] = useState('')
   const [level, setLevel] = useState('1')
+  const [address, setAddress] = useState('')
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -75,6 +76,10 @@ export function useMyECircle(): ECircleDetail {
                 setCount(num ?? '')
                 setLoading(false)
               })
+              contract.ownerOf(res).then((address: string) => {
+                setAddress(address)
+                setLoading(false)
+              })
               contract?.levelOf(res.toString()).then((res: string) => {
                 setLevel(res.toString() === '3' ? '500' : res.toString() === '2' ? '200' : '30')
                 setLoading(false)
@@ -87,7 +92,7 @@ export function useMyECircle(): ECircleDetail {
       }
     }
   }, [account, contract])
-  return { id: '', name: name ?? '', address: '', count: count, level: level, loading }
+  return { id: '', name: name ?? '', address: address, count: count, level: level, loading }
 }
 
 export function useECircleAbleAddress(account: string): Result {

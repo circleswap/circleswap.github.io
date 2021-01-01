@@ -51,6 +51,7 @@ export default function ECircle({ history, match }) {
   const ecircles = useAllCircleData()
   const [showJoinECircleModal, setShowJoinECircleModal] = useState(false)
   const [showMyEcircle, setShowMyEcircle] = useState(false)
+
   const theme = useContext(ThemeContext)
 
   const address = match?.params.address
@@ -191,23 +192,23 @@ export default function ECircle({ history, match }) {
                 <AccountGroupingRow id="web3-account-identifier-row">
                   <AccountControl>
                     <div>
-                      <p> {account && shortenAddress(account)}</p>
+                      <p> {myECircle.address && shortenAddress(myECircle.address)}</p>
                     </div>
                   </AccountControl>
                 </AccountGroupingRow>
                 <AccountGroupingRow>
                   <AccountControl>
                     <div>
-                      {account && (
-                        <Copy toCopy={account}>
+                      {myECircle.address && (
+                        <Copy toCopy={myECircle.address}>
                           <span style={{ marginLeft: '4px' }}>{t('copy_address')}</span>
                         </Copy>
                       )}
-                      {chainId && account && (
+                      {chainId && myECircle.address && (
                         <AddressLink
                           hasENS={!!account}
                           isENS={true}
-                          href={chainId && getEtherscanLink(chainId, account, 'address')}
+                          href={chainId && getEtherscanLink(chainId, myECircle.address, 'address')}
                         >
                           <LinkIcon size={16} />
                           <span style={{ marginLeft: '4px' }}>{t('viewOnECO')}</span>
