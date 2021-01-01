@@ -44,7 +44,7 @@ export default function ECircle({ history, match }) {
   const { t } = useTranslation()
   const able = useNCircleJoinAble()
   const circle = useNCircle()
-  const myCircle = useMyECircle()
+  const myECircle = useMyECircle()
   const { account, chainId } = useActiveWeb3React()
   const JoinCircle = useJoinNCircle()
   const ecircles = useAllCircleData()
@@ -139,12 +139,6 @@ export default function ECircle({ history, match }) {
           {t('stakeMyLPT')}
         </ButtonBlue>
 
-        {/*{myCircle.id && (*/}
-        {/*  <TYPE.main fontSize={14}>*/}
-        {/*    {t('check')} <Link to="/myecircle">{t('eCircle')}</Link>*/}
-        {/*  </TYPE.main>*/}
-        {/*)}*/}
-
         <TYPE.main width={isMobile ? 280 : ''} marginBottom={24} fontSize={13} marginTop={24}>
           {t('note')}
         </TYPE.main>
@@ -173,7 +167,7 @@ export default function ECircle({ history, match }) {
             <YourAccount>
               <InfoCard>
                 <AccountGroupingRow>
-                  {myCircle && myCircle.name}
+                  {myECircle && myECircle.name}
                   <div>
                     <WalletAction
                       style={{ fontSize: '.825rem', fontWeight: 400 }}
@@ -181,7 +175,7 @@ export default function ECircle({ history, match }) {
                         //openOptions()
                       }}
                     >
-                      {myCircle && myCircle.count.toString()} / {myCircle.level}
+                      {myECircle && myECircle.count.toString()} / {myECircle.level}
                     </WalletAction>
                   </div>
                 </AccountGroupingRow>
@@ -197,7 +191,7 @@ export default function ECircle({ history, match }) {
                     <div>
                       {account && (
                         <Copy toCopy={account}>
-                          <span style={{ marginLeft: '4px' }}>Copy Address</span>
+                          <span style={{ marginLeft: '4px' }}>{t('copy_address')}</span>
                         </Copy>
                       )}
                       {chainId && account && (
@@ -207,7 +201,7 @@ export default function ECircle({ history, match }) {
                           href={chainId && getEtherscanLink(chainId, account, 'address')}
                         >
                           <LinkIcon size={16} />
-                          <span style={{ marginLeft: '4px' }}>View On Eco Explorer</span>
+                          <span style={{ marginLeft: '4px' }}>{t('viewOnECO')}</span>
                         </AddressLink>
                       )}
                     </div>

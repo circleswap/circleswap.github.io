@@ -251,5 +251,6 @@
   "join_later": "Join Later",
   "viewOnECO": "View On Eco Explorer",
   "input_address_ncircle_tip": "Make sure that the inviter address  entered has created a NCircle.",
-  "connect_to_view_liquidity": "Connect to a wallet to view your liquidity."
+  "connect_to_view_liquidity": "Connect to a wallet to view your liquidity.",
+  "copy_address": "Copy Address"
 }

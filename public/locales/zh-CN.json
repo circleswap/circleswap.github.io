@@ -244,5 +244,7 @@
   "input_address_ncircle_tip": "请确保输入的邀请者地址已经创建NCircle。",
   "connect_to_view_liquidity.": "连接钱包查看你的流动性",
   "invitationAddress": "邀请地址",
-  "circleName": "圈子名称"
+  "circleName": "圈子名称",
+  "copy_address": "复制地址"
+
 }
