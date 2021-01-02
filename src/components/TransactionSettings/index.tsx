@@ -243,7 +243,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
             />
           </OptionCustom>
           <TYPE.body style={{ paddingLeft: '8px' }} fontSize={14}>
-            minutes
+            {t('minutes')}
           </TYPE.body>
         </RowFixed>
       </AutoColumn>

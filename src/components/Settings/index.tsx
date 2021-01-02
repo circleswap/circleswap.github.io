@@ -213,7 +213,7 @@ export default function SettingsTab() {
             <RowBetween>
               <RowFixed>
                 <TYPE.black fontWeight={400} fontSize={14} color={theme.text2}>
-                  Toggle Expert Mode
+                  {t('toggle_expert_mode')}
                 </TYPE.black>
                 <QuestionHelper text={t('toggle_expert_mode_helper')} />
               </RowFixed>
@@ -236,7 +236,7 @@ export default function SettingsTab() {
             <RowBetween>
               <RowFixed>
                 <TYPE.black fontWeight={400} fontSize={14} color={theme.text2}>
-                  Toggle Dark Mode
+                  {t('toggle_dark_mode')}
                 </TYPE.black>
               </RowFixed>
               <Toggle isActive={darkMode} toggle={toggleDarkMode} />

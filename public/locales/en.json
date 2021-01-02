@@ -288,5 +288,8 @@
   "sure": "Are you sure?",
   "expert_mode_turns": "Expert mode turns off the confirm transaction prompt and allows high slippage trades that often result in bad rates and lost funds.",
   "ONLY_USE": "ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING.",
-  "turn_on_exper_mode": "Turn On Exper Mode"
+  "turn_on_exper_mode": "Turn On Exper Mode",
+  "toggle_expert_mode": "Toggle Expert Mode",
+  "toggle_dark_mode": " Toggle Dark Mode",
+  "minutes": "minutes"
 }

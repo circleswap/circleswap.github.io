@@ -281,5 +281,9 @@
   "sure": "确定开启专业模式",
   "expert_mode_turns": "专业模式将关闭确认交易提示，并允许经常出现的高滑点交易。",
   "ONLY USE": "在开启此模式前，请知悉此风险。",
-  "turn_on_exper_mode": "开启专业模式"
+  "turn_on_exper_mode": "开启专业模式",
+  "toggle_expert_mode": "专业模式",
+  "toggle_dark_mode": "暗黑模式",
+  "minutes": "分钟"
+
 }
