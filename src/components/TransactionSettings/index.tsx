@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-
+import { useTranslation } from 'react-i18next'
 import QuestionHelper from '../QuestionHelper'
 import { TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
@@ -94,7 +94,7 @@ export interface SlippageTabsProps {
 
 export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, setDeadline }: SlippageTabsProps) {
   const theme = useContext(ThemeContext)
-
+  const { t } = useTranslation()
   const inputRef = useRef<HTMLInputElement>()
 
   const [slippageInput, setSlippageInput] = useState('')
@@ -149,9 +149,9 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
       <AutoColumn gap="sm">
         <RowFixed>
           <TYPE.black fontWeight={400} fontSize={14} color={theme.text2}>
-            Slippage tolerance
+            {t('slippage_tolerance')}
           </TYPE.black>
-          <QuestionHelper text="Your transaction will revert if the price changes unfavorably by more than this percentage." />
+          <QuestionHelper text={t('slippage_tolerance_helper')} />
         </RowFixed>
         <RowBetween>
           <Option
@@ -226,9 +226,9 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
       <AutoColumn gap="sm">
         <RowFixed>
           <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-            Transaction deadline
+            {t('transaction_deadline')}
           </TYPE.black>
-          <QuestionHelper text="Your transaction will revert if it is pending for more than this long." />
+          <QuestionHelper text={t('transaction_deadline_helper')} />
         </RowFixed>
         <RowFixed>
           <OptionCustom style={{ width: '80px' }} tabIndex={-1}>
