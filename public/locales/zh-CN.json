@@ -7,8 +7,8 @@
   "installMetamask": "请从安装了 Metamask 插件的 Chrome 或 Brave 访问。",
   "disconnected": "未连接",
   "maximumSold": "最高售出量",
-  "form_estimated": "支付(约)",
-  "to_estimated": "获得(约)",
+  "form_estimated": "输入",
+  "to_estimated": "输出",
   "swap": "兑换",
   "send": "发送",
   "pool": "资金池",
@@ -249,5 +249,13 @@
   "copy_link": "复制链接",
   "copy_to_ecircle": "复制地址邀请他人加入",
   "copy_to_ncircle": "复制链接邀请他人加入",
-  "join_ncircle": "加入NCircle"
+  "join_ncircle": "加入NCircle",
+  "total_deposits": "总质押量",
+  "participating_pools": "目前可进行流动挖矿的交易对",
+  "deposit_your_liquidity": "质押您的LP Tokens来参与CircleSwap流动性挖矿，流动性挖矿的收益将以平台通证CIR的形式进行发放。\n",
+  "your_rate": "预估收益率",
+  "circleswap_liquidity_mining": "CircleSwap流动性挖矿",
+  "when_you_withdraw": "当您解除质押时，智能合约将自动申领您所占份额的CIR。",
+  "when_you_withdraw_cir": "当您解除质押时，您的CIR将被申领且您质押的流动性将从矿池中移除。"
+
 }

@@ -12,7 +12,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { JSBI } from '@uniswap/sdk'
 import { BIG_INT_ZERO } from '../../constants'
 import { OutlineCard } from '../../components/Card'
-
+import { useTranslation } from 'react-i18next'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
@@ -45,6 +45,7 @@ const DataRow = styled(RowBetween)`
 
 export default function Earn() {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
 
   // staking info for connected account
   const stakingInfos = useStakingInfo()
@@ -65,12 +66,10 @@ export default function Earn() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.black fontWeight={600}>Circleswap iquidity mining</TYPE.black>
+                <TYPE.black fontWeight={600}>{t('circleswap_liquidity_mining')}</TYPE.black>
               </RowBetween>
               <RowBetween>
-                <TYPE.black fontSize={14}>
-                  Deposit your Liquidity Provider tokens to receive CIR, the Circleswap protocol governance token.
-                </TYPE.black>
+                <TYPE.black fontSize={14}>{t('deposit_your_liquidity')}</TYPE.black>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>
@@ -79,7 +78,7 @@ export default function Earn() {
 
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
         <DataRow style={{ alignItems: 'baseline' }}>
-          <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
+          <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>{t('participating_pools')}</TYPE.mediumHeader>
           <Countdown exactEnd={stakingInfos?.[0]?.periodFinish} />
         </DataRow>
 

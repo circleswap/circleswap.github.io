@@ -10,7 +10,7 @@
   "formEstimated": "Form (Estimated)",
   "swap": "Swap",
   "pay_for": "From",
-  "to_estimated": "To (Estimated)",
+  "to_estimated": "To",
   "send": "Send",
   "sendAnyway": "Send Anyway",
   "pool": "Pool",
@@ -256,6 +256,13 @@
   "copy_to_ecircle": "Copy address to invite others to join",
   "copy_link": "Copy Link",
   "copy_to_ncircle": "Copy link to invite others to join",
-  "join_ncircle": "Join NCircle"
+  "join_ncircle": "Join NCircle",
+  "total_deposits": "Total deposited",
+  "participating_pools": "Participating pools",
+  "deposit_your_liquidity": "Deposit your Liquidity Provider tokens to receive CIR, the Circleswap protocol governance token.",
+  "your_rate": "Your rate",
+  "circleswap_liquidity_mining": "Circleswap Liquidity mining",
+  "when_you_withdraw": "When you withdraw, the contract will automagically claim CIR on your behalf!",
+  "when_you_withdraw_cir": "When you withdraw, your CIR is claimed and your liquidity is removed from the mining pool."
 
 }

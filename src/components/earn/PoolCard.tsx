@@ -14,8 +14,7 @@ import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { usePair } from '../../data/Reserves'
 import useUSDCPrice from '../../utils/useUSDCPrice'
-import { BIG_INT_SECONDS_IN_WEEK } from '../../constants'
-
+import { useTranslation } from 'react-i18next'
 const StatContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -36,7 +35,7 @@ const Wrapper = styled(AutoColumn)<{ showBackground: boolean; bgColor: any }>`
   position: relative;
   opacity: ${({ showBackground }) => (showBackground ? '1' : '1')};
   background: ${({ theme, bgColor, showBackground }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%, ${showBackground ? theme.black : theme.bg5} 100%) `};
+    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%, ${showBackground ? bgColor : theme.bg5} 100%) `};
   color: ${({ theme, showBackground }) => (showBackground ? theme.white : theme.text1)} !important;
 
   ${({ showBackground }) =>
@@ -57,21 +56,21 @@ const TopSection = styled.div`
   `};
 `
 
-const BottomSection = styled.div<{ showBackground: boolean }>`
-  padding: 12px 16px;
-  opacity: ${({ showBackground }) => (showBackground ? '1' : '0.4')};
-  border-radius: 0 0 12px 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  z-index: 1;
-`
+// const BottomSection = styled.div<{ showBackground: boolean }>`
+//   padding: 12px 16px;
+//   opacity: ${({ showBackground }) => (showBackground ? '1' : '0.4')};
+//   border-radius: 0 0 12px 12px;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: baseline;
+//   justify-content: space-between;
+//   z-index: 1;
+// `
 
 export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) {
   const token0 = stakingInfo.tokens[0]
   const token1 = stakingInfo.tokens[1]
-
+  const { t } = useTranslation()
   const currency0 = unwrappedToken(token0)
   const currency1 = unwrappedToken(token1)
 
@@ -123,48 +122,48 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
 
       <StatContainer>
         <RowBetween>
-          <TYPE.white> Total deposited</TYPE.white>
+          <TYPE.white>{t('total_deposits')}</TYPE.white>
           <TYPE.white>
             {valueOfTotalStakedAmountInUSDC
               ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
-              : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ETH`}
+              : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} HT`}
           </TYPE.white>
         </RowBetween>
-        <RowBetween>
-          <TYPE.white> Pool rate </TYPE.white>
-          <TYPE.white>
-            {stakingInfo
-              ? stakingInfo.active
-                ? `${stakingInfo.totalRewardRate
-                    ?.multiply(BIG_INT_SECONDS_IN_WEEK)
-                    ?.toFixed(0, { groupSeparator: ',' })} CIR / week`
-                : '0 CIR / week'
-              : '-'}
-          </TYPE.white>
-        </RowBetween>
+        {/*<RowBetween>*/}
+        {/*  <TYPE.white> Pool rate </TYPE.white>*/}
+        {/*  <TYPE.white>*/}
+        {/*    {stakingInfo*/}
+        {/*      ? stakingInfo.active*/}
+        {/*        ? `${stakingInfo.totalRewardRate*/}
+        {/*            ?.multiply(BIG_INT_SECONDS_IN_WEEK)*/}
+        {/*            ?.toFixed(0, { groupSeparator: ',' })} CIR / week`*/}
+        {/*        : '0 CIR / week'*/}
+        {/*      : '-'}*/}
+        {/*  </TYPE.white>*/}
+        {/*</RowBetween>*/}
       </StatContainer>
 
       {isStaking && (
         <>
           <Break />
-          <BottomSection showBackground={true}>
-            <TYPE.black color={'white'} fontWeight={500}>
-              <span>Your rate</span>
-            </TYPE.black>
+          {/*<BottomSection showBackground={true}>*/}
+          {/*  <TYPE.black color={'white'} fontWeight={500}>*/}
+          {/*    <span>{t('your_rate')}</span>*/}
+          {/*  </TYPE.black>*/}
 
-            <TYPE.black style={{ textAlign: 'right' }} color={'white'} fontWeight={500}>
-              <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>
-                ⚡
-              </span>
-              {stakingInfo
-                ? stakingInfo.active
-                  ? `${stakingInfo.rewardRate
-                      ?.multiply(BIG_INT_SECONDS_IN_WEEK)
-                      ?.toSignificant(4, { groupSeparator: ',' })} UNI / week`
-                  : '0 CIR / week'
-                : '-'}
-            </TYPE.black>
-          </BottomSection>
+          {/*  <TYPE.black style={{ textAlign: 'right' }} color={'white'} fontWeight={500}>*/}
+          {/*    <span role="img" aria-label="wizard-icon" style={{ marginRight: '0.5rem' }}>*/}
+          {/*      ⚡*/}
+          {/*    </span>*/}
+          {/*    {stakingInfo*/}
+          {/*      ? stakingInfo.active*/}
+          {/*        ? `${stakingInfo.rewardRate*/}
+          {/*            ?.multiply(BIG_INT_SECONDS_IN_WEEK)*/}
+          {/*            ?.toSignificant(4, { groupSeparator: ',' })} CIR / week`*/}
+          {/*        : '0 CIR / week'*/}
+          {/*      : '-'}*/}
+          {/*  </TYPE.black>*/}
+          {/*</BottomSection>*/}
         </>
       )}
     </Wrapper>
