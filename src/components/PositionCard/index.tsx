@@ -272,7 +272,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
             <FixedHeightRow>
               <RowFixed>
                 <Text fontSize={16} fontWeight={500}>
-                  {t('currency0.symbol', { symbol: currency1.symbol })}
+                  {t('pooled_token', { symbol: currency1.symbol })}
                 </Text>
               </RowFixed>
               {token1Deposited ? (
