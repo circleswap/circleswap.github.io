@@ -256,6 +256,12 @@
   "your_rate": "预估收益率",
   "circleswap_liquidity_mining": "CircleSwap流动性挖矿",
   "when_you_withdraw": "当您解除质押时，智能合约将自动申领您所占份额的CIR。",
-  "when_you_withdraw_cir": "当您解除质押时，您的CIR将被申领且您质押的流动性将从矿池中移除。"
-
+  "when_you_withdraw_cir": "当您解除质押时，您的CIR将被申领且您质押的流动性将从矿池中移除。",
+  "your_total_pool_tokens": "您的LP Tokens",
+  "pool_tokens_in_rewards_pool": "您质押中的LP tokens",
+  "pooled_token": "您存入的{{symbol}}数量",
+  "your_pool_share": "您的流动性占比",
+  "manage_liquidity": "在流动性挖矿池中管理流动性",
+  "your_liquidity_deposits": "您质押的LP Tokens",
+  "your_unclaimed_CIR": "您未申领的CIR"
 }

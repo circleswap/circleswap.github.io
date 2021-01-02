@@ -263,6 +263,12 @@
   "your_rate": "Your rate",
   "circleswap_liquidity_mining": "Circleswap Liquidity mining",
   "when_you_withdraw": "When you withdraw, the contract will automagically claim CIR on your behalf!",
-  "when_you_withdraw_cir": "When you withdraw, your CIR is claimed and your liquidity is removed from the mining pool."
-
+  "when_you_withdraw_cir": "When you withdraw, your CIR is claimed and your liquidity is removed from the mining pool.",
+  "your_total_pool_tokens": "Your total pool tokens",
+  "pool_tokens_in_rewards_pool": "Pool tokens in rewards pool",
+  "pooled_token": "Pooled {{symbol}}",
+  "your_pool_share": "Your pool share",
+  "manage_liquidity": "Manage Liquidity ",
+  "your_liquidity_deposits": "Your liquidity deposits",
+  "your_unclaimed_CIR": "Your Unclaimed CIR"
 }
