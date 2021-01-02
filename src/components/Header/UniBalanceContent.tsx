@@ -16,6 +16,7 @@ import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { Break, CardSection, DataCard } from '../earn/styled'
+import { useTranslation } from 'react-i18next'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -42,7 +43,7 @@ const StyledClose = styled(X)`
 export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowUniBalanceModal: any }) {
   const { account, chainId } = useActiveWeb3React()
   const uni = chainId ? UNI[chainId] : undefined
-
+  const { t } = useTranslation()
   const total = useAggregateUniBalance()
   const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
   const uniToClaim: TokenAmount | undefined = useTotalUniEarned()
@@ -64,7 +65,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
       <ModalUpper>
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.mediumHeader>Your CIR Breakdown</TYPE.mediumHeader>
+            <TYPE.mediumHeader>{t('your_CIR_breakdown')}</TYPE.mediumHeader>
             <StyledClose onClick={() => setShowUniBalanceModal(false)} />
           </RowBetween>
         </CardSection>
@@ -80,11 +81,11 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
               </AutoColumn>
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.subHeader>Balance:</TYPE.subHeader>
+                  <TYPE.subHeader>{t('balance')}</TYPE.subHeader>
                   <TYPE.subHeader>{uniBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.subHeader>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.subHeader>Unclaimed:</TYPE.subHeader>
+                  <TYPE.subHeader>{t('unclaimed')}</TYPE.subHeader>
                   <TYPE.subHeader>
                     {uniToClaim?.toFixed(4, { groupSeparator: ',' })}{' '}
                     {uniToClaim && uniToClaim.greaterThan('0') && (
@@ -102,15 +103,15 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.subHeader>CIR price:</TYPE.subHeader>
+              <TYPE.subHeader>{t('CIR_price')}</TYPE.subHeader>
               <TYPE.subHeader>${uniPrice?.toFixed(2) ?? '-'}</TYPE.subHeader>
             </RowBetween>
             <RowBetween>
-              <TYPE.subHeader>CIR in circulation:</TYPE.subHeader>
+              <TYPE.subHeader>{t('CIR_in_circulation')}</TYPE.subHeader>
               <TYPE.subHeader>{circulation?.toFixed(0, { groupSeparator: ',' })}</TYPE.subHeader>
             </RowBetween>
             <RowBetween>
-              <TYPE.subHeader>Total Supply</TYPE.subHeader>
+              <TYPE.subHeader>{t('total_supply')}</TYPE.subHeader>
               <TYPE.subHeader>{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.subHeader>
             </RowBetween>
           </AutoColumn>

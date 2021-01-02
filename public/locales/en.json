@@ -270,5 +270,14 @@
   "your_pool_share": "Your pool share",
   "manage_liquidity": "Manage Liquidity ",
   "your_liquidity_deposits": "Your liquidity deposits",
-  "your_unclaimed_CIR": "Your Unclaimed CIR"
+  "your_unclaimed_CIR": "Your Unclaimed CIR",
+  "your_CIR_breakdown": "Your CIR Breakdown",
+  "unclaimed": "Unclaimed",
+  "CIR_price": "CIR Price",
+  "CIR_in_circulation": "CIR in circulation",
+  "total_supply": "Total Supply",
+  "deposited_liquidity": "Deposited Liquidity",
+  "withdraw_deposited_liquidity": "Withdraw deposited liquidity"
+
+
 }

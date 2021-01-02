@@ -197,7 +197,7 @@ export default function Stake() {
       .getReward()
       .then(response => {
         addTransaction(response, {
-          summary: `Withdraw deposited liquidity`
+          summary: t('withdraw_deposited_liquidity')
         })
         setHash(response.hash)
       })

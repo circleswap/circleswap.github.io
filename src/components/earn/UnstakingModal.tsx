@@ -48,7 +48,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
         .exit()
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Withdraw deposited liquidity`
+            summary: t('withdraw_deposited_liquidity')
           })
           setHash(response.hash)
         })
@@ -80,7 +80,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
               <TYPE.body fontWeight={600} fontSize={36}>
                 {<FormattedCurrencyAmount currencyAmount={stakingInfo.stakedAmount} />}
               </TYPE.body>
-              <TYPE.body>Deposited liquidity:</TYPE.body>
+              <TYPE.body>{t('deposited_liquidity')}</TYPE.body>
             </AutoColumn>
           )}
           {stakingInfo?.earnedAmount && (
@@ -88,11 +88,11 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
               <TYPE.body fontWeight={600} fontSize={36}>
                 {<FormattedCurrencyAmount currencyAmount={stakingInfo?.earnedAmount} />}
               </TYPE.body>
-              <TYPE.body>Unclaimed CIR</TYPE.body>
+              <TYPE.body>{t('your_unclaimed_CIR')}</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
-            When you withdraw, your CIR is claimed and your liquidity is removed from the mining pool.
+            {t('when_you_withdraw_cir')}
           </TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onWithdraw}>
             {error ?? 'Withdraw & Claim'}
