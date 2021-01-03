@@ -45,7 +45,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
     if (stakingContract && stakingInfo?.stakedAmount) {
       setAttempting(true)
       await stakingContract
-        .getReward({ gasLimit: 10000000 })
+        .getReward({ gasLimit: 35000000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
             summary: `Claim accumulated CIR rewards`
