@@ -82,7 +82,6 @@ export const Balls = ({ tabs }) => {
     }
 
     let bActive = false
-    bActive = true
     const iSpeed = 10
     const iSize = 250
     let disX = 0
@@ -139,14 +138,14 @@ export const Balls = ({ tabs }) => {
     sineCosine(0, 0, 0)
     setPosition()
 
-    // oDiv.onmouseover = function() {
-    //   bActive = false
-    // }
-    //
-    // oDiv.onmouseout = function() {
-    //   bActive = true
-    // }
-    //
+    oDiv.onmouseover = function() {
+      bActive = false
+    }
+
+    oDiv.onmouseout = function() {
+      bActive = true
+    }
+
     // oDiv.onmousemove = function(ev) {
     //   const oEvent = ev || window.event
     //   disX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2)
