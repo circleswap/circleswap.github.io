@@ -23,8 +23,8 @@ import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 
 const StyledMenuIcon = styled(Settings)`
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
 `
 
 const StyledCloseIcon = styled(X)`

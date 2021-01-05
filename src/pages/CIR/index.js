@@ -12,8 +12,8 @@ import { useTotalUniEarned } from '../../state/stake/hooks'
 import BigNumber from 'bignumber.js'
 
 export const Container = styled.div`
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-      padding: 0 24px
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+      
   `};
 `
 
@@ -30,6 +30,9 @@ const BodyHeader = styled.div`
 const ComingSoon = styled(LightCard)`
   border: 1px solid #888888;
   background-color: ${({ theme }) => theme.bg3};
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+     width: 90vw;
+  `};
 `
 
 const Frame = styled(RowBetween)`
@@ -42,13 +45,19 @@ const Frame = styled(RowBetween)`
 `
 
 const CirCard = styled.div`
-  flex: 1;
   box-shadow: ${({ theme }) => theme.shadow2};
   border-radius: 6px;
   padding: 20px;
   align-items: center;
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     background-color: ${({ theme }) => theme.cardBG};
+    width: 36vw
+  `};
+`
+
+const InfoFrame = styled(LightCard)`
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    width: 90vw
   `};
 `
 
@@ -73,18 +82,15 @@ export default function CIR() {
   return (
     <Container>
       <AutoColumn gap="lg">
-        {/*<LightCard style={{ padding: '0.5rem 2rem' }}>*/}
-        {/*  <CIRTabs />*/}
-        {/*</LightCard>*/}
-        <Frame gap="md" style={{ display: 'flex' }}>
-          <LightCard style={{ padding: 0 }}>
+        <Frame gap="md">
+          <InfoFrame style={{ padding: 0 }}>
             <AutoColumn gap="md" style={{ padding: '20px 30px' }}>
               <BodyHeader>
                 {t('airdropWeight')}
                 <QuestionHelper text={t('ncirclereward')} />
               </BodyHeader>
 
-              <AutoRow style={{ gap: 15 }}>
+              <AutoRow justify={'space-between'}>
                 <CirCard>
                   <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={32}>
                     {refereeN ? refereeN.toString() : '**'}
@@ -112,16 +118,16 @@ export default function CIR() {
                 </TYPE.white>
               </LineCard>
             </AutoColumn>
-          </LightCard>
+          </InfoFrame>
 
-          <LightCard style={{ padding: 0 }}>
+          <InfoFrame style={{ padding: 0 }}>
             <AutoColumn gap="md" style={{ padding: '20px 30px' }}>
               <BodyHeader>
                 {t('liquidityMiningRewards')}
                 <QuestionHelper text={t('ecirclereward')} />
               </BodyHeader>
 
-              <AutoRow style={{ gap: 15 }}>
+              <AutoRow justify={'space-between'}>
                 <CirCard>
                   <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={20}>
                     {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '**')}
@@ -154,7 +160,7 @@ export default function CIR() {
                 </TYPE.white>
               </LineCard>
             </AutoColumn>
-          </LightCard>
+          </InfoFrame>
         </Frame>
 
         <TYPE.black fontWeight={500} fontSize={16}>

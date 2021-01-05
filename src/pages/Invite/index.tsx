@@ -5,7 +5,6 @@ import { AutoColumn } from '../../components/Column'
 import { useUserInvited } from '../../hooks/useInvited'
 import { useTranslation } from 'react-i18next'
 import AddressInviteModal from '../../components/invite/AddressInviteModal'
-import { AutoRow } from '../../components/Row'
 import { CloseIcon, CustomLightSpinner, TYPE } from '../../theme'
 import { useActiveWeb3React } from '../../hooks'
 import { ZERO_ADDRESS } from '../../constants'
@@ -34,6 +33,9 @@ const PageWrapper = styled(AutoColumn)`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+      flex-direction: column;
+  `};
 `
 
 const CircleCard = styled.div`
@@ -44,16 +46,17 @@ const CircleCard = styled.div`
   justify-content: center;
   align-items: center;
   margin: 20px 60px;
-  height: 300px;
+  
   border-radius: 20px;
   cursor: pointer;
   color: transparent;
   position: relative;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-     width: 80%;
-     height: 200px
-     margin: 20px 0;
+  
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+      width: 90%;
+      height: 250px;
   `};
+  
 `
 
 const NCircle = styled(CircleCard)`
@@ -105,42 +108,40 @@ export default function Invite(props: RouteComponentProps<{ address: string }>) 
   return (
     <>
       <PageWrapper>
-        <AutoRow style={{ margin: 'auto', justifyContent: 'center' }}>
-          <NCircle
-            onClick={() => {
-              if (ZERO_ADDRESS === invited) {
-                setShowInviteModal(true)
-              } else {
-                setShowMyNcircle(true)
-              }
-            }}
-          >
-            <TYPE.white fontWeight={900} fontSize={41}>
-              {t('nCircle')}
-            </TYPE.white>
-            <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
-              {t('createNCircleTip')}
-            </TYPE.white>
-            <HelperFrame>
-              <QuestionHelper text={t('ncircle_helper')} />
-            </HelperFrame>
-          </NCircle>
-          <CCircle
-            onClick={() => {
-              history.push('/ecircle')
-            }}
-          >
-            <TYPE.white fontWeight={900} fontSize={41}>
-              {t('eCircle')}
-            </TYPE.white>
-            <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
-              {t('createAndJoin')}
-            </TYPE.white>
-            <HelperFrame>
-              <QuestionHelper text={t('ecircle_helper')} />
-            </HelperFrame>
-          </CCircle>
-        </AutoRow>
+        <NCircle
+          onClick={() => {
+            if (ZERO_ADDRESS === invited) {
+              setShowInviteModal(true)
+            } else {
+              setShowMyNcircle(true)
+            }
+          }}
+        >
+          <TYPE.white fontWeight={900} fontSize={41}>
+            {t('nCircle')}
+          </TYPE.white>
+          <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
+            {t('createNCircleTip')}
+          </TYPE.white>
+          <HelperFrame>
+            <QuestionHelper text={t('ncircle_helper')} />
+          </HelperFrame>
+        </NCircle>
+        <CCircle
+          onClick={() => {
+            history.push('/ecircle')
+          }}
+        >
+          <TYPE.white fontWeight={900} fontSize={41}>
+            {t('eCircle')}
+          </TYPE.white>
+          <TYPE.white fontWeight={900} fontSize={14} textAlign="center" marginTop="10px">
+            {t('createAndJoin')}
+          </TYPE.white>
+          <HelperFrame>
+            <QuestionHelper text={t('ecircle_helper')} />
+          </HelperFrame>
+        </CCircle>
       </PageWrapper>
 
       <Modal isOpen={showMyNcircle} onDismiss={() => setShowMyNcircle(false)} minHeight={false} maxHeight={90}>
