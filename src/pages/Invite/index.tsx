@@ -46,17 +46,16 @@ const CircleCard = styled.div`
   justify-content: center;
   align-items: center;
   margin: 20px 60px;
-  
+  height: 300px;
   border-radius: 20px;
   cursor: pointer;
   color: transparent;
   position: relative;
-  
+
   ${({ theme }) => theme.mediaWidth.upToSmall`
       width: 90%;
       height: 250px;
   `};
-  
 `
 
 const NCircle = styled(CircleCard)`
