@@ -33,7 +33,7 @@ import { TYPE } from '../../theme'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
-import AppBody from '../AppBody'
+import { CardWrapper } from '../AppBody'
 import { Dots, Wrapper } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
@@ -53,6 +53,12 @@ const ButtonFrame = styled(AutoColumn)`
   max-width: 625px;
   margin-top: 1rem
     ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 100%;
+  `};
+`
+
+export const PageWrapper = styled(Wrapper)`
+  ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 100%;
   `};
 `
@@ -323,7 +329,7 @@ export default function AddLiquidity({
 
   return (
     <>
-      <Wrapper>
+      <PageWrapper>
         <TransactionConfirmationModal
           isOpen={showConfirm}
           onDismiss={handleDismissConfirmation}
@@ -342,30 +348,24 @@ export default function AddLiquidity({
 
         <LightCard style={{ padding: '0.5rem', marginBottom: 19 }}>
           <AddRemoveTabs creating={isCreate} adding={true} />
-
-          <AutoColumn style={{ width: '100%' }}>
-            {noLiquidity ||
-              (isCreate && (
-                <Column>
-                  <AppBody>
-                    <AutoColumn gap="10px">
-                      <TYPE.link fontWeight={600} color={'primaryText1'}>
-                        {t('firstLiquidityProvider')}
-                      </TYPE.link>
-                      <TYPE.link fontWeight={400} color={'primaryText1'}>
-                        {t('ratioOfToken')}
-                      </TYPE.link>
-                      <TYPE.link fontWeight={400} color={'primaryText1'}>
-                        {t('supplyToReview')}
-                      </TYPE.link>
-                    </AutoColumn>
-                  </AppBody>
-                </Column>
-              ))}
-          </AutoColumn>
         </LightCard>
 
-        <InputsWrapper style={{ flexDirection: isMobile ? 'column' : 'row', marginBottom: 19 }}>
+        <AutoColumn style={{ width: '100%' }}>
+          {noLiquidity ||
+            (isCreate && (
+              <Column>
+                <CardWrapper>
+                  <AutoColumn gap="10px">
+                    <TYPE.white fontWeight={600}>{t('firstLiquidityProvider')}</TYPE.white>
+                    <TYPE.white fontWeight={400}>{t('ratioOfToken')}</TYPE.white>
+                    <TYPE.white fontWeight={400}>{t('supplyToReview')}</TYPE.white>
+                  </AutoColumn>
+                </CardWrapper>
+              </Column>
+            ))}
+        </AutoColumn>
+
+        <InputsWrapper style={{ flexDirection: isMobile ? 'column' : 'row', margin: '19px 0' }}>
           <Wrapper style={{ width: isMobile ? 350 : 400 }}>
             <Wrapper>
               <CurrencyInputPanel
@@ -420,7 +420,7 @@ export default function AddLiquidity({
         {!account ? (
           <ButtonLight onClick={toggleWalletModal}>{t('connectWallet')}</ButtonLight>
         ) : (
-          <AutoColumn gap={'md'} style={{ margin: '38px auto'}}>
+          <AutoColumn gap={'md'} style={{ margin: '38px auto' }}>
             {(approvalA === ApprovalState.NOT_APPROVED ||
               approvalA === ApprovalState.PENDING ||
               approvalB === ApprovalState.NOT_APPROVED ||
@@ -468,7 +468,7 @@ export default function AddLiquidity({
             </ButtonError>
           </AutoColumn>
         )}
-      </Wrapper>
+      </PageWrapper>
 
       {pair && !noLiquidity && pairState !== PairState.INVALID ? (
         <ButtonFrame>

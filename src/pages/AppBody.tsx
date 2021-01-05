@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import uImage from '../assets/images/big_unicorn.png'
 
 export const BodyWrapper = styled.div`
   position: relative;
@@ -7,6 +8,14 @@ export const BodyWrapper = styled.div`
   background: ${({ theme }) => theme.bg3};
   border-radius: 30px;
   padding: 2rem;
+`
+
+export const CardWrapper = styled.div`
+  position: relative;
+  width: fit-content;
+  border-radius: 22px;
+  padding: 1.5rem;
+  background: url(${uImage});
 `
 
 /**

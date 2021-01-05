@@ -1,18 +1,22 @@
 import React, { useRef } from 'react'
-import { BookOpen, Code, Info, MessageCircle, PieChart } from 'react-feather'
 import styled from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleModal } from '../../state/application/hooks'
-
-import { ExternalLink } from '../../theme'
-import { ButtonPrimary } from '../Button'
+import Web3Status from '../Web3Status'
+import { Text } from 'rebass'
+import { useAggregateUniBalance, useETHBalances } from '../../state/wallet/hooks'
+import { TYPE } from '../../theme'
+import { useUserHasAvailableClaim } from '../../state/claim/hooks'
+import { CountUp } from 'use-count-up/lib'
+import usePrevious from '../../hooks/usePrevious'
+import { TokenAmount } from '@uniswap/sdk'
 
 const StyledMenuIcon = styled(MenuIcon)`
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
 `
 
 const StyledMenuButton = styled.button`
@@ -48,7 +52,6 @@ const StyledMenuButton = styled.button`
 `
 
 const StyledMenu = styled.div`
-  margin-left: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,38 +69,68 @@ const MenuFlyout = styled.span`
   font-size: 1rem;
   position: absolute;
   top: 4rem;
-  right: 0rem;
+  right: -1rem;
   z-index: 100;
+  background-color: ${({ theme }) => theme.bg2};
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
+    0px 24px 32px rgba(0, 0, 0, 0.01);
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
-    top: -17.25rem;
+    top: 3rem;
   `};
 `
 
-const MenuItem = styled(ExternalLink)`
-  flex: 1;
-  padding: 0.5rem 0.5rem;
-  color: ${({ theme }) => theme.text2};
-  :hover {
-    color: ${({ theme }) => theme.text1};
-    cursor: pointer;
-    text-decoration: none;
+const AccountElement = styled.div<{ active: boolean }>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: ${({ theme }) => theme.primary1};
+  border-radius: 100px;
+  white-space: nowrap;
+  width: 100%;
+  padding: 0 1rem;
+  cursor: pointer;
+
+  :focus {
+    border: 1px solid blue;
   }
-  > svg {
-    margin-right: 8px;
-  }
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+     display: flex;
+     flex-direction: column;
+     gap: 20px
+  `};
 `
 
-const CODE_LINK = 'https://github.com/Uniswap/uniswap-interface'
+const UNIAmount = styled(AccountElement)`
+  height: 36px;
+  font-weight: 500;
+  padding: 0 1rem;
+  color: ${({ theme }) => theme.primary1};
+  border: 1px solid ${({ theme }) => theme.primary1};
+  display: flex;
+  flex-direction: row;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+     display: flex;
+     flex-direction: row;
+     gap: 6px
+  `};
+`
+
+const BalanceText = styled(Text)``
 
 export default function Menu() {
   const { account } = useActiveWeb3React()
+  const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
+  const availableClaim: boolean = useUserHasAvailableClaim(account)
+  const aggregateBalance: TokenAmount | undefined = useAggregateUniBalance()
+  const countUpValue = aggregateBalance?.toFixed(0) ?? '0'
+  const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
 
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.MENU)
   const toggle = useToggleModal(ApplicationModal.MENU)
   useOnClickOutside(node, open ? toggle : undefined)
-  const openClaimModal = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
 
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
@@ -108,31 +141,36 @@ export default function Menu() {
 
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https://uniswap.org/">
-            <Info size={14} />
-            About
-          </MenuItem>
-          <MenuItem id="link" href="https://uniswap.org/docs/v2">
-            <BookOpen size={14} />
-            Docs
-          </MenuItem>
-          <MenuItem id="link" href={CODE_LINK}>
-            <Code size={14} />
-            Code
-          </MenuItem>
-          <MenuItem id="link" href="https://discord.gg/EwFs3Pp">
-            <MessageCircle size={14} />
-            Discord
-          </MenuItem>
-          <MenuItem id="link" href="https://uniswap.info/">
-            <PieChart size={14} />
-            Analytics
-          </MenuItem>
-          {account && (
-            <ButtonPrimary onClick={openClaimModal} padding="8px 16px" width="100%" borderRadius="12px" mt="0.5rem">
-              Claim CIR
-            </ButtonPrimary>
-          )}
+          <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
+            <Web3Status />
+            {account && userEthBalance ? (
+              <BalanceText style={{ flexShrink: 0, fontSize: 22 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
+                {userEthBalance?.toSignificant(4)} HT
+              </BalanceText>
+            ) : null}
+            <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
+              {account && (
+                <>
+                  <TYPE.white
+                    style={{
+                      paddingRight: '.4rem',
+                      color: 'rgba(48, 214, 131, 1)'
+                    }}
+                  >
+                    <CountUp
+                      key={countUpValue}
+                      isCounting
+                      start={parseFloat(countUpValuePrevious)}
+                      end={parseFloat(countUpValue)}
+                      thousandsSeparator={','}
+                      duration={1}
+                    />
+                  </TYPE.white>
+                </>
+              )}
+              CIR
+            </UNIAmount>
+          </AccountElement>
         </MenuFlyout>
       )}
     </StyledMenu>

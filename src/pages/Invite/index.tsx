@@ -50,8 +50,9 @@ const CircleCard = styled.div`
   color: transparent;
   position: relative;
   ${({ theme }) => theme.mediaWidth.upToMedium`
-     width: 100%;
+     width: 80%;
      height: 200px
+     margin: 20px 0;
   `};
 `
 

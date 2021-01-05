@@ -77,8 +77,8 @@ export const STAKING_REWARDS_INFO: {
     },
     {
       tokens: [
-        new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'CircleSwap Governance Token'),
-        new Token(ChainId.HT, '0x0298c2b32eae4da002a15f36fdf7615bea3da047', 8, 'HUSD', 'Heco-Peg HUSD Token')
+        new Token(ChainId.HT, '0x0298c2b32eae4da002a15f36fdf7615bea3da047', 8, 'HUSD', 'Heco-Peg HUSD Token'),
+        new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'CircleSwap Governance Token')
       ],
       stakingRewardAddress: '0x82194AFF9608b18551760434b2391b7e3C50deaB'
     },

@@ -18,6 +18,7 @@ import { useCircleContract } from '../../hooks/useContract'
 import Modal from '../../components/Modal'
 import { LoadingView, SubmittedView } from '../../components/ModalViews'
 import { useTransactionAdder } from '../../state/transactions/hooks'
+import { CardWrapper } from '../AppBody'
 
 const PageWrapper = styled(AutoColumn)`
   display: flex;
@@ -215,16 +216,22 @@ export default function Stake() {
   return (
     <>
       <PageWrapper>
+
         <StakeWrapper>
-          <AutoColumn gap="lg" style={{ width: '100%' }}>
-            <TYPE.link textAlign="center" fontSize={19}>
-              {t('liquidityMining')}
-            </TYPE.link>
 
-            <TYPE.main>{t('stakingTip')}</TYPE.main>
+          <CardWrapper gap="lg" hasBG={true}>
+            <AutoColumn gap="md" >
+              <TYPE.white textAlign="left" fontSize={22}>
+                {t('liquidityMining')}
+              </TYPE.white>
+              <TYPE.white>{t('stakingTip')}</TYPE.white>
 
-            <TYPE.main>{t('currentAbleLPT')}</TYPE.main>
+            </AutoColumn>
+          </CardWrapper>
 
+          <TYPE.white width={'100%'} marginTop={24} textAlign={'left'}>{t('currentAbleLPT')}</TYPE.white>
+
+          <AutoColumn gap="lg" style={{ width: '100%', marginTop: 24 }}>
             <StakeCard gap="lg">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
@@ -447,8 +454,8 @@ export default function Stake() {
             </StakeCard>
 
             <ClaimCard gap="lg">
-              <ClaimCard.Modal src={claim} />
-              <ClaimCard.Cover />
+              <ClaimCard.Modal src={claim}/>
+              <ClaimCard.Cover/>
               <TYPE.white marginTop={16} marginLeft={23} style={{ zIndex: 1 }} color={'#fff'}>
                 {t('total_rewards')}{' '}
               </TYPE.white>

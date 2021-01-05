@@ -19,11 +19,11 @@ import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks
 import { Dots } from '../../components/swap/styleds'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { BIG_INT_ZERO } from '../../constants'
-import AppBody from '../AppBody'
+import { CardWrapper } from '../AppBody'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
-  padding: 24px;
+  padding: 0 24px;
 `
 
 const TitleRow = styled(RowBetween)`
@@ -139,16 +139,18 @@ export default function Pool() {
     <>
       <PageWrapper>
         <SwapPoolTabs active={'pool'} />
-        <AppBody>
+        <CardWrapper>
           <AutoColumn gap="lg">
             <ColumnCenter>
-              <TYPE.link fontWeight={600}>{t('liquidityMining')}</TYPE.link>
+              <TYPE.white fontSize={22} fontWeight={600}>
+                {t('liquidityMining')}
+              </TYPE.white>
             </ColumnCenter>
             <RowBetween>
-              <TYPE.main fontSize={14}>{t('liquidityFee')}</TYPE.main>
+              <TYPE.white fontSize={14}>{t('liquidityFee')}</TYPE.white>
             </RowBetween>
           </AutoColumn>
-        </AppBody>
+        </CardWrapper>
         <div style={{ marginTop: 13 }} />
         <BodyWrapper>
           <AutoColumn gap="lg" style={{ width: '100%' }}>

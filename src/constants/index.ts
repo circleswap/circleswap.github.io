@@ -22,6 +22,14 @@ export const MKR = new Token(ChainId.HT, '0x9f8F72aA9304c8B593d555F12eF6589cC3A5
 export const AMPL = new Token(ChainId.HT, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const WBTC = new Token(ChainId.HT, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 18, 'WBTC', 'Wrapped BTC')
 
+export const HUSD = new Token(
+  ChainId.HT,
+  '0x0298c2b32eae4da002a15f36fdf7615bea3da047',
+  8,
+  'HUSD',
+  'Heco-Peg HUSD Token'
+)
+
 export const CIR = new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'Circleswap Token')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time

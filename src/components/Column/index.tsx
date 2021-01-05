@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import uImage from '../../assets/images/big_unicorn.png'
 
 const Column = styled.div`
   display: flex;
@@ -12,13 +13,14 @@ export const ColumnCenter = styled(Column)`
 
 export const AutoColumn = styled.div<{
   gap?: 'sm' | 'md' | 'lg' | string
-  justify?: 'stretch' | 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'space-between'
+  justify?: 'stretch' | 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'space-between',
+  hasBG?: boolean
 }>`
+  background: ${({ hasBG }) => hasBG && `url(${uImage})`};
   display: grid;
   grid-auto-rows: auto;
   grid-row-gap: ${({ gap }) => (gap === 'sm' && '8px') || (gap === 'md' && '12px') || (gap === 'lg' && '24px') || gap};
   justify-items: ${({ justify }) => justify && justify};
-
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 100%;
   `};

@@ -25,14 +25,11 @@ export const DataCard = styled(AutoColumn)<{ disabled?: boolean }>`
 
 export const CardBGImage = styled.span<{ desaturate?: boolean }>`
   background: url(${uImage});
-  width: 1000px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   border-radius: 12px;
   opacity: 0.4;
-  top: -100px;
-  left: -100px;
-  transform: rotate(-15deg);
   user-select: none;
 
   ${({ desaturate }) => desaturate && `filter: saturate(0)`}

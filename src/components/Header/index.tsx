@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
 
-import Logo from '../../assets/images/logo-circle.svg'
+import Logo from '../../assets/svg/logo-light.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances, useAggregateUniBalance } from '../../state/wallet/hooks'
@@ -29,6 +29,7 @@ import Modal from '../Modal'
 import UniBalanceContent from './UniBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 import { isMobile } from 'react-device-detect'
+import Menu from '../Menu'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -49,14 +50,12 @@ const HeaderFrame = styled.div`
   box-shadow: 0px 6px 19px 0px rgba(12, 29, 66, 0.04);
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
-    padding: 0 1rem;
+    padding: 0 1rem 0;
     width: calc(100%);
     position: fixed;
+    border-radius: 0 0 12px 12px;
+    display: flex
   `};
-
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-        padding: 0.5rem 1rem;
-  `}
 `
 
 const HeaderControls = styled.div`
@@ -69,15 +68,9 @@ const HeaderControls = styled.div`
     flex-direction: row;
     justify-content: space-between;
     justify-self: center;
-    width: 100%;
-    max-width: 960px;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
+    width: fit-content!important;
     width: 100%;
     z-index: 99;
-    height: 72px;
     border-radius: 12px 12px 0 0;
     background-color: ${({ theme }) => theme.bg1};
   `};
@@ -108,8 +101,7 @@ const HeaderRow = styled(RowFixed)`
 const HeaderLinks = styled(Row)`
   justify-content: center;
   ${({ theme }) => theme.mediaWidth.upToMedium`
-    padding: 1rem 0 1rem 1rem;
-    justify-content: flex-end;
+    justify-content: flex-start;
 `};
 `
 
@@ -220,11 +212,20 @@ const StyledNavLink = styled(NavLink).attrs({
   width: fit-content;
   margin: 0 0.5rem;
   font-weight: 500;
+  padding-bottom: 14px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding-bottom: 14px;
+    padding-top: 12px
+  `};
 
   &.${activeClassName} {
     border-radius: 12px;
     font-weight: 600;
     color: ${({ theme }) => theme.primary1};
+    ${({ theme }) => theme.mediaWidth.upToSmall`
+    border-radius: 0;
+    border-bottom: 3px solid ${({ theme }) => theme.primary1};
+  `};
   }
 
   :hover,
@@ -302,7 +303,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={isMobile ? '32px' : '64px'} src={isDark ? Logo : Logo} alt="logo" />
+            <img width={isMobile ? '20px' : '64px'} src={isDark ? Logo : Logo} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>
@@ -331,60 +332,63 @@ export default function Header() {
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
-        <HeaderElement>
-          <HideSmall>
-            {chainId && NETWORK_LABELS[chainId] && (
-              <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
+        <HideSmall>
+          <HeaderElement>
+            <HideSmall>
+              {chainId && NETWORK_LABELS[chainId] && (
+                <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
+              )}
+            </HideSmall>
+            {availableClaim && !showClaimPopup && (
+              <UNIWrapper onClick={toggleClaimModal}>
+                <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
+                  <TYPE.white padding="0 2px">
+                    {claimTxn && !claimTxn?.receipt ? <Dots>Claiming CIR</Dots> : 'Claim cir'}
+                  </TYPE.white>
+                </UNIAmount>
+                <CardNoise />
+              </UNIWrapper>
             )}
-          </HideSmall>
-          {availableClaim && !showClaimPopup && (
-            <UNIWrapper onClick={toggleClaimModal}>
-              <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
-                <TYPE.white padding="0 2px">
-                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming CIR</Dots> : 'Claim cir'}
-                </TYPE.white>
-              </UNIAmount>
-              <CardNoise />
-            </UNIWrapper>
-          )}
-          {!availableClaim && aggregateBalance && (
-            <UNIWrapper onClick={() => setShowUniBalanceModal(true)}>
-              <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
-                {account && (
-                  <HideSmall>
-                    <TYPE.white
-                      style={{
-                        paddingRight: '.4rem',
-                        color: 'rgba(48, 214, 131, 1)'
-                      }}
-                    >
-                      <CountUp
-                        key={countUpValue}
-                        isCounting
-                        start={parseFloat(countUpValuePrevious)}
-                        end={parseFloat(countUpValue)}
-                        thousandsSeparator={','}
-                        duration={1}
-                      />
-                    </TYPE.white>
-                  </HideSmall>
-                )}
-                CIR
-              </UNIAmount>
-              <CardNoise />
-            </UNIWrapper>
-          )}
-          <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
-            {account && userEthBalance ? (
-              <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
-                {userEthBalance?.toSignificant(4)} HT
-              </BalanceText>
-            ) : null}
-            <Web3Status />
-          </AccountElement>
-        </HeaderElement>
+            {!availableClaim && aggregateBalance && (
+              <UNIWrapper onClick={() => setShowUniBalanceModal(true)}>
+                <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
+                  {account && (
+                    <HideSmall>
+                      <TYPE.white
+                        style={{
+                          paddingRight: '.4rem',
+                          color: 'rgba(48, 214, 131, 1)'
+                        }}
+                      >
+                        <CountUp
+                          key={countUpValue}
+                          isCounting
+                          start={parseFloat(countUpValuePrevious)}
+                          end={parseFloat(countUpValue)}
+                          thousandsSeparator={','}
+                          duration={1}
+                        />
+                      </TYPE.white>
+                    </HideSmall>
+                  )}
+                  CIR
+                </UNIAmount>
+                <CardNoise />
+              </UNIWrapper>
+            )}
+            <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
+              {account && userEthBalance ? (
+                <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
+                  {userEthBalance?.toSignificant(4)} HT
+                </BalanceText>
+              ) : null}
+              <Web3Status />
+            </AccountElement>
+          </HeaderElement>
+        </HideSmall>
         <HeaderElementWrap>
           <Settings />
+          <Menu />
           {/*<LanButton onClick={()=>{*/}
 
           {/*}}>中文</LanButton>*/}

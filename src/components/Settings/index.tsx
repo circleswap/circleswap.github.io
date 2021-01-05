@@ -50,6 +50,11 @@ const StyledMenuButton = styled.button`
   align-items: center;
   border-radius: 0.5rem;
   background-color: transparent;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    height: 25px;
+    width: 25px;
+    padding: 0
+  `};
 
   :hover,
   :focus {
@@ -85,6 +90,9 @@ const StyledMenu = styled.div`
   position: relative;
   border: none;
   text-align: left;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    margin-left: 0;
+  `};
 `
 
 const MenuFlyout = styled.span`
@@ -108,7 +116,8 @@ const MenuFlyout = styled.span`
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     min-width: 18.125rem;
-    top: -22rem;
+    top: 3rem;
+    left: -13rem
   `};
 `
 

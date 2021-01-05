@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { LightCard } from '../../components/Card'
 import { useTranslation } from 'react-i18next'
-import { CIRTabs } from '../../components/NavigationTabs'
 import { AutoRow, RowBetween } from '../../components/Row'
 import { TYPE } from '../../theme'
 import QuestionHelper from '../../components/QuestionHelper'
@@ -14,19 +13,18 @@ import BigNumber from 'bignumber.js'
 
 export const Container = styled.div`
   ${({ theme }) => theme.mediaWidth.upToSmall`
-      padding: 24px
+      padding: 0 24px
   `};
 `
 
 const BodyHeader = styled.div`
   width: 100%;
-  height: 48px;
   border-radius: 14px 14px 0px 0px;
-  background: ${({ theme }) => theme.primary1};
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 41px;
+  font-size: 18px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.primary1};
 `
 
 const ComingSoon = styled(LightCard)`
@@ -43,6 +41,27 @@ const Frame = styled(RowBetween)`
   `};
 `
 
+const CirCard = styled.div`
+  flex: 1;
+  box-shadow: ${({ theme }) => theme.shadow2};
+  border-radius: 6px;
+  padding: 20px;
+  align-items: center;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    background-color: ${({ theme }) => theme.cardBG};
+  `};
+`
+
+const LineCard = styled.div`
+  flex: 1;
+  background-color: ${({ bg }) => bg};
+  border-radius: 6px;
+  padding: 16px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
 export default function CIR() {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
@@ -54,75 +73,86 @@ export default function CIR() {
   return (
     <Container>
       <AutoColumn gap="lg">
-        <LightCard style={{ padding: '0.5rem 2rem' }}>
-          <CIRTabs />
-        </LightCard>
+        {/*<LightCard style={{ padding: '0.5rem 2rem' }}>*/}
+        {/*  <CIRTabs />*/}
+        {/*</LightCard>*/}
         <Frame gap="md" style={{ display: 'flex' }}>
           <LightCard style={{ padding: 0 }}>
-            <BodyHeader>
-              {t('airdropWeight')}
-              <QuestionHelper text={t('ncirclereward')} />
-            </BodyHeader>
-            <AutoColumn gap="md" style={{ width: 388, padding: 24 }}>
-              <AutoRow>
-                <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('parentBlockAddresses')}:
-                </TYPE.black>
-                <TYPE.black marginLeft={16} fontWeight={500} fontSize={16}>
-                  {refereeN ? refereeN.toString() : '**'}
-                </TYPE.black>
+            <AutoColumn gap="md" style={{ padding: '20px 30px' }}>
+              <BodyHeader>
+                {t('airdropWeight')}
+                <QuestionHelper text={t('ncirclereward')} />
+              </BodyHeader>
+
+              <AutoRow style={{ gap: 15 }}>
+                <CirCard>
+                  <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={32}>
+                    {refereeN ? refereeN.toString() : '**'}
+                  </TYPE.black>
+                  <TYPE.black textAlign={'center'} fontWeight={500} fontSize={12}>
+                    {t('parentBlockAddresses')}
+                  </TYPE.black>
+                </CirCard>
+                <CirCard>
+                  <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={32}>
+                    {referee2N ? referee2N.toString() : '**'}
+                  </TYPE.black>
+                  <TYPE.black textAlign={'center'} fontWeight={500} fontSize={12}>
+                    {t('uncleBlockAddresses')}
+                  </TYPE.black>
+                </CirCard>
               </AutoRow>
-              <AutoRow>
-                <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('uncleBlockAddresses')}:
-                </TYPE.black>
-                <TYPE.black marginLeft={16} fontWeight={500} fontSize={16}>
-                  {referee2N ? referee2N.toString() : '**'}
-                </TYPE.black>
-              </AutoRow>
-              <AutoRow>
-                <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('numberOfAirdrops')}:
-                </TYPE.black>
-                <TYPE.black marginLeft={16} fontWeight={500} fontSize={16}>
-                  100000
-                </TYPE.black>
-              </AutoRow>
+
+              <LineCard bg={'#6EAEF2'}>
+                <TYPE.white fontWeight={600} fontSize={20}>
+                  1,000,000
+                </TYPE.white>
+                <TYPE.white fontWeight={600} fontSize={12} width={80}>
+                  {t('numberOfAirdrops')}
+                </TYPE.white>
+              </LineCard>
             </AutoColumn>
           </LightCard>
+
           <LightCard style={{ padding: 0 }}>
-            <BodyHeader>
-              {t('liquidityMiningRewards')}
-              <QuestionHelper text={t('ecirclereward')} />
-            </BodyHeader>
-            <AutoColumn gap="md" style={{ width: 388, padding: 24 }}>
-              <AutoRow>
-                <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('ownComputingPower')}:
-                </TYPE.black>
-                <TYPE.black fontWeight={500} fontSize={16}></TYPE.black>
+            <AutoColumn gap="md" style={{ padding: '20px 30px' }}>
+              <BodyHeader>
+                {t('liquidityMiningRewards')}
+                <QuestionHelper text={t('ecirclereward')} />
+              </BodyHeader>
+
+              <AutoRow style={{ gap: 15 }}>
+                <CirCard>
+                  <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={20}>
+                    {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '**')}
+                  </TYPE.black>
+                  <TYPE.black textAlign={'center'} fontWeight={500} fontSize={12}>
+                    {t('unclaimed')}
+                  </TYPE.black>
+                </CirCard>
+                <CirCard>
+                  <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={20}>
+                    {claimedReward
+                      ? new BigNumber(claimedReward.toString())
+                          .dividedBy(1000000000000000000)
+                          .toFixed(0)
+                          .toString()
+                      : '**'}
+                  </TYPE.black>
+                  <TYPE.black textAlign={'center'} fontWeight={500} fontSize={12}>
+                    {t('claimed')}
+                  </TYPE.black>
+                </CirCard>
               </AutoRow>
-              <AutoRow>
-                <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('unclaimed')}:
-                </TYPE.black>
-                <TYPE.black style={{ padding: 0 }} marginLeft={16} fontWeight={500} fontSize={16}>
-                  {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '**')} CIR
-                </TYPE.black>
-              </AutoRow>
-              <AutoRow>
-                <TYPE.black fontWeight={500} fontSize={13}>
-                  {t('claimed')}:
-                </TYPE.black>
-                <TYPE.black style={{ padding: 0 }} marginLeft={16} fontWeight={500} fontSize={16}>
-                  {claimedReward
-                    ? new BigNumber(claimedReward.toString())
-                        .dividedBy(1000000000000000000)
-                        .toFixed(0)
-                        .toString()
-                    : '**'}
-                </TYPE.black>
-              </AutoRow>
+
+              <LineCard bg={'#FFA563'}>
+                <TYPE.white marginLeft={16} fontWeight={600} fontSize={20}>
+                  **
+                </TYPE.white>
+                <TYPE.white fontWeight={600} fontSize={12} width={80}>
+                  {t('ownComputingPower')}
+                </TYPE.white>
+              </LineCard>
             </AutoColumn>
           </LightCard>
         </Frame>

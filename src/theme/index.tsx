@@ -80,7 +80,8 @@ export function colors(darkMode: boolean): Colors {
     yellow2: '#F3841E',
     blue1: '#2172E5',
     bluePrimary: '#518AFF',
-    bodyPadding: '100px'
+    bodyPadding: '100px',
+    cardBG: darkMode ? 'rgba(255, 255, 255, 0.1)' : '#ffffff'
 
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
@@ -112,7 +113,11 @@ export function theme(darkMode: boolean): DefaultTheme {
     flexRowNoWrap: css`
       display: flex;
       flex-flow: row nowrap;
-    `
+    `,
+
+    shadow2: darkMode ? 'box-shadow: 0px 10px 30px 0px #21483C' : '0px 10px 30px 0px rgba(216, 220, 225, 0.37)',
+
+    cirCardBg: darkMode ? '#21483C' : '#ffffff'
   }
 }
 
@@ -151,7 +156,7 @@ export const TYPE = {
     return <TextWrapper fontWeight={500} color={'text1'} fontSize={20} {...props} />
   },
   subHeader(props: TextProps) {
-    return <TextWrapper fontWeight={400} color={'text1'}  fontSize={14} {...props} />
+    return <TextWrapper fontWeight={400} color={'text1'} fontSize={14} {...props} />
   },
   small(props: TextProps) {
     return <TextWrapper fontWeight={500} fontSize={11} {...props} />

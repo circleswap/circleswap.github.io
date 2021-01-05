@@ -46,6 +46,7 @@ export interface Colors {
   blue1: Color
   bluePrimary: string
   bodyPadding: string
+  cardBG: string
 }
 
 export interface Grids {
@@ -60,6 +61,10 @@ declare module 'styled-components' {
 
     // shadows
     shadow1: string
+
+    shadow2: string
+
+    cirCardBg: string
 
     // media queries
     mediaWidth: {
