@@ -114,6 +114,7 @@ const UNIAmount = styled(AccountElement)`
   border: 1px solid ${({ theme }) => theme.primary1};
   display: flex;
   flex-direction: row;
+  justify-content: center;
   ${({ theme }) => theme.mediaWidth.upToMedium`
      display: flex;
      flex-direction: row;
@@ -121,7 +122,9 @@ const UNIAmount = styled(AccountElement)`
   `};
 `
 
-const BalanceText = styled(Text)``
+const BalanceText = styled(Text)`
+  margin: 24px 0;
+`
 
 export default function Menu({ onUniClick }: { onUniClick: () => void }) {
   const { account } = useActiveWeb3React()
