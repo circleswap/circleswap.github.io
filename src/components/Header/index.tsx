@@ -388,10 +388,7 @@ export default function Header() {
         </HideSmall>
         <HeaderElementWrap>
           <Settings />
-          <Menu />
-          {/*<LanButton onClick={()=>{*/}
-
-          {/*}}>中文</LanButton>*/}
+          <Menu onUniClick={() => setShowUniBalanceModal(true)} />
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>

@@ -123,7 +123,7 @@ const UNIAmount = styled(AccountElement)`
 
 const BalanceText = styled(Text)``
 
-export default function Menu() {
+export default function Menu({ onUniClick }: { onUniClick: () => void }) {
   const { account } = useActiveWeb3React()
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   const availableClaim: boolean = useUserHasAvailableClaim(account)
@@ -152,28 +152,26 @@ export default function Menu() {
                 {userEthBalance?.toSignificant(4)} HT
               </BalanceText>
             ) : null}
-            <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
-              {account && (
-                <>
-                  <TYPE.white
-                    style={{
-                      paddingRight: '.4rem',
-                      color: 'rgba(48, 214, 131, 1)'
-                    }}
-                  >
-                    <CountUp
-                      key={countUpValue}
-                      isCounting
-                      start={parseFloat(countUpValuePrevious)}
-                      end={parseFloat(countUpValue)}
-                      thousandsSeparator={','}
-                      duration={1}
-                    />
-                  </TYPE.white>
-                </>
-              )}
-              CIR
-            </UNIAmount>
+            {account && (
+              <UNIAmount onClick={onUniClick} active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
+                <TYPE.white
+                  style={{
+                    paddingRight: '.4rem',
+                    color: 'rgba(48, 214, 131, 1)'
+                  }}
+                >
+                  <CountUp
+                    key={countUpValue}
+                    isCounting
+                    start={parseFloat(countUpValuePrevious)}
+                    end={parseFloat(countUpValue)}
+                    thousandsSeparator={','}
+                    duration={1}
+                  />
+                </TYPE.white>
+                CIR
+              </UNIAmount>
+            )}
           </AccountElement>
         </MenuFlyout>
       )}
