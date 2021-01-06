@@ -111,7 +111,7 @@ export default function CIR() {
 
               <LineCard bg={'#6EAEF2'}>
                 <TYPE.white fontWeight={600} fontSize={20}>
-                  1,000,00
+                  100,000
                 </TYPE.white>
                 <TYPE.white fontWeight={600} fontSize={12} width={80}>
                   {t('numberOfAirdrops')}
