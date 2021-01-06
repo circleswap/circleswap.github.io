@@ -17,6 +17,10 @@ import { TokenAmount } from '@uniswap/sdk'
 const StyledMenuIcon = styled(MenuIcon)`
   width: 25px;
   height: 25px;
+  display: none;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    display: flex
+  `};
 `
 
 const StyledMenuButton = styled.button`
