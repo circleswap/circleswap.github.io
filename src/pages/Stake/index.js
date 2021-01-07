@@ -62,7 +62,7 @@ const StakeCard = styled(AutoColumn)`
   position: relative;
   background-color: ${({ theme }) => theme.bg3};
   ${({ theme }) => theme.mediaWidth.upToMedium`
-     width: 320px;
+     width: 100%;
      font-size: 12px
   `};
 `
@@ -126,7 +126,7 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   }
   ${({ theme }) => theme.mediaWidth.upToSmall`
     padding: 8px 16px
-    width: 100%;
+    width: 48%;
     font-size: 16px
   `};
 `
@@ -141,7 +141,7 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   }
   ${({ theme }) => theme.mediaWidth.upToSmall`
     padding: 8px 16px
-    width: 100%;
+    width: 48%;
     font-size: 16px
   `};
 `

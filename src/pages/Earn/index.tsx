@@ -13,11 +13,13 @@ import { JSBI } from '@uniswap/sdk'
 import { BIG_INT_ZERO } from '../../constants'
 import { OutlineCard } from '../../components/Card'
 import { useTranslation } from 'react-i18next'
+import uImage from '../../assets/images/big_unicorn.png'
+
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    padding: 0 24px;
+    padding: 0 32px;
   `};
 `
 
@@ -25,7 +27,7 @@ const TopSection = styled(AutoColumn)`
   max-width: 720px;
   width: 100%;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.bg3};
+  background: url(${uImage});
 `
 
 const PoolSection = styled.div`
@@ -66,10 +68,10 @@ export default function Earn() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.black fontWeight={600}>{t('circleswap_liquidity_mining')}</TYPE.black>
+                <TYPE.white fontWeight={600}>{t('circleswap_liquidity_mining')}</TYPE.white>
               </RowBetween>
               <RowBetween>
-                <TYPE.black fontSize={14}>{t('deposit_your_liquidity')}</TYPE.black>
+                <TYPE.white fontSize={14}>{t('deposit_your_liquidity')}</TYPE.white>
               </RowBetween>{' '}
             </AutoColumn>
           </CardSection>

@@ -252,7 +252,7 @@
   "join_ncircle": "加入NCircle",
   "total_deposits": "总质押量",
   "participating_pools": "目前可进行流动挖矿的交易对",
-  "deposit_your_liquidity": "质押您的LP Tokens来参与CircleSwap流动性挖矿，流动性挖矿的收益将以平台通证CIR的形式进行发放",
+  "deposit_your_liquidity": "质押您的LP Tokens来参与CircleSwap流动性挖矿，流动性挖矿的收益将以平台通证CIR的形式进行发放。",
   "your_rate": "预估收益率",
   "circleswap_liquidity_mining": "CircleSwap流动性挖矿",
   "when_you_withdraw": "当您解除质押时，智能合约将自动申领您所占份额的CIR。",
