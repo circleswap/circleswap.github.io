@@ -34,7 +34,7 @@ export default function CurrencyLogo({
   style?: React.CSSProperties
 }) {
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
-
+  console.log('logoURI', currency)
   const srcs: string[] = useMemo(() => {
     if (currency === ETHER) return []
 

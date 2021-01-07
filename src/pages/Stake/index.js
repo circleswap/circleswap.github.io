@@ -21,7 +21,6 @@ import { useTransactionAdder } from '../../state/transactions/hooks'
 import { CardWrapper } from '../AppBody'
 import { Text } from 'rebass'
 import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
-import DoubleCurrencyLogo from '../../components/DoubleLogo'
 
 const PageWrapper = styled(AutoColumn)`
   display: flex;
@@ -147,11 +146,11 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   `};
 `
 
-const LogosFrame = styled.div`
-  position: absolute;
-  top: 24px;
-  right: 0;
-`
+// const LogosFrame = styled.div`
+//   position: absolute;
+//   top: 24px;
+//   right: 0;
+// `
 
 export default function Stake() {
   const { t } = useTranslation()
@@ -297,9 +296,9 @@ export default function Stake() {
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   HT-ETH
-                  <LogosFrame>
-                    <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} size={24} />
-                  </LogosFrame>
+                  {/*<LogosFrame>*/}
+                  {/*  <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} size={24} />*/}
+                  {/*</LogosFrame>*/}
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
