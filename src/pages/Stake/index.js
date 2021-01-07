@@ -21,6 +21,14 @@ import { useTransactionAdder } from '../../state/transactions/hooks'
 import { CardWrapper } from '../AppBody'
 import { Text } from 'rebass'
 import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
+import CIRToUSDT from '../../assets/logos/cir-husd.png'
+import HTToCIR from '../../assets/logos/ht-cir.png'
+import RPCToCIR from '../../assets/logos/rpc-cir.png'
+import HTToETH from '../../assets/logos/ht-eth.png'
+import HTToHBTC from '../../assets/logos/ht-hbtc.png'
+import HTToHUSD from '../../assets/logos/ht-husd.png'
+import { useRewards2Token } from './hooks'
+import BigNumber from 'bignumber.js'
 
 const PageWrapper = styled(AutoColumn)`
   display: flex;
@@ -60,7 +68,7 @@ const StakeCard = styled(AutoColumn)`
   cursor: pointer;
   color: transparent;
   position: relative;
-  background-color: ${({ theme }) => theme.bg3};
+  background-color: ${({ theme, isConnect }) => (isConnect ? 'rgba(69, 144, 255, 0.08)' : theme.bg3)};
   ${({ theme }) => theme.mediaWidth.upToMedium`
      width: 100%;
      font-size: 12px
@@ -76,15 +84,17 @@ const ClaimCard = styled(StakeCard)`
 
 ClaimCard.Modal = styled.img`
   position: absolute;
+  height: 100%;
 `
 
 ClaimCard.Cover = styled.div`
-  opacity: 0.5;
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: #2c2c2c;
-  opacity: 0.5;
+
+  img {
+    height: 100%;
+  }
 `
 
 StakeCard.Header = styled.div`
@@ -146,11 +156,37 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   `};
 `
 
-// const LogosFrame = styled.div`
-//   position: absolute;
-//   top: 24px;
-//   right: 0;
-// `
+const LogosFrame = styled.div`
+  position: absolute;
+  top: 4px;
+  right: 0;
+
+  img {
+    height: 28px;
+    ${({ theme }) => theme.mediaWidth.upToSmall`
+      height: 20px
+  `};
+  }
+`
+
+const TextBG = styled(TYPE.largeHeader)`
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  margin: auto;
+  padding: 0 12px;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: rgba(48, 214, 131, 0.6);
+  }
+`
 
 export default function Stake() {
   const { t } = useTranslation()
@@ -240,11 +276,36 @@ export default function Stake() {
     stakingInfo4?.stakedAmount?.token ?? undefined
   )?.toSignificant(6)
 
+  //RPO-CIR
+  const [currencyA5, currencyB5] = [
+    useCurrency('0xbe5DF2fac88BB096A973e664171E60586bC5940c'),
+    useCurrency('0x3dd639626f106bd818e92bdcb102911c020ced77')
+  ]
+  const tokenA5 = wrappedCurrency(currencyA5 ?? undefined, chainId)
+  const tokenB5 = wrappedCurrency(currencyB5 ?? undefined, chainId)
+
+  const [, stakingTokenPair5] = usePair(tokenA5, tokenB5)
+  const stakingInfo5 = useStakingInfo(stakingTokenPair5)?.[0]
+  const userLiquidityUnstaked5 = useTokenBalance(account ?? undefined, stakingInfo5?.stakedAmount?.token)
+  const currencyBalance5 = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo5?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
+
   // toggle for staking modal and unstaking modal
   const [showStakingModal, setShowStakingModal] = useState(false)
   const [showUnstakingModal, setShowUnstakingModal] = useState(false)
   const [showClaimRewardModal, setShowClaimRewardModal] = useState(false)
 
+  const rewards2 = useRewards2Token('0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61')
+  const rewards2Token = useCurrency(rewards2.reward2Address)
+  console.log('stake rewards2Token', rewards2)
+  //const rewards2Balance = useTokenBalance(account ?? undefined, rewards2Token)?.toExact()
+  const rewards2TotalBalance = useTokenBalance(
+    '0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61' ?? undefined,
+    rewards2Token
+  )?.toExact()
+  console.log('rewards2TotalBalance', rewards2TotalBalance)
   const [currentPair, setCurrentPair] = useState(0)
 
   const [hash, setHash] = useState()
@@ -296,9 +357,9 @@ export default function Stake() {
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   HT-ETH
-                  {/*<LogosFrame>*/}
-                  {/*  <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} size={24} />*/}
-                  {/*</LogosFrame>*/}
+                  <LogosFrame>
+                    <img alt="" src={HTToETH} />
+                  </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
@@ -311,7 +372,7 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{currencyBalance} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
-                  <TYPE.darkGray>{t('bounds')} </TYPE.darkGray>
+                  <TYPE.darkGray>{t('bounds')}: </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
@@ -343,6 +404,9 @@ export default function Stake() {
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   HT-BTC
+                  <LogosFrame>
+                    <img alt="" src={HTToHBTC} />
+                  </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
@@ -355,7 +419,7 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{currencyBalance1} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
-                  <TYPE.darkGray>{t('bounds')} </TYPE.darkGray>
+                  <TYPE.darkGray>{t('bounds')}: </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo1?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
@@ -385,6 +449,9 @@ export default function Stake() {
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   HT-HUSD
+                  <LogosFrame>
+                    <img alt="" src={HTToHUSD} />
+                  </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
@@ -397,7 +464,7 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{currencyBalance2} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
-                  <TYPE.darkGray>{t('bounds')} </TYPE.darkGray>
+                  <TYPE.darkGray>{t('bounds')}: </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo2?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
@@ -428,6 +495,9 @@ export default function Stake() {
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   CIR-HUSD
+                  <LogosFrame>
+                    <img alt="" src={CIRToUSDT} />
+                  </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
@@ -440,7 +510,7 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{currencyBalance3} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
-                  <TYPE.darkGray>{t('bounds')} </TYPE.darkGray>
+                  <TYPE.darkGray>{t('bounds')}: </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo3?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
@@ -470,6 +540,9 @@ export default function Stake() {
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   HT-CIR
+                  <LogosFrame>
+                    <img alt="" src={HTToCIR} />
+                  </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
               <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
@@ -482,7 +555,7 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{currencyBalance4} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
-                  <TYPE.darkGray>{t('bounds')} </TYPE.darkGray>
+                  <TYPE.darkGray>{t('bounds')}: </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo4?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
@@ -500,6 +573,68 @@ export default function Stake() {
                   disabled={!stakingInfo4}
                   onClick={() => {
                     setCurrentPair(4)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('claim')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
+            </StakeCard>
+
+            <TextBG color={theme.text1} style={{ margin: 'auto' }}>
+              {t('cooperativeMiningPools')}
+            </TextBG>
+
+            <StakeCard gap="lg" isConnect>
+              <StakeCard.Header>
+                <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
+                  RPO-CIR
+                  <LogosFrame>
+                    <img alt="" src={RPCToCIR} />
+                  </LogosFrame>
+                </TYPE.largeHeader>
+              </StakeCard.Header>
+              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
+                <AutoRow>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo5?.stakedAmount.toExact()} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance5} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} CIR:</TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo5?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} RPO:</TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>
+                    {rewards2.ratio && stakingInfo5 && rewards2Token
+                      ? new BigNumber(rewards2.ratio)
+                          .multipliedBy(stakingInfo5?.earnedAmount.raw)
+                          .dividedBy('1000000000000000000')
+                          .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
+                          .toFixed(4)
+                          .toString()
+                      : ''}{' '}
+                  </TYPE.black>
+                </AutoRow>
+              </AutoColumn>
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
+                  disabled={!stakingInfo5}
+                  onClick={() => {
+                    setCurrentPair(5)
+                    setShowStakingModal(true)
+                  }}
+                >
+                  {t('stake')}
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo5}
+                  onClick={() => {
+                    setCurrentPair(5)
                     setShowUnstakingModal(true)
                   }}
                 >
@@ -633,12 +768,44 @@ export default function Stake() {
         </>
       )}
 
+      {stakingInfo5 && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal && currentPair === 5}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo5}
+            userLiquidityUnstaked={userLiquidityUnstaked5}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal && currentPair === 5}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo5}
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal && currentPair === 5}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo5}
+          />
+        </>
+      )}
+
       <Modal isOpen={attempting || hash} onDismiss={wrappedOndismiss} maxHeight={90}>
         {attempting && !hash && (
           <LoadingView onDismiss={wrappedOndismiss}>
             <AutoColumn gap="12px" justify={'center'}>
               <TYPE.body fontSize={20}>
-                Claiming {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR
+                Claiming {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR Claiming{' '}
+                {currentPair === 5
+                  ? rewards2.ratio && stakingInfo5 && rewards2Token
+                    ? new BigNumber(rewards2.ratio)
+                        .multipliedBy(stakingInfo5?.earnedAmount.raw)
+                        .dividedBy('1000000000000000000')
+                        .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
+                        .toFixed(4)
+                        .toString()
+                    : ''
+                  : ''}{' '}
+                RPO
               </TYPE.body>
             </AutoColumn>
           </LoadingView>
@@ -648,6 +815,7 @@ export default function Stake() {
             <AutoColumn gap="12px" justify={'center'}>
               <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
               <TYPE.body fontSize={20}>Claimed CIR!</TYPE.body>
+              {currentPair === 5 && <TYPE.body fontSize={20}>Claimed PRO!</TYPE.body>}
             </AutoColumn>
           </SubmittedView>
         )}

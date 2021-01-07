@@ -88,6 +88,13 @@ export const STAKING_REWARDS_INFO: {
         new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'CircleSwap Governance Token')
       ],
       stakingRewardAddress: '0x43893DE0221ac154980EA39325CefA0f4A765d57'
+    },
+    {
+      tokens: [
+        new Token(ChainId.HT, '0x3dd639626f106bd818e92bdcb102911c020ced77', 6, 'RPO', 'Racing Player One'),
+        new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'CircleSwap Governance Token')
+      ],
+      stakingRewardAddress: '0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61'
     }
   ]
 }

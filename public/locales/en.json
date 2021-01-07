@@ -234,7 +234,7 @@
   "earnedAmount": "Available LP Tokens:",
   "currentAbleLPT": "Pairs supporting liquidity mining:",
   "stakingTip": "Stake your LP Tokens to join CircleSwap liquidity mining, and the rewards of liquidity mining will be issued in the form of platform token CIR.\n*You need to stake 100HT equivalent LP Tokens to enjoy part of ECircle extra rewards.",
-  "bounds": "Bounds:",
+  "bounds": "Bounds",
   "ncircle_helper": "1. Extra Airdrop Bonus；\n 2.Extra Swap Mining Rewards；\n 3.Extra Liquidity Mining Rewards；\n",
   "ecircle_helper": "1. Taking part in liquidity mining\n 2. UBI Rewards\n 3. Extra Liquidity Mining Rewards\n",
   "output_est": "Output is estimated. You will receive at least 1.27241 CIR or the transaction will revert.\n",
@@ -292,6 +292,8 @@
   "toggle_expert_mode": "Toggle Expert Mode",
   "toggle_dark_mode": " Toggle Dark Mode",
   "minutes": "minutes",
-  "stake": "Deposit"
+  "stake": "Deposit",
+  "cooperativeMiningPools": "Cooperative Mining Pools:"
+
 
 }
