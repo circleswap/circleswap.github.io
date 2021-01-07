@@ -299,13 +299,11 @@ export default function Stake() {
 
   const rewards2 = useRewards2Token('0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61')
   const rewards2Token = useCurrency(rewards2.reward2Address)
-  console.log('stake rewards2Token', rewards2)
   //const rewards2Balance = useTokenBalance(account ?? undefined, rewards2Token)?.toExact()
-  const rewards2TotalBalance = useTokenBalance(
-    '0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61' ?? undefined,
-    rewards2Token
-  )?.toExact()
-  console.log('rewards2TotalBalance', rewards2TotalBalance)
+  // const rewards2TotalBalance = useTokenBalance(
+  //   '0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61' ?? undefined,
+  //   rewards2Token
+  // )?.toExact()
   const [currentPair, setCurrentPair] = useState(0)
 
   const [hash, setHash] = useState()
@@ -780,6 +778,16 @@ export default function Stake() {
             isOpen={showUnstakingModal && currentPair === 5}
             onDismiss={() => setShowUnstakingModal(false)}
             stakingInfo={stakingInfo5}
+            rewards2={
+              rewards2.ratio && stakingInfo5 && rewards2Token
+                ? new BigNumber(rewards2.ratio)
+                    .multipliedBy(stakingInfo5?.earnedAmount.raw)
+                    .dividedBy('1000000000000000000')
+                    .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
+                    .toFixed(4)
+                    .toString()
+                : ''
+            }
           />
           <ClaimRewardModal
             isOpen={showClaimRewardModal && currentPair === 5}
@@ -795,18 +803,19 @@ export default function Stake() {
             <AutoColumn gap="12px" justify={'center'}>
               <TYPE.body fontSize={20}>
                 Claiming {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR Claiming{' '}
-                {currentPair === 5
-                  ? rewards2.ratio && stakingInfo5 && rewards2Token
-                    ? new BigNumber(rewards2.ratio)
-                        .multipliedBy(stakingInfo5?.earnedAmount.raw)
-                        .dividedBy('1000000000000000000')
-                        .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
-                        .toFixed(4)
-                        .toString()
-                    : ''
-                  : ''}{' '}
-                RPO
               </TYPE.body>
+              {currentPair === 5
+                ? rewards2.ratio && stakingInfo5 && rewards2Token
+                  ? new BigNumber(rewards2.ratio)
+                      .multipliedBy(stakingInfo5?.earnedAmount.raw)
+                      .dividedBy('1000000000000000000')
+                      .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
+                      .toFixed(4)
+                      .toString()
+                  : ''
+                : ''}{' '}
+              RPO
+              <TYPE.body fontSize={20}></TYPE.body>
             </AutoColumn>
           </LoadingView>
         )}

@@ -23,9 +23,10 @@ interface StakingModalProps {
   isOpen: boolean
   onDismiss: () => void
   stakingInfo: StakingInfo
+  rewards2?: string
 }
 
-export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: StakingModalProps) {
+export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, rewards2 }: StakingModalProps) {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
   // monitor call to help UI loading state
@@ -73,12 +74,12 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
         <ContentWrapper gap="lg">
           <RowBetween>
             <TYPE.mediumHeader>Withdraw</TYPE.mediumHeader>
-            <CloseIcon onClick={wrappedOndismiss} />
+            <CloseIcon onClick={wrappedOndismiss}/>
           </RowBetween>
           {stakingInfo?.stakedAmount && (
             <AutoColumn justify="center" gap="md">
               <TYPE.body fontWeight={600} fontSize={36}>
-                {<FormattedCurrencyAmount currencyAmount={stakingInfo.stakedAmount} />}
+                {<FormattedCurrencyAmount currencyAmount={stakingInfo.stakedAmount}/>}
               </TYPE.body>
               <TYPE.body>{t('deposited_liquidity')}</TYPE.body>
             </AutoColumn>
@@ -86,14 +87,20 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
           {stakingInfo?.earnedAmount && (
             <AutoColumn justify="center" gap="md">
               <TYPE.body fontWeight={600} fontSize={36}>
-                {<FormattedCurrencyAmount currencyAmount={stakingInfo?.earnedAmount} />}
+                {<FormattedCurrencyAmount currencyAmount={stakingInfo?.earnedAmount}/>}
               </TYPE.body>
               <TYPE.body>{t('your_unclaimed_CIR')}</TYPE.body>
+
+
+              {rewards2 && (
+                <TYPE.body fontWeight={600} fontSize={36}>
+                  {rewards2}
+                </TYPE.body>
+              )}
+              <TYPE.body>{t('your_unclaimed')} RPO</TYPE.body>
             </AutoColumn>
           )}
-          <TYPE.subHeader style={{ textAlign: 'center' }}>
-            {t('when_you_withdraw_cir')}
-          </TYPE.subHeader>
+          <TYPE.subHeader style={{ textAlign: 'center' }}>{t('when_you_withdraw_cir')}</TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onWithdraw}>
             {error ?? 'Withdraw & Claim'}
           </ButtonError>

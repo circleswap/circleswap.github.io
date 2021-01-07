@@ -293,7 +293,8 @@
   "toggle_dark_mode": " Toggle Dark Mode",
   "minutes": "minutes",
   "stake": "Deposit",
-  "cooperativeMiningPools": "Cooperative Mining Pools:"
+  "cooperativeMiningPools": "Cooperative Mining Pools:",
+  "your_unclaimed": "Your unclaimed"
 
 
 }
