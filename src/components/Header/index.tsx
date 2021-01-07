@@ -100,6 +100,7 @@ const HeaderRow = styled(RowFixed)`
 
 const HeaderLinks = styled(Row)`
   justify-content: center;
+  gap: 32px;
   ${({ theme }) => theme.mediaWidth.upToMedium`
     justify-content: flex-start;
 `};

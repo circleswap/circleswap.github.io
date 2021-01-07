@@ -123,7 +123,7 @@ const UNIAmount = styled(AccountElement)`
 `
 
 const BalanceText = styled(Text)`
-  margin: 24px 0;
+  margin: 32px 0;
 `
 
 export default function Menu({ onUniClick }: { onUniClick: () => void }) {

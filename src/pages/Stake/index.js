@@ -4,7 +4,7 @@ import { AutoColumn } from '../../components/Column'
 import { useTranslation } from 'react-i18next'
 import { Button, TYPE } from '../../theme'
 import { useActiveWeb3React } from '../../hooks'
-import { AutoRow, RowBetween } from '../../components/Row'
+import { AutoRow, RowFixed } from '../../components/Row'
 import StakingModal from '../../components/earn/StakingModal'
 import UnstakingModal from '../../components/earn/UnstakingModal'
 import ClaimRewardModal from '../../components/earn/ClaimRewardModal'
@@ -19,6 +19,9 @@ import Modal from '../../components/Modal'
 import { LoadingView, SubmittedView } from '../../components/ModalViews'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { CardWrapper } from '../AppBody'
+import { Text } from 'rebass'
+import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
+import DoubleCurrencyLogo from '../../components/DoubleLogo'
 
 const PageWrapper = styled(AutoColumn)`
   display: flex;
@@ -27,6 +30,7 @@ const PageWrapper = styled(AutoColumn)`
   width: 538px;
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     width: fit-content;
+    margin-top: -80px
   `};
 `
 
@@ -47,6 +51,7 @@ const StakeWrapper = styled.div`
 `
 
 const StakeCard = styled(AutoColumn)`
+  width: 100%;
   padding: 19px;
   display: flex;
   flex-direction: column;
@@ -59,6 +64,7 @@ const StakeCard = styled(AutoColumn)`
   background-color: ${({ theme }) => theme.bg3};
   ${({ theme }) => theme.mediaWidth.upToMedium`
      width: 320px;
+     font-size: 12px
   `};
 `
 
@@ -87,8 +93,64 @@ StakeCard.Header = styled.div`
   line-height: 66px;
   border-bottom: 1px #c2e4cb solid;
   display: flex;
-  justify-content: center;
   width: 100%;
+  justify-content: center;
+  position: relative;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    height: 50px;
+    line-height: 50px;
+  `};
+`
+
+const ButtonRow = styled(RowFixed)`
+  gap: 8px;
+  justify-content: space-between;
+  margin: 0 12px;
+  flex-direction: row-reverse;
+
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 100%;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0
+  `};
+`
+
+const ResponsiveButtonPrimary = styled(ButtonPrimary)`
+  padding: 1rem 2rem 1rem 2rem;
+  width: 180px;
+
+  :disabled {
+    background-color: ${({ theme }) => theme.bg5};
+    color: ${({ theme }) => theme.text2};
+    cursor: auto;
+  }
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding: 8px 16px
+    width: 100%;
+    font-size: 16px
+  `};
+`
+
+const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+  padding: 1rem 2rem 1rem 2rem;
+  width: 180px;
+  :disabled {
+    background-color: ${({ theme }) => theme.bg5};
+    color: ${({ theme }) => theme.text2};
+    cursor: auto;
+  }
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    padding: 8px 16px
+    width: 100%;
+    font-size: 16px
+  `};
+`
+
+const LogosFrame = styled.div`
+  position: absolute;
+  top: 24px;
+  right: 0;
 `
 
 export default function Stake() {
@@ -216,29 +278,31 @@ export default function Stake() {
   return (
     <>
       <PageWrapper>
-
         <StakeWrapper>
-
           <CardWrapper gap="lg" hasBG={true}>
-            <AutoColumn gap="md" >
+            <AutoColumn gap="md">
               <TYPE.white textAlign="left" fontSize={22}>
                 {t('liquidityMining')}
               </TYPE.white>
               <TYPE.white>{t('stakingTip')}</TYPE.white>
-
             </AutoColumn>
           </CardWrapper>
 
-          <TYPE.white width={'100%'} marginTop={24} textAlign={'left'}>{t('currentAbleLPT')}</TYPE.white>
+          <TYPE.white width={'100%'} marginTop={24} textAlign={'left'}>
+            {t('currentAbleLPT')}
+          </TYPE.white>
 
           <AutoColumn gap="lg" style={{ width: '100%', marginTop: 24 }}>
-            <StakeCard gap="lg">
+            <StakeCard gap="md">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   HT-ETH
+                  <LogosFrame>
+                    <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} size={24} />
+                  </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%' }} gap="md">
+              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo?.stakedAmount.toExact()} </TYPE.black>
@@ -252,28 +316,28 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{stakingInfo?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
-              <RowBetween gap="19px" style={{ width: '100%' }}>
-                <Button
-                  disabled={!stakingInfo}
-                  onClick={() => {
-                    setCurrentPair(0)
-                    setShowUnstakingModal(true)
-                  }}
-                  style={{ width: '46%' }}
-                >
-                  {t('claim')}
-                </Button>
-                <Button
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
                   disabled={!stakingInfo}
                   onClick={() => {
                     setCurrentPair(0)
                     setShowStakingModal(true)
                   }}
-                  style={{ width: '46%' }}
                 >
-                  {t('confirm')}
-                </Button>
-              </RowBetween>
+                  <Text fontWeight={500} fontSize={16}>
+                    {t('stake')}
+                  </Text>
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo}
+                  onClick={() => {
+                    setCurrentPair(0)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('claim')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
             </StakeCard>
 
             <StakeCard gap="lg">
@@ -282,7 +346,7 @@ export default function Stake() {
                   HT-BTC
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%' }} gap="md">
+              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo1?.stakedAmount.toExact()} </TYPE.black>
@@ -296,28 +360,26 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{stakingInfo1?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
-              <RowBetween gap="19px" style={{ width: '100%' }}>
-                <Button
-                  disabled={!stakingInfo1}
-                  onClick={() => {
-                    setCurrentPair(1)
-                    setShowUnstakingModal(true)
-                  }}
-                  style={{ width: '46%' }}
-                >
-                  {t('claim')}
-                </Button>
-                <Button
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
                   disabled={!stakingInfo1}
                   onClick={() => {
                     setCurrentPair(1)
                     setShowStakingModal(true)
                   }}
-                  style={{ width: '46%' }}
                 >
-                  {t('confirm')}
-                </Button>
-              </RowBetween>
+                  {t('stake')}
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo1}
+                  onClick={() => {
+                    setCurrentPair(1)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('claim')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
             </StakeCard>
 
             <StakeCard gap="lg">
@@ -326,7 +388,7 @@ export default function Stake() {
                   HT-HUSD
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%' }} gap="md">
+              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo2?.stakedAmount.toExact()} </TYPE.black>
@@ -341,28 +403,26 @@ export default function Stake() {
                 </AutoRow>
               </AutoColumn>
 
-              <RowBetween gap="19px" style={{ width: '100%' }}>
-                <Button
-                  disabled={!stakingInfo2}
-                  onClick={() => {
-                    setCurrentPair(2)
-                    setShowUnstakingModal(true)
-                  }}
-                  style={{ width: '46%' }}
-                >
-                  {t('claim')}
-                </Button>
-                <Button
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
                   disabled={!stakingInfo2}
                   onClick={() => {
                     setCurrentPair(2)
                     setShowStakingModal(true)
                   }}
-                  style={{ width: '46%' }}
                 >
-                  {t('confirm')}
-                </Button>
-              </RowBetween>
+                  {t('stake')}
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo2}
+                  onClick={() => {
+                    setCurrentPair(2)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('claim')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
             </StakeCard>
 
             <StakeCard gap="lg">
@@ -371,7 +431,7 @@ export default function Stake() {
                   CIR-HUSD
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%' }} gap="md">
+              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo3?.stakedAmount.toExact()} </TYPE.black>
@@ -385,28 +445,26 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{stakingInfo3?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
-              <RowBetween gap="19px" style={{ width: '100%' }}>
-                <Button
-                  disabled={!stakingInfo3}
-                  onClick={() => {
-                    setCurrentPair(3)
-                    setShowUnstakingModal(true)
-                  }}
-                  style={{ width: '46%' }}
-                >
-                  {t('claim')}
-                </Button>
-                <Button
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
                   disabled={!stakingInfo3}
                   onClick={() => {
                     setCurrentPair(3)
                     setShowStakingModal(true)
                   }}
-                  style={{ width: '46%' }}
                 >
-                  {t('confirm')}
-                </Button>
-              </RowBetween>
+                  {t('stake')}
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo3}
+                  onClick={() => {
+                    setCurrentPair(3)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('claim')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
             </StakeCard>
 
             <StakeCard gap="lg">
@@ -415,7 +473,7 @@ export default function Stake() {
                   HT-CIR
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%' }} gap="md">
+              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
                   <TYPE.black marginLeft={16}>{stakingInfo4?.stakedAmount.toExact()} </TYPE.black>
@@ -429,33 +487,31 @@ export default function Stake() {
                   <TYPE.black marginLeft={16}>{stakingInfo4?.earnedAmount?.toSignificant(6)} </TYPE.black>
                 </AutoRow>
               </AutoColumn>
-              <RowBetween gap="19px" style={{ width: '100%' }}>
-                <Button
-                  disabled={!stakingInfo4}
-                  onClick={() => {
-                    setCurrentPair(4)
-                    setShowUnstakingModal(true)
-                  }}
-                  style={{ width: '46%' }}
-                >
-                  {t('claim')}
-                </Button>
-                <Button
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
                   disabled={!stakingInfo4}
                   onClick={() => {
                     setCurrentPair(4)
                     setShowStakingModal(true)
                   }}
-                  style={{ width: '46%' }}
                 >
-                  {t('confirm')}
-                </Button>
-              </RowBetween>
+                  {t('stake')}
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo4}
+                  onClick={() => {
+                    setCurrentPair(4)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('claim')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
             </StakeCard>
 
             <ClaimCard gap="lg">
-              <ClaimCard.Modal src={claim}/>
-              <ClaimCard.Cover/>
+              <ClaimCard.Modal src={claim} />
+              <ClaimCard.Cover />
               <TYPE.white marginTop={16} marginLeft={23} style={{ zIndex: 1 }} color={'#fff'}>
                 {t('total_rewards')}{' '}
               </TYPE.white>

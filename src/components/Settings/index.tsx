@@ -23,13 +23,21 @@ import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 
 const StyledMenuIcon = styled(Settings)`
-  width: 25px;
+  width: 40px;
+  height: 40px;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+   width: 25px;
   height: 25px;
+  `};
 `
 
 const StyledCloseIcon = styled(X)`
-  height: 32px;
+  height: 50px;
+  width: 50px;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+   height: 32px;
   width: 32px;
+  `};
   :hover {
     cursor: pointer;
   }
