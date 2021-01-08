@@ -133,7 +133,7 @@ export default function CIR() {
 
               <AutoRow justify={'space-between'}>
                 <CirCard>
-                  <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={20}>
+                  <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={isMobile ? 20 : 32}>
                     {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '**')}
                   </TYPE.black>
                   <TYPE.black textAlign={'center'} fontWeight={500} fontSize={12}>
@@ -141,7 +141,7 @@ export default function CIR() {
                   </TYPE.black>
                 </CirCard>
                 <CirCard>
-                  <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={20}>
+                  <TYPE.black textAlign={'center'} marginBottom={15} fontWeight={500} fontSize={isMobile ? 20 : 32}>
                     {claimedReward
                       ? new BigNumber(claimedReward.toString())
                           .dividedBy(1000000000000000000)
@@ -159,7 +159,7 @@ export default function CIR() {
                 <TYPE.white marginLeft={16} fontWeight={600} fontSize={20}>
                   **
                 </TYPE.white>
-                <TYPE.white fontWeight={600} fontSize={12} width={80}>
+                <TYPE.white fontWeight={600} fontSize={12} width={isMobile? 80: 'fit-content'}>
                   {t('ownComputingPower')}
                 </TYPE.white>
               </LineCard>
