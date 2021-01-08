@@ -23,7 +23,8 @@ import { CardWrapper } from '../AppBody'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
-  padding: 0 24px;
+  padding: 100px 24px;
+  margin: auto;
 `
 
 const TitleRow = styled(RowBetween)`

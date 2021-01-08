@@ -192,6 +192,7 @@ const Title = styled.a`
 
 const UniIcon = styled.div`
   transition: transform 0.3s ease;
+  padding-top: 8px;
   :hover {
     transform: scale(-5deg);
   }
@@ -209,14 +210,14 @@ const StyledNavLink = styled(NavLink).attrs({
   cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.text2};
-  font-size: 1rem;
+  font-size: 1.2rem;
   width: fit-content;
   margin: 0 0.5rem;
   font-weight: 500;
-  padding-bottom: 14px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     padding-bottom: 14px;
-    padding-top: 12px
+    padding-top: 12px;
+    padding-bottom: 14px;
   `};
 
   &.${activeClassName} {
@@ -304,7 +305,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={isMobile ? '20px' : '64px'} src={isDark ? Logo : Logo} alt="logo" />
+            <img width={isMobile ? '24px' : '32px'} src={isDark ? Logo : Logo} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>

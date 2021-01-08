@@ -58,6 +58,8 @@ const ButtonFrame = styled(AutoColumn)`
 `
 
 export const PageWrapper = styled(Wrapper)`
+  padding-top: 100px;
+  margin: auto;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 100%;
   `};

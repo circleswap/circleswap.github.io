@@ -33,6 +33,7 @@ const PageWrapper = styled(AutoColumn)`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: auto;
   ${({ theme }) => theme.mediaWidth.upToSmall`
       flex-direction: column;
   `};

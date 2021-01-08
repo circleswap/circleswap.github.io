@@ -41,10 +41,7 @@ import Stake from './Stake'
 import CreateECircle from './ECircle/Create'
 
 const AppWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  overflow-x: hidden;
+  height: 100%;
 `
 
 const HeaderWrapper = styled.div`
@@ -57,23 +54,18 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 100px;
   align-items: center;
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 10;
+  z-index: 1;
+
+  height: 100%;
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    padding: 16px 0;
-    padding-top: 4rem;
   `};
-
-  z-index: 1;
 `
 
 const Marginer = styled.div`
-  margin-top: 5rem;
+  margin-top: 0rem;
 `
 
 function TopLevelModals() {

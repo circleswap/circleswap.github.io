@@ -7,6 +7,7 @@ import { AutoColumn } from '../Column'
 
 export const Wrapper = styled.div`
   position: relative;
+  margin: auto;
 `
 
 export const InputWrapper = styled.div`

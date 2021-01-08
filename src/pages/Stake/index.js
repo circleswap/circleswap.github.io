@@ -29,15 +29,20 @@ import HTToHBTC from '../../assets/logos/ht-hbtc.png'
 import HTToHUSD from '../../assets/logos/ht-husd.png'
 import { useRewards2Token } from './hooks'
 import BigNumber from 'bignumber.js'
+import { isMobile } from 'react-device-detect'
 
 const PageWrapper = styled(AutoColumn)`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  width: 538px;
+  padding-top: 100px;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     width: fit-content;
-    margin-top: -80px
+    padding-top: 80px;
   `};
 `
 
@@ -51,14 +56,16 @@ const StakeWrapper = styled.div`
   cursor: pointer;
   color: transparent;
   position: relative;
+  max-width: 1136px;
   background-color: ${({ theme }) => theme.bg1};
+
   ${({ theme }) => theme.mediaWidth.upToMedium`
      width: fit-content;
   `};
 `
 
 const StakeCard = styled(AutoColumn)`
-  width: 100%;
+  width: 500px;
   padding: 19px;
   display: flex;
   flex-direction: column;
@@ -186,6 +193,20 @@ const TextBG = styled(TYPE.largeHeader)`
     height: 50%;
     background: rgba(48, 214, 131, 0.6);
   }
+`
+
+const CardFrame = styled(AutoColumn)`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    flex-direction: column;
+     & > * {
+    margin-bottom: 24px;
+  }
+  `};
 `
 
 export default function Stake() {
@@ -337,7 +358,7 @@ export default function Stake() {
     <>
       <PageWrapper>
         <StakeWrapper>
-          <CardWrapper gap="lg" hasBG={true}>
+          <CardWrapper style={{ maxWidth: 500, width: '100%' }} gap="lg" hasBG={true}>
             <AutoColumn gap="md">
               <TYPE.white textAlign="left" fontSize={22}>
                 {t('liquidityMining')}
@@ -346,11 +367,11 @@ export default function Stake() {
             </AutoColumn>
           </CardWrapper>
 
-          <TYPE.white width={'100%'} marginTop={24} textAlign={'left'}>
+          <TYPE.main width={'100%'} fontSize={isMobile ? 20 : 28} margin={24} textAlign={'left'}>
             {t('currentAbleLPT')}
-          </TYPE.white>
+          </TYPE.main>
 
-          <AutoColumn gap="lg" style={{ width: '100%', marginTop: 24 }}>
+          <CardFrame gap="lg">
             <StakeCard gap="md">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
@@ -579,10 +600,11 @@ export default function Stake() {
               </ButtonRow>
             </StakeCard>
 
-            <TextBG color={theme.text1} style={{ margin: 'auto' }}>
-              {t('cooperativeMiningPools')}
-            </TextBG>
-
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <TextBG color={theme.text1} style={{ margin: 'auto' }}>
+                {t('cooperativeMiningPools')}
+              </TextBG>
+            </div>
             <StakeCard gap="lg" isConnect>
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
@@ -641,23 +663,25 @@ export default function Stake() {
               </ButtonRow>
             </StakeCard>
 
-            <ClaimCard gap="lg">
-              <ClaimCard.Modal src={claim} />
-              <ClaimCard.Cover />
-              <TYPE.white marginTop={16} marginLeft={23} style={{ zIndex: 1 }} color={'#fff'}>
-                {t('total_rewards')}{' '}
-              </TYPE.white>
-              <TYPE.white marginLeft={23} fontSize={29} style={{ zIndex: 1 }} color={'#fff'}>
-                {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR
-              </TYPE.white>
-              <Button
-                onClick={onWithdraw}
-                style={{ zIndex: 1, width: '80%', backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}
-              >
-                {t('claim_all')}
-              </Button>
-            </ClaimCard>
-          </AutoColumn>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <ClaimCard gap="lg">
+                <ClaimCard.Modal src={claim} />
+                <ClaimCard.Cover />
+                <TYPE.white marginTop={16} marginLeft={23} style={{ zIndex: 1 }} color={'#fff'}>
+                  {t('total_rewards')}{' '}
+                </TYPE.white>
+                <TYPE.white marginLeft={23} fontSize={29} style={{ zIndex: 1 }} color={'#fff'}>
+                  {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} CIR
+                </TYPE.white>
+                <Button
+                  onClick={onWithdraw}
+                  style={{ zIndex: 1, width: '80%', backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}
+                >
+                  {t('claim_all')}
+                </Button>
+              </ClaimCard>
+            </div>
+          </CardFrame>
         </StakeWrapper>
       </PageWrapper>
 

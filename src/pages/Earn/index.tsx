@@ -18,6 +18,8 @@ import uImage from '../../assets/images/big_unicorn.png'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  padding-top: 100px;
+  margin: auto;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     padding: 0 32px;
   `};

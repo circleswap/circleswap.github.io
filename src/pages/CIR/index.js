@@ -10,8 +10,11 @@ import { useUserClaimedReward, useUserReferee2N, useUserRefereeN } from '../../h
 import { useActiveWeb3React } from '../../hooks'
 import { useTotalUniEarned } from '../../state/stake/hooks'
 import BigNumber from 'bignumber.js'
+import { isMobile } from 'react-device-detect'
 
 export const Container = styled.div`
+  margin: auto;
+  padding: 100px 0;
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
       
   `};
@@ -36,7 +39,8 @@ const ComingSoon = styled(LightCard)`
 `
 
 const Frame = styled(RowBetween)`
-  gap: 24px
+  gap: 24px;
+  width: 1000px
     ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     display: grid!important;
     grid-auto-rows: auto;
@@ -113,7 +117,7 @@ export default function CIR() {
                 <TYPE.white fontWeight={600} fontSize={20}>
                   100,000
                 </TYPE.white>
-                <TYPE.white fontWeight={600} fontSize={12} width={80}>
+                <TYPE.white fontWeight={600} fontSize={12} width={isMobile ? 80 : 'fit-content'}>
                   {t('numberOfAirdrops')}
                 </TYPE.white>
               </LineCard>

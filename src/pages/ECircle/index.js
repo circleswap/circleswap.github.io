@@ -64,7 +64,7 @@ export default function ECircle({ history, match }) {
 
   return (
     <>
-      <AutoColumn gap="lg" justify="center">
+      <AutoColumn gap="lg" justify="center" style={{margin: 'auto', paddingTop: 100}}>
         <CloseIcon
           onClick={() => {
             history.push('/invite')
