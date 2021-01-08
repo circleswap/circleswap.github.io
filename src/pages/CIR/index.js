@@ -16,7 +16,7 @@ export const Container = styled.div`
   margin: auto;
   padding: 100px 0;
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-      
+      width: 100%
   `};
 `
 
@@ -45,6 +45,7 @@ const Frame = styled(RowBetween)`
     display: grid!important;
     grid-auto-rows: auto;
     grid-row-gap: 24px;
+    width: 100%
   `};
 `
 
