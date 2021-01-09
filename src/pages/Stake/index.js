@@ -371,7 +371,7 @@ export default function Stake() {
             {t('currentAbleLPT')}
           </TYPE.main>
 
-          <CardFrame gap="lg">
+          <CardFrame gap="lg" style={{ display: isMobile ? 'column' : 'row' }}>
             <StakeCard gap="md">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
