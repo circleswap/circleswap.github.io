@@ -64,7 +64,7 @@ export default function ECircle({ history, match }) {
 
   return (
     <>
-      <AutoColumn gap="lg" justify="center" style={{margin: 'auto', paddingTop: 100}}>
+      <AutoColumn gap="lg" justify="center" style={{ margin: 'auto', paddingTop: 100 }}>
         <CloseIcon
           onClick={() => {
             history.push('/invite')
@@ -72,23 +72,26 @@ export default function ECircle({ history, match }) {
           style={{ top: 12 }}
         />
         <Balls tabs={ecircles} />
-        <TipFrame gap="md">
-          <TYPE.mediumHeader fontSize={14}>{t('tip1')}</TYPE.mediumHeader>
 
-          <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
-            <AlertTriangle color={able.invited ? '#30D683' : '#FF7238'} />
-            <TYPE.main fontSize={14} marginLeft={10}>
-              {t('tip2')}
-            </TYPE.main>
-          </AutoRow>
+        {!(new BigNumber(circle).isGreaterThan(0) || new BigNumber(JoinCircle).isGreaterThan(0)) && (
+          <TipFrame gap="md">
+            <TYPE.mediumHeader fontSize={14}>{t('tip1')}</TYPE.mediumHeader>
 
-          <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
-            <AlertTriangle color={able.swapMore ? '#30D683' : '#FF7238'} />
-            <TYPE.main width={isMobile ? 220 : 400} fontSize={14} marginLeft={10}>
-              {t('tip3')}
-            </TYPE.main>
-          </AutoRow>
-        </TipFrame>
+            <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
+              <AlertTriangle color={able.invited ? '#30D683' : '#FF7238'} />
+              <TYPE.main fontSize={14} marginLeft={10}>
+                {t('tip2')}
+              </TYPE.main>
+            </AutoRow>
+
+            <AutoRow style={{ display: 'flex', alignItems: 'center' }}>
+              <AlertTriangle color={able.swapMore ? '#30D683' : '#FF7238'} />
+              <TYPE.main width={isMobile ? 220 : 400} fontSize={14} marginLeft={10}>
+                {t('tip3')}
+              </TYPE.main>
+            </AutoRow>
+          </TipFrame>
+        )}
 
         {new BigNumber(circle).isGreaterThan(0) || new BigNumber(JoinCircle).isGreaterThan(0) ? (
           <RowBetween style={{ marginTop: 64, rowGap: '19' }} gap="19px">
