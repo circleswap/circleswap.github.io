@@ -44,7 +44,7 @@ const HeaderFrame = styled.div`
   position: fixed;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem 3rem;
-  z-index: 2;
+  z-index: 999;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   box-shadow: 0px 6px 19px 0px rgba(12, 29, 66, 0.04);
@@ -218,6 +218,7 @@ const StyledNavLink = styled(NavLink).attrs({
     padding-bottom: 14px;
     padding-top: 12px;
     padding-bottom: 14px;
+    font-size: 1rem;
   `};
 
   &.${activeClassName} {
@@ -226,6 +227,7 @@ const StyledNavLink = styled(NavLink).attrs({
     color: ${({ theme }) => theme.primary1};
     ${({ theme }) => theme.mediaWidth.upToSmall`
     border-radius: 0;
+    font-size: 1rem;
     border-bottom: 3px solid ${({ theme }) => theme.primary1};
   `};
   }
