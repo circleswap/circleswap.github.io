@@ -202,7 +202,7 @@ const CardFrame = styled(AutoColumn)`
   gap: 40px;
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    flex-direction: column;
+    flex-direction: column!important;
      & > * {
     margin-bottom: 24px;
   }
