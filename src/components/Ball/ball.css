@@ -19,7 +19,7 @@ div,span {
     width: 600px;
     height: 600px;
     margin: 0px auto 0;
-    background: radial-gradient(circle at 300px 200px, #BDC3C7 0%, #2C3E50 100%) center;
+    background: radial-gradient(73.07% 73.07% at 75.31% 35.79%, #32DFD5 0%, #4489F1 59.63%, #9820C2 100%);
     /*background-image: url("../../assets/images/logo-circle.svg");*/
     box-shadow: inset 20px -10px 100px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
@@ -30,7 +30,7 @@ div,span {
     position: absolute;
     top: 0;
     left: 0;
-    color: #30D683;
+    color: #ffffff;
     font-size: 20px;
     font-weight: bold;
     text-align: center;

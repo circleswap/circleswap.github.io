@@ -286,7 +286,7 @@ export default function Swap() {
   ])
 
   return (
-    <Wrapper>
+    <Wrapper style={{ paddingTop: isMobile ? 80 : 0 }}>
       <TokenWarningModal
         isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
         tokens={urlLoadedTokens}

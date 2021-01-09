@@ -34,7 +34,6 @@ import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '
 import { currencyId } from '../../utils/currencyId'
 import useDebouncedChangeHandler from '../../utils/useDebouncedChangeHandler'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
-import AppBody from '../AppBody'
 import { ClickableText, MaxButton, Wrapper } from '../Pool/styleds'
 import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallback'
 import { Dots } from '../../components/swap/styleds'
@@ -44,6 +43,7 @@ import { Field } from '../../state/burn/actions'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
+import { isMobile } from 'react-device-detect'
 
 export default function RemoveLiquidity({
   history,
@@ -473,7 +473,7 @@ export default function RemoveLiquidity({
 
   return (
     <>
-      <AppBody>
+      <Wrapper style={{ paddingTop: isMobile ? 80 : 0 }}>
         <AddRemoveTabs creating={false} adding={false} />
         <Wrapper>
           <TransactionConfirmationModal
@@ -683,7 +683,7 @@ export default function RemoveLiquidity({
             </div>
           </AutoColumn>
         </Wrapper>
-      </AppBody>
+      </Wrapper>
 
       {pair ? (
         <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
