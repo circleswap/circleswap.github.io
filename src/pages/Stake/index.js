@@ -202,10 +202,27 @@ const CardFrame = styled(AutoColumn)`
   gap: 40px;
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
+    display: flex;
     flex-direction: column!important;
      & > * {
-    margin-bottom: 24px;
-  }
+       margin-bottom: 24px;
+     }
+  `};
+
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    display: flex;
+    flex-direction: column!important;
+     & > * {
+       margin-bottom: 24px;
+     }
+  `};
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    display: flex;
+    flex-direction: column!important;
+     & > * {
+       margin-bottom: 24px;
+     }
   `};
 `
 
