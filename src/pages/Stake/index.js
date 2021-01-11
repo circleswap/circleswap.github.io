@@ -236,6 +236,7 @@ const CardFrame = styled(AutoColumn)`
   `};
 `
 
+
 export default function Stake() {
   const { t } = useTranslation()
   const theme = useContext(ThemeContext)
