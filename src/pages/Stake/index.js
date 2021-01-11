@@ -43,29 +43,31 @@ const PageWrapper = styled(AutoColumn)`
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     width: fit-content;
     padding-top: 80px;
+    padding: 80px 20px 20px 20px
   `};
 `
 
 const StakeWrapper = styled.div`
-  padding: 38px;
   display: flex;
+  width: 806px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-radius: 20px;
   cursor: pointer;
   color: transparent;
   position: relative;
-  max-width: 1136px;
   background-color: ${({ theme }) => theme.bg1};
-
+  padding: 26px 30px;
+  margin-top: 20px;
+  gap: 30px;
   ${({ theme }) => theme.mediaWidth.upToMedium`
-     width: fit-content;
+     width: 100%;
   `};
 `
 
 const StakeCard = styled(AutoColumn)`
-  width: 500px;
+  width: 363px;
   padding: 19px;
   display: flex;
   flex-direction: column;
@@ -87,11 +89,16 @@ const ClaimCard = styled(StakeCard)`
   padding: 0;
   overflow: hidden;
   align-items: flex-start;
+  width: 100%;
 `
 
 ClaimCard.Modal = styled.img`
   position: absolute;
-  height: 100%;
+  width: 100%;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+     height: 100%;
+     width: auto;
+  `};
 `
 
 ClaimCard.Cover = styled.div`
@@ -169,7 +176,7 @@ const LogosFrame = styled.div`
   right: 0;
 
   img {
-    height: 28px;
+    height: 20px;
     ${({ theme }) => theme.mediaWidth.upToSmall`
       height: 20px
   `};
@@ -178,12 +185,14 @@ const LogosFrame = styled.div`
 
 const TextBG = styled(TYPE.largeHeader)`
   color: #ffffff;
-  text-align: center;
   display: inline-block;
   position: relative;
-  width: fit-content;
   margin: auto;
   padding: 0 12px;
+  width: 100%;
+  text-align: left;
+  border-left: 6px solid rgba(48, 214, 131, 1);
+  margin-bottom: 20px !important;
   &::before {
     content: '';
     position: absolute;
@@ -191,7 +200,7 @@ const TextBG = styled(TYPE.largeHeader)`
     left: 0;
     width: 100%;
     height: 50%;
-    background: rgba(48, 214, 131, 0.6);
+    //background: rgba(48, 214, 131, 0.6);
   }
 `
 
@@ -199,11 +208,12 @@ const CardFrame = styled(AutoColumn)`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 20px;
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
     display: flex;
     flex-direction: column!important;
+    width: 100%
      & > * {
        margin-bottom: 24px;
      }
@@ -374,22 +384,18 @@ export default function Stake() {
   return (
     <>
       <PageWrapper>
+        <CardWrapper style={{ maxWidth: 806, width: '100%' }} gap="lg" hasBG={true}>
+          <AutoColumn gap="md">
+            <TYPE.white textAlign="left" fontSize={22}>
+              {t('liquidityMining')}
+            </TYPE.white>
+            <TYPE.white>{t('stakingTip')}</TYPE.white>
+          </AutoColumn>
+        </CardWrapper>
+
         <StakeWrapper>
-          <CardWrapper style={{ maxWidth: 500, width: '100%' }} gap="lg" hasBG={true}>
-            <AutoColumn gap="md">
-              <TYPE.white textAlign="left" fontSize={22}>
-                {t('liquidityMining')}
-              </TYPE.white>
-              <TYPE.white>{t('stakingTip')}</TYPE.white>
-            </AutoColumn>
-          </CardWrapper>
-
-          <TYPE.main width={'100%'} fontSize={isMobile ? 20 : 28} margin={24} textAlign={'left'}>
-            {t('currentAbleLPT')}
-          </TYPE.main>
-
           <CardFrame gap="lg" style={{ display: isMobile ? 'column' : 'row' }}>
-            <StakeCard gap="md">
+            <StakeCard gap="lg">
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   HT-ETH
@@ -398,10 +404,10 @@ export default function Stake() {
                   </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
+              <AutoColumn style={{ width: '100%' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
-                  <TYPE.black marginLeft={16}>{stakingInfo?.stakedAmount.toExact()} </TYPE.black>
+                  <TYPE.black marginLeft={16}>{stakingInfo?.stakedAmount.toSignificant(6)} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
                   <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
@@ -445,10 +451,10 @@ export default function Stake() {
                   </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
+              <AutoColumn style={{ width: '100%' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
-                  <TYPE.black marginLeft={16}>{stakingInfo1?.stakedAmount.toExact()} </TYPE.black>
+                  <TYPE.black marginLeft={16}>{stakingInfo1?.stakedAmount.toSignificant(6)} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
                   <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
@@ -490,10 +496,10 @@ export default function Stake() {
                   </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
+              <AutoColumn style={{ width: '100%' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
-                  <TYPE.black marginLeft={16}>{stakingInfo2?.stakedAmount.toExact()} </TYPE.black>
+                  <TYPE.black marginLeft={16}>{stakingInfo2?.stakedAmount.toSignificant(6)} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
                   <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
@@ -536,10 +542,10 @@ export default function Stake() {
                   </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
+              <AutoColumn style={{ width: '100%' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
-                  <TYPE.black marginLeft={16}>{stakingInfo3?.stakedAmount.toExact()} </TYPE.black>
+                  <TYPE.black marginLeft={16}>{stakingInfo3?.stakedAmount.toSignificant(6)} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
                   <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
@@ -581,10 +587,10 @@ export default function Stake() {
                   </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
+              <AutoColumn style={{ width: '100%' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
-                  <TYPE.black marginLeft={16}>{stakingInfo4?.stakedAmount.toExact()} </TYPE.black>
+                  <TYPE.black marginLeft={16}>{stakingInfo4?.stakedAmount.toSignificant(6)} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
                   <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
@@ -617,11 +623,10 @@ export default function Stake() {
               </ButtonRow>
             </StakeCard>
 
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-              <TextBG color={theme.text1} style={{ margin: 'auto' }}>
-                {t('cooperativeMiningPools')}
-              </TextBG>
-            </div>
+            <TextBG color={theme.text1} style={{ margin: 'auto' }}>
+              {t('cooperativeMiningPools')}
+            </TextBG>
+
             <StakeCard gap="lg" isConnect>
               <StakeCard.Header>
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
@@ -631,10 +636,10 @@ export default function Stake() {
                   </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
-              <AutoColumn style={{ width: '100%', margin: '12px 0' }} gap="md">
+              <AutoColumn style={{ width: '100%' }} gap="md">
                 <AutoRow>
                   <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
-                  <TYPE.black marginLeft={16}>{stakingInfo5?.stakedAmount.toExact()} </TYPE.black>
+                  <TYPE.black marginLeft={16}>{stakingInfo5?.stakedAmount.toSignificant(6)} </TYPE.black>
                 </AutoRow>
                 <AutoRow>
                   <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
@@ -692,7 +697,7 @@ export default function Stake() {
                 </TYPE.white>
                 <Button
                   onClick={onWithdraw}
-                  style={{ zIndex: 1, width: '80%', backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}
+                  style={{ zIndex: 1, width: '60%', backgroundColor: '#fff', color: '#30D683', margin: 'auto' }}
                 >
                   {t('claim_all')}
                 </Button>

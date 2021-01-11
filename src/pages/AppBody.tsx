@@ -15,6 +15,8 @@ export const CardWrapper = styled.div`
   width: fit-content;
   border-radius: 22px;
   padding: 1.5rem;
+  background-size: 100%;
+  background-repeat: repeat;
   background: url(${uImage});
 `
 
