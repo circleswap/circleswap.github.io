@@ -193,6 +193,9 @@ const TextBG = styled(TYPE.largeHeader)`
   text-align: left;
   border-left: 6px solid rgba(48, 214, 131, 1);
   margin-bottom: 20px !important;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    font-size: 16px
+  `};
   &::before {
     content: '';
     position: absolute;
@@ -204,7 +207,7 @@ const TextBG = styled(TYPE.largeHeader)`
   }
 `
 
-const CardFrame = styled(AutoColumn)`
+const CardFrame = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -235,7 +238,6 @@ const CardFrame = styled(AutoColumn)`
      }
   `};
 `
-
 
 export default function Stake() {
   const { t } = useTranslation()
