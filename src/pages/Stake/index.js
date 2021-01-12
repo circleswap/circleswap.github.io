@@ -209,7 +209,7 @@ const TextBG = styled(TYPE.largeHeader)`
 
 const CardFrame = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 20px;
 
