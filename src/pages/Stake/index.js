@@ -209,7 +209,7 @@ const TextBG = styled(TYPE.largeHeader)`
 
 const CardFrame = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
 
@@ -237,6 +237,10 @@ const CardFrame = styled.div`
        margin-bottom: 24px;
      }
   `};
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export default function Stake() {
