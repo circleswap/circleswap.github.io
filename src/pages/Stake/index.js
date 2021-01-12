@@ -214,7 +214,7 @@ const CardFrame = styled.div`
   gap: 20px;
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    display: flex;
+    display: block;
     flex-direction: column!important;
     width: 100%
      & > * {
@@ -223,7 +223,7 @@ const CardFrame = styled.div`
   `};
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-    display: flex;
+    display: block;
     flex-direction: column!important;
      & > * {
        margin-bottom: 24px;
@@ -231,7 +231,7 @@ const CardFrame = styled.div`
   `};
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
-    display: flex;
+    display: block;
     flex-direction: column!important;
      & > * {
        margin-bottom: 24px;
@@ -397,7 +397,6 @@ export default function Stake() {
         </CardWrapper>
 
         <StakeWrapper>
-          <div style={{color: '#fff'}}>1111111</div>
           <CardFrame gap="lg" style={{ display: isMobile ? 'column' : 'row' }}>
             <StakeCard gap="lg">
               <StakeCard.Header>
