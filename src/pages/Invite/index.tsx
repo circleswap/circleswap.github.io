@@ -54,7 +54,7 @@ const CircleCard = styled.div`
   position: relative;
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
-      width: 90%;
+      width: 320px;
       height: 250px;
   `};
 `
