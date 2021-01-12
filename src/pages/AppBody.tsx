@@ -10,6 +10,15 @@ export const BodyWrapper = styled.div`
   padding: 2rem;
 `
 
+export const CenterWrapper = styled.div`
+  position: relative;
+  width: fit-content;
+  background: ${({ theme }) => theme.bg3};
+  border-radius: 30px;
+  padding: 2rem;
+  margin: auto;
+`
+
 export const CardWrapper = styled.div`
   position: relative;
   width: fit-content;

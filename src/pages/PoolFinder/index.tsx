@@ -19,7 +19,7 @@ import { Dots } from '../Pool/styleds'
 import styled from 'styled-components'
 import { AddArrow } from '../../components/icon/InputIcon'
 import plus from '../../assets/images/plus.svg'
-import AppBody from '../AppBody'
+import { CenterWrapper } from '../AppBody'
 import { isMobile } from 'react-device-detect'
 
 enum Fields {
@@ -98,7 +98,7 @@ export default function PoolFinder() {
   )
 
   return (
-    <AppBody>
+    <CenterWrapper>
       <AutoColumn gap="lg">
         <Container>
           <FindPoolTabs />
@@ -218,6 +218,6 @@ export default function PoolFinder() {
           selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
         />
       </AutoColumn>
-    </AppBody>
+    </CenterWrapper>
   )
 }
