@@ -237,10 +237,6 @@ const CardFrame = styled.div`
        margin-bottom: 24px;
      }
   `};
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
 `
 
 export default function Stake() {
@@ -401,6 +397,7 @@ export default function Stake() {
         </CardWrapper>
 
         <StakeWrapper>
+          <div style={{color: '#fff'}}>1111111</div>
           <CardFrame gap="lg" style={{ display: isMobile ? 'column' : 'row' }}>
             <StakeCard gap="lg">
               <StakeCard.Header>
