@@ -24,9 +24,10 @@ interface StakingModalProps {
   onDismiss: () => void
   stakingInfo: StakingInfo
   rewards2?: string
+  rewardsFilda?: string
 }
 
-export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, rewards2 }: StakingModalProps) {
+export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, rewards2, rewardsFilda }: StakingModalProps) {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
   // monitor call to help UI loading state
@@ -97,6 +98,13 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, rewards
                 </TYPE.body>
               )}
               {rewards2 && <TYPE.body>{t('your_unclaimed')} RPO</TYPE.body>}
+
+              {rewardsFilda && (
+                <TYPE.body fontWeight={600} fontSize={36}>
+                  {rewardsFilda}
+                </TYPE.body>
+              )}
+              {rewardsFilda && <TYPE.body>{t('your_unclaimed')} Filda</TYPE.body>}
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>{t('when_you_withdraw_cir')}</TYPE.subHeader>

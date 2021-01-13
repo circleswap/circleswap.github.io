@@ -27,6 +27,8 @@ import RPCToCIR from '../../assets/logos/rpc-cir.png'
 import HTToETH from '../../assets/logos/ht-eth.png'
 import HTToHBTC from '../../assets/logos/ht-hbtc.png'
 import HTToHUSD from '../../assets/logos/ht-husd.png'
+import CIRToFilda from '../../assets/logos/cir-filda.svg'
+
 import { useRewards2Token } from './hooks'
 import BigNumber from 'bignumber.js'
 import { isMobile } from 'react-device-detect'
@@ -343,6 +345,22 @@ export default function Stake() {
     stakingInfo5?.stakedAmount?.token ?? undefined
   )?.toSignificant(6)
 
+  //"FILDA-CIR
+  const [currencyA6, currencyB6] = [
+    useCurrency('0xe36ffd17b2661eb57144ceaef942d95295e637f0'),
+    useCurrency('0x3dd639626f106bd818e92bdcb102911c020ced77')
+  ]
+  const tokenA6 = wrappedCurrency(currencyA6 ?? undefined, chainId)
+  const tokenB6 = wrappedCurrency(currencyB6 ?? undefined, chainId)
+
+  const [, stakingTokenPair6] = usePair(tokenA6, tokenB6)
+  const stakingInfo6 = useStakingInfo(stakingTokenPair6)?.[0]
+  const userLiquidityUnstaked6 = useTokenBalance(account ?? undefined, stakingInfo6?.stakedAmount?.token)
+  const currencyBalance6 = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo6?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
+
   // toggle for staking modal and unstaking modal
   const [showStakingModal, setShowStakingModal] = useState(false)
   const [showUnstakingModal, setShowUnstakingModal] = useState(false)
@@ -355,6 +373,10 @@ export default function Stake() {
   //   '0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61' ?? undefined,
   //   rewards2Token
   // )?.toExact()
+
+  const rewardsFilda = useRewards2Token('0x6f19b9bF01B3bFB31741888B4781107B61b7706D')
+  const rewardsFildaToken = useCurrency(rewardsFilda.reward2Address)
+
   const [currentPair, setCurrentPair] = useState(0)
 
   const [hash, setHash] = useState()
@@ -688,6 +710,64 @@ export default function Stake() {
               </ButtonRow>
             </StakeCard>
 
+            <StakeCard gap="lg" isConnect>
+              <StakeCard.Header>
+                <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
+                  FILDA-CIR
+                  <LogosFrame>
+                    <img alt="" src={CIRToFilda} />
+                  </LogosFrame>
+                </TYPE.largeHeader>
+              </StakeCard.Header>
+              <AutoColumn style={{ width: '100%' }} gap="md">
+                <AutoRow>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo6?.stakedAmount.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance6} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} CIR:</TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo6?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} FILDA:</TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>
+                    {rewardsFilda.ratio && stakingInfo6 && rewardsFildaToken
+                      ? new BigNumber(rewardsFilda.ratio)
+                          .multipliedBy(stakingInfo5?.earnedAmount.raw)
+                          .dividedBy('1000000000000000000')
+                          .dividedBy(new BigNumber('10').pow(rewardsFildaToken.decimals))
+                          .toFixed(4)
+                          .toString()
+                      : ''}{' '}
+                  </TYPE.black>
+                </AutoRow>
+              </AutoColumn>
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
+                  disabled={!stakingInfo5}
+                  onClick={() => {
+                    setCurrentPair(5)
+                    setShowStakingModal(true)
+                  }}
+                >
+                  {t('stake')}
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo5}
+                  onClick={() => {
+                    setCurrentPair(5)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('claim')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
+            </StakeCard>
+
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
               <ClaimCard gap="lg">
                 <ClaimCard.Modal src={claim} />
@@ -837,11 +917,52 @@ export default function Stake() {
                     .toString()
                 : ''
             }
+            rewardFilda={
+              rewardsFilda.ratio && stakingInfo6 && rewardsFildaToken
+                ? new BigNumber(rewardsFilda.ratio)
+                    .multipliedBy(stakingInfo5?.earnedAmount.raw)
+                    .dividedBy('1000000000000000000')
+                    .dividedBy(new BigNumber('10').pow(rewardsFildaToken.decimals))
+                    .toFixed(4)
+                    .toString()
+                : ''
+            }
           />
           <ClaimRewardModal
             isOpen={showClaimRewardModal && currentPair === 5}
             onDismiss={() => setShowClaimRewardModal(false)}
             stakingInfo={stakingInfo5}
+          />
+        </>
+      )}
+
+      {stakingInfo6 && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal && currentPair === 6}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo6}
+            userLiquidityUnstaked={userLiquidityUnstaked6}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal && currentPair === 6}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo6}
+            rewards2={
+              rewards2.ratio && stakingInfo6 && rewards2Token
+                ? new BigNumber(rewards2.ratio)
+                    .multipliedBy(stakingInfo5?.earnedAmount.raw)
+                    .dividedBy('1000000000000000000')
+                    .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
+                    .toFixed(4)
+                    .toString()
+                : ''
+            }
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal && currentPair === 6}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo6}
           />
         </>
       )}
