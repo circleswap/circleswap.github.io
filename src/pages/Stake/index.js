@@ -348,7 +348,7 @@ export default function Stake() {
   //"FILDA-CIR
   const [currencyA6, currencyB6] = [
     useCurrency('0xe36ffd17b2661eb57144ceaef942d95295e637f0'),
-    useCurrency('0x3dd639626f106bd818e92bdcb102911c020ced77')
+    useCurrency('0xbe5DF2fac88BB096A973e664171E60586bC5940c')
   ]
   const tokenA6 = wrappedCurrency(currencyA6 ?? undefined, chainId)
   const tokenB6 = wrappedCurrency(currencyB6 ?? undefined, chainId)
