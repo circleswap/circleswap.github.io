@@ -907,16 +907,6 @@ export default function Stake() {
             isOpen={showUnstakingModal && currentPair === 5}
             onDismiss={() => setShowUnstakingModal(false)}
             stakingInfo={stakingInfo5}
-            rewards2={
-              rewards2.ratio && stakingInfo5 && rewards2Token
-                ? new BigNumber(rewards2.ratio)
-                    .multipliedBy(stakingInfo5?.earnedAmount.raw)
-                    .dividedBy('1000000000000000000')
-                    .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
-                    .toFixed(4)
-                    .toString()
-                : ''
-            }
             rewardFilda={
               rewardsFilda.ratio && stakingInfo6 && rewardsFildaToken
                 ? new BigNumber(rewardsFilda.ratio)
