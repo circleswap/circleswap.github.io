@@ -374,7 +374,7 @@ export default function Stake() {
   //   rewards2Token
   // )?.toExact()
 
-  const rewardsFilda = useRewards2Token('0x6f19b9bF01B3bFB31741888B4781107B61b7706D')
+  const rewardsFilda = useRewards2Token('0xd12E1ba2E41e6c220366Cab97C7c735E927dcd09')
   const rewardsFildaToken = useCurrency(rewardsFilda.reward2Address)
 
   const [currentPair, setCurrentPair] = useState(0)
