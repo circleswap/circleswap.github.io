@@ -941,7 +941,7 @@ export default function Stake() {
             rewardFilda={
               rewardsFilda.ratio && stakingInfo6 && rewardsFildaToken
                 ? new BigNumber(rewardsFilda.ratio)
-                    .multipliedBy(stakingInfo5?.earnedAmount.raw)
+                    .multipliedBy(stakingInfo6?.earnedAmount.raw)
                     .dividedBy('1000000000000000000')
                     .dividedBy(new BigNumber('10').pow(rewardsFildaToken.decimals))
                     .toFixed(4)
