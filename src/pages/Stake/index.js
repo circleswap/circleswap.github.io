@@ -748,18 +748,18 @@ export default function Stake() {
               </AutoColumn>
               <ButtonRow gap="19px" style={{ width: '100%' }}>
                 <ResponsiveButtonPrimary
-                  disabled={!stakingInfo5}
+                  disabled={!stakingInfo6}
                   onClick={() => {
-                    setCurrentPair(5)
+                    setCurrentPair(6)
                     setShowStakingModal(true)
                   }}
                 >
                   {t('stake')}
                 </ResponsiveButtonPrimary>
                 <ResponsiveButtonSecondary
-                  disabled={!stakingInfo5}
+                  disabled={!stakingInfo6}
                   onClick={() => {
-                    setCurrentPair(5)
+                    setCurrentPair(6)
                     setShowUnstakingModal(true)
                   }}
                 >
