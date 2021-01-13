@@ -907,12 +907,12 @@ export default function Stake() {
             isOpen={showUnstakingModal && currentPair === 5}
             onDismiss={() => setShowUnstakingModal(false)}
             stakingInfo={stakingInfo5}
-            rewardFilda={
-              rewardsFilda.ratio && stakingInfo6 && rewardsFildaToken
-                ? new BigNumber(rewardsFilda.ratio)
+            rewards2={
+              rewards2.ratio && stakingInfo5 && rewards2Token
+                ? new BigNumber(rewards2.ratio)
                     .multipliedBy(stakingInfo5?.earnedAmount.raw)
                     .dividedBy('1000000000000000000')
-                    .dividedBy(new BigNumber('10').pow(rewardsFildaToken.decimals))
+                    .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
                     .toFixed(4)
                     .toString()
                 : ''
@@ -938,12 +938,12 @@ export default function Stake() {
             isOpen={showUnstakingModal && currentPair === 6}
             onDismiss={() => setShowUnstakingModal(false)}
             stakingInfo={stakingInfo6}
-            rewards2={
-              rewards2.ratio && stakingInfo6 && rewards2Token
-                ? new BigNumber(rewards2.ratio)
+            rewardFilda={
+              rewardsFilda.ratio && stakingInfo6 && rewardsFildaToken
+                ? new BigNumber(rewardsFilda.ratio)
                     .multipliedBy(stakingInfo5?.earnedAmount.raw)
                     .dividedBy('1000000000000000000')
-                    .dividedBy(new BigNumber('10').pow(rewards2Token.decimals))
+                    .dividedBy(new BigNumber('10').pow(rewardsFildaToken.decimals))
                     .toFixed(4)
                     .toString()
                 : ''
