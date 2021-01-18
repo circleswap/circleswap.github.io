@@ -519,19 +519,6 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address payable",
-          "name": "acct",
-          "type": "address"
-        }
-      ],
-      "name": "getReward",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "inputs": [],
       "name": "getRewardForDuration",
       "outputs": [

@@ -173,7 +173,7 @@ export default function CurrencyInputPanel({
     <InputPanel id={id}>
       <Container hideInput={hideInput}>
         {!hideInput && (
-          <LabelRow>
+          <LabelRow style={{ marginTop: 0 }}>
             <RowBetween>
               <TYPE.body color={theme.text2} fontWeight={600} fontSize={28}>
                 {label}
