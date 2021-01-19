@@ -28,7 +28,7 @@ import HTToETH from '../../assets/logos/ht-eth.png'
 import HTToHBTC from '../../assets/logos/ht-hbtc.png'
 import HTToHUSD from '../../assets/logos/ht-husd.png'
 import CIRToFilda from '../../assets/logos/cir-filda.svg'
-import HTPToHUSD from '../../assets/logos/htp-cir.svg'
+import HPTToHUSD from '../../assets/logos/hpt-husd.svg'
 
 import { useRewards2Token } from './hooks'
 import BigNumber from 'bignumber.js'
@@ -363,7 +363,7 @@ export default function Stake() {
     stakingInfo6?.stakedAmount?.token ?? undefined
   )?.toSignificant(6)
 
-  //HTP-HUSD
+  //HPT-HUSD
   const [currencyA7, currencyB7] = [
     useCurrency('0xe499ef4616993730ced0f31fa2703b92b50bb536'),
     useCurrency('0x0298c2b32eae4da002a15f36fdf7615bea3da047')
@@ -791,7 +791,7 @@ export default function Stake() {
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   HPT-HUSD
                   <LogosFrame>
-                    <img alt="" src={HTPToHUSD} />
+                    <img alt="" src={HPTToHUSD} />
                   </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
