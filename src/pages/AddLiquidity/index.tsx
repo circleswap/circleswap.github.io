@@ -355,9 +355,9 @@ export default function AddLiquidity({
         <AutoColumn style={{ width: '100%' }}>
           {noLiquidity ||
             (isCreate && (
-              <Column>
-                <CardWrapper>
-                  <AutoColumn gap="10px">
+              <Column style={{ width: '100%' }}>
+                <CardWrapper style={{ width: '100%' }}>
+                  <AutoColumn gap="10px" style={{ width: '100%' }}>
                     <TYPE.white fontWeight={600}>{t('firstLiquidityProvider')}</TYPE.white>
                     <TYPE.white fontWeight={400}>{t('ratioOfToken')}</TYPE.white>
                     <TYPE.white fontWeight={400}>{t('supplyToReview')}</TYPE.white>

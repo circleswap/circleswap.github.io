@@ -28,6 +28,7 @@ import HTToETH from '../../assets/logos/ht-eth.png'
 import HTToHBTC from '../../assets/logos/ht-hbtc.png'
 import HTToHUSD from '../../assets/logos/ht-husd.png'
 import CIRToFilda from '../../assets/logos/cir-filda.svg'
+import HTPToHUSD from '../../assets/logos/htp-cir.svg'
 
 import { useRewards2Token } from './hooks'
 import BigNumber from 'bignumber.js'
@@ -288,9 +289,10 @@ export default function Stake() {
   ]
   const tokenA2 = wrappedCurrency(currencyA2 ?? undefined, chainId)
   const tokenB2 = wrappedCurrency(currencyB2 ?? undefined, chainId)
-
   const [, stakingTokenPair2] = usePair(tokenA2, tokenB2)
   const stakingInfo2 = useStakingInfo(stakingTokenPair2)?.[0]
+  console.log('stakingTokenPair2', stakingTokenPair2)
+
   const userLiquidityUnstaked2 = useTokenBalance(account ?? undefined, stakingInfo2?.stakedAmount?.token)
   const currencyBalance2 = useCurrencyBalance(
     account ?? undefined,
@@ -359,6 +361,22 @@ export default function Stake() {
   const currencyBalance6 = useCurrencyBalance(
     account ?? undefined,
     stakingInfo6?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
+
+  //HTP-HUSD
+  const [currencyA7, currencyB7] = [
+    useCurrency('0xe499ef4616993730ced0f31fa2703b92b50bb536'),
+    useCurrency('0x0298c2b32eae4da002a15f36fdf7615bea3da047')
+  ]
+  const tokenA7 = wrappedCurrency(currencyA7 ?? undefined, chainId)
+  const tokenB7 = wrappedCurrency(currencyB7 ?? undefined, chainId)
+
+  const [, stakingTokenPair7] = usePair(tokenA7, tokenB7)
+  const stakingInfo7 = useStakingInfo(stakingTokenPair7)?.[0]
+  const userLiquidityUnstaked7 = useTokenBalance(account ?? undefined, stakingInfo7?.stakedAmount?.token)
+  const currencyBalance7 = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo7?.stakedAmount?.token ?? undefined
   )?.toSignificant(6)
 
   // toggle for staking modal and unstaking modal
@@ -768,6 +786,51 @@ export default function Stake() {
               </ButtonRow>
             </StakeCard>
 
+            <StakeCard gap="lg" isConnect>
+              <StakeCard.Header>
+                <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
+                  HPT-HUSD
+                  <LogosFrame>
+                    <img alt="" src={HTPToHUSD} />
+                  </LogosFrame>
+                </TYPE.largeHeader>
+              </StakeCard.Header>
+              <AutoColumn style={{ width: '100%' }} gap="md">
+                <AutoRow>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo7?.stakedAmount.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance7} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} CIR:</TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo7?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+              </AutoColumn>
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
+                  disabled={!stakingInfo7}
+                  onClick={() => {
+                    setCurrentPair(7)
+                    setShowStakingModal(true)
+                  }}
+                >
+                  {t('stake')}
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo7}
+                  onClick={() => {
+                    setCurrentPair(7)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('claim')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
+            </StakeCard>
+
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
               <ClaimCard gap="lg">
                 <ClaimCard.Modal src={claim} />
@@ -953,6 +1016,27 @@ export default function Stake() {
             isOpen={showClaimRewardModal && currentPair === 6}
             onDismiss={() => setShowClaimRewardModal(false)}
             stakingInfo={stakingInfo6}
+          />
+        </>
+      )}
+
+      {stakingInfo7 && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal && currentPair === 7}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo7}
+            userLiquidityUnstaked={userLiquidityUnstaked7}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal && currentPair === 7}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo7}
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal && currentPair === 7}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo7}
           />
         </>
       )}
