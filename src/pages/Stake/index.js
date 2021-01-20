@@ -65,6 +65,7 @@ const StakeWrapper = styled.div`
   padding: 26px 30px;
   margin-top: 20px;
   gap: 30px;
+  height: fit-content;
   ${({ theme }) => theme.mediaWidth.upToMedium`
      width: 100%;
   `};
@@ -448,7 +449,6 @@ export default function Stake() {
   const rewards2 = useRewards2Token('0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61')
   const rewards2Token = useCurrency(rewards2.reward2Address)
   const rpoClosed = usePoolClosed('0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61')
-  console.log('rpoClosed', rpoClosed)
   //const rewards2Balance = useTokenBalance(account ?? undefined, rewards2Token)?.toExact()
   // const rewards2TotalBalance = useTokenBalance(
   //   '0x1533941e32bA810Dd3ce9Bf5603835FfBED46b61' ?? undefined,
@@ -464,7 +464,7 @@ export default function Stake() {
   const rewardsLHB = useRewards2Token('0x63476Aa58b0f45c6BE36fCf83ED6c34Db5d18E12')
   const rewardsLHBToken = useCurrency(rewardsLHB.reward2Address)
   const LHBClosed = usePoolClosed('0x63476Aa58b0f45c6BE36fCf83ED6c34Db5d18E12')
-  console.log('LHBClosed', LHBClosed)
+
   const [currentPair, setCurrentPair] = useState(0)
 
   const [hash, setHash] = useState()
@@ -1060,7 +1060,7 @@ export default function Stake() {
               </ButtonRow>
               <ClaimButton
                 closed={false}
-                disabled={!stakingInfo5 || stakingInfo5?.earnedAmount.equalTo('0')}
+                disabled={!stakingInfo4 || stakingInfo4?.earnedAmount.equalTo('0')}
                 onClick={() => {
                   setShowClaimRewardModal(true)
                   setCurrentPair(4)
