@@ -41,9 +41,16 @@ interface StakingModalProps {
   onDismiss: () => void
   stakingInfo: StakingInfo
   userLiquidityUnstaked: TokenAmount | undefined
+  stakingSymbol?: string
 }
 
-export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiquidityUnstaked }: StakingModalProps) {
+export default function StakingModal({
+  isOpen,
+  onDismiss,
+  stakingInfo,
+  userLiquidityUnstaked,
+  stakingSymbol
+}: StakingModalProps) {
   const { account, chainId, library } = useActiveWeb3React()
   const { t } = useTranslation()
 
@@ -249,7 +256,9 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Depositing Liquidity</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>{parsedAmount?.toSignificant(4)} CIR</TYPE.body>
+            <TYPE.body fontSize={20}>
+              {parsedAmount?.toSignificant(4)} {stakingSymbol ? stakingSymbol : 'CIR'}
+            </TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -257,7 +266,9 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Deposited {parsedAmount?.toSignificant(4)} CIR</TYPE.body>
+            <TYPE.body fontSize={20}>
+              Deposited {parsedAmount?.toSignificant(4)} {stakingSymbol ? stakingSymbol : 'CIR'}
+            </TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
