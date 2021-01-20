@@ -52,7 +52,6 @@ const PageWrapper = styled(AutoColumn)`
 `
 
 const StakeWrapper = styled.div`
-  display: flex;
   width: 806px;
   flex-direction: column;
   justify-content: space-between;
@@ -65,7 +64,6 @@ const StakeWrapper = styled.div`
   padding: 26px 30px;
   margin-top: 20px;
   gap: 30px;
-  height: fit-content;
   ${({ theme }) => theme.mediaWidth.upToMedium`
      width: 100%;
   `};
