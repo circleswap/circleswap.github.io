@@ -294,7 +294,8 @@
   "minutes": "minutes",
   "stake": "Deposit",
   "cooperativeMiningPools": "Cooperative Mining Pools:",
-  "your_unclaimed": "Your unclaimed"
-
-
+  "your_unclaimed": "Your unclaimed",
+  "circle_pool": "CircleSwap pools",
+  "active": "Live",
+  "closed": "Closed"
 }

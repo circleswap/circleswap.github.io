@@ -287,5 +287,9 @@
   "minutes": "分钟",
   "stake": "质押",
   "cooperativeMiningPools": "合作矿池：",
-  "your_unclaimed": "您未申领的"
+  "your_unclaimed": "您未申领的",
+  "circle_pool": "CircleSwap矿池",
+  "active": "进行中",
+  "closed": "过期"
+
 }

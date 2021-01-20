@@ -22,9 +22,17 @@ interface StakingModalProps {
   isOpen: boolean
   onDismiss: () => void
   stakingInfo: StakingInfo
+  rewards2Token?: string
+  rewards2TokenAmount?: string
 }
 
-export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: StakingModalProps) {
+export default function ClaimRewardModal({
+  isOpen,
+  onDismiss,
+  stakingInfo,
+  rewards2Token,
+  rewards2TokenAmount
+}: StakingModalProps) {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
 
@@ -81,6 +89,14 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
                 {stakingInfo?.earnedAmount?.toSignificant(6)}
               </TYPE.body>
               <TYPE.body>Unclaimed CIR</TYPE.body>
+              {rewards2Token && rewards2TokenAmount && (
+                <>
+                  <TYPE.body fontWeight={600} fontSize={36}>
+                    {rewards2TokenAmount}
+                  </TYPE.body>
+                  <TYPE.body>Unclaimed {rewards2Token}</TYPE.body>
+                </>
+              )}
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>

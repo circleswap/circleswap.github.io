@@ -106,9 +106,16 @@ export const STAKING_REWARDS_INFO: {
     {
       tokens: [
         new Token(ChainId.HT, '0xe499ef4616993730ced0f31fa2703b92b50bb536', 18, 'HPT', 'Heco-Peg HPT Token'),
-        new Token(ChainId.HT, '0x0298c2b32eae4da002a15f36fdf7615bea3da047', 8, 'HUSD', 'Heco-Peg HUSD Token')
+        new Token(ChainId.HT, '0xa71edc38d189767582c38a3145b5873052c3e47a', 8, 'USDT', 'Heco-Peg USDTHECO Token')
       ],
-      stakingRewardAddress: '0x08EE119DBC1Fceb2F092B9aC520B029E32220e08'
+      stakingRewardAddress: '0x9012cE612C764C37349Bb556E925DCc66Bd01C54'
+    },
+    {
+      tokens: [
+        new Token(ChainId.HT, '0x8f67854497218043e1f72908ffe38d0ed7f24721', 18, 'LHB', 'LendHub'),
+        new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 8, 'CIR', 'CircleSwap Governance Token')
+      ],
+      stakingRewardAddress: '0x63476Aa58b0f45c6BE36fCf83ED6c34Db5d18E12'
     }
   ]
 }
