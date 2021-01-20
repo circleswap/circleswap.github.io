@@ -4,7 +4,6 @@ import { useState } from 'react'
 export function useRewards2Token(address) {
   const [ratio, setRatio] = useState()
   const [reward2Address, setReward2Address] = useState()
-  const [isClosed, setIsClosed] = useState()
 
   const contract = useStakingContract(address, false)
   contract.rewards2Ratio().then(res => {
