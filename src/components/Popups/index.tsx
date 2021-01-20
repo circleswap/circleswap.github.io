@@ -21,7 +21,6 @@ const MobilePopupWrapper = styled.div<{ height: string | number }>`
 `
 
 const MobilePopupInner = styled.div`
-  margin-top: 80px;
   height: 99%;
   overflow-x: auto;
   overflow-y: hidden;
