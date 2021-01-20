@@ -134,7 +134,6 @@ export default function ClaimModal() {
             </CardSection>
           </ModalUpper>
           <AutoColumn gap="md" style={{ padding: '1rem', paddingTop: '0' }} justify="center">
-
             <ButtonPrimary
               disabled={!isAddress(account ?? '')}
               padding="16px 16px"

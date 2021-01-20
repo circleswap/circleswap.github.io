@@ -13,7 +13,7 @@ export const ColumnCenter = styled(Column)`
 
 export const AutoColumn = styled.div<{
   gap?: 'sm' | 'md' | 'lg' | string
-  justify?: 'stretch' | 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'space-between',
+  justify?: 'stretch' | 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'space-between'
   hasBG?: boolean
 }>`
   background: ${({ hasBG }) => hasBG && `url(${uImage})`};

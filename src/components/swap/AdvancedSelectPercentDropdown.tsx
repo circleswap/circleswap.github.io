@@ -66,7 +66,8 @@ export default function AdvancedSelectPercentDropdown({
               <Text>max</Text>
             </RowBetween>
             <ProgressWrapper>
-              <Progress status={'for'} percentageString={progress} />{progress}
+              <Progress status={'for'} percentageString={progress} />
+              {progress}
             </ProgressWrapper>
             <RowBetween marginTop={20}>
               <ProgressButton onClick={() => progressCallback('0.2')}>20%</ProgressButton>

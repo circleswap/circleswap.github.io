@@ -160,7 +160,7 @@ export default function CIR() {
                 <TYPE.white marginLeft={16} fontWeight={600} fontSize={20}>
                   **
                 </TYPE.white>
-                <TYPE.white fontWeight={600} fontSize={12} width={isMobile? 80: 'fit-content'}>
+                <TYPE.white fontWeight={600} fontSize={12} width={isMobile ? 80 : 'fit-content'}>
                   {t('ownComputingPower')}
                 </TYPE.white>
               </LineCard>

@@ -55,7 +55,7 @@ export default function Inviting({
         <AutoColumn gap="20px">
           {ZERO_ADDRESS !== invited && invited ? (
             <AppBody>
-              <ColumnCenter style={{ width: isMobile? '100%' : 463 }}>
+              <ColumnCenter style={{ width: isMobile ? '100%' : 463 }}>
                 <StyledArrowLeft
                   onClick={() => {
                     history.push('/invite')
