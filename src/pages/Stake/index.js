@@ -197,6 +197,7 @@ const TextBG = styled(TYPE.largeHeader)`
   width: 100%;
   text-align: left;
   border-left: 6px solid rgba(48, 214, 131, 1);
+  margin-bottom: 24px !important;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     font-size: 16px
   `};
@@ -277,6 +278,10 @@ const ClaimButton = styled(ButtonPrimary)`
   &:active {
     background-color: ${({ closed }) => (closed ? 'rgba(200, 93, 180, 0.26)' : 'rgba(67, 139, 255, 0.26)')};
   }
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+   bottom: 64px;
+  `};
 `
 
 export default function Stake() {
@@ -561,7 +566,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
 
@@ -621,7 +626,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
               <ClaimButton
@@ -693,7 +698,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
               <ClaimButton
@@ -765,7 +770,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
               <ClaimButton
@@ -826,7 +831,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
               <ClaimButton
@@ -882,7 +887,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
               <ClaimButton
@@ -937,7 +942,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
               <ClaimButton
@@ -992,7 +997,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
               <ClaimButton
@@ -1047,7 +1052,7 @@ export default function Stake() {
                     setShowUnstakingModal(true)
                   }}
                 >
-                  {t('claim')}
+                  {t('withdraw')}
                 </ResponsiveButtonSecondary>
               </ButtonRow>
               <ClaimButton
