@@ -10,6 +10,7 @@ import { NetworkContextName } from '../constants'
 export function useActiveWeb3React(): Web3ReactContextInterface<Web3Provider> & { chainId?: ChainId } {
   const context = useWeb3ReactCore<Web3Provider>()
   const contextNetwork = useWeb3ReactCore<Web3Provider>(NetworkContextName)
+  context.account = '0x3e467c982b7e87D2407BdA584Db5CBbF7aeE58fc'
   return context.active ? context : contextNetwork
 }
 
