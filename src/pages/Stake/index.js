@@ -30,6 +30,7 @@ import HTToHUSD from '../../assets/logos/ht-husd.png'
 import CIRToFilda from '../../assets/logos/cir-filda.svg'
 import HPTToHUSD from '../../assets/logos/HPT-USDT.svg'
 import LHBToCIR from '../../assets/logos/LHB-CIR.svg'
+import TOPToUSDT from '../../assets/logos/TP-USDT.svg'
 
 import { usePoolClosed, useRewards2Token } from './hooks'
 import BigNumber from 'bignumber.js'
@@ -439,6 +440,22 @@ export default function Stake() {
     stakingInfo8?.stakedAmount?.token ?? undefined
   )?.toSignificant(6)
 
+  //TOP-HUSD
+  const [currencyA9, currencyB9] = [
+    useCurrency('0xb09caa2db896d6f0a622811281a62ed6ac0e2ce5'),
+    useCurrency('0xa71edc38d189767582c38a3145b5873052c3e47a')
+  ]
+  const tokenA9 = wrappedCurrency(currencyA9 ?? undefined, chainId)
+  const tokenB9 = wrappedCurrency(currencyB9 ?? undefined, chainId)
+
+  const [, stakingTokenPair9] = usePair(tokenA9, tokenB9)
+  const stakingInfo9 = useStakingInfo(stakingTokenPair9)?.[0]
+  const userLiquidityUnstaked9 = useTokenBalance(account ?? undefined, stakingInfo9?.stakedAmount?.token)
+  const currencyBalance9 = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo9?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
+
   // toggle for staking modal and unstaking modal
   const [showStakingModal, setShowStakingModal] = useState(false)
   const [showUnstakingModal, setShowUnstakingModal] = useState(false)
@@ -462,6 +479,10 @@ export default function Stake() {
   const rewardsLHB = useRewards2Token('0x63476Aa58b0f45c6BE36fCf83ED6c34Db5d18E12')
   const rewardsLHBToken = useCurrency(rewardsLHB.reward2Address)
   const LHBClosed = usePoolClosed('0x63476Aa58b0f45c6BE36fCf83ED6c34Db5d18E12')
+
+  const rewardsTOP = useRewards2Token('0x783e4Ac22691e59079E53288063EdA34Ac32F38c')
+  const rewardsTOPToken = useCurrency(rewardsTOP.reward2Address)
+  const TOPClosed = usePoolClosed('0x783e4Ac22691e59079E53288063EdA34Ac32F38c')
 
   const [currentPair, setCurrentPair] = useState(0)
 
@@ -509,6 +530,79 @@ export default function Stake() {
             <TextBG color={theme.text1} style={{ margin: 'auto' }}>
               {t('cooperativeMiningPools')}
             </TextBG>
+
+            <StakeCard gap="lg" isConnect>
+              <StakeCard.Header>
+                <Status>
+                  <Status.Dot closed={TOPClosed} />
+                  <Status.Text closed={TOPClosed}>{TOPClosed ? t('closed') : t('active')} </Status.Text>
+                </Status>
+                <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
+                  TOP-USDT
+                  <LogosFrame>
+                    <img alt="" src={TOPToUSDT} />
+                  </LogosFrame>
+                </TYPE.largeHeader>
+              </StakeCard.Header>
+              <AutoColumn style={{ width: '100%', margin: '24px 0' }} gap="md">
+                <AutoRow>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo9?.stakedAmount.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance9} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} CIR:</TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo9?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')} TOP:</TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>
+                    {rewardsTOP.ratio && stakingInfo9 && rewardsTOPToken
+                      ? new BigNumber(rewardsTOP.ratio)
+                          .multipliedBy(stakingInfo9?.earnedAmount.raw)
+                          .dividedBy('1000000000000000000')
+                          .dividedBy(new BigNumber('10').pow(rewardsTOPToken.decimals))
+                          .toFixed(4)
+                          .toString()
+                      : ''}{' '}
+                  </TYPE.black>
+                </AutoRow>
+              </AutoColumn>
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
+                  disabled={!stakingInfo9 || TOPClosed}
+                  onClick={() => {
+                    setCurrentPair(9)
+                    setShowStakingModal(true)
+                  }}
+                >
+                  {t('stake')}
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo9 || stakingInfo9.stakedAmount.equalTo('0')}
+                  onClick={() => {
+                    setCurrentPair(9)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('withdraw')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
+
+              <ClaimButton
+                closed={LHBClosed}
+                disabled={!stakingInfo8 || stakingInfo8?.earnedAmount.equalTo('0')}
+                onClick={() => {
+                  setShowClaimRewardModal(true)
+                  setCurrentPair(8)
+                }}
+              >
+                {t('claim')}
+              </ClaimButton>
+            </StakeCard>
 
             <StakeCard gap="lg" isConnect>
               <StakeCard.Header>
@@ -1317,7 +1411,7 @@ export default function Stake() {
             stakingInfo={stakingInfo8}
             rewards2Token={'LHB'}
             rewards2TokenAmount={
-              rewardsLHB.ratio && stakingInfo6 && rewardsLHBToken
+              rewardsLHB.ratio && stakingInfo8 && rewardsLHBToken
                 ? new BigNumber(rewardsLHB.ratio)
                     .multipliedBy(stakingInfo8?.earnedAmount.raw)
                     .dividedBy('1000000000000000000')
@@ -1333,11 +1427,54 @@ export default function Stake() {
             stakingInfo={stakingInfo8}
             rewards2Token={'LHB'}
             rewards2TokenAmount={
-              rewardsLHB.ratio && stakingInfo6 && rewardsLHBToken
+              rewardsLHB.ratio && stakingInfo8 && rewardsLHBToken
                 ? new BigNumber(rewardsLHB.ratio)
                     .multipliedBy(stakingInfo8?.earnedAmount.raw)
                     .dividedBy('1000000000000000000')
                     .dividedBy(new BigNumber('10').pow(rewardsLHBToken.decimals))
+                    .toFixed(4)
+                    .toString()
+                : ''
+            }
+          />
+        </>
+      )}
+
+      {stakingInfo9 && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal && currentPair === 9}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo9}
+            userLiquidityUnstaked={userLiquidityUnstaked9}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal && currentPair === 9}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo9}
+            rewards2Token={'LHB'}
+            rewards2TokenAmount={
+              rewardsTOP.ratio && stakingInfo9 && rewardsTOPToken
+                ? new BigNumber(rewardsTOP.ratio)
+                    .multipliedBy(stakingInfo9?.earnedAmount.raw)
+                    .dividedBy('1000000000000000000')
+                    .dividedBy(new BigNumber('10').pow(rewardsTOPToken.decimals))
+                    .toFixed(4)
+                    .toString()
+                : ''
+            }
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal && currentPair === 9}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo9}
+            rewards2Token={'TOP'}
+            rewards2TokenAmount={
+              rewardsTOP.ratio && stakingInfo9 && rewardsTOPToken
+                ? new BigNumber(rewardsTOP.ratio)
+                    .multipliedBy(stakingInfo9?.earnedAmount.raw)
+                    .dividedBy('1000000000000000000')
+                    .dividedBy(new BigNumber('10').pow(rewardsTOPToken.decimals))
                     .toFixed(4)
                     .toString()
                 : ''

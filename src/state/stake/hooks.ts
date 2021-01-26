@@ -116,7 +116,14 @@ export const STAKING_REWARDS_INFO: {
         new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'CircleSwap Governance Token')
       ],
       stakingRewardAddress: '0x63476Aa58b0f45c6BE36fCf83ED6c34Db5d18E12'
-    }
+    },
+    {
+      tokens: [
+        new Token(ChainId.HT, '0xb09caa2db896d6f0a622811281a62ed6ac0e2ce5', 18, 'TOP', 'Token Offering Platform'),
+        new Token(ChainId.HT, '0xa71edc38d189767582c38a3145b5873052c3e47a', 18, 'USDT', 'Heco-Peg USDTHECO Token')
+      ],
+      stakingRewardAddress: '0x783e4Ac22691e59079E53288063EdA34Ac32F38c'
+    },
   ]
 }
 
