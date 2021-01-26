@@ -987,10 +987,10 @@ export default function Stake() {
               </ButtonRow>
               <ClaimButton
                 closed={false}
-                disabled={!stakingInfo3 || stakingInfo3?.earnedAmount.equalTo('0')}
+                disabled={!stakingInfo2 || stakingInfo2?.earnedAmount.equalTo('0')}
                 onClick={() => {
                   setShowClaimRewardModal(true)
-                  setCurrentPair(3)
+                  setCurrentPair(2)
                 }}
               >
                 {t('claim')}
@@ -1042,7 +1042,7 @@ export default function Stake() {
               </ButtonRow>
               <ClaimButton
                 closed={false}
-                disabled={!stakingInfo2 || stakingInfo2?.earnedAmount.equalTo('0')}
+                disabled={!stakingInfo1 || stakingInfo1?.earnedAmount.equalTo('0')}
                 onClick={() => {
                   setShowClaimRewardModal(true)
                   setCurrentPair(1)
