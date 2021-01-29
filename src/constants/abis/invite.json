@@ -5,6 +5,25 @@
       {
         "indexed": true,
         "internalType": "address",
+        "name": "acct",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "vol",
+        "type": "uint256"
+      }
+    ],
+    "name": "Airdrop",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
         "name": "owner",
         "type": "address"
       },
@@ -229,6 +248,29 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "totalAirdrop_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalAirdropWeight_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "farm_",
+        "type": "address"
+      }
+    ],
+    "name": "__Circle_init_airdrop",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "CIR_",
         "type": "address"
@@ -258,6 +300,32 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "airdrop",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "acct",
+        "type": "address"
+      }
+    ],
+    "name": "airdropVol",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -266,6 +334,25 @@
       }
     ],
     "name": "airdropWeight",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "airdropedOf",
     "outputs": [
       {
         "internalType": "uint256",
@@ -503,6 +590,19 @@
   },
   {
     "inputs": [],
+    "name": "getReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "acct",
+        "type": "address"
+      }
+    ],
     "name": "getReward",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -787,7 +887,45 @@
         "type": "address"
       }
     ],
+    "name": "referee2N_",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
     "name": "refereeN",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "refereeN_",
     "outputs": [
       {
         "internalType": "uint256",
@@ -1078,6 +1216,19 @@
         "internalType": "string",
         "name": "",
         "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalAirdrop",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",

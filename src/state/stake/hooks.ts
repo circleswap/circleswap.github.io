@@ -123,7 +123,7 @@ export const STAKING_REWARDS_INFO: {
         new Token(ChainId.HT, '0xa71edc38d189767582c38a3145b5873052c3e47a', 18, 'USDT', 'Heco-Peg USDTHECO Token')
       ],
       stakingRewardAddress: '0x783e4Ac22691e59079E53288063EdA34Ac32F38c'
-    },
+    }
   ]
 }
 

@@ -185,7 +185,7 @@
   "airdropWeight": "空投权重",
   "parentBlockAddresses": "父块地址数",
   "uncleBlockAddresses": "叔块地址数",
-  "numberOfAirdrops": "平台空投总量",
+  "numberOfAirdrops": "我的空投",
   "bonus": "NCircle奖励：初始时，每个地址空投权重默认为 1，但是每个地址可以通过扩大自己的NCircle 影响力来获得额外空投奖励，NCircle 内包含父块地址和叔块地址，具体奖励方式如下：每个父块地址可为账户增加 0.3 空投权重，最多统计 5 个父块地址，即最多增加 1.5 权重；每个叔块地址可为账户增加 0.1 空投权重，最多统计 25 个叔块地址，即最多增加 2.5 权重。 ",
   "liquidityMiningRewards": "流动性挖矿收益",
   "liquidityMining": "流动性挖矿",
@@ -290,6 +290,7 @@
   "your_unclaimed": "您未申领的",
   "circle_pool": "CircleSwap矿池",
   "active": "进行中",
-  "closed": "已结束"
-
+  "closed": "已结束",
+  "claimed_airdrop": "空投已被领取",
+  "airdrops_claimed": "空投领取成功"
 }

@@ -199,7 +199,7 @@
   "airdropWeight": "Airdrop Weight",
   "parentBlockAddresses": "Parent Block Addresses",
   "uncleBlockAddresses": "Uncle Block Addresses",
-  "numberOfAirdrops": "Total number of airdrops",
+  "numberOfAirdrops": "My airdrop",
   "bonus": "NCircle Bonus: Initially, the airdrop weight of each address is 1 by default, but each address can get the airdrop bonus by expanding its NCircle. NCircle contains the Parent Block Address(PBA) and Uncle Block Address(UBA). The specific addition method is as follows, Each PBA can add 0.3 airdrop weight to the account, and the maximum added weight is 1.5 :Each UBA can add 0.1 airdrop weight to the account, and the maximum added weight is 2.5; ",
   "liquidityMiningRewards": "Liquidity Mining Rewards",
   "ownComputingPower": "My Own Computing Power",
@@ -297,5 +297,8 @@
   "your_unclaimed": "Your unclaimed",
   "circle_pool": "CircleSwap pools",
   "active": "Live",
-  "closed": "Closed"
+  "closed": "Closed",
+  "claimed_airdrop": "Airdrops have been claimed",
+  "airdrops_claimed": "Airdrops Claimed Successfully"
+
 }
