@@ -156,7 +156,7 @@ export default function CIR() {
           ReactGA.event({
             category: 'Liquidity',
             action: 'Remove',
-            label: airdropAmount.toFixed(0)
+            label: airdropAmount.toFixed(2)
           })
         })
         .catch(error => {
@@ -170,7 +170,7 @@ export default function CIR() {
   function modalHeader() {
     return (
       <AutoColumn gap={'md'} style={{ marginTop: '20px' }}>
-        {airdropAmount.toFixed(0)} CIR
+        {airdropAmount.toFixed(2)} CIR
       </AutoColumn>
     )
   }
@@ -220,7 +220,7 @@ export default function CIR() {
               <LineCard bg={'#6EAEF2'} style={{ flexDirection: 'column' }}>
                 <RowBetween>
                   <TYPE.white fontWeight={600} fontSize={20}>
-                    {airdropAmount.toFixed(0)} CIR
+                    {airdropAmount.toFixed(2)} CIR
                   </TYPE.white>
                   <TYPE.white fontWeight={600} fontSize={12} width={isMobile ? 80 : 'fit-content'}>
                     {t('numberOfAirdrops')}

@@ -597,7 +597,7 @@ export default function Stake() {
                 disabled={!stakingInfo8 || stakingInfo8?.earnedAmount.equalTo('0')}
                 onClick={() => {
                   setShowClaimRewardModal(true)
-                  setCurrentPair(8)
+                  setCurrentPair(9)
                 }}
               >
                 {t('claim')}
