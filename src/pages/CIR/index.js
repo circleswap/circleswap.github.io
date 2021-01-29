@@ -13,13 +13,11 @@ import BigNumber from 'bignumber.js'
 import { isMobile } from 'react-device-detect'
 import { ButtonConfirmed, ButtonPrimary } from '../../components/Button'
 import { useAirdropInfo, useClaimAirdrop } from './useAirdrop'
-
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import { calculateGasMargin, getCircleContract } from '../../utils'
 import ReactGA from 'react-ga'
 import { addTransaction } from '../../state/transactions/actions'
 import { Text } from 'rebass'
-import { JSBI } from '@uniswap/sdk'
 
 export const Container = styled.div`
   margin: auto;
