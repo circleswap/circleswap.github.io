@@ -18,6 +18,7 @@ import { calculateGasMargin, getCircleContract } from '../../utils'
 import ReactGA from 'react-ga'
 import { addTransaction } from '../../state/transactions/actions'
 import { Text } from 'rebass'
+import { JSBI } from '@uniswap/sdk'
 
 export const Container = styled.div`
   margin: auto;
