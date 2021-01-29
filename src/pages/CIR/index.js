@@ -218,23 +218,21 @@ export default function CIR() {
               <LineCard bg={'#6EAEF2'} style={{ flexDirection: 'column' }}>
                 <RowBetween>
                   <TYPE.white fontWeight={600} fontSize={20}>
-                    {/*{airdropAmount.toFixed(2)} CIR*/}* *
+                    {airdropAmount.toFixed(2)} CIR
                   </TYPE.white>
                   <TYPE.white fontWeight={600} fontSize={12} width={isMobile ? 80 : 'fit-content'}>
                     {t('numberOfAirdrops')}
                   </TYPE.white>
                 </RowBetween>
                 <ClaimButton
-                  // disabled={airdropAmount.equalTo(JSBI.BigInt(0)) || !airdropClaimed.equalTo(JSBI.BigInt(0))}
-                  disabled
+                  disabled={airdropAmount.equalTo(JSBI.BigInt(0)) || !airdropClaimed.equalTo(JSBI.BigInt(0))}
                   onClick={() => {
                     setShowConfirm(true)
                   }}
                 >
-                  {/*{!airdropAmount.equalTo(JSBI.BigInt(0)) && !airdropClaimed.equalTo(JSBI.BigInt(0))*/}
-                  {/*  ? t('claimed_airdrop')*/}
-                  {/*  : t('claim')}*/}
-                  Waiting
+                  {!airdropAmount.equalTo(JSBI.BigInt(0)) && !airdropClaimed.equalTo(JSBI.BigInt(0))
+                    ? t('claimed_airdrop')
+                    : t('claim')}
                 </ClaimButton>
               </LineCard>
             </AutoColumn>
