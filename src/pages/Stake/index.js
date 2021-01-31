@@ -594,7 +594,7 @@ export default function Stake() {
 
               <ClaimButton
                 closed={LHBClosed}
-                disabled={!stakingInfo8 || stakingInfo8?.earnedAmount.equalTo('0')}
+                disabled={!stakingInfo9 || stakingInfo9?.earnedAmount.equalTo('0')}
                 onClick={() => {
                   setShowClaimRewardModal(true)
                   setCurrentPair(9)
@@ -646,7 +646,7 @@ export default function Stake() {
               </AutoColumn>
               <ButtonRow gap="19px" style={{ width: '100%' }}>
                 <ResponsiveButtonPrimary
-                  disabled={!stakingInfo8}
+                  disabled={!stakingInfo8 || LHBClosed}
                   onClick={() => {
                     setCurrentPair(8)
                     setShowStakingModal(true)
@@ -706,7 +706,7 @@ export default function Stake() {
               </AutoColumn>
               <ButtonRow gap="19px" style={{ width: '100%' }}>
                 <ResponsiveButtonPrimary
-                  disabled={!stakingInfo7}
+                  disabled={!stakingInfo7 || HPTClosed}
                   onClick={() => {
                     setCurrentPair(7)
                     setShowStakingModal(true)
@@ -778,7 +778,7 @@ export default function Stake() {
               </AutoColumn>
               <ButtonRow gap="19px" style={{ width: '100%' }}>
                 <ResponsiveButtonPrimary
-                  disabled={!stakingInfo6}
+                  disabled={!stakingInfo6 || FildaClosed}
                   onClick={() => {
                     setCurrentPair(6)
                     setShowStakingModal(true)
