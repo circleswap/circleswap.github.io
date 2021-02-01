@@ -494,7 +494,7 @@ export default function Stake() {
 
   //HUSD-USDT
   const [currencyA12, currencyB12] = [
-    useCurrency('0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f'),
+    useCurrency('0x0298c2b32eae4da002a15f36fdf7615bea3da047'),
     useCurrency('0xa71edc38d189767582c38a3145b5873052c3e47a')
   ]
   const tokenA12 = wrappedCurrency(currencyA12 ?? undefined, chainId)
