@@ -91,7 +91,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.HT]: [...WETH_ONLY[ChainId.HT]]
+  [ChainId.HT]: [...WETH_ONLY[ChainId.HT], HUSD, USDT]
 }
 
 /**
