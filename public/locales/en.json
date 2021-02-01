@@ -295,10 +295,10 @@
   "stake": "Deposit",
   "cooperativeMiningPools": "Cooperative Mining Pools:",
   "your_unclaimed": "Your unclaimed",
-  "circle_pool": "CircleSwap pools",
+  "circle_pool": "CircleSwap pools V1",
   "active": "Live",
   "closed": "Closed",
   "claimed_airdrop": "Airdrops have been claimed",
-  "airdrops_claimed": "Airdrops Claimed Successfully"
-
+  "airdrops_claimed": "Airdrops Claimed Successfully",
+  "cirPools": "CircleSwap pool V2"
 }

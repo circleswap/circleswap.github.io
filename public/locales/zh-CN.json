@@ -288,10 +288,10 @@
   "stake": "质押",
   "cooperativeMiningPools": "合作矿池",
   "your_unclaimed": "您未申领的",
-  "circle_pool": "CircleSwap矿池",
+  "circle_pool": "CircleSwap矿池 V1",
   "active": "进行中",
   "closed": "已结束",
   "claimed_airdrop": "空投已被领取",
   "airdrops_claimed": "空投领取成功",
-  "cirPools": "CIR矿池"
+  "cirPools": "CircleSwap矿池 V2"
 }
