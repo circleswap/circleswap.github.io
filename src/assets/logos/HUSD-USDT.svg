@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="38px" viewBox="0 0 65 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 18</title>
+    <defs>
+        <circle id="path-1" cx="19" cy="19" r="19"></circle>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CircleSwap流动性挖矿备份-10" transform="translate(-840.000000, -2088.000000)">
+            <g id="编组-15" transform="translate(365.000000, 2056.000000)">
+                <g id="编组-18" transform="translate(475.000000, 32.000000)">
+                    <g id="编组备份-2" transform="translate(27.000000, 0.000000)" fill-rule="nonzero">
+                        <path d="M19,19 L0,19 C0,29.4945312 8.50546875,38 19,38 C29.4945312,38 38,29.4945312 38,19 C38,8.50546875 29.4945312,0 19,0 C8.50546875,0 0,8.50546875 0,19 L19,19 Z" id="路径" fill="#1BA27A"></path>
+                        <polygon id="路径" fill="#FFFFFF" points="27.9099609 9.57421875 9.91933594 9.57421875 9.91933594 13.9271484 16.7585938 13.9271484 16.7585938 20.3099609 21.0892578 20.3099609 21.0892578 13.9271484 27.9099609 13.9271484"></polygon>
+                        <path d="M30.4371094,19.3228516 C30.4371094,17.8978516 25.3085938,16.7585937 18.9628906,16.7585937 C12.6171875,16.7585937 7.48867188,17.9164062 7.48867188,19.3228516 C7.48867188,20.5771484 11.4779297,21.6236328 16.7623047,21.85 L16.7623047,31.0085938 L21.0929688,31.0085938 L21.0929688,21.85 C26.4107422,21.6236328 30.4371094,20.5771484 30.4371094,19.3228516 L30.4371094,19.3228516 Z M18.9628906,20.9964844 C13.3185547,20.9964844 8.73925781,20.1021484 8.73925781,19 C8.73925781,17.8978516 13.3185547,17.0035156 18.9628906,17.0035156 C24.6072266,17.0035156 29.1865234,17.8978516 29.1865234,19 C29.1828125,20.1021484 24.6035156,20.9964844 18.9628906,20.9964844 Z" id="形状" fill="#FFFFFF"></path>
+                    </g>
+                    <circle id="椭圆形" fill="#FFFFFF" cx="20" cy="19" r="19"></circle>
+                    <g id="3641608546060_.pic_hd">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="蒙版" fill="#D8D8D8" xlink:href="#path-1"></use>
+                        <image mask="url(#mask-2)" x="-9" y="-9" width="56" height="56" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAABGdBTUEAALGN5fIAKQAAAg1QTFRF/////P//0Ob/nsb/dq3/WZr/RY7/PIb+RY//d67/n8f/0ej/9vv/qc//Vpv/EW3/AF/6Em3/V5n/qs3/9/3/5PH/da3/E27/d7D/5vT/7/f/dK7/CGb+CWf/dq//8fn/r9L/GXP/G3P/stX/+Pz/aKf/AWD7a6j/+f3/6/b/Oof/PYr/7Pb/5fP/KX3/K33/5/P/Pov/bKn/u9P56e/5n8H6z9/5jLX6s9X/8Pj/GXH/yNv5+fn5qcj63ej5lbv6HHT/8fr/dK3/qcj5eK//3ef5Cmf95/T/zt/5ea//lrz6FW//+P3/qc7/K3r69Pb5rdH/Vpz/aKD6+Pn5Wpz/EWz/S4760eH5FG///f//rMn5AWD6Jnf6J3f61en/2ub5A2H6o8v/jrf6BWL6e7D/xNj54uv5vNT5uNH5RYr6AV/6XZ7/ocP6r8v5DWf6SpL/TI76scz5Q43/S436RpD/DGf6rsr5nsH6SpH/Q4j6lLr6tM75t9D54Or5wdb5Xp//BGL63Of5pMr/0eb/Knn6KXn6sMz51ej//P7/mb760+L5rsv5/f7/aJ/6W57/r9P/k7r6FnD/d6//ytz5e7H/2OX5C2j+6PP/erH/HXT/8vn/stT/jbb65e35x9r5oML5tM76ttb/cK3/QIz/+v3/LoD/7vj/6fP/QY3/tNb/FnH/XJ3/o8n/S5L/1un/6P88HAAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAASKADAAQAAAABAAAASAAAAACz+WTVAAAC80lEQVRYCe3V+V9MURQA8DvVNEq47UKLZJo0tNk9FCk1URTKEGoiQjX2tUR2siRlF9n5G71lPu/e895dXv3mY+4Pfd4579zvO/fe3huEoiO6A//fDrhiYuPc8R7PLHdC4mzXTNefNGfuPEyN5JTUtBlY6RnJFBK5zJyfNU1qwcJFdkbLZOfkTofKW8xmtGz+EsdSwVI+o97xFvqcUUXLhI56s9jvRFq+QuZgXFIql4ocOKok7alAui6j3zLZPon3mVp0uXhxeaS0YqU6VpF4tRavMWPvWpG0br1ZiDco6thI4k1avJnElVUCaQupM6CtJGGFcDUfSqffC2tH2ywd4ZparpRBno9tHW23QriOByWB913viFpavQ0KNHCkHXRDto52NsLNVoubONAuIYR3N4NTU4tb2JBrjx2ijh/jvfvo41eLW9uYUgxwjKXtB7nggYMgxu1MKBYW6Zt96DBMWqIjTCgOVumQ0tEJszAKMSE3LOrSjltRjh6rMEZ3/fETsALjHiYUD8tOGhD999RpWIJ7mZAHVvXRROS639JT2AkU7GdIZ+DD2NBZWITPnbdLF2DNRWZHls1Wp1y6fOWqMbqvGeh1CA0woQRYBKPODl3qgln28SfCIks0eEOTLNAQs6ObcOqt4SBI3GZAd5jQXfA5wveU+3209MAOBR4yIZRCz1MhpfkRlWFAj9kOSqWmYQ1SGodJigGNcKC0TDLNgJQnJGOHnnJ/bZ+RaRHoOcnYoVFOQwhlZZN5+tKUFyRhg8ZeciGUQ+bJoXG+g3LziaRttqijiVcCCL32mtKbt+p4Z4b4vRZ/MGPvR5GDUKFZKbmYFDvIVywBIrc/fZZAyF/iRJr6InMQKnUgTX2VOwj5y2Q9fXPQj/YkXzk5O4bpnZTuj9nv90oGEElNSM7dRPSLquoaNjU2Lvw/hIoe1dYF7NSPUcH7xUCMVENTSyttBX6OcL8bXCRyo639V6inNxz+PRAa+sP5rsqM6P3oDvzTO/AXxH4NIgfuaj4AAAAASUVORK5CYII="></image>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

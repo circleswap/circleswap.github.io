@@ -21,7 +21,7 @@ import { useTransactionAdder } from '../../state/transactions/hooks'
 import { CardWrapper } from '../AppBody'
 import { Text } from 'rebass'
 import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
-import CIRToUSDT from '../../assets/logos/cir-husd.png'
+import CIRToHUSD from '../../assets/logos/cir-husd.png'
 import HTToCIR from '../../assets/logos/ht-cir.png'
 import RPCToCIR from '../../assets/logos/rpc-cir.png'
 import HTToETH from '../../assets/logos/ht-eth.png'
@@ -31,6 +31,10 @@ import CIRToFilda from '../../assets/logos/cir-filda.svg'
 import HPTToHUSD from '../../assets/logos/HPT-USDT.svg'
 import LHBToCIR from '../../assets/logos/LHB-CIR.svg'
 import TOPToUSDT from '../../assets/logos/TP-USDT.svg'
+import CIRToUSDT from '../../assets/logos/CIR-USDT.svg'
+import HTToUSDT from '../../assets/logos/HT-USDT.svg'
+import HUSDToUSDT from '../../assets/logos/HUSD-USDT.svg'
+
 
 import { usePoolClosed, useRewards2Token } from './hooks'
 import BigNumber from 'bignumber.js'
@@ -454,6 +458,54 @@ export default function Stake() {
   const currencyBalance9 = useCurrencyBalance(
     account ?? undefined,
     stakingInfo9?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
+
+  //CIR-USDT
+  const [currencyA10, currencyB10] = [
+    useCurrency('0xbe5DF2fac88BB096A973e664171E60586bC5940c'),
+    useCurrency('0xa71edc38d189767582c38a3145b5873052c3e47a')
+  ]
+  const tokenA10 = wrappedCurrency(currencyA10 ?? undefined, chainId)
+  const tokenB10 = wrappedCurrency(currencyB10 ?? undefined, chainId)
+
+  const [, stakingTokenPair10] = usePair(tokenA10, tokenB10)
+  const stakingInfo10 = useStakingInfo(stakingTokenPair10)?.[0]
+  const userLiquidityUnstaked10 = useTokenBalance(account ?? undefined, stakingInfo10?.stakedAmount?.token)
+  const currencyBalance10 = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo10?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
+
+  //HT-USDT
+  const [currencyA11, currencyB11] = [
+    useCurrency('0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f'),
+    useCurrency('0xa71edc38d189767582c38a3145b5873052c3e47a')
+  ]
+  const tokenA11 = wrappedCurrency(currencyA11 ?? undefined, chainId)
+  const tokenB11 = wrappedCurrency(currencyB11 ?? undefined, chainId)
+
+  const [, stakingTokenPair11] = usePair(tokenA11, tokenB11)
+  const stakingInfo11 = useStakingInfo(stakingTokenPair11)?.[0]
+  const userLiquidityUnstaked11 = useTokenBalance(account ?? undefined, stakingInfo11?.stakedAmount?.token)
+  const currencyBalance11 = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo11?.stakedAmount?.token ?? undefined
+  )?.toSignificant(6)
+
+  //HUSD-USDT
+  const [currencyA12, currencyB12] = [
+    useCurrency('0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f'),
+    useCurrency('0xa71edc38d189767582c38a3145b5873052c3e47a')
+  ]
+  const tokenA12 = wrappedCurrency(currencyA12 ?? undefined, chainId)
+  const tokenB12 = wrappedCurrency(currencyB12 ?? undefined, chainId)
+
+  const [, stakingTokenPair12] = usePair(tokenA12, tokenB12)
+  const stakingInfo12 = useStakingInfo(stakingTokenPair11)?.[0]
+  const userLiquidityUnstaked12 = useTokenBalance(account ?? undefined, stakingInfo12?.stakedAmount?.token)
+  const currencyBalance12 = useCurrencyBalance(
+    account ?? undefined,
+    stakingInfo12?.stakedAmount?.token ?? undefined
   )?.toSignificant(6)
 
   // toggle for staking modal and unstaking modal
@@ -881,6 +933,181 @@ export default function Stake() {
             </StakeCard>
 
             <TextBG color={theme.text1} style={{ margin: 'auto' }}>
+              {t('cirPools')}
+            </TextBG>
+
+            <StakeCard gap="lg">
+              <StakeCard.Header>
+                <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
+                  CIR-USDT
+                  <LogosFrame>
+                    <img alt="" src={CIRToUSDT} />
+                  </LogosFrame>
+                </TYPE.largeHeader>
+              </StakeCard.Header>
+              <AutoColumn style={{ width: '100%', margin: '24px 0' }} gap="md">
+                <AutoRow>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo10?.stakedAmount.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance10} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')}: </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo10?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+              </AutoColumn>
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
+                  disabled={!stakingInfo10}
+                  onClick={() => {
+                    setCurrentPair(10)
+                    setShowStakingModal(true)
+                  }}
+                >
+                  <Text fontWeight={500} fontSize={16}>
+                    {t('stake')}
+                  </Text>
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo10 || stakingInfo10.stakedAmount.equalTo('0')}
+                  onClick={() => {
+                    setCurrentPair(10)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('withdraw')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
+              <ClaimButton
+                closed={false}
+                disabled={!stakingInfo10 || stakingInfo10?.earnedAmount.equalTo('0')}
+                onClick={() => {
+                  setShowClaimRewardModal(true)
+                  setCurrentPair(10)
+                }}
+              >
+                {t('claim')}
+              </ClaimButton>
+            </StakeCard>
+
+            <StakeCard gap="lg">
+              <StakeCard.Header>
+                <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
+                  HT-USDT
+                  <LogosFrame>
+                    <img alt="" src={HTToUSDT} />
+                  </LogosFrame>
+                </TYPE.largeHeader>
+              </StakeCard.Header>
+              <AutoColumn style={{ width: '100%', margin: '24px 0' }} gap="md">
+                <AutoRow>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo11?.stakedAmount.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance11} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')}: </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo11?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+              </AutoColumn>
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
+                  disabled={!stakingInfo11}
+                  onClick={() => {
+                    setCurrentPair(11)
+                    setShowStakingModal(true)
+                  }}
+                >
+                  <Text fontWeight={500} fontSize={16}>
+                    {t('stake')}
+                  </Text>
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo11 || stakingInfo11.stakedAmount.equalTo('0')}
+                  onClick={() => {
+                    setCurrentPair(11)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('withdraw')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
+              <ClaimButton
+                closed={false}
+                disabled={!stakingInfo11 || stakingInfo11?.earnedAmount.equalTo('0')}
+                onClick={() => {
+                  setShowClaimRewardModal(true)
+                  setCurrentPair(11)
+                }}
+              >
+                {t('claim')}
+              </ClaimButton>
+            </StakeCard>
+
+            <StakeCard gap="lg">
+              <StakeCard.Header>
+                <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
+                  HUSD-USDT
+                  <LogosFrame>
+                    <img alt="" src={HUSDToUSDT} />
+                  </LogosFrame>
+                </TYPE.largeHeader>
+              </StakeCard.Header>
+              <AutoColumn style={{ width: '100%', margin: '24px 0' }} gap="md">
+                <AutoRow>
+                  <TYPE.darkGray>{t('yourStakedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo12?.stakedAmount.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('earnedAmount')} </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{currencyBalance12} </TYPE.black>
+                </AutoRow>
+                <AutoRow>
+                  <TYPE.darkGray>{t('bounds')}: </TYPE.darkGray>
+                  <TYPE.black marginLeft={16}>{stakingInfo12?.earnedAmount?.toSignificant(6)} </TYPE.black>
+                </AutoRow>
+              </AutoColumn>
+              <ButtonRow gap="19px" style={{ width: '100%' }}>
+                <ResponsiveButtonPrimary
+                  disabled={!stakingInfo12}
+                  onClick={() => {
+                    setCurrentPair(12)
+                    setShowStakingModal(true)
+                  }}
+                >
+                  <Text fontWeight={500} fontSize={16}>
+                    {t('stake')}
+                  </Text>
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonSecondary
+                  disabled={!stakingInfo12 || stakingInfo12.stakedAmount.equalTo('0')}
+                  onClick={() => {
+                    setCurrentPair(12)
+                    setShowUnstakingModal(true)
+                  }}
+                >
+                  {t('withdraw')}
+                </ResponsiveButtonSecondary>
+              </ButtonRow>
+              <ClaimButton
+                closed={false}
+                disabled={!stakingInfo12 || stakingInfo12?.earnedAmount.equalTo('0')}
+                onClick={() => {
+                  setShowClaimRewardModal(true)
+                  setCurrentPair(12)
+                }}
+              >
+                {t('claim')}
+              </ClaimButton>
+            </StakeCard>
+
+            <TextBG color={theme.text1} style={{ margin: 'auto' }}>
               {t('circle_pool')}
             </TextBG>
 
@@ -1057,7 +1284,7 @@ export default function Stake() {
                 <TYPE.largeHeader textAlign={'center'} color={theme.text1}>
                   CIR-HUSD
                   <LogosFrame>
-                    <img alt="" src={CIRToUSDT} />
+                    <img alt="" src={CIRToHUSD} />
                   </LogosFrame>
                 </TYPE.largeHeader>
               </StakeCard.Header>
@@ -1479,6 +1706,69 @@ export default function Stake() {
                     .toString()
                 : ''
             }
+          />
+        </>
+      )}
+
+      {stakingInfo10 && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal && currentPair === 10}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo10}
+            userLiquidityUnstaked={userLiquidityUnstaked10}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal && currentPair === 10}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo10}
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal && currentPair === 10}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo10}
+          />
+        </>
+      )}
+
+      {stakingInfo11 && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal && currentPair === 11}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo11}
+            userLiquidityUnstaked={userLiquidityUnstaked11}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal && currentPair === 11}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo11}
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal && currentPair === 11}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo11}
+          />
+        </>
+      )}
+
+      {stakingInfo12 && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal && currentPair === 12}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo12}
+            userLiquidityUnstaked={userLiquidityUnstaked12}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal && currentPair === 12}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo12}
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal && currentPair === 12}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo12}
           />
         </>
       )}

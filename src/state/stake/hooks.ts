@@ -123,6 +123,27 @@ export const STAKING_REWARDS_INFO: {
         new Token(ChainId.HT, '0xa71edc38d189767582c38a3145b5873052c3e47a', 18, 'USDT', 'Heco-Peg USDTHECO Token')
       ],
       stakingRewardAddress: '0x783e4Ac22691e59079E53288063EdA34Ac32F38c'
+    },
+    {
+      tokens: [
+        new Token(ChainId.HT, '0xbe5DF2fac88BB096A973e664171E60586bC5940c', 18, 'CIR', 'CircleSwap Governance Token'),
+        new Token(ChainId.HT, '0xa71edc38d189767582c38a3145b5873052c3e47a', 18, 'USDT', 'Heco-Peg USDTHECO Token')
+      ],
+      stakingRewardAddress: '0x7e7672C60907eb125a88b8c74EB0fb9439050730'
+    },
+    {
+      tokens: [
+        new Token(ChainId.HT, '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', 18, 'HT', 'Wrapped HT'),
+        new Token(ChainId.HT, '0xa71edc38d189767582c38a3145b5873052c3e47a', 18, 'USDT', 'Heco-Peg USDTHECO Token')
+      ],
+      stakingRewardAddress: '0xd3e7bA9EF26E5D5c25dcF12a75dB6474d9293e0F'
+    },
+    {
+      tokens: [
+        new Token(ChainId.HT, '0x0298c2b32eae4da002a15f36fdf7615bea3da047', 8, 'HUSD', 'Heco-Peg HUSD Token'),
+        new Token(ChainId.HT, '0xa71edc38d189767582c38a3145b5873052c3e47a', 18, 'USDT', 'Heco-Peg USDTHECO Token')
+      ],
+      stakingRewardAddress: '0x9C1dFe49755Da17156f1EC45343dC39066414539'
     }
   ]
 }
