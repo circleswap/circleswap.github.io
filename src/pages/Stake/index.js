@@ -501,7 +501,7 @@ export default function Stake() {
   const tokenB12 = wrappedCurrency(currencyB12 ?? undefined, chainId)
 
   const [, stakingTokenPair12] = usePair(tokenA12, tokenB12)
-  const stakingInfo12 = useStakingInfo(stakingTokenPair11)?.[0]
+  const stakingInfo12 = useStakingInfo(stakingTokenPair12)?.[0]
   const userLiquidityUnstaked12 = useTokenBalance(account ?? undefined, stakingInfo12?.stakedAmount?.token)
   const currencyBalance12 = useCurrencyBalance(
     account ?? undefined,
